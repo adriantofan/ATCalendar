@@ -92,7 +92,7 @@
     if (_managedObjectModel != nil) {
         return _managedObjectModel;
     }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"ATCalendarDemo" withExtension:@"momd"];
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"ATCalendar" withExtension:@"momd"];
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return _managedObjectModel;
 }
@@ -109,7 +109,10 @@
     
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+                                                   configuration:nil
+                                                             URL:storeURL options:@{NSMigratePersistentStoresAutomaticallyOption:@YES, NSInferMappingModelAutomaticallyOption:@YES}
+                                                           error:&error]) {
         /*
          Replace this implementation with code to handle the error appropriately.
          

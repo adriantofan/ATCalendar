@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		401297BD16F21CA100C0DC35 /* Mogenerator */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 401297BE16F21CA100C0DC35 /* Build configuration list for PBXAggregateTarget "Mogenerator" */;
+			buildPhases = (
+				401297C116F21CB200C0DC35 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Mogenerator;
+			productName = Mogenerator;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		401297BB16F21C2D00C0DC35 /* ATCalendar.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 401297B916F21C2D00C0DC35 /* ATCalendar.xcdatamodeld */; };
 		401297BC16F21C2D00C0DC35 /* ATCalendar.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 401297B916F21C2D00C0DC35 /* ATCalendar.xcdatamodeld */; };
@@ -42,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		401297BA16F21C2D00C0DC35 /* ATCalendar.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ATCalendar.xcdatamodel; sourceTree = "<group>"; };
+		401297C216F21D6C00C0DC35 /* ATCalendar_initial.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = ATCalendar_initial.xcdatamodel; sourceTree = "<group>"; };
 		405EC2C216F219B400F590DD /* ATCalendarDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ATCalendarDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		405EC2C516F219B400F590DD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		405EC2C716F219B400F590DD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -254,6 +269,7 @@
 			targets = (
 				405EC2C116F219B400F590DD /* ATCalendarDemo */,
 				405EC2EF16F219B400F590DD /* ATCalendarTests */,
+				401297BD16F21CA100C0DC35 /* Mogenerator */,
 			);
 		};
 /* End PBXProject section */
@@ -282,6 +298,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		401297C116F21CB200C0DC35 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd src/Models\nDATA_MODEL_PACKAGE=\"ATCalendar.xcdatamodeld\"\nCURRENT_VERSION=`/usr/libexec/PlistBuddy \"$DATA_MODEL_PACKAGE/.xccurrentversion\" -c 'print _XCCurrentVersionName'`\n/usr/local/bin/mogenerator --template-var arc=true -m \"$DATA_MODEL_PACKAGE/$CURRENT_VERSION\"";
+		};
 		405EC2EE16F219B400F590DD /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -357,6 +386,20 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		401297BF16F21CA100C0DC35 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		401297C016F21CA100C0DC35 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		405EC30116F219B400F590DD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -472,6 +515,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		401297BE16F21CA100C0DC35 /* Build configuration list for PBXAggregateTarget "Mogenerator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				401297BF16F21CA100C0DC35 /* Debug */,
+				401297C016F21CA100C0DC35 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		405EC2BD16F219B400F590DD /* Build configuration list for PBXProject "ATCalendarDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -505,8 +557,10 @@
 		401297B916F21C2D00C0DC35 /* ATCalendar.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				401297C216F21D6C00C0DC35 /* ATCalendar_initial.xcdatamodel */,
 				401297BA16F21C2D00C0DC35 /* ATCalendar.xcdatamodel */,
 			);
+			currentVersion = 401297C216F21D6C00C0DC35 /* ATCalendar_initial.xcdatamodel */;
 			path = ATCalendar.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
