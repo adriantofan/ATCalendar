@@ -49,6 +49,7 @@
 		4012981716F2251B00C0DC35 /* MagicalRecord+Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = 401297F916F2251B00C0DC35 /* MagicalRecord+Setup.m */; };
 		4012981816F2251B00C0DC35 /* MagicalRecord+ShorthandSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 401297FB16F2251B00C0DC35 /* MagicalRecord+ShorthandSupport.m */; };
 		4012981916F2251B00C0DC35 /* MagicalRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 401297FD16F2251B00C0DC35 /* MagicalRecord.m */; };
+		4012981C16F2277D00C0DC35 /* ATCoreDataTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012981B16F2277D00C0DC35 /* ATCoreDataTest.m */; };
 		405EC2C616F219B400F590DD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405EC2C516F219B400F590DD /* UIKit.framework */; };
 		405EC2C816F219B400F590DD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405EC2C716F219B400F590DD /* Foundation.framework */; };
 		405EC2CA16F219B400F590DD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405EC2C916F219B400F590DD /* CoreGraphics.framework */; };
@@ -137,6 +138,8 @@
 		401297FD16F2251B00C0DC35 /* MagicalRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicalRecord.m; sourceTree = "<group>"; };
 		401297FE16F2251B00C0DC35 /* MagicalRecordShorthand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalRecordShorthand.h; sourceTree = "<group>"; };
 		401297FF16F2251B00C0DC35 /* CoreData+MagicalRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CoreData+MagicalRecord.h"; sourceTree = "<group>"; };
+		4012981A16F2277D00C0DC35 /* ATCoreDataTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCoreDataTest.h; sourceTree = "<group>"; };
+		4012981B16F2277D00C0DC35 /* ATCoreDataTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCoreDataTest.m; sourceTree = "<group>"; };
 		405EC2C216F219B400F590DD /* ATCalendarDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ATCalendarDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		405EC2C516F219B400F590DD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		405EC2C716F219B400F590DD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -376,6 +379,8 @@
 				405EC2FE16F219B400F590DD /* ATCalendarDemoTests.h */,
 				405EC2FF16F219B400F590DD /* ATCalendarDemoTests.m */,
 				405EC2F916F219B400F590DD /* Supporting Files */,
+				4012981A16F2277D00C0DC35 /* ATCoreDataTest.h */,
+				4012981B16F2277D00C0DC35 /* ATCoreDataTest.m */,
 			);
 			path = ATCalendarDemoTests;
 			sourceTree = "<group>";
@@ -562,6 +567,7 @@
 			files = (
 				405EC30016F219B400F590DD /* ATCalendarDemoTests.m in Sources */,
 				401297BC16F21C2D00C0DC35 /* ATCalendar.xcdatamodeld in Sources */,
+				4012981C16F2277D00C0DC35 /* ATCoreDataTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
