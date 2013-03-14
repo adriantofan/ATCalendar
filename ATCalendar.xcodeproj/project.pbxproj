@@ -68,7 +68,6 @@
 		405EC2F416F219B400F590DD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405EC2C716F219B400F590DD /* Foundation.framework */; };
 		405EC2F516F219B400F590DD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405EC2CB16F219B400F590DD /* CoreData.framework */; };
 		405EC2FD16F219B400F590DD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 405EC2FB16F219B400F590DD /* InfoPlist.strings */; };
-		405EC30016F219B400F590DD /* ATCalendarDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 405EC2FF16F219B400F590DD /* ATCalendarDemoTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,7 +147,7 @@
 		405EC2CF16F219B400F590DD /* ATCalendarDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ATCalendarDemo-Info.plist"; sourceTree = "<group>"; };
 		405EC2D116F219B400F590DD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		405EC2D316F219B400F590DD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		405EC2D516F219B400F590DD /* ATCalendarDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ATCalendarDemo-Prefix.pch"; sourceTree = "<group>"; };
+		405EC2D516F219B400F590DD /* ATCalendar-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ATCalendar-Prefix.pch"; sourceTree = "<group>"; };
 		405EC2D616F219B400F590DD /* ATAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATAppDelegate.h; sourceTree = "<group>"; };
 		405EC2D716F219B400F590DD /* ATAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATAppDelegate.m; sourceTree = "<group>"; };
 		405EC2D916F219B400F590DD /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -159,12 +158,10 @@
 		405EC2E616F219B400F590DD /* ATMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATMasterViewController.m; sourceTree = "<group>"; };
 		405EC2E816F219B400F590DD /* ATDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATDetailViewController.h; sourceTree = "<group>"; };
 		405EC2E916F219B400F590DD /* ATDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATDetailViewController.m; sourceTree = "<group>"; };
-		405EC2F016F219B400F590DD /* ATCalendarDemoTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = ATCalendarDemoTests.octest; path = ATCalendarTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		405EC2F016F219B400F590DD /* ATCalendarTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ATCalendarTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		405EC2F116F219B400F590DD /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		405EC2FA16F219B400F590DD /* ATCalendarDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ATCalendarDemoTests-Info.plist"; sourceTree = "<group>"; };
+		405EC2FA16F219B400F590DD /* ATCalendarTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ATCalendarTests-Info.plist"; sourceTree = "<group>"; };
 		405EC2FC16F219B400F590DD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		405EC2FE16F219B400F590DD /* ATCalendarDemoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATCalendarDemoTests.h; sourceTree = "<group>"; };
-		405EC2FF16F219B400F590DD /* ATCalendarDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATCalendarDemoTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -327,7 +324,7 @@
 			isa = PBXGroup;
 			children = (
 				405EC2C216F219B400F590DD /* ATCalendarDemo.app */,
-				405EC2F016F219B400F590DD /* ATCalendarDemoTests.octest */,
+				405EC2F016F219B400F590DD /* ATCalendarTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -365,7 +362,7 @@
 				405EC2CF16F219B400F590DD /* ATCalendarDemo-Info.plist */,
 				405EC2D016F219B400F590DD /* InfoPlist.strings */,
 				405EC2D316F219B400F590DD /* main.m */,
-				405EC2D516F219B400F590DD /* ATCalendarDemo-Prefix.pch */,
+				405EC2D516F219B400F590DD /* ATCalendar-Prefix.pch */,
 				405EC2D916F219B400F590DD /* Default.png */,
 				405EC2DB16F219B400F590DD /* Default@2x.png */,
 				405EC2DD16F219B400F590DD /* Default-568h@2x.png */,
@@ -376,8 +373,6 @@
 		405EC2F816F219B400F590DD /* ATCalendarDemoTests */ = {
 			isa = PBXGroup;
 			children = (
-				405EC2FE16F219B400F590DD /* ATCalendarDemoTests.h */,
-				405EC2FF16F219B400F590DD /* ATCalendarDemoTests.m */,
 				405EC2F916F219B400F590DD /* Supporting Files */,
 				4012981A16F2277D00C0DC35 /* ATCoreDataTest.h */,
 				4012981B16F2277D00C0DC35 /* ATCoreDataTest.m */,
@@ -388,7 +383,7 @@
 		405EC2F916F219B400F590DD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				405EC2FA16F219B400F590DD /* ATCalendarDemoTests-Info.plist */,
+				405EC2FA16F219B400F590DD /* ATCalendarTests-Info.plist */,
 				405EC2FB16F219B400F590DD /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -438,7 +433,7 @@
 			);
 			name = ATCalendarTests;
 			productName = ATCalendarDemoTests;
-			productReference = 405EC2F016F219B400F590DD /* ATCalendarDemoTests.octest */;
+			productReference = 405EC2F016F219B400F590DD /* ATCalendarTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -451,7 +446,7 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Adrian Tofan";
 			};
-			buildConfigurationList = 405EC2BD16F219B400F590DD /* Build configuration list for PBXProject "ATCalendarDemo" */;
+			buildConfigurationList = 405EC2BD16F219B400F590DD /* Build configuration list for PBXProject "ATCalendar" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -565,7 +560,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				405EC30016F219B400F590DD /* ATCalendarDemoTests.m in Sources */,
 				401297BC16F21C2D00C0DC35 /* ATCalendar.xcdatamodeld in Sources */,
 				4012981C16F2277D00C0DC35 /* ATCoreDataTest.m in Sources */,
 			);
@@ -683,7 +677,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ATCalendarDemo/ATCalendarDemo-Prefix.pch";
+				GCC_PREFIX_HEADER = "ATCalendarDemo/ATCalendar-Prefix.pch";
 				INFOPLIST_FILE = "ATCalendarDemo/ATCalendarDemo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -694,7 +688,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ATCalendarDemo/ATCalendarDemo-Prefix.pch";
+				GCC_PREFIX_HEADER = "ATCalendarDemo/ATCalendar-Prefix.pch";
 				INFOPLIST_FILE = "ATCalendarDemo/ATCalendarDemo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -710,8 +704,8 @@
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ATCalendarDemo/ATCalendarDemo-Prefix.pch";
-				INFOPLIST_FILE = "ATCalendarDemoTests/ATCalendarDemoTests-Info.plist";
+				GCC_PREFIX_HEADER = "ATCalendarDemo/ATCalendar-Prefix.pch";
+				INFOPLIST_FILE = "ATCalendarDemoTests/ATCalendarTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -727,8 +721,8 @@
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ATCalendarDemo/ATCalendarDemo-Prefix.pch";
-				INFOPLIST_FILE = "ATCalendarDemoTests/ATCalendarDemoTests-Info.plist";
+				GCC_PREFIX_HEADER = "ATCalendarDemo/ATCalendar-Prefix.pch";
+				INFOPLIST_FILE = "ATCalendarDemoTests/ATCalendarTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -747,7 +741,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		405EC2BD16F219B400F590DD /* Build configuration list for PBXProject "ATCalendarDemo" */ = {
+		405EC2BD16F219B400F590DD /* Build configuration list for PBXProject "ATCalendar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				405EC30116F219B400F590DD /* Debug */,

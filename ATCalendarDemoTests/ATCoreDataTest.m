@@ -11,12 +11,14 @@
 @implementation ATCoreDataTest
 - (void)setUp;
 {
-	[MagicalRecord setDefaultModelWithClass:[self class]];
+  [super setUp];
+	[MagicalRecord setDefaultModelFromClass:[self class]];
 	[MagicalRecord setupCoreDataStackWithInMemoryStore];
 }
 
 - (void)tearDown;
 {
 	[MagicalRecord cleanUp];
+  [super tearDown];
 }
 @end

@@ -17,7 +17,7 @@
                BlueprintIdentifier = "405EC2C116F219B400F590DD"
                BuildableName = "ATCalendarDemo.app"
                BlueprintName = "ATCalendarDemo"
-               ReferencedContainer = "container:ATCalendarDemo.xcodeproj">
+               ReferencedContainer = "container:ATCalendar.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "405EC2EF16F219B400F590DD"
                BuildableName = "ATCalendarTests.octest"
                BlueprintName = "ATCalendarTests"
-               ReferencedContainer = "container:ATCalendarDemo.xcodeproj">
+               ReferencedContainer = "container:ATCalendar.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -45,7 +45,7 @@
             BlueprintIdentifier = "405EC2C116F219B400F590DD"
             BuildableName = "ATCalendarDemo.app"
             BlueprintName = "ATCalendarDemo"
-            ReferencedContainer = "container:ATCalendarDemo.xcodeproj">
+            ReferencedContainer = "container:ATCalendar.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -64,7 +64,7 @@
             BlueprintIdentifier = "405EC2C116F219B400F590DD"
             BuildableName = "ATCalendarDemo.app"
             BlueprintName = "ATCalendarDemo"
-            ReferencedContainer = "container:ATCalendarDemo.xcodeproj">
+            ReferencedContainer = "container:ATCalendar.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -82,7 +82,7 @@
             BlueprintIdentifier = "405EC2C116F219B400F590DD"
             BuildableName = "ATCalendarDemo.app"
             BlueprintName = "ATCalendarDemo"
-            ReferencedContainer = "container:ATCalendarDemo.xcodeproj">
+            ReferencedContainer = "container:ATCalendar.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

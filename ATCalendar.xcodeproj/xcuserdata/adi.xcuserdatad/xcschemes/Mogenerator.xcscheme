@@ -17,7 +17,7 @@
                BlueprintIdentifier = "401297BD16F21CA100C0DC35"
                BuildableName = "Mogenerator"
                BlueprintName = "Mogenerator"
-               ReferencedContainer = "container:ATCalendarDemo.xcodeproj">
+               ReferencedContainer = "container:ATCalendar.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
