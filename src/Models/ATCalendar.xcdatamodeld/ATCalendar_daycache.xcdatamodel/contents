@@ -12,6 +12,10 @@
         <relationship name="recurences" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Recurrence" inverseName="event" inverseEntity="Recurrence" syncable="YES"/>
         <userInfo/>
     </entity>
+    <entity name="GlobalPropertyes" representedClassName="ATGlobalPropertyes" syncable="YES">
+        <attribute name="key" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="OccurrenceCache" representedClassName="ATOccurrenceCache" syncable="YES">
         <attribute name="day" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="occurrenceDate" optional="YES" attributeType="Date" syncable="YES"/>
@@ -27,7 +31,8 @@
     </entity>
     <elements>
         <element name="Event" positionX="261" positionY="189" width="128" height="150"/>
-        <element name="Recurrence" positionX="160" positionY="192" width="128" height="120"/>
         <element name="OccurrenceCache" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="Recurrence" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="GlobalPropertyes" positionX="160" positionY="192" width="128" height="75"/>
     </elements>
 </model>
