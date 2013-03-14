@@ -50,6 +50,10 @@
 		4012981816F2251B00C0DC35 /* MagicalRecord+ShorthandSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 401297FB16F2251B00C0DC35 /* MagicalRecord+ShorthandSupport.m */; };
 		4012981916F2251B00C0DC35 /* MagicalRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 401297FD16F2251B00C0DC35 /* MagicalRecord.m */; };
 		4012981C16F2277D00C0DC35 /* ATCoreDataTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012981B16F2277D00C0DC35 /* ATCoreDataTest.m */; };
+		4012982516F22F9600C0DC35 /* _ATEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012981E16F22F9600C0DC35 /* _ATEvent.m */; };
+		4012982616F22F9600C0DC35 /* _ATRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012982016F22F9600C0DC35 /* _ATRecurrence.m */; };
+		4012982716F22F9600C0DC35 /* ATEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012982216F22F9600C0DC35 /* ATEvent.m */; };
+		4012982816F22F9600C0DC35 /* ATRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012982416F22F9600C0DC35 /* ATRecurrence.m */; };
 		405EC2C616F219B400F590DD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405EC2C516F219B400F590DD /* UIKit.framework */; };
 		405EC2C816F219B400F590DD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405EC2C716F219B400F590DD /* Foundation.framework */; };
 		405EC2CA16F219B400F590DD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405EC2C916F219B400F590DD /* CoreGraphics.framework */; };
@@ -139,6 +143,14 @@
 		401297FF16F2251B00C0DC35 /* CoreData+MagicalRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CoreData+MagicalRecord.h"; sourceTree = "<group>"; };
 		4012981A16F2277D00C0DC35 /* ATCoreDataTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCoreDataTest.h; sourceTree = "<group>"; };
 		4012981B16F2277D00C0DC35 /* ATCoreDataTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCoreDataTest.m; sourceTree = "<group>"; };
+		4012981D16F22F9600C0DC35 /* _ATEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ATEvent.h; sourceTree = "<group>"; };
+		4012981E16F22F9600C0DC35 /* _ATEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _ATEvent.m; sourceTree = "<group>"; };
+		4012981F16F22F9600C0DC35 /* _ATRecurrence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ATRecurrence.h; sourceTree = "<group>"; };
+		4012982016F22F9600C0DC35 /* _ATRecurrence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _ATRecurrence.m; sourceTree = "<group>"; };
+		4012982116F22F9600C0DC35 /* ATEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATEvent.h; sourceTree = "<group>"; };
+		4012982216F22F9600C0DC35 /* ATEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATEvent.m; sourceTree = "<group>"; };
+		4012982316F22F9600C0DC35 /* ATRecurrence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATRecurrence.h; sourceTree = "<group>"; };
+		4012982416F22F9600C0DC35 /* ATRecurrence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATRecurrence.m; sourceTree = "<group>"; };
 		405EC2C216F219B400F590DD /* ATCalendarDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ATCalendarDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		405EC2C516F219B400F590DD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		405EC2C716F219B400F590DD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -193,6 +205,14 @@
 		401297B816F21C2D00C0DC35 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4012981D16F22F9600C0DC35 /* _ATEvent.h */,
+				4012981E16F22F9600C0DC35 /* _ATEvent.m */,
+				4012981F16F22F9600C0DC35 /* _ATRecurrence.h */,
+				4012982016F22F9600C0DC35 /* _ATRecurrence.m */,
+				4012982116F22F9600C0DC35 /* ATEvent.h */,
+				4012982216F22F9600C0DC35 /* ATEvent.m */,
+				4012982316F22F9600C0DC35 /* ATRecurrence.h */,
+				4012982416F22F9600C0DC35 /* ATRecurrence.m */,
 				401297B916F21C2D00C0DC35 /* ATCalendar.xcdatamodeld */,
 			);
 			path = Models;
@@ -553,6 +573,10 @@
 				4012981716F2251B00C0DC35 /* MagicalRecord+Setup.m in Sources */,
 				4012981816F2251B00C0DC35 /* MagicalRecord+ShorthandSupport.m in Sources */,
 				4012981916F2251B00C0DC35 /* MagicalRecord.m in Sources */,
+				4012982516F22F9600C0DC35 /* _ATEvent.m in Sources */,
+				4012982616F22F9600C0DC35 /* _ATRecurrence.m in Sources */,
+				4012982716F22F9600C0DC35 /* ATEvent.m in Sources */,
+				4012982816F22F9600C0DC35 /* ATRecurrence.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
