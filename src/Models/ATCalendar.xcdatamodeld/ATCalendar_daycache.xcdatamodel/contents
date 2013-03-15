@@ -30,9 +30,9 @@
         <relationship name="event" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="recurences" inverseEntity="Event" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Event" positionX="261" positionY="189" width="128" height="150"/>
-        <element name="OccurrenceCache" positionX="160" positionY="192" width="128" height="105"/>
-        <element name="Recurrence" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="GlobalPropertyes" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="Event" positionX="225" positionY="117" width="128" height="150"/>
+        <element name="GlobalPropertyes" positionX="160" positionY="-117" width="128" height="75"/>
+        <element name="OccurrenceCache" positionX="540" positionY="318" width="128" height="105"/>
+        <element name="Recurrence" positionX="9" positionY="402" width="128" height="120"/>
     </elements>
 </model>

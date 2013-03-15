@@ -12,8 +12,8 @@
 - (void)setUp;
 {
   [super setUp];
-	[MagicalRecord setDefaultModelFromClass:[self class]];
-	[MagicalRecord setupCoreDataStackWithInMemoryStore];
+  [MagicalRecord setDefaultModelFromClass:[self class]];
+  [MagicalRecord setupCoreDataStackWithInMemoryStore];
 }
 
 - (void)tearDown;

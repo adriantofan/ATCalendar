@@ -59,6 +59,13 @@
 		4012983416F23B0100C0DC35 /* ATGlobalPropertyes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012982F16F23B0100C0DC35 /* ATGlobalPropertyes.m */; };
 		4012983516F23B0100C0DC35 /* ATOccurrenceCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012983116F23B0100C0DC35 /* ATOccurrenceCache.m */; };
 		4012983816F23E6800C0DC35 /* ATGlobalPropertyesTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012983716F23E6800C0DC35 /* ATGlobalPropertyesTest.m */; };
+		4012983F16F2435600C0DC35 /* ATCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012983E16F2435600C0DC35 /* ATCalendar.m */; };
+		4012984016F2435600C0DC35 /* ATCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012983E16F2435600C0DC35 /* ATCalendar.m */; };
+		4059A96716F24600008F90F4 /* ATCalendarTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4059A96616F24600008F90F4 /* ATCalendarTest.m */; };
+		4059A96A16F24CB0008F90F4 /* Pods.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 8AFFA37E5D9B470888607BEB /* Pods.xcconfig */; };
+		4059A96B16F24CB0008F90F4 /* Pods.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 8AFFA37E5D9B470888607BEB /* Pods.xcconfig */; };
+		4059A96F16F32D69008F90F4 /* ATTimeSpan.m in Sources */ = {isa = PBXBuildFile; fileRef = 4059A96E16F32D69008F90F4 /* ATTimeSpan.m */; };
+		4059A97216F358B1008F90F4 /* ATEventTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4059A97116F358B1008F90F4 /* ATEventTest.m */; };
 		405EC2C616F219B400F590DD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405EC2C516F219B400F590DD /* UIKit.framework */; };
 		405EC2C816F219B400F590DD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405EC2C716F219B400F590DD /* Foundation.framework */; };
 		405EC2CA16F219B400F590DD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405EC2C916F219B400F590DD /* CoreGraphics.framework */; };
@@ -168,6 +175,15 @@
 		4012983116F23B0100C0DC35 /* ATOccurrenceCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATOccurrenceCache.m; sourceTree = "<group>"; };
 		4012983616F23E6800C0DC35 /* ATGlobalPropertyesTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATGlobalPropertyesTest.h; sourceTree = "<group>"; };
 		4012983716F23E6800C0DC35 /* ATGlobalPropertyesTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATGlobalPropertyesTest.m; sourceTree = "<group>"; };
+		4012983D16F2435600C0DC35 /* ATCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCalendar.h; sourceTree = "<group>"; };
+		4012983E16F2435600C0DC35 /* ATCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCalendar.m; sourceTree = "<group>"; };
+		4059A96516F24600008F90F4 /* ATCalendarTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCalendarTest.h; sourceTree = "<group>"; };
+		4059A96616F24600008F90F4 /* ATCalendarTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCalendarTest.m; sourceTree = "<group>"; };
+		4059A96816F24BCF008F90F4 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libPods.a; path = "Pods/build/Release-iphoneos/libPods.a"; sourceTree = "<group>"; };
+		4059A96D16F32D69008F90F4 /* ATTimeSpan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTimeSpan.h; sourceTree = "<group>"; };
+		4059A96E16F32D69008F90F4 /* ATTimeSpan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTimeSpan.m; sourceTree = "<group>"; };
+		4059A97016F358B1008F90F4 /* ATEventTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATEventTest.h; sourceTree = "<group>"; };
+		4059A97116F358B1008F90F4 /* ATEventTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATEventTest.m; sourceTree = "<group>"; };
 		405EC2C216F219B400F590DD /* ATCalendarDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ATCalendarDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		405EC2C516F219B400F590DD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		405EC2C716F219B400F590DD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -225,6 +241,7 @@
 		401297B816F21C2D00C0DC35 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4059A96C16F32D51008F90F4 /* General */,
 				4012981D16F22F9600C0DC35 /* _ATEvent.h */,
 				4012981E16F22F9600C0DC35 /* _ATEvent.m */,
 				4012981F16F22F9600C0DC35 /* _ATRecurrence.h */,
@@ -242,6 +259,8 @@
 				4012982316F22F9600C0DC35 /* ATRecurrence.h */,
 				4012982416F22F9600C0DC35 /* ATRecurrence.m */,
 				401297B916F21C2D00C0DC35 /* ATCalendar.xcdatamodeld */,
+				4012983D16F2435600C0DC35 /* ATCalendar.h */,
+				4012983E16F2435600C0DC35 /* ATCalendar.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -356,9 +375,19 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
+		4059A96C16F32D51008F90F4 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				4059A96D16F32D69008F90F4 /* ATTimeSpan.h */,
+				4059A96E16F32D69008F90F4 /* ATTimeSpan.m */,
+			);
+			name = General;
+			sourceTree = "<group>";
+		};
 		405EC2B916F219B400F590DD = {
 			isa = PBXGroup;
 			children = (
+				4059A96816F24BCF008F90F4 /* libPods.a */,
 				401297C316F224DC00C0DC35 /* Vendor */,
 				405EC30916F21B0500F590DD /* src */,
 				405EC2CD16F219B400F590DD /* ATCalendarDemo */,
@@ -428,6 +457,10 @@
 				4012981B16F2277D00C0DC35 /* ATCoreDataTest.m */,
 				4012983616F23E6800C0DC35 /* ATGlobalPropertyesTest.h */,
 				4012983716F23E6800C0DC35 /* ATGlobalPropertyesTest.m */,
+				4059A96516F24600008F90F4 /* ATCalendarTest.h */,
+				4059A96616F24600008F90F4 /* ATCalendarTest.m */,
+				4059A97016F358B1008F90F4 /* ATEventTest.h */,
+				4059A97116F358B1008F90F4 /* ATEventTest.m */,
 			);
 			path = ATCalendarDemoTests;
 			sourceTree = "<group>";
@@ -528,6 +561,7 @@
 				405EC2DC16F219B400F590DD /* Default@2x.png in Resources */,
 				405EC2DE16F219B400F590DD /* Default-568h@2x.png in Resources */,
 				405EC2E116F219B400F590DD /* MainStoryboard.storyboard in Resources */,
+				4059A96A16F24CB0008F90F4 /* Pods.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -536,6 +570,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				405EC2FD16F219B400F590DD /* InfoPlist.strings in Resources */,
+				4059A96B16F24CB0008F90F4 /* Pods.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -628,6 +663,8 @@
 				4012983316F23B0100C0DC35 /* _ATOccurrenceCache.m in Sources */,
 				4012983416F23B0100C0DC35 /* ATGlobalPropertyes.m in Sources */,
 				4012983516F23B0100C0DC35 /* ATOccurrenceCache.m in Sources */,
+				4012983F16F2435600C0DC35 /* ATCalendar.m in Sources */,
+				4059A96F16F32D69008F90F4 /* ATTimeSpan.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -638,6 +675,9 @@
 				401297BC16F21C2D00C0DC35 /* ATCalendar.xcdatamodeld in Sources */,
 				4012981C16F2277D00C0DC35 /* ATCoreDataTest.m in Sources */,
 				4012983816F23E6800C0DC35 /* ATGlobalPropertyesTest.m in Sources */,
+				4012984016F2435600C0DC35 /* ATCalendar.m in Sources */,
+				4059A96716F24600008F90F4 /* ATCalendarTest.m in Sources */,
+				4059A97216F358B1008F90F4 /* ATEventTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -756,6 +796,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ATCalendarDemo/ATCalendar-Prefix.pch";
 				INFOPLIST_FILE = "ATCalendarDemo/ATCalendarDemo-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -768,6 +812,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ATCalendarDemo/ATCalendar-Prefix.pch";
 				INFOPLIST_FILE = "ATCalendarDemo/ATCalendarDemo-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -775,6 +823,7 @@
 		};
 		405EC30716F219B400F590DD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8AFFA37E5D9B470888607BEB /* Pods.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ATCalendarDemo.app/ATCalendarDemo";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -792,6 +841,7 @@
 		};
 		405EC30816F219B400F590DD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8AFFA37E5D9B470888607BEB /* Pods.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ATCalendarDemo.app/ATCalendarDemo";
 				FRAMEWORK_SEARCH_PATHS = (
