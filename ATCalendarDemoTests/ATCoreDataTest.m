@@ -12,6 +12,7 @@
 - (void)setUp;
 {
   [super setUp];
+  [NSTimeZone setDefaultTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
   [MagicalRecord setDefaultModelFromClass:[self class]];
   [MagicalRecord setupCoreDataStackWithInMemoryStore];
 }

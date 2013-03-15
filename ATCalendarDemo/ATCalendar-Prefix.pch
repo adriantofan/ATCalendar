@@ -15,4 +15,7 @@
   #import "CoreData+MagicalRecord.h"
   #import "NSDate+MTDates.h"
   #import "NSDateComponents+MTDates.h"
+  #import "NSArray+F.h"
+  #import "NSDictionary+F.h"
+  #import "NSNumber+F.h"
 #endif

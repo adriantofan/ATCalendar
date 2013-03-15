@@ -13,9 +13,19 @@
 @implementation ATAppDelegate
 
 @synthesize managedObjectContext;
+-(void)applicationDidBecomeActive:(UIApplication *)application{
+#if DEBUG
+  if (getenv("runningTests"))
+    return ;
+#endif
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+#if DEBUG
+  if (getenv("runningTests"))
+    return YES;
+#endif
     // Override point for customization after application launch.
   UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
   ATMasterViewController *controller = (ATMasterViewController *)navigationController.topViewController;

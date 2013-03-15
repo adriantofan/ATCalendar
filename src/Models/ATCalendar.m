@@ -29,16 +29,11 @@ static ATCalendar* ___sharedInstance;
     NSArray* nonRecuringEvents = [ATEvent allEventsFrom:fromDate
                                                      to:toDate];
     for (ATEvent *event in nonRecuringEvents) {
-        NSArray* eventMatchingDates = [event matchingDates:fromDate to:toDate];
-        for (NSDate *occurenceDate in eventMatchingDates) {
-            ATOccurrenceCache *occurence = [ATOccurrenceCache MR_createEntity];
-            occurence.day = [occurenceDate startOfCurrentDay];
-            occurence.occurrenceDate = occurenceDate;
-            occurence.occurrenceEnd = [event endDateForDate:occurenceDate];
-            occurence.event = event;
-        }
+        [event updateOccurencesFrom:fromDate to:toDate];
     }
 }
+
+
 
 -(void)syncRecurringEventsFrom:(NSDate *)fromDate to:(NSDate *)toDate{
   

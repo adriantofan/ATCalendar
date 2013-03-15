@@ -6,47 +6,56 @@
 //  Copyright (c) 2013 Adrian Tofan. All rights reserved.
 //
 
-#import "ATCalendarTest.h"
+#import <SenTestingKit/SenTestingKit.h>
+#import "ATCoreDataTest.h"
+#define HC_SHORTHAND
+#import "OCHamcrest.h"
 #import "ATCalendar.h"
 #import "NSDate+MTDates.h"
 #import "ATTimeSpan.h"
 #import "ATEvent.h"
 #import "ATOccurrenceCache.h"
 
+@interface ATCalendarTest : ATCoreDataTest
+@end
 
 @implementation ATCalendarTest
 
 -(void)testSyncNonRecurringEventsFrom{
   ATCalendar* cal = [ATCalendar sharedInstance];
+  
   NSDate* today = [NSDate date];
   NSDate* a = [today dateDaysBefore:3];
   NSDate* b = [today dateDaysBefore:2];
   NSDate* c = [today dateDaysBefore:1];
   NSDate* d = today;
   NSDate* e = [today dateDaysAfter:1];
-  
-  //        syncStart x syncEnds 
-  //    xxxxx xxxxx xxxxx xxxxx  xxxxx
-  //     -3    -2    -1     0      +1
-  //      A     B     C     D       E
-
-  NSDate* syncStart = [[today oneDayPrevious] startOfCurrentDay];
-  NSDate* syncEnds = [today endOfCurrentDay];
-
-  ATEvent *endingInSyncIntervalEvent = [ATEvent MR_createEntity]; // AC
-//  ATEvent *startingInSyncIntervalEvent = [ATEvent MR_createEntity]; // CE
-//  ATEvent *onDayInSyncIntervalEvent = [ATEvent MR_createEntity]; // CC
-//  ATEvent *twoDayInSyncIntervalEvent = [ATEvent MR_createEntity]; // CD
-//  ATEvent *beforeSyncIntervalEvent = [ATEvent MR_createEntity]; // AA
-//  ATEvent *afterSyncIntervalEvent = [ATEvent MR_createEntity]; // EE
-
-  endingInSyncIntervalEvent.startDate = a;
-  endingInSyncIntervalEvent.endDate = c;
-  STFail(@"Not implemented");return;
+  NSDate* f = [today dateDaysAfter:2];
+  //        syncStart x1 syncEnds    
+  //    xxxxx xxxxx xxxxx xxxxx  xxxxx   xxxxx
+  //     -3    -2    -1     0      +1     +2
+  //      A     B     C     D       E      F
+  NSDate* syncStart = [b startOfCurrentDay];
+  NSDate* syncEnds  = [d startOfCurrentDay];
+  ATOccurrenceCache* occurence;
+  ATEvent *insideSync = [ATEvent MR_createEntity]; // AC
+  ATEvent *containsSync = [ATEvent MR_createEntity]; // AA
+  ATEvent *outsideSync = [ATEvent MR_createEntity]; // EE
+  insideSync.startDate = c;
+  insideSync.endDate = d;
+  containsSync.startDate = a;
+  containsSync.endDate = f;
+  outsideSync.startDate = f;
+  outsideSync.endDate = f;
+  [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
   [cal syncNonRecurringEventsFrom:syncStart to:syncEnds];
   NSArray* occurences = [ATOccurrenceCache MR_findAllSortedBy:@"day" ascending:YES];
-  STAssertEquals([occurences count], (NSUInteger)2, @"expecting B & C");
-  
+  occurences = [occurences map:^id(ATOccurrenceCache* obj) {
+    return [obj event];
+  }];
+  [cal syncNonRecurringEventsFrom:syncStart to:syncEnds];
+  assertThat(occurences,hasItems(insideSync,containsSync,nil));
+  assertThat(occurences,isNot(hasItems(outsideSync,nil)));
 }
 
 -(void)testThatTimeSpanToSyncFromWorksForEdgeCases{
