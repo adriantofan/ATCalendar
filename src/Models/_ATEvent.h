@@ -14,7 +14,7 @@ extern const struct ATEventAttributes {
 } ATEventAttributes;
 
 extern const struct ATEventRelationships {
-	__unsafe_unretained NSString *recurences;
+	__unsafe_unretained NSString *recurence;
 } ATEventRelationships;
 
 extern const struct ATEventFetchedProperties {
@@ -102,9 +102,9 @@ extern const struct ATEventFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSSet *recurences;
+@property (nonatomic, strong) ATRecurrence *recurence;
 
-- (NSMutableSet*)recurencesSet;
+//- (BOOL)validateRecurence:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -113,11 +113,6 @@ extern const struct ATEventFetchedProperties {
 @end
 
 @interface _ATEvent (CoreDataGeneratedAccessors)
-
-- (void)addRecurences:(NSSet*)value_;
-- (void)removeRecurences:(NSSet*)value_;
-- (void)addRecurencesObject:(ATRecurrence*)value_;
-- (void)removeRecurencesObject:(ATRecurrence*)value_;
 
 @end
 
@@ -161,8 +156,8 @@ extern const struct ATEventFetchedProperties {
 
 
 
-- (NSMutableSet*)primitiveRecurences;
-- (void)setPrimitiveRecurences:(NSMutableSet*)value;
+- (ATRecurrence*)primitiveRecurence;
+- (void)setPrimitiveRecurence:(ATRecurrence*)value;
 
 
 @end

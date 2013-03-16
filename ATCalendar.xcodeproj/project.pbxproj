@@ -68,6 +68,23 @@
 		40C3372616F38CD5002EDD52 /* ATEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012982216F22F9600C0DC35 /* ATEvent.m */; };
 		40C3372816F38CF8002EDD52 /* ATTimeSpan.m in Sources */ = {isa = PBXBuildFile; fileRef = 4059A96E16F32D69008F90F4 /* ATTimeSpan.m */; };
 		40FCA7C916F46F3600F22C81 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405EC2C916F219B400F590DD /* CoreGraphics.framework */; };
+		40FCA7EC16F4C40E00F22C81 /* _ATMonthlyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7DD16F4C40E00F22C81 /* _ATMonthlyRecurrence.m */; };
+		40FCA7ED16F4C40E00F22C81 /* _ATMonthlyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7DD16F4C40E00F22C81 /* _ATMonthlyRecurrence.m */; };
+		40FCA7EE16F4C40E00F22C81 /* _ATWeeklyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7DF16F4C40E00F22C81 /* _ATWeeklyRecurrence.m */; };
+		40FCA7EF16F4C40E00F22C81 /* _ATWeeklyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7DF16F4C40E00F22C81 /* _ATWeeklyRecurrence.m */; };
+		40FCA7F016F4C40E00F22C81 /* _ATYearlyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7E116F4C40E00F22C81 /* _ATYearlyRecurrence.m */; };
+		40FCA7F116F4C40E00F22C81 /* _ATYearlyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7E116F4C40E00F22C81 /* _ATYearlyRecurrence.m */; };
+		40FCA7F216F4C40E00F22C81 /* ATMonthlyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7E316F4C40E00F22C81 /* ATMonthlyRecurrence.m */; };
+		40FCA7F316F4C40E00F22C81 /* ATMonthlyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7E316F4C40E00F22C81 /* ATMonthlyRecurrence.m */; };
+		40FCA7F416F4C40E00F22C81 /* ATWeeklyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7E516F4C40E00F22C81 /* ATWeeklyRecurrence.m */; };
+		40FCA7F516F4C40E00F22C81 /* ATWeeklyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7E516F4C40E00F22C81 /* ATWeeklyRecurrence.m */; };
+		40FCA7F616F4C40E00F22C81 /* ATYearlyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7E716F4C40E00F22C81 /* ATYearlyRecurrence.m */; };
+		40FCA7F716F4C40E00F22C81 /* ATYearlyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7E716F4C40E00F22C81 /* ATYearlyRecurrence.m */; };
+		40FCA7F816F4C40E00F22C81 /* _ATDailyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7E916F4C40E00F22C81 /* _ATDailyRecurrence.m */; };
+		40FCA7F916F4C40E00F22C81 /* _ATDailyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7E916F4C40E00F22C81 /* _ATDailyRecurrence.m */; };
+		40FCA7FA16F4C40E00F22C81 /* ATDailyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7EB16F4C40E00F22C81 /* ATDailyRecurrence.m */; };
+		40FCA7FB16F4C40E00F22C81 /* ATDailyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7EB16F4C40E00F22C81 /* ATDailyRecurrence.m */; };
+		40FCA7FD16F4CD0100F22C81 /* ATRecurrenceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7FC16F4CD0100F22C81 /* ATRecurrenceTest.m */; };
 		628016158C39494FB1B9D4B1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 841B0704C9154AE4852A0DEE /* libPods.a */; };
 		B3E538D3BD1C478298F3F8BB /* libPods-test.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38736638942241C7A5F4162B /* libPods-test.a */; };
 /* End PBXBuildFile section */
@@ -99,6 +116,7 @@
 		4012983716F23E6800C0DC35 /* ATGlobalPropertyesTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATGlobalPropertyesTest.m; sourceTree = "<group>"; };
 		4012983D16F2435600C0DC35 /* ATCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCalendar.h; sourceTree = "<group>"; };
 		4012983E16F2435600C0DC35 /* ATCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCalendar.m; sourceTree = "<group>"; };
+		4026388516F76C8F002E5C6D /* ATCalendar_reccurence_take2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = ATCalendar_reccurence_take2.xcdatamodel; sourceTree = "<group>"; };
 		4059A96616F24600008F90F4 /* ATCalendarTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCalendarTest.m; sourceTree = "<group>"; };
 		4059A96D16F32D69008F90F4 /* ATTimeSpan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTimeSpan.h; sourceTree = "<group>"; };
 		4059A96E16F32D69008F90F4 /* ATTimeSpan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTimeSpan.m; sourceTree = "<group>"; };
@@ -126,6 +144,24 @@
 		405EC2F116F219B400F590DD /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		405EC2FA16F219B400F590DD /* ATCalendarTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ATCalendarTests-Info.plist"; sourceTree = "<group>"; };
 		405EC2FC16F219B400F590DD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		40FCA7DB16F4BEF900F22C81 /* ATCalendar_reccurence.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ATCalendar_reccurence.xcdatamodel; sourceTree = "<group>"; };
+		40FCA7DC16F4C40E00F22C81 /* _ATMonthlyRecurrence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ATMonthlyRecurrence.h; sourceTree = "<group>"; };
+		40FCA7DD16F4C40E00F22C81 /* _ATMonthlyRecurrence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _ATMonthlyRecurrence.m; sourceTree = "<group>"; };
+		40FCA7DE16F4C40E00F22C81 /* _ATWeeklyRecurrence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ATWeeklyRecurrence.h; sourceTree = "<group>"; };
+		40FCA7DF16F4C40E00F22C81 /* _ATWeeklyRecurrence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _ATWeeklyRecurrence.m; sourceTree = "<group>"; };
+		40FCA7E016F4C40E00F22C81 /* _ATYearlyRecurrence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ATYearlyRecurrence.h; sourceTree = "<group>"; };
+		40FCA7E116F4C40E00F22C81 /* _ATYearlyRecurrence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _ATYearlyRecurrence.m; sourceTree = "<group>"; };
+		40FCA7E216F4C40E00F22C81 /* ATMonthlyRecurrence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMonthlyRecurrence.h; sourceTree = "<group>"; };
+		40FCA7E316F4C40E00F22C81 /* ATMonthlyRecurrence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMonthlyRecurrence.m; sourceTree = "<group>"; };
+		40FCA7E416F4C40E00F22C81 /* ATWeeklyRecurrence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATWeeklyRecurrence.h; sourceTree = "<group>"; };
+		40FCA7E516F4C40E00F22C81 /* ATWeeklyRecurrence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATWeeklyRecurrence.m; sourceTree = "<group>"; };
+		40FCA7E616F4C40E00F22C81 /* ATYearlyRecurrence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATYearlyRecurrence.h; sourceTree = "<group>"; };
+		40FCA7E716F4C40E00F22C81 /* ATYearlyRecurrence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATYearlyRecurrence.m; sourceTree = "<group>"; };
+		40FCA7E816F4C40E00F22C81 /* _ATDailyRecurrence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ATDailyRecurrence.h; sourceTree = "<group>"; };
+		40FCA7E916F4C40E00F22C81 /* _ATDailyRecurrence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _ATDailyRecurrence.m; sourceTree = "<group>"; };
+		40FCA7EA16F4C40E00F22C81 /* ATDailyRecurrence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATDailyRecurrence.h; sourceTree = "<group>"; };
+		40FCA7EB16F4C40E00F22C81 /* ATDailyRecurrence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATDailyRecurrence.m; sourceTree = "<group>"; };
+		40FCA7FC16F4CD0100F22C81 /* ATRecurrenceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATRecurrenceTest.m; sourceTree = "<group>"; };
 		59D0A087B57E4DE8B22E442C /* Pods-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-test.xcconfig"; path = "Pods/Pods-test.xcconfig"; sourceTree = SOURCE_ROOT; };
 		841B0704C9154AE4852A0DEE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AFFA37E5D9B470888607BEB /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -164,6 +200,22 @@
 			isa = PBXGroup;
 			children = (
 				4059A96C16F32D51008F90F4 /* General */,
+				40FCA7DC16F4C40E00F22C81 /* _ATMonthlyRecurrence.h */,
+				40FCA7DD16F4C40E00F22C81 /* _ATMonthlyRecurrence.m */,
+				40FCA7DE16F4C40E00F22C81 /* _ATWeeklyRecurrence.h */,
+				40FCA7DF16F4C40E00F22C81 /* _ATWeeklyRecurrence.m */,
+				40FCA7E016F4C40E00F22C81 /* _ATYearlyRecurrence.h */,
+				40FCA7E116F4C40E00F22C81 /* _ATYearlyRecurrence.m */,
+				40FCA7E216F4C40E00F22C81 /* ATMonthlyRecurrence.h */,
+				40FCA7E316F4C40E00F22C81 /* ATMonthlyRecurrence.m */,
+				40FCA7E416F4C40E00F22C81 /* ATWeeklyRecurrence.h */,
+				40FCA7E516F4C40E00F22C81 /* ATWeeklyRecurrence.m */,
+				40FCA7E616F4C40E00F22C81 /* ATYearlyRecurrence.h */,
+				40FCA7E716F4C40E00F22C81 /* ATYearlyRecurrence.m */,
+				40FCA7E816F4C40E00F22C81 /* _ATDailyRecurrence.h */,
+				40FCA7E916F4C40E00F22C81 /* _ATDailyRecurrence.m */,
+				40FCA7EA16F4C40E00F22C81 /* ATDailyRecurrence.h */,
+				40FCA7EB16F4C40E00F22C81 /* ATDailyRecurrence.m */,
 				4012981D16F22F9600C0DC35 /* _ATEvent.h */,
 				4012981E16F22F9600C0DC35 /* _ATEvent.m */,
 				4012981F16F22F9600C0DC35 /* _ATRecurrence.h */,
@@ -271,6 +323,7 @@
 				4012983716F23E6800C0DC35 /* ATGlobalPropertyesTest.m */,
 				4059A96616F24600008F90F4 /* ATCalendarTest.m */,
 				4059A97116F358B1008F90F4 /* ATEventTest.m */,
+				40FCA7FC16F4CD0100F22C81 /* ATRecurrenceTest.m */,
 			);
 			path = ATCalendarDemoTests;
 			sourceTree = "<group>";
@@ -463,6 +516,14 @@
 				4012983516F23B0100C0DC35 /* ATOccurrenceCache.m in Sources */,
 				4012983F16F2435600C0DC35 /* ATCalendar.m in Sources */,
 				4059A96F16F32D69008F90F4 /* ATTimeSpan.m in Sources */,
+				40FCA7EC16F4C40E00F22C81 /* _ATMonthlyRecurrence.m in Sources */,
+				40FCA7EE16F4C40E00F22C81 /* _ATWeeklyRecurrence.m in Sources */,
+				40FCA7F016F4C40E00F22C81 /* _ATYearlyRecurrence.m in Sources */,
+				40FCA7F216F4C40E00F22C81 /* ATMonthlyRecurrence.m in Sources */,
+				40FCA7F416F4C40E00F22C81 /* ATWeeklyRecurrence.m in Sources */,
+				40FCA7F616F4C40E00F22C81 /* ATYearlyRecurrence.m in Sources */,
+				40FCA7F816F4C40E00F22C81 /* _ATDailyRecurrence.m in Sources */,
+				40FCA7FA16F4C40E00F22C81 /* ATDailyRecurrence.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +546,15 @@
 				40C3372816F38CF8002EDD52 /* ATTimeSpan.m in Sources */,
 				4077E61116F394CC00E9D80F /* ATRecurrence.m in Sources */,
 				4077E61216F394CF00E9D80F /* _ATRecurrence.m in Sources */,
+				40FCA7ED16F4C40E00F22C81 /* _ATMonthlyRecurrence.m in Sources */,
+				40FCA7EF16F4C40E00F22C81 /* _ATWeeklyRecurrence.m in Sources */,
+				40FCA7F116F4C40E00F22C81 /* _ATYearlyRecurrence.m in Sources */,
+				40FCA7F316F4C40E00F22C81 /* ATMonthlyRecurrence.m in Sources */,
+				40FCA7F516F4C40E00F22C81 /* ATWeeklyRecurrence.m in Sources */,
+				40FCA7F716F4C40E00F22C81 /* ATYearlyRecurrence.m in Sources */,
+				40FCA7F916F4C40E00F22C81 /* _ATDailyRecurrence.m in Sources */,
+				40FCA7FB16F4C40E00F22C81 /* ATDailyRecurrence.m in Sources */,
+				40FCA7FD16F4CD0100F22C81 /* ATRecurrenceTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -709,9 +779,11 @@
 			children = (
 				401297C216F21D6C00C0DC35 /* ATCalendar_initial.xcdatamodel */,
 				4012982916F2312E00C0DC35 /* ATCalendar_daycache.xcdatamodel */,
+				40FCA7DB16F4BEF900F22C81 /* ATCalendar_reccurence.xcdatamodel */,
+				4026388516F76C8F002E5C6D /* ATCalendar_reccurence_take2.xcdatamodel */,
 				401297BA16F21C2D00C0DC35 /* ATCalendar.xcdatamodel */,
 			);
-			currentVersion = 4012982916F2312E00C0DC35 /* ATCalendar_daycache.xcdatamodel */;
+			currentVersion = 4026388516F76C8F002E5C6D /* ATCalendar_reccurence_take2.xcdatamodel */;
 			path = ATCalendar.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

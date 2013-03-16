@@ -11,6 +11,7 @@
 #define HC_SHORTHAND
 #import "OCHamcrest.h"
 #import "ATEvent.h"
+#import "ATRecurrence.h"
 #import "ATOccurrenceCache.h"
 
 @interface ATEventTest: ATCoreDataTest {
@@ -33,6 +34,7 @@
   b_ = now;
   c_ = [now oneDayNext];
   d_ = [c_ oneDayNext];
+
 }
 -(void)testUpdateOccurencesFromDateToDate{
   NSDate* today = [NSDate date];
@@ -40,7 +42,7 @@
   NSDate* b = [today dateDaysBefore:2];
   NSDate* c = [today dateDaysBefore:1];
   NSDate* d = today;
-//  NSDate* e = [today dateDaysAfter:1];
+  NSDate* e = [today dateDaysAfter:1];
   NSDate* f = [today dateDaysAfter:2];
   //        syncStart x1 syncEnds
   //    xxxxx xxxxx xxxxx xxxxx  xxxxx   xxxxx
@@ -60,9 +62,9 @@
   outsideSync.endDate = f;
   [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
 
-  [insideSync updateOccurencesFrom:syncStart to:syncEnds];
-  [containsSync updateOccurencesFrom:syncStart to:syncEnds];
-  [outsideSync updateOccurencesFrom:syncStart to:syncEnds];
+  [insideSync updateSimpleOccurencesFrom:syncStart to:syncEnds];
+  [containsSync updateSimpleOccurencesFrom:syncStart to:syncEnds];
+  [outsideSync updateSimpleOccurencesFrom:syncStart to:syncEnds];
 
   NSArray* occurences = [ATOccurrenceCache MR_findAllSortedBy:@"day" ascending:YES];
   NSArray * occurencesOfoutsideSync = [occurences reject:^BOOL(ATOccurrenceCache* obj) {
@@ -75,33 +77,38 @@
   assertThat(occurencesOFinsideSync,hasCountOf(2));
   occurence = [occurencesOFinsideSync objectAtIndex:0];
   assertThat(occurence.event,is(insideSync));
+  assertThat(occurence.occurrenceDate,is(occurence.event.startDate));
   assertThat(occurence.day,is([insideSync.startDate startOfCurrentDay]));
-  assertThat(occurence.occurrenceDate,is(insideSync.startDate));
-  assertThat(occurence.occurrenceEnd,is([insideSync.startDate endOfCurrentDay]));
+  assertThat(occurence.startDate,is(insideSync.startDate));
+  assertThat(occurence.endDate,is([insideSync.startDate endOfCurrentDay]));
   occurence = [occurencesOFinsideSync objectAtIndex:1];
   assertThat(occurence.event,is(insideSync));
+  assertThat(occurence.occurrenceDate,is(occurence.event.startDate));
   assertThat(occurence.day,is([insideSync.endDate startOfCurrentDay]));
-  assertThat(occurence.occurrenceDate,is([insideSync.endDate startOfCurrentDay]));
-  assertThat(occurence.occurrenceEnd,is(insideSync.endDate));
+  assertThat(occurence.startDate,is([insideSync.endDate startOfCurrentDay]));
+  assertThat(occurence.endDate,is(insideSync.endDate));
   NSArray * occurencesOFcontainsSync = [occurences reject:^BOOL(ATOccurrenceCache* obj) {
     return obj.event != containsSync;
   }];
   assertThat(occurencesOFcontainsSync,hasCountOf(3));
   occurence = [occurencesOFcontainsSync objectAtIndex:0];
   assertThat(occurence.event,is(containsSync));
+  assertThat(occurence.occurrenceDate,is(occurence.event.startDate));
   assertThat(occurence.day,is([b startOfCurrentDay]));
-  assertThat(occurence.occurrenceDate,is([b startOfCurrentDay]));
-  assertThat(occurence.occurrenceEnd,is([b  endOfCurrentDay]));
+  assertThat(occurence.startDate,is([b startOfCurrentDay]));
+  assertThat(occurence.endDate,is([b  endOfCurrentDay]));
   occurence = [occurencesOFcontainsSync objectAtIndex:1];
   assertThat(occurence.event,is(containsSync));
+  assertThat(occurence.occurrenceDate,is(occurence.event.startDate));
   assertThat(occurence.day,is([c startOfCurrentDay]));
-  assertThat(occurence.occurrenceDate,is([c startOfCurrentDay]));
-  assertThat(occurence.occurrenceEnd,is([c  endOfCurrentDay]));
+  assertThat(occurence.startDate,is([c startOfCurrentDay]));
+  assertThat(occurence.endDate,is([c  endOfCurrentDay]));
   occurence = [occurencesOFcontainsSync objectAtIndex:2];
   assertThat(occurence.event,is(containsSync));
+  assertThat(occurence.occurrenceDate,is(occurence.event.startDate));
   assertThat(occurence.day,is([d startOfCurrentDay]));
-  assertThat(occurence.occurrenceDate,is([d startOfCurrentDay]));
-  assertThat(occurence.occurrenceEnd,is([d endOfCurrentDay]));
+  assertThat(occurence.startDate,is([d startOfCurrentDay]));
+  assertThat(occurence.endDate,is([d endOfCurrentDay]));
 
 }
 
@@ -109,11 +116,53 @@
   ATEvent *event = [ATEvent MR_createEntity];
   event.startDate = b_; // first
   event.endDate = [c_ dateMinutesAfter:30];
-  assertThat([event startDateForDate:nil],nilValue());
-  assertThat([event startDateForDate:a_],nilValue());
-  assertThat([event startDateForDate:[d_ startOfCurrentDay]],nilValue());
-  assertThat([event startDateForDate:[b_ startOfCurrentDay]],is(event.startDate));
-  assertThat([event startDateForDate:[c_ endOfCurrentDay]],is([c_ startOfCurrentDay]));
+  assertThat([event eventStartAtDate:nil],nilValue());
+  assertThat([event eventStartAtDate:a_],nilValue());
+  assertThat([event eventStartAtDate:[d_ startOfCurrentDay]],nilValue());
+  assertThat([event eventStartAtDate:[b_ startOfCurrentDay]],is(event.startDate));
+  assertThat([event eventStartAtDate:[c_ endOfCurrentDay]],is([c_ startOfCurrentDay]));
+  event.startDate = a_; // first
+  assertThat([event eventStartAtDate:nil offset:1],nilValue());
+  assertThat([event eventStartAtDate:a_ offset:1],nilValue());
+  assertThat([event eventStartAtDate:[[d_ dateDaysAfter:1] startOfCurrentDay] offset:1],nilValue());
+  assertThat([event eventStartAtDate:[b_ startOfCurrentDay] offset:1],is([event.startDate dateDaysAfter:1]));
+  assertThat([event eventStartAtDate:[d_ endOfCurrentDay] offset:1],is([d_ startOfCurrentDay]));
+}
+
+-(void)testOffsettingMatchingDatesFromDateToDate{
+  ATEvent *event = [ATEvent MR_createEntity];
+  event.startDate = a_;
+  event.endDate = b_;
+  assertThat([event matchingDates:c_ to:d_ offset:0],hasCountOf(0));
+  assertThat([event matchingDates:c_ to:d_ offset:2],hasCountOf(2));
+}
+
+-(void)testMatchingDatesFromDateToDateOffset{
+  NSDate* today = [NSDate date];
+  NSDate* a = [today dateDaysBefore:3];
+  NSDate* b = [today dateDaysBefore:2];
+  NSDate* c = [today dateDaysBefore:1];
+  NSDate* d = today;
+  NSDate* e = [today dateDaysAfter:1];
+  NSDate* f = [today dateDaysAfter:2];
+  //           ee    ee    ee+2   ee+2
+  //    xxxxx xxxxx xxxxx xxxxx  xxxxx   xxxxx
+  //     -3    -2    -1     0      +1     +2
+  //      A     B     C     D       E      F
+
+  ATEvent *event = [ATEvent MR_createEntity];
+  event.startDate = b;
+  event.endDate = c;
+  assertThat([event matchingDates:a to:a offset:2],hasCountOf(0));
+  assertThat([event matchingDates:f to:f offset:2],hasCountOf(0));
+  assertThat([event matchingDates:a to:f offset:2]
+             ,contains([d startOfCurrentDay],[e startOfCurrentDay],nil));
+  assertThat([event matchingDates:a to:d offset:2]
+             ,contains([d startOfCurrentDay],nil));
+  assertThat([event matchingDates:d to:e offset:2]
+             ,contains([d startOfCurrentDay],[e startOfCurrentDay],nil));
+  assertThat([event matchingDates:e to:f offset:2]
+             ,contains([e startOfCurrentDay],nil));
 }
 
 -(void)testMatchingDatesFromDateToDate{
@@ -138,17 +187,38 @@
 
 -(void)testEndDateForDate{
   ATEvent *event = [ATEvent MR_createEntity];
+  
   event.startDate = b_; // first
   event.endDate = [c_ dateMinutesAfter:30];
-  assertThat([event endDateForDate:nil],nilValue());
-  assertThat([event endDateForDate:a_],nilValue());
-  assertThat([event endDateForDate:b_],is([b_ endOfCurrentDay]));
-  assertThat([event endDateForDate:[c_ endOfCurrentDay]],is(event.endDate));
-  assertThat([event endDateForDate:d_],nilValue());
+  assertThat([event eventEndAtDate:nil],nilValue());
+  assertThat([event eventEndAtDate:a_],nilValue());
+  assertThat([event eventEndAtDate:b_],is([b_ endOfCurrentDay]));
+  assertThat([event eventEndAtDate:[c_ endOfCurrentDay]],is(event.endDate));
+  assertThat([event eventEndAtDate:d_],nilValue());
+  event.startDate = a_;
+  assertThat([event eventEndAtDate:nil offset:1],nilValue());
+  assertThat([event eventEndAtDate:[a_ oneDayPrevious] offset:1],nilValue());
+  assertThat([event eventEndAtDate:b_ offset:1],is([b_ endOfCurrentDay]));
+  assertThat([event eventEndAtDate:[d_ endOfCurrentDay] offset:1],is([event.endDate dateDaysAfter:1]));
+  assertThat([event eventEndAtDate:[d_ oneDayNext] offset:1],nilValue());
+
 
 }
 
--(void)testAllEventsFromDateToEndDate{
+-(void)testAllNonRecurringEventsFromDateToEndDateDoesNotReturnRecurring{
+  ATEvent *eventInInterval = [ATEvent MR_createEntity];
+  eventInInterval.startDate = b_; // seccond
+  eventInInterval.endDate = [b_ dateMinutesAfter:30];
+  ATRecurrence* reccurence = [ATRecurrence MR_createEntity];
+  reccurence.startDate = eventInInterval.startDate;
+  reccurence.endDate = eventInInterval.endDate;
+  reccurence.event = eventInInterval;
+  [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
+  NSArray *events = [ATEvent nonRecurringEventsFrom:[a_ startOfCurrentDay] to:[c_ endOfCurrentDay]];
+  assertThat(events,hasCountOf(0));
+}
+
+-(void)testAllNonRecurringEventsFromDateToEndDate{
   ATEvent *outsideScopeEvent = [ATEvent MR_createEntity];
   outsideScopeEvent.startDate = d_;
   outsideScopeEvent.startDate = [d_ dateMinutesAfter:30];
@@ -165,9 +235,8 @@
   eventContainingInteval.startDate = a_; // third
   eventContainingInteval.endDate = d_;
   [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
-  NSArray *events = [ATEvent allEventsFrom:[b_ startOfCurrentDay] to:[b_ endOfCurrentDay]];
+  NSArray *events = [ATEvent nonRecurringEventsFrom:[b_ startOfCurrentDay] to:[b_ endOfCurrentDay]];
   assertThat(events,hasCountOf(4));
-  STFail(@"Test that reccurent elements are exluded");
 }
 
 @end

@@ -5,7 +5,6 @@
 
 const struct ATRecurrenceAttributes ATRecurrenceAttributes = {
 	.endDate = @"endDate",
-	.interval = @"interval",
 	.startDate = @"startDate",
 	.type = @"type",
 };
@@ -43,11 +42,6 @@ const struct ATRecurrenceFetchedProperties ATRecurrenceFetchedProperties = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
-	if ([key isEqualToString:@"intervalValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"interval"];
-		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
-	}
 	if ([key isEqualToString:@"typeValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"type"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -62,32 +56,6 @@ const struct ATRecurrenceFetchedProperties ATRecurrenceFetchedProperties = {
 
 @dynamic endDate;
 
-
-
-
-
-
-@dynamic interval;
-
-
-
-- (int16_t)intervalValue {
-	NSNumber *result = [self interval];
-	return [result shortValue];
-}
-
-- (void)setIntervalValue:(int16_t)value_ {
-	[self setInterval:[NSNumber numberWithShort:value_]];
-}
-
-- (int16_t)primitiveIntervalValue {
-	NSNumber *result = [self primitiveInterval];
-	return [result shortValue];
-}
-
-- (void)setPrimitiveIntervalValue:(int16_t)value_ {
-	[self setPrimitiveInterval:[NSNumber numberWithShort:value_]];
-}
 
 
 

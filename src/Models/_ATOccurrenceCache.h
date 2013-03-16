@@ -6,8 +6,9 @@
 
 extern const struct ATOccurrenceCacheAttributes {
 	__unsafe_unretained NSString *day;
+	__unsafe_unretained NSString *endDate;
 	__unsafe_unretained NSString *occurrenceDate;
-	__unsafe_unretained NSString *occurrenceEnd;
+	__unsafe_unretained NSString *startDate;
 } ATOccurrenceCacheAttributes;
 
 extern const struct ATOccurrenceCacheRelationships {
@@ -18,6 +19,7 @@ extern const struct ATOccurrenceCacheFetchedProperties {
 } ATOccurrenceCacheFetchedProperties;
 
 @class ATEvent;
+
 
 
 
@@ -46,6 +48,16 @@ extern const struct ATOccurrenceCacheFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSDate* endDate;
+
+
+
+//- (BOOL)validateEndDate:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSDate* occurrenceDate;
 
 
@@ -56,11 +68,11 @@ extern const struct ATOccurrenceCacheFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSDate* occurrenceEnd;
+@property (nonatomic, strong) NSDate* startDate;
 
 
 
-//- (BOOL)validateOccurrenceEnd:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateStartDate:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -89,14 +101,20 @@ extern const struct ATOccurrenceCacheFetchedProperties {
 
 
 
+- (NSDate*)primitiveEndDate;
+- (void)setPrimitiveEndDate:(NSDate*)value;
+
+
+
+
 - (NSDate*)primitiveOccurrenceDate;
 - (void)setPrimitiveOccurrenceDate:(NSDate*)value;
 
 
 
 
-- (NSDate*)primitiveOccurrenceEnd;
-- (void)setPrimitiveOccurrenceEnd:(NSDate*)value;
+- (NSDate*)primitiveStartDate;
+- (void)setPrimitiveStartDate:(NSDate*)value;
 
 
 

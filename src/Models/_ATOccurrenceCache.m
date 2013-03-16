@@ -5,8 +5,9 @@
 
 const struct ATOccurrenceCacheAttributes ATOccurrenceCacheAttributes = {
 	.day = @"day",
+	.endDate = @"endDate",
 	.occurrenceDate = @"occurrenceDate",
-	.occurrenceEnd = @"occurrenceEnd",
+	.startDate = @"startDate",
 };
 
 const struct ATOccurrenceCacheRelationships ATOccurrenceCacheRelationships = {
@@ -56,6 +57,13 @@ const struct ATOccurrenceCacheFetchedProperties ATOccurrenceCacheFetchedProperti
 
 
 
+@dynamic endDate;
+
+
+
+
+
+
 @dynamic occurrenceDate;
 
 
@@ -63,7 +71,7 @@ const struct ATOccurrenceCacheFetchedProperties ATOccurrenceCacheFetchedProperti
 
 
 
-@dynamic occurrenceEnd;
+@dynamic startDate;
 
 
 

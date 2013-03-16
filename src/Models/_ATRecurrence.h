@@ -6,7 +6,6 @@
 
 extern const struct ATRecurrenceAttributes {
 	__unsafe_unretained NSString *endDate;
-	__unsafe_unretained NSString *interval;
 	__unsafe_unretained NSString *startDate;
 	__unsafe_unretained NSString *type;
 } ATRecurrenceAttributes;
@@ -19,7 +18,6 @@ extern const struct ATRecurrenceFetchedProperties {
 } ATRecurrenceFetchedProperties;
 
 @class ATEvent;
-
 
 
 
@@ -43,20 +41,6 @@ extern const struct ATRecurrenceFetchedProperties {
 
 
 //- (BOOL)validateEndDate:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
-@property (nonatomic, strong) NSNumber* interval;
-
-
-
-@property int16_t intervalValue;
-- (int16_t)intervalValue;
-- (void)setIntervalValue:(int16_t)value_;
-
-//- (BOOL)validateInterval:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -105,15 +89,6 @@ extern const struct ATRecurrenceFetchedProperties {
 
 - (NSDate*)primitiveEndDate;
 - (void)setPrimitiveEndDate:(NSDate*)value;
-
-
-
-
-- (NSNumber*)primitiveInterval;
-- (void)setPrimitiveInterval:(NSNumber*)value;
-
-- (int16_t)primitiveIntervalValue;
-- (void)setPrimitiveIntervalValue:(int16_t)value_;
 
 
 

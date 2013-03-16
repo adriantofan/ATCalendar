@@ -13,7 +13,7 @@ const struct ATEventAttributes ATEventAttributes = {
 };
 
 const struct ATEventRelationships ATEventRelationships = {
-	.recurences = @"recurences",
+	.recurence = @"recurence",
 };
 
 const struct ATEventFetchedProperties ATEventFetchedProperties = {
@@ -94,17 +94,8 @@ const struct ATEventFetchedProperties ATEventFetchedProperties = {
 
 
 
-@dynamic recurences;
+@dynamic recurence;
 
-	
-- (NSMutableSet*)recurencesSet {
-	[self willAccessValueForKey:@"recurences"];
-  
-	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"recurences"];
-  
-	[self didAccessValueForKey:@"recurences"];
-	return result;
-}
 	
 
 

@@ -13,10 +13,24 @@
 @interface ATCalendar : NSObject
 
 +(ATCalendar*)sharedInstance;
+// Checks last  sync date against toDate and syncs daycache
+-(void)syncCachesIfNeeded:(NSDate*)toDate;
+// Returns current expected sync span
+-(ATTimeSpan*)currentSyncSpan;
 
--(void)syncCachesForDate:(NSDate*)toDate;
+@end
+
+
+// Used internaly to manage Occurenche cache
+@interface ATCalendar(ATOccurenceCache)
+// Given a last sync date and a target date computes the sync time span
 -(ATTimeSpan*)timeSpanToSyncFrom:(NSDate*)fromDate to:(NSDate*)toDate;
--(NSArray*)dateArrayToSyncFrom:(NSDate*)fromDate to:(NSDate*)toDate;
--(void)clearOccurenceCache;
+// Syncs all non recuring events between dates
 - (void)syncNonRecurringEventsFrom:(NSDate *)fromDate to:(NSDate *)toDate;
+// Syncs all recuring events between dates
+-(void)syncRecurringEventsFrom:(NSDate *)fromDate to:(NSDate *)toDate;
+// clears occurence caches
+- (void)clearOccurenceCache;
+// returns a list of days to sync spaning fromDate - toDate
+-(NSArray*)dateArrayToSyncFrom:(NSDate*)fromDate to:(NSDate*)toDate;
 @end

@@ -12,6 +12,7 @@
 #import "ATOccurrenceCache.h"
 #import "ATEvent.h"
 #import "ATTimeSpan.h"
+#import "ATRecurrence.h"
 
 
 @implementation ATCalendar
@@ -25,43 +26,54 @@ static ATCalendar* ___sharedInstance;
   return ___sharedInstance;
 }
 
-- (void)syncNonRecurringEventsFrom:(NSDate *)fromDate to:(NSDate *)toDate {
-    NSArray* nonRecuringEvents = [ATEvent allEventsFrom:fromDate
-                                                     to:toDate];
-    for (ATEvent *event in nonRecuringEvents) {
-        [event updateOccurencesFrom:fromDate to:toDate];
-    }
-}
-
-
-
--(void)syncRecurringEventsFrom:(NSDate *)fromDate to:(NSDate *)toDate{
-  
-}
-
-
--(void)syncCachesForDate:(NSDate*)toDate{
+-(void)syncCachesIfNeeded:(NSDate*)toDate{
   NSDate *lastCachedDay = [ATGlobalPropertyes lastCachedDay];
   NSDate * from,* to;
   if ([lastCachedDay isAfter:toDate]) {
     [self clearOccurenceCache];
     from = nil;
-    to = toDate;
   }
+  from = [lastCachedDay startOfCurrentDay];
+  to = [toDate endOfCurrentDay];
   ATTimeSpan* syncSpan = [self timeSpanToSyncFrom:from to:to];
-  
   [self syncNonRecurringEventsFrom:syncSpan.start to:syncSpan.end];
   [self syncRecurringEventsFrom:syncSpan.start to:syncSpan.end];
 }
 
+-(ATTimeSpan*)currentSyncSpan{
+  return [self timeSpanToSyncFrom:nil to:[ATGlobalPropertyes lastCachedDay]];
+}
+
+@end
+
+@implementation ATCalendar(ATOccurenceCache)
+- (void)clearOccurenceCache{
+  [ATOccurrenceCache MR_deleteAllMatchingPredicate:[NSPredicate predicateWithFormat:@""]];
+}
+
+
+- (void)syncNonRecurringEventsFrom:(NSDate *)fromDate to:(NSDate *)toDate {
+  NSArray* nonRecuringEvents = [ATEvent nonRecurringEventsFrom:fromDate
+                                                            to:toDate];
+  for (ATEvent *event in nonRecuringEvents) {
+    [event updateSimpleOccurencesFrom:fromDate to:toDate];
+  }
+}
 
 
 
+-(void)syncRecurringEventsFrom:(NSDate *)fromDate to:(NSDate *)toDate{
+  NSArray* reccurences = [ATRecurrence recurrencesFrom:fromDate
+                                                    to:toDate];
+  for (ATRecurrence *reccurence in reccurences) {
+    [reccurence updateOccurencesFrom:fromDate to:toDate];
+  }
+}
 
 -(ATTimeSpan*)timeSpanToSyncFrom:(NSDate*)fromDate to:(NSDate*)toDate{
   if ((nil == fromDate) && (toDate == nil)){
     return nil;
-  }else    
+  }else
     if (nil == fromDate) {
       return [ATTimeSpan timeSpanFrom:[[toDate oneYearPrevious] startOfCurrentDay]
                                    to:[[[toDate oneYearNext] oneYearNext] endOfCurrentDay]];
@@ -72,7 +84,7 @@ static ATCalendar* ___sharedInstance;
         return [ATTimeSpan timeSpanFrom: [[fromDate dateDaysAfter:1] startOfCurrentDay]
                                      to:[toDate endOfCurrentDay]];
       }
-
+  
 }
 
 -(NSArray*)dateArrayToSyncFrom:(NSDate*)fromDate to:(NSDate*)toDate{
@@ -81,6 +93,9 @@ static ATCalendar* ___sharedInstance;
     return @[[timeSpan.start startOfCurrentDay]];
   }else
     return [NSDate datesCollectionFromDate:[[timeSpan.start oneDayPrevious] startOfCurrentDay]
-                                  untilDate:[timeSpan.end startOfCurrentDay]];
+                                 untilDate:[timeSpan.end startOfCurrentDay]];
 }
+
 @end
+
+
