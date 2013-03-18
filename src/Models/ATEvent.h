@@ -17,7 +17,7 @@
 
 // updates event's ocurence cache between |fromDate| to |endDate| (inclusive)
 // Should be used with simple occurences
-- (void)updateSimpleOccurencesFrom:(NSDate *)fromDate to:(NSDate *)toDate;
+- (void)updateSimpleOccurencesFrom:(NSDate *)fromDate to:(NSDate *)toDate inContext:(NSManagedObjectContext*)moc;
 
 // returns the dates between |fromDate| to |endDate| when the event matches
 - (NSArray*)matchingDates:(NSDate*)fromDate to:(NSDate*)endDate;

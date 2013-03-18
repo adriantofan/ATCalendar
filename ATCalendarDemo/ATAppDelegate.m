@@ -9,6 +9,9 @@
 #import "ATAppDelegate.h"
 
 #import "ATMasterViewController.h"
+#import "ATEventListController.h"
+#import "ATCalendar.h"
+
 
 @implementation ATAppDelegate
 
@@ -26,12 +29,19 @@
   if (getenv("runningTests"))
     return YES;
 #endif
-    // Override point for customization after application launch.
-  UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
-  ATMasterViewController *controller = (ATMasterViewController *)navigationController.topViewController;
+  self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   [MagicalRecord setupCoreDataStackWithStoreNamed:@"ATCalendar.sqlite"];
-  controller.managedObjectContext = self.managedObjectContext;
-    return YES;
+  [[ATCalendar sharedInstance] syncCachesIfNeeded:[NSDate date] inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
+  [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
+  
+  ATEventListController* controller = [[ATEventListController alloc] initWithStyle:UITableViewStylePlain];
+  UINavigationController* navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+  self.window.rootViewController = navigationController;
+    // Override point for customization after application launch.
+  controller.moc = self.managedObjectContext;
+  [self.window makeKeyAndVisible];
+
+   return YES;
 }
 
 -(NSManagedObjectContext*)managedObjectContext{

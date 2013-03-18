@@ -66,11 +66,11 @@
 
 @implementation ATEvent (ATOccurenceCache)
 
-- (void)updateSimpleOccurencesFrom:(NSDate *)fromDate to:(NSDate *)toDate {
+- (void)updateSimpleOccurencesFrom:(NSDate *)fromDate to:(NSDate *)toDate inContext:(NSManagedObjectContext*)moc{
   if (self.recurence) {return; };
   NSArray* eventMatchingDates = [self matchingDates:fromDate to:toDate];
   for (NSDate *occurenceDate in eventMatchingDates) {
-    ATOccurrenceCache *occurence = [ATOccurrenceCache MR_createEntity];
+    ATOccurrenceCache *occurence = [ATOccurrenceCache MR_createInContext:moc];
     occurence.day = [occurenceDate startOfCurrentDay];
     occurence.startDate = [self eventStartAtDate:occurenceDate];
     occurence.occurrenceDate = self.startDate;

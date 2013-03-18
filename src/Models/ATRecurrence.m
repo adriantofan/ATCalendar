@@ -46,12 +46,12 @@
 @end
 
 @implementation ATRecurrence (ATOccurenceCache)
-- (void)updateOccurencesFrom:(NSDate *)fromDate to:(NSDate *)toDate {
+- (void)updateOccurencesFrom:(NSDate *)fromDate to:(NSDate *)toDate inContext:(NSManagedObjectContext*)moc{
   NSDictionary* matches = [self matchingDateSets:fromDate to:toDate];
   [matches enumerateKeysAndObjectsWithOptions:0
                                    usingBlock:^(NSNumber* offset, NSArray* dates, BOOL *stop) {
                                      for (NSDate* occurenceDate in dates) {
-                                       ATOccurrenceCache *occurence = [ATOccurrenceCache MR_createEntity];
+                                       ATOccurrenceCache *occurence = [ATOccurrenceCache MR_createInContext:moc];
                                        occurence.startDate = [self.event eventStartAtDate:occurenceDate offset:[offset integerValue]];
                                        occurence.endDate = [self.event eventEndAtDate:occurenceDate offset:[offset integerValue]];
                                        occurence.occurrenceDate = [self.event.startDate dateDaysAfter:[offset integerValue]];

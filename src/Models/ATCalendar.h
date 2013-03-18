@@ -14,7 +14,7 @@
 
 +(ATCalendar*)sharedInstance;
 // Checks last  sync date against toDate and syncs daycache
--(void)syncCachesIfNeeded:(NSDate*)toDate;
+-(void)syncCachesIfNeeded:(NSDate*)toDate inContext:(NSManagedObjectContext*)moc;
 // Returns current expected sync span
 -(ATTimeSpan*)currentSyncSpan;
 
@@ -26,9 +26,9 @@
 // Given a last sync date and a target date computes the sync time span
 -(ATTimeSpan*)timeSpanToSyncFrom:(NSDate*)fromDate to:(NSDate*)toDate;
 // Syncs all non recuring events between dates
-- (void)syncNonRecurringEventsFrom:(NSDate *)fromDate to:(NSDate *)toDate;
+- (void)syncNonRecurringEventsFrom:(NSDate *)fromDate to:(NSDate *)toDate inContext:(NSManagedObjectContext*)moc;
 // Syncs all recuring events between dates
--(void)syncRecurringEventsFrom:(NSDate *)fromDate to:(NSDate *)toDate;
+-(void)syncRecurringEventsFrom:(NSDate *)fromDate to:(NSDate *)toDate inContext:(NSManagedObjectContext*)moc;
 // clears occurence caches
 - (void)clearOccurenceCache;
 // returns a list of days to sync spaning fromDate - toDate

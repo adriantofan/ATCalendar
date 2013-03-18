@@ -56,7 +56,7 @@
   rec.endDate = d3;
   rec.event = event;
   NSInteger offset = 1;
-  [rec updateOccurencesFrom:[d0 startOfCurrentDay] to:[d3 endOfCurrentDay]];
+  [rec updateOccurencesFrom:[d0 startOfCurrentDay] to:[d3 endOfCurrentDay] inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
   [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
   NSArray* ocs = [ATOccurrenceCache MR_findAllSortedBy:@"day" ascending:YES];
   assertThat(ocs,hasCountOf(9));

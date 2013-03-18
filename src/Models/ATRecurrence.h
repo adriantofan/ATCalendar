@@ -28,5 +28,5 @@ typedef enum {
 - (NSArray*)matchingStartDates:(NSDate*)fromDate to:(NSDate*)endDate;
 
 // Update reccurence day cache between dates
-- (void)updateOccurencesFrom:(NSDate *)fromDate to:(NSDate *)toDate;
+- (void)updateOccurencesFrom:(NSDate *)fromDate to:(NSDate *)toDate inContext:(NSManagedObjectContext*)moc;
 @end

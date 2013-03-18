@@ -26,7 +26,7 @@ static ATCalendar* ___sharedInstance;
   return ___sharedInstance;
 }
 
--(void)syncCachesIfNeeded:(NSDate*)toDate{
+-(void)syncCachesIfNeeded:(NSDate*)toDate inContext:(NSManagedObjectContext*)moc{
   NSDate *lastCachedDay = [ATGlobalPropertyes lastCachedDay];
   NSDate * from,* to;
   if ([lastCachedDay isAfter:toDate]) {
@@ -36,8 +36,9 @@ static ATCalendar* ___sharedInstance;
   from = [lastCachedDay startOfCurrentDay];
   to = [toDate endOfCurrentDay];
   ATTimeSpan* syncSpan = [self timeSpanToSyncFrom:from to:to];
-  [self syncNonRecurringEventsFrom:syncSpan.start to:syncSpan.end];
-  [self syncRecurringEventsFrom:syncSpan.start to:syncSpan.end];
+  [self syncNonRecurringEventsFrom:syncSpan.start to:syncSpan.end inContext:moc];
+  [self syncRecurringEventsFrom:syncSpan.start to:syncSpan.end inContext:moc];
+  [ATGlobalPropertyes setLastCachedDay:toDate];
 }
 
 -(ATTimeSpan*)currentSyncSpan{
@@ -52,21 +53,21 @@ static ATCalendar* ___sharedInstance;
 }
 
 
-- (void)syncNonRecurringEventsFrom:(NSDate *)fromDate to:(NSDate *)toDate {
+- (void)syncNonRecurringEventsFrom:(NSDate *)fromDate to:(NSDate *)toDate inContext:(NSManagedObjectContext*)moc{
   NSArray* nonRecuringEvents = [ATEvent nonRecurringEventsFrom:fromDate
                                                             to:toDate];
   for (ATEvent *event in nonRecuringEvents) {
-    [event updateSimpleOccurencesFrom:fromDate to:toDate];
+    [event updateSimpleOccurencesFrom:fromDate to:toDate inContext:moc];
   }
 }
 
 
 
--(void)syncRecurringEventsFrom:(NSDate *)fromDate to:(NSDate *)toDate{
+-(void)syncRecurringEventsFrom:(NSDate *)fromDate to:(NSDate *)toDate inContext:(NSManagedObjectContext*)moc{
   NSArray* reccurences = [ATRecurrence recurrencesFrom:fromDate
                                                     to:toDate];
   for (ATRecurrence *reccurence in reccurences) {
-    [reccurence updateOccurencesFrom:fromDate to:toDate];
+    [reccurence updateOccurencesFrom:fromDate to:toDate inContext:moc];
   }
 }
 

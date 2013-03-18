@@ -62,9 +62,9 @@
   outsideSync.endDate = f;
   [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
 
-  [insideSync updateSimpleOccurencesFrom:syncStart to:syncEnds];
-  [containsSync updateSimpleOccurencesFrom:syncStart to:syncEnds];
-  [outsideSync updateSimpleOccurencesFrom:syncStart to:syncEnds];
+  [insideSync updateSimpleOccurencesFrom:syncStart to:syncEnds inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
+  [containsSync updateSimpleOccurencesFrom:syncStart to:syncEnds inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
+  [outsideSync updateSimpleOccurencesFrom:syncStart to:syncEnds inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
 
   NSArray* occurences = [ATOccurrenceCache MR_findAllSortedBy:@"day" ascending:YES];
   NSArray * occurencesOfoutsideSync = [occurences reject:^BOOL(ATOccurrenceCache* obj) {

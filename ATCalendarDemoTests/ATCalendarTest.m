@@ -48,12 +48,12 @@
   outsideSync.startDate = f;
   outsideSync.endDate = f;
   [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
-  [cal syncNonRecurringEventsFrom:syncStart to:syncEnds];
+  [cal syncNonRecurringEventsFrom:syncStart to:syncEnds inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
   NSArray* occurences = [ATOccurrenceCache MR_findAllSortedBy:@"day" ascending:YES];
   occurences = [occurences map:^id(ATOccurrenceCache* obj) {
     return [obj event];
   }];
-  [cal syncNonRecurringEventsFrom:syncStart to:syncEnds];
+  [cal syncNonRecurringEventsFrom:syncStart to:syncEnds inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
   assertThat(occurences,hasItems(insideSync,containsSync,nil));
   assertThat(occurences,isNot(hasItems(outsideSync,nil)));
 }
