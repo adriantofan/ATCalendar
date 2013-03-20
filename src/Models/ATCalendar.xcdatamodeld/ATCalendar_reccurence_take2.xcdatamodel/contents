@@ -2,6 +2,7 @@
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="DailyRecurrence" representedClassName="ATDailyRecurrence" parentEntity="Recurrence" syncable="YES"/>
     <entity name="Event" representedClassName="ATEvent">
+        <attribute name="allDay" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
@@ -39,7 +40,7 @@
     <entity name="YearlyRecurrence" representedClassName="ATYearleyRecurrence" parentEntity="Recurrence" syncable="YES"/>
     <elements>
         <element name="DailyRecurrence" positionX="126" positionY="387" width="128" height="45"/>
-        <element name="Event" positionX="448" positionY="-72" width="128" height="148"/>
+        <element name="Event" positionX="448" positionY="-72" width="128" height="165"/>
         <element name="GlobalPropertyes" positionX="403" positionY="-237" width="128" height="75"/>
         <element name="MonthlyRecurrence" positionX="549" positionY="378" width="128" height="58"/>
         <element name="OccurrenceCache" positionX="781" positionY="-63" width="128" height="118"/>

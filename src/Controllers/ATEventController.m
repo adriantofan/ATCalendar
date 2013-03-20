@@ -32,8 +32,8 @@
     [[ATEventEditController alloc] initWithStyle:UITableViewStyleGrouped];
   editController.sourceEvent = self.event;
   editController.delegate = self;
-  [self.navigationController pushViewController:editController
-                                       animated:YES];
+  UINavigationController*  ctrl = [[UINavigationController alloc] initWithRootViewController:editController];
+  [self presentViewController:ctrl animated:YES completion:nil];
 }
 #pragma mark - protocol ATEventEditBaseControllerDelegate
 
@@ -42,7 +42,7 @@
   if (successOrCancel) {
     [controller.editingMoc MR_saveToPersistentStoreAndWait];
   }
-  [self.navigationController popViewControllerAnimated:YES];
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Table View

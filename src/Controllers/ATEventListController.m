@@ -47,8 +47,8 @@
   ATEventCreateController *create = [[ATEventCreateController alloc] initWithStyle:UITableViewStyleGrouped];
   create.sourceMoc = self.moc;
   create.delegate = self;
-  [self.navigationController pushViewController:create
-                                       animated:YES];
+  UINavigationController* ctrl = [[UINavigationController alloc] initWithRootViewController:create];
+  [self presentViewController:ctrl animated:YES completion:nil];
 }
 #pragma mark - protocol ATEventEditBaseControllerDelegate
 
@@ -57,7 +57,7 @@
   if (successOrCancel) {
     [controller.editingMoc MR_saveToPersistentStoreAndWait];
   }
-  [self.navigationController popViewControllerAnimated:YES];
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Table View
@@ -65,7 +65,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
   [self.fetchedResultsController objectAtIndexPath:indexPath];
   ATEventController *edit = [[ATEventController alloc] initWithStyle:UITableViewStyleGrouped];
-  edit.event = [self.fetchedResultsController objectAtIndexPath:indexPath];
+  edit.event = [[self.fetchedResultsController objectAtIndexPath:indexPath] event];
   [self.navigationController pushViewController:edit
                                        animated:YES];  
 }

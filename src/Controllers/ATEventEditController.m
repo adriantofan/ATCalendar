@@ -21,8 +21,9 @@
 
 -(void)viewDidLoad{
   [super viewDidLoad];
-  self.editingMoc = [NSManagedObjectContext MR_contextWithParent:self.event.managedObjectContext];
+  self.editingMoc = [NSManagedObjectContext MR_contextWithParent:self.sourceEvent.managedObjectContext];
   self.event = [self.sourceEvent MR_inContext:self.editingMoc];
+  [self updateViewWithEvent:self.event];
 }
 
 @end

@@ -25,6 +25,8 @@
   self.event.summary = @"some event";
   self.event.startDate = [NSDate date];
   self.event.endDate = [NSDate date];
+  [self updateViewWithEvent:self.event];
+
 }
 
 - (void)didReceiveMemoryWarning

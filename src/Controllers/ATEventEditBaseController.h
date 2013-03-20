@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "ATEvent.h"
+#import "ATDurationEditController.h"
+
 
 @class ATEventEditBaseController;
 @protocol ATEventEditBaseControllerDelegate <NSObject>
@@ -15,8 +17,10 @@
                didFinishEditing:(BOOL)successOrCancel;
 @end
 
-@interface ATEventEditBaseController : UITableViewController
+@interface ATEventEditBaseController : UITableViewController <ATDurationEditControllerDelegate>
 @property (nonatomic,readonly) ATEvent* event;
 @property (nonatomic,readonly) NSManagedObjectContext* editingMoc;
 @property (nonatomic,weak) id <ATEventEditBaseControllerDelegate> delegate;
+
+-(void)updateViewWithEvent:(ATEvent*)event;
 @end

@@ -11,15 +11,118 @@
 #import "ATTimeSpan.h"
 #import "ATRecurrence.h"
 #import "ATOccurrenceCache.h"
+#import "ATEventTextFieldCell.h"
+#import "ATEventTimeEditCell.h"
 
 
-@interface ATEventEditBaseController ()
+NSString const*  ATEventEditBaseSectionHeader = @"ATEventEditBaseSectionHeader";
+NSString const*  ATEventEditBaseSectionDate = @"ATEventEditBaseSectionDate";
+NSString const*  ATEventEditBaseSectionRecurrence = @"ATEventEditBaseSectionRecurrence";
+NSString const*  ATEventEditBaseSectionParticipants = @"ATEventEditBaseSectionParticipants";
+NSString const*  ATEventEditBaseSectionAlert = @"ATEventEditBaseSectionAlert";
+NSString const*  ATEventEditBaseSectionURL = @"ATEventEditBaseSectionURL";
+NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
+
+
+@interface ATEventEditBaseController (){
+  NSDateFormatter *formatter_;
+}
 @property (nonatomic,readwrite) ATEvent* event;
 @property (nonatomic,readwrite) NSManagedObjectContext* editingMoc;
+@property (nonatomic,readonly) NSArray* sections;
+@property (nonatomic,readonly) NSDictionary* sectionCells;
 
+@property (nonatomic,readonly) ATEventTextFieldCell* summaryCell;
+@property (nonatomic,readonly) ATEventTextFieldCell* placeCell;
+@property (nonatomic,readonly) ATEventTimeEditCell* timeEditCell;
 @end
 
 @implementation ATEventEditBaseController
+@synthesize sections = sections_,sectionCells = sectionCells_;
+@synthesize summaryCell = summaryCell_;
+@synthesize placeCell = placeCell_;
+@synthesize timeEditCell = timeEditCell_;
+
+#pragma mark - Cells
+-(ATEventTimeEditCell*)timeEditCell{
+  if (nil == timeEditCell_) {
+    timeEditCell_ = [[[NSBundle mainBundle]loadNibNamed:@"EventTimeEditCell" owner:nil options:nil] objectAtIndex:0];
+  }
+  return timeEditCell_;
+}
+-(ATEventTextFieldCell*)placeCell{
+  if (nil == placeCell_) {
+    placeCell_ = [[ATEventTextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ATEventTextFieldCellPlace"];
+    placeCell_.textField.placeholder = NSLocalizedString(@"Title",@"Event Title");
+  }
+  return placeCell_;
+}
+-(ATEventTextFieldCell*)summaryCell{
+  if (nil == summaryCell_) {
+    summaryCell_ = [[ATEventTextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ATEventTextFieldCellName"];
+    summaryCell_.textField.placeholder = NSLocalizedString(@"Location",@"Event Location");
+  }
+  return summaryCell_;
+}
+
+#pragma mark - Table view model
+
+-(void)updateViewWithEvent:(ATEvent*)event{
+  self.timeEditCell.startDateLabel.text = [formatter_ stringFromDate:event.startDate];
+  self.timeEditCell.endDateLabel.text = [formatter_ stringFromDate:event.endDate];
+  summaryCell_.textField.text = event.summary;
+  placeCell_.textField.text = event.location;
+}
+
+-(void)updateFromView:(ATEvent*)event{
+  event.summary = summaryCell_.textField.text;
+  event.location = placeCell_.textField.text;
+}
+
+-(NSArray*)sections{
+  if (nil == sections_) {
+    sections_ = @[ATEventEditBaseSectionHeader,
+                  ATEventEditBaseSectionDate,
+                  ATEventEditBaseSectionRecurrence,
+                  ATEventEditBaseSectionParticipants,
+                  ATEventEditBaseSectionAlert,
+                  ATEventEditBaseSectionURL,
+                  ATEventEditBaseSectionNotes];
+  }
+  return sections_;
+}
+
+-(NSDictionary*)sectionCells {
+  if (nil == sectionCells_) {
+    sectionCells_ = @{ATEventEditBaseSectionHeader:@[self.summaryCell,self.placeCell],
+                      ATEventEditBaseSectionDate:@[self.timeEditCell]};
+  }
+  return sectionCells_;
+}
+
+-(NSString*)sectionNameForSection:(NSInteger)section{
+  return [self.sections objectAtIndex:section];
+}
+
+-(NSInteger)numberOfCellsInSection:(NSInteger)section{
+  NSString* sectionName = [self sectionNameForSection:section];
+  return [[self.sectionCells objectForKey:sectionName] count];
+}
+
+-(UITableViewCell*)cachedCellForRowAtIndexPath:(NSIndexPath*)indexPath{
+  NSString* sectionName = [self sectionNameForSection:indexPath.section];
+  NSArray* cellsInSection = [self.sectionCells objectForKey:sectionName];
+  return [cellsInSection objectAtIndex:indexPath.row];
+}
+-(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+  NSString* sectionName = [self sectionNameForSection:indexPath.section];
+  if (sectionName == ATEventEditBaseSectionDate) {
+    return [ATEventTimeEditCell height];
+  }
+  return 44.0;
+}
+
+#pragma mark -
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -33,6 +136,10 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  formatter_ = [[NSDateFormatter alloc] init];
+  [formatter_ setTimeStyle:NSDateFormatterShortStyle];
+  [formatter_ setDateStyle:NSDateFormatterMediumStyle];
+  self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
   UIBarButtonItem* cancel = [[UIBarButtonItem alloc]
     initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
                              target:self
@@ -45,6 +152,10 @@
   self.navigationItem.rightBarButtonItem = save;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+  [self updateFromView:self.event];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -55,7 +166,9 @@
   [self.delegate eventEditBaseController:self
                         didFinishEditing:FALSE];
 }
+
 -(IBAction)saveButtonAction{
+  [self updateFromView:self.event];
   NSPredicate* eventPredicate = [NSPredicate predicateWithFormat:@"event == %@"
                                                    argumentArray:@[self.event]];
   [ATOccurrenceCache MR_deleteAllMatchingPredicate:eventPredicate];
@@ -71,78 +184,43 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+  return [self.sections count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+  return [self numberOfCellsInSection:section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
+  return [self cachedCellForRowAtIndexPath:indexPath];
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+  NSString *section = [self sectionNameForSection:indexPath.section];
+  if (section == ATEventEditBaseSectionDate ) {
+    UIStoryboard* story = [UIStoryboard storyboardWithName:@"Calendar" bundle:nil];
+    ATDurationEditController* ctrl = [story instantiateViewControllerWithIdentifier:@"ATDurationEditControllerSceneId"];
+    ctrl.startDate = self.event.startDate;
+    ctrl.endDate = self.event.endDate;
+    ctrl.allDay = self.event.allDayValue;
+    ctrl.delegate = self;
+    [self.navigationController pushViewController:ctrl animated:YES];
+  }
 }
-
+#pragma mark - ATDurationEditControllerDelegate protocol
+-(void)durationEditController:(ATDurationEditController*)ctrl
+            didFinishWithSave:(BOOL)saveOrCancel{
+  if (saveOrCancel) {
+    self.event.startDate = ctrl.startDate;
+    self.event.endDate = ctrl.endDate;
+    self.event.allDayValue = ctrl.allDay;
+    self.timeEditCell.startDateLabel.text = [formatter_ stringFromDate:self.event.startDate];
+    self.timeEditCell.endDateLabel.text = [formatter_ stringFromDate:self.event.endDate];
+  }
+  [self.navigationController  popViewControllerAnimated:YES];
+}
 @end

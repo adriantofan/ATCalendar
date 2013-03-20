@@ -5,6 +5,7 @@
 
 
 extern const struct ATEventAttributes {
+	__unsafe_unretained NSString *allDay;
 	__unsafe_unretained NSString *endDate;
 	__unsafe_unretained NSString *location;
 	__unsafe_unretained NSString *notes;
@@ -29,6 +30,7 @@ extern const struct ATEventFetchedProperties {
 
 
 
+
 @interface ATEventID : NSManagedObjectID {}
 @end
 
@@ -37,6 +39,20 @@ extern const struct ATEventFetchedProperties {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 - (ATEventID*)objectID;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* allDay;
+
+
+
+@property BOOL allDayValue;
+- (BOOL)allDayValue;
+- (void)setAllDayValue:(BOOL)value_;
+
+//- (BOOL)validateAllDay:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -117,6 +133,15 @@ extern const struct ATEventFetchedProperties {
 @end
 
 @interface _ATEvent (CoreDataGeneratedPrimitiveAccessors)
+
+
+- (NSNumber*)primitiveAllDay;
+- (void)setPrimitiveAllDay:(NSNumber*)value;
+
+- (BOOL)primitiveAllDayValue;
+- (void)setPrimitiveAllDayValue:(BOOL)value_;
+
+
 
 
 - (NSDate*)primitiveEndDate;

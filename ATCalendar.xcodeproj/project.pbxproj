@@ -47,6 +47,14 @@
 		402638B916F78042002E5C6D /* ATEventEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 402638B016F78042002E5C6D /* ATEventEditController.m */; };
 		402638BA16F78042002E5C6D /* ATEventListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 402638B316F78042002E5C6D /* ATEventListController.m */; };
 		402638BB16F78042002E5C6D /* ATEventListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 402638B316F78042002E5C6D /* ATEventListController.m */; };
+		40322DEC16F8B04200186611 /* EventTimeEditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40322DEB16F8B04200186611 /* EventTimeEditCell.xib */; };
+		40322DED16F8B04200186611 /* EventTimeEditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40322DEB16F8B04200186611 /* EventTimeEditCell.xib */; };
+		40322DF016F8B0F500186611 /* ATEventTimeEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40322DEF16F8B0F500186611 /* ATEventTimeEditCell.m */; };
+		40322DF116F8B0F500186611 /* ATEventTimeEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40322DEF16F8B0F500186611 /* ATEventTimeEditCell.m */; };
+		404A44DE16F8CD3300DAAD96 /* ATDurationEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 404A44DD16F8CD3300DAAD96 /* ATDurationEditController.m */; };
+		404A44DF16F8CD3300DAAD96 /* ATDurationEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 404A44DD16F8CD3300DAAD96 /* ATDurationEditController.m */; };
+		404A44E116F8CE5E00DAAD96 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 404A44E016F8CE5E00DAAD96 /* Calendar.storyboard */; };
+		404A44E216F8CE5E00DAAD96 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 404A44E016F8CE5E00DAAD96 /* Calendar.storyboard */; };
 		4059A96716F24600008F90F4 /* ATCalendarTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4059A96616F24600008F90F4 /* ATCalendarTest.m */; };
 		4059A96A16F24CB0008F90F4 /* Pods.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 8AFFA37E5D9B470888607BEB /* Pods.xcconfig */; };
 		4059A96B16F24CB0008F90F4 /* Pods.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 8AFFA37E5D9B470888607BEB /* Pods.xcconfig */; };
@@ -143,6 +151,12 @@
 		402638B316F78042002E5C6D /* ATEventListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATEventListController.m; sourceTree = "<group>"; };
 		402638B416F78042002E5C6D /* ATEventRecurenceEditProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATEventRecurenceEditProtocol.h; sourceTree = "<group>"; };
 		402638B516F78042002E5C6D /* ATEventStartEndEditProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATEventStartEndEditProtocol.h; sourceTree = "<group>"; };
+		40322DEB16F8B04200186611 /* EventTimeEditCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventTimeEditCell.xib; sourceTree = "<group>"; };
+		40322DEE16F8B0F500186611 /* ATEventTimeEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATEventTimeEditCell.h; sourceTree = "<group>"; };
+		40322DEF16F8B0F500186611 /* ATEventTimeEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATEventTimeEditCell.m; sourceTree = "<group>"; };
+		404A44DC16F8CD3300DAAD96 /* ATDurationEditController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATDurationEditController.h; sourceTree = "<group>"; };
+		404A44DD16F8CD3300DAAD96 /* ATDurationEditController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATDurationEditController.m; sourceTree = "<group>"; };
+		404A44E016F8CE5E00DAAD96 /* Calendar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Calendar.storyboard; path = src/Calendar.storyboard; sourceTree = SOURCE_ROOT; };
 		4059A96616F24600008F90F4 /* ATCalendarTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCalendarTest.m; sourceTree = "<group>"; };
 		4059A96D16F32D69008F90F4 /* ATTimeSpan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTimeSpan.h; sourceTree = "<group>"; };
 		4059A96E16F32D69008F90F4 /* ATTimeSpan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTimeSpan.m; sourceTree = "<group>"; };
@@ -224,8 +238,12 @@
 		400F6FD016F879F8007285C3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				404A44E016F8CE5E00DAAD96 /* Calendar.storyboard */,
 				400F6FD116F879F8007285C3 /* ATEventTextFieldCell.h */,
 				400F6FD216F879F8007285C3 /* ATEventTextFieldCell.m */,
+				40322DEB16F8B04200186611 /* EventTimeEditCell.xib */,
+				40322DEE16F8B0F500186611 /* ATEventTimeEditCell.h */,
+				40322DEF16F8B0F500186611 /* ATEventTimeEditCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -289,6 +307,8 @@
 				400F6FC916F86FC4007285C3 /* ATEventEditBaseController.m */,
 				400F6FCC16F870CE007285C3 /* ATEventCreateController.h */,
 				400F6FCD16F870CE007285C3 /* ATEventCreateController.m */,
+				404A44DC16F8CD3300DAAD96 /* ATDurationEditController.h */,
+				404A44DD16F8CD3300DAAD96 /* ATDurationEditController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -479,6 +499,8 @@
 				405EC2DC16F219B400F590DD /* Default@2x.png in Resources */,
 				405EC2DE16F219B400F590DD /* Default-568h@2x.png in Resources */,
 				4059A96A16F24CB0008F90F4 /* Pods.xcconfig in Resources */,
+				40322DEC16F8B04200186611 /* EventTimeEditCell.xib in Resources */,
+				404A44E116F8CE5E00DAAD96 /* Calendar.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,6 +510,8 @@
 			files = (
 				405EC2FD16F219B400F590DD /* InfoPlist.strings in Resources */,
 				4059A96B16F24CB0008F90F4 /* Pods.xcconfig in Resources */,
+				40322DED16F8B04200186611 /* EventTimeEditCell.xib in Resources */,
+				404A44E216F8CE5E00DAAD96 /* Calendar.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,6 +608,8 @@
 				400F6FCA16F86FC4007285C3 /* ATEventEditBaseController.m in Sources */,
 				400F6FCE16F870CE007285C3 /* ATEventCreateController.m in Sources */,
 				400F6FD316F879F8007285C3 /* ATEventTextFieldCell.m in Sources */,
+				40322DF016F8B0F500186611 /* ATEventTimeEditCell.m in Sources */,
+				404A44DE16F8CD3300DAAD96 /* ATDurationEditController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -621,6 +647,8 @@
 				400F6FCB16F86FC4007285C3 /* ATEventEditBaseController.m in Sources */,
 				400F6FCF16F870CE007285C3 /* ATEventCreateController.m in Sources */,
 				400F6FD416F879F8007285C3 /* ATEventTextFieldCell.m in Sources */,
+				40322DF116F8B0F500186611 /* ATEventTimeEditCell.m in Sources */,
+				404A44DF16F8CD3300DAAD96 /* ATDurationEditController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
