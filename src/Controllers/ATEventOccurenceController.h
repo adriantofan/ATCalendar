@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "ATEventEditBaseController.h"
-#import "ATEvent.h"
+#import "ATOccurrenceCache.h"
 
-@interface ATEventController : UITableViewController<ATEventEditBaseControllerDelegate>
-@property (nonatomic,strong,readwrite) ATEvent* event;
+@interface ATEventOccurenceController : UITableViewController<ATEventEditBaseControllerDelegate>
+@property (nonatomic,strong,readwrite) ATOccurrenceCache* eventOccurence;
 @end

@@ -81,10 +81,10 @@
             </objects>
             <point key="canvasLocation" x="-991" y="-107"/>
         </scene>
-        <!--Event Controller - Événement-->
+        <!--Event Occurence Controller - Événement-->
         <scene sceneID="Wl1-VI-KvW">
             <objects>
-                <tableViewController id="cYe-4R-YII" customClass="ATEventController" sceneMemberID="viewController">
+                <tableViewController id="cYe-4R-YII" customClass="ATEventOccurenceController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Iuk-uz-JvR" customClass="ATBanerTableView">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -735,9 +735,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <relationship kind="outlet" name="picker_" candidateClass="UIDatePicker"/>
                 <relationship kind="outlet" name="startDateLabel_" candidateClass="UILabel"/>
             </relationships>
-        </class>
-        <class className="ATEventController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ATEventController.h"/>
         </class>
         <class className="ATEventListController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ATEventListController.h"/>

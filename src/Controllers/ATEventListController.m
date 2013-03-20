@@ -10,7 +10,7 @@
 #import "ATOccurrenceCache.h"
 #import "ATEventEditController.h"
 #import "ATEvent.h"
-#import "ATEventController.h"
+#import "ATEventOccurenceController.h"
 #import "ATEventCreateController.h"
 
 @interface ATEventListController (){
@@ -64,8 +64,9 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
   [self.fetchedResultsController objectAtIndexPath:indexPath];
-  ATEventController *edit = [[ATEventController alloc] initWithStyle:UITableViewStyleGrouped];
-  edit.event = [[self.fetchedResultsController objectAtIndexPath:indexPath] event];
+  ATEventOccurenceController *edit = [[ATEventOccurenceController alloc] initWithStyle:UITableViewStyleGrouped];
+  ATOccurrenceCache* occurence = [self.fetchedResultsController objectAtIndexPath:indexPath];
+  edit.eventOccurence = [occurence MR_inContext:self.moc];
   [self.navigationController pushViewController:edit
                                        animated:YES];  
 }
@@ -79,6 +80,16 @@
 {
   id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
   return [sectionInfo numberOfObjects];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+  id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+  NSTimeInterval refTime = [[sectionInfo name] doubleValue];
+  NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+  [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+  [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+  NSDate* day = [NSDate dateWithTimeIntervalSinceReferenceDate:refTime];
+  return [dateFormatter stringFromDate:day];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -127,7 +138,7 @@
   [ATOccurrenceCache MR_requestAllSortedBy:@"day"
                                  ascending:YES
                                  inContext:self.moc];  
-  NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.moc sectionNameKeyPath:@"day" cacheName:nil];
+  NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.moc sectionNameKeyPath:@"dayTimeStamp" cacheName:nil];
   [fetchRequest setFetchBatchSize:20];
   aFetchedResultsController.delegate = self;
   self.fetchedResultsController = aFetchedResultsController;

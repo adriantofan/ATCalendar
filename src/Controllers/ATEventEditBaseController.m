@@ -35,6 +35,7 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
 @property (nonatomic,readonly) ATEventTextFieldCell* summaryCell;
 @property (nonatomic,readonly) ATEventTextFieldCell* placeCell;
 @property (nonatomic,readonly) ATEventTimeEditCell* timeEditCell;
+
 @end
 
 @implementation ATEventEditBaseController
@@ -44,6 +45,8 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
 @synthesize timeEditCell = timeEditCell_;
 
 #pragma mark - Cells
+
+
 -(ATEventTimeEditCell*)timeEditCell{
   if (nil == timeEditCell_) {
     timeEditCell_ = [[[NSBundle mainBundle]loadNibNamed:@"EventTimeEditCell" owner:nil options:nil] objectAtIndex:0];
@@ -53,14 +56,14 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
 -(ATEventTextFieldCell*)placeCell{
   if (nil == placeCell_) {
     placeCell_ = [[ATEventTextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ATEventTextFieldCellPlace"];
-    placeCell_.textField.placeholder = NSLocalizedString(@"Title",@"Event Title");
+    placeCell_.textField.placeholder = NSLocalizedString(@"Location",@"Event Location");
   }
   return placeCell_;
 }
 -(ATEventTextFieldCell*)summaryCell{
   if (nil == summaryCell_) {
     summaryCell_ = [[ATEventTextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ATEventTextFieldCellName"];
-    summaryCell_.textField.placeholder = NSLocalizedString(@"Location",@"Event Location");
+    summaryCell_.textField.placeholder = NSLocalizedString(@"Title",@"Event Title");
   }
   return summaryCell_;
 }
@@ -70,13 +73,13 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
 -(void)updateViewWithEvent:(ATEvent*)event{
   self.timeEditCell.startDateLabel.text = [formatter_ stringFromDate:event.startDate];
   self.timeEditCell.endDateLabel.text = [formatter_ stringFromDate:event.endDate];
-  summaryCell_.textField.text = event.summary;
-  placeCell_.textField.text = event.location;
+  self.summaryCell.textField.text = event.summary;
+  self.placeCell.textField.text = event.location;
 }
 
 -(void)updateFromView:(ATEvent*)event{
-  event.summary = summaryCell_.textField.text;
-  event.location = placeCell_.textField.text;
+  event.summary = self.summaryCell.textField.text;
+  event.location = self.placeCell.textField.text;
 }
 
 -(NSArray*)sections{
@@ -152,10 +155,6 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
   self.navigationItem.rightBarButtonItem = save;
 }
 
--(void)viewWillAppear:(BOOL)animated{
-  [self updateFromView:self.event];
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -171,7 +170,7 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
   [self updateFromView:self.event];
   NSPredicate* eventPredicate = [NSPredicate predicateWithFormat:@"event == %@"
                                                    argumentArray:@[self.event]];
-  [ATOccurrenceCache MR_deleteAllMatchingPredicate:eventPredicate];
+  [ATOccurrenceCache MR_deleteAllMatchingPredicate:eventPredicate inContext:self.editingMoc];
   ATTimeSpan* syncSpan = [[ATCalendar sharedInstance] currentSyncSpan];
   [self.event updateSimpleOccurencesFrom:syncSpan.start to:syncSpan.end inContext:self.editingMoc];
   if (self.event.recurence) {
