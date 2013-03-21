@@ -2,7 +2,7 @@
 #import "ATRecurrence.h"
 
 @interface ATEvent : _ATEvent {}
-
+-(BOOL)isRecurrent;
 -(void)changeRecurenceType:(ATRecurrenceType)type;
 // returns all the non recurring events having effect within |fromDate| to |endDate|
 + (NSArray*)nonRecurringEventsFrom:(NSDate*)fromDate to:(NSDate*)endDate;

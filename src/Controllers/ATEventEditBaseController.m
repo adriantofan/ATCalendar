@@ -39,6 +39,7 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
 @property (nonatomic,readwrite) NSManagedObjectContext* editingMoc;
 @property (nonatomic,readonly) NSArray* sections;
 @property (nonatomic,readonly) NSDictionary* sectionCells;
+@property (nonatomic) BOOL repeatEndVisible;
 
 @property (nonatomic,readonly) ATEventTextFieldCell* summaryCell;
 @property (nonatomic,readonly) ATEventTextFieldCell* placeCell;
@@ -153,6 +154,13 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
 
 -(NSInteger)numberOfCellsInSection:(NSInteger)section{
   NSString* sectionName = [self sectionNameForSection:section];
+  if (sectionName == ATEventEditBaseSectionRecurrence) {
+    if (self.repeatEndVisible) {
+      return 2;
+    }else{
+      return 1;
+    }
+  }
   return [[self.sectionCells objectForKey:sectionName] count];
 }
 
@@ -201,6 +209,7 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
                              action:@selector(saveButtonAction)];
   self.navigationItem.leftBarButtonItem = cancel;
   self.navigationItem.rightBarButtonItem = save;
+  self.repeatEndVisible = self.event.isRecurrent;
 }
 
 - (void)didReceiveMemoryWarning
@@ -220,6 +229,17 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
     if (saveOrCancel) {
       [SELF.event changeRecurenceType:CTRL.currentReccurrence];
       [SELF updateViewWithEvent:SELF.event];
+      NSIndexPath* endCellIndexPath = [NSIndexPath indexPathForRow:1 inSection:[SELF.sections indexOfObject:ATEventEditBaseSectionRecurrence]];
+      if (SELF.event.isRecurrent && !SELF.repeatEndVisible) {
+        SELF.repeatEndVisible = YES;
+        [SELF.tableView insertRowsAtIndexPaths:@[endCellIndexPath]
+                              withRowAnimation:UITableViewRowAnimationAutomatic];
+      }
+      if (!SELF.event.isRecurrent && SELF.repeatEndVisible) {
+        SELF.repeatEndVisible = NO;
+        [SELF.tableView deleteRowsAtIndexPaths:@[endCellIndexPath]
+                              withRowAnimation:UITableViewRowAnimationAutomatic];
+      }
     }
     [SELF.navigationController popViewControllerAnimated:YES];
   };

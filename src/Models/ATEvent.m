@@ -10,6 +10,10 @@
 
 
 @implementation ATEvent
+-(BOOL)isRecurrent{
+  return self.recurence && (self.recurence.typeValue != ATRecurrenceTypeNone);
+}
+
 -(void)changeRecurenceType:(ATRecurrenceType)type{
   if (self.recurence && (self.recurence.typeValue == type)) return;
   if (ATRecurrenceTypeNone == type) {
