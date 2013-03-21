@@ -18,7 +18,7 @@
 }
 
 -(NSString*)reccurenceTypeDescription{
-  return NSLocalizedString(@"Yearly", @"Yearly reccurence type description");
+  return NSLocalizedString(@"yearly", @"Yearly reccurence type description");
 }
 
 @end

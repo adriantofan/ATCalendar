@@ -39,13 +39,13 @@
     </entity>
     <entity name="YearlyRecurrence" representedClassName="ATYearlyRecurrence" parentEntity="Recurrence" syncable="YES"/>
     <elements>
-        <element name="DailyRecurrence" positionX="126" positionY="387" width="128" height="45"/>
-        <element name="Event" positionX="448" positionY="-72" width="128" height="165"/>
-        <element name="GlobalPropertyes" positionX="403" positionY="-237" width="128" height="75"/>
-        <element name="MonthlyRecurrence" positionX="549" positionY="378" width="128" height="58"/>
-        <element name="OccurrenceCache" positionX="781" positionY="-63" width="128" height="118"/>
-        <element name="Recurrence" positionX="432" positionY="150" width="128" height="103"/>
-        <element name="WeeklyRecurrence" positionX="351" positionY="378" width="128" height="58"/>
-        <element name="YearlyRecurrence" positionX="727" positionY="378" width="128" height="45"/>
+        <element name="DailyRecurrence" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Event" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="GlobalPropertyes" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="MonthlyRecurrence" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="OccurrenceCache" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Recurrence" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="WeeklyRecurrence" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="YearlyRecurrence" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

@@ -38,7 +38,7 @@
   // :-(
   if ([start isWithinSameDay:end] && !self.event.allDayValue) {
     description =
-      [description stringByAppendingFormat:NSLocalizedString(@"%@ \nfrom %@ to%@",@""),
+      [description stringByAppendingFormat:NSLocalizedString(@"%@ \nfrom %@ to %@",@""),
         [dateFormater stringFromDate:start],
         [timeFormater stringFromDate:start],
         [timeFormater stringFromDate:end]];
@@ -57,6 +57,10 @@
        [formater stringFromDate:start],
        [formater stringFromDate:end]];
     }
+  }
+  if (self.event.recurence) {
+    description = [description stringByAppendingString:@"\n"];
+    description = [description stringByAppendingFormat:@"repeats %@",[self.event.recurence reccurenceTypeDescription]];
   }
   return description;
 }

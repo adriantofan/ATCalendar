@@ -18,6 +18,6 @@
 }
 // Custom logic goes here.
 -(NSString*)reccurenceTypeDescription{
-  return NSLocalizedString(@"Monthly", @"Monthly reccurence type description");
+  return NSLocalizedString(@"monthly", @"Monthly reccurence type description");
 }
 @end

@@ -19,6 +19,6 @@
 
 // Custom logic goes here.
 -(NSString*)reccurenceTypeDescription{
-  return NSLocalizedString(@"Weekley", @"Weekley reccurence type description");
+  return NSLocalizedString(@"weekley", @"Weekley reccurence type description");
 }
 @end

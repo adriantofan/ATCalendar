@@ -31,7 +31,7 @@
     // Update the user interface for the detail item.
 
   if (self.detailItem) {
-      self.detailDescriptionLabel.text = [[self.detailItem valueForKey:@"startDate"] description];
+      self.detailDescriptionLabel.text = [[self.detailItem valueForKey:@"minimumDate"] description];
   }
 }
 

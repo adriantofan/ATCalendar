@@ -7,19 +7,20 @@
 //
 
 #import "ATEventEditBaseController.h"
+
 #import "ATCalendar.h"
 #import "ATTimeSpan.h"
-#import "ATRecurrence.h"
-#import "ATOccurrenceCache.h"
-#import "ATEventTextFieldCell.h"
-#import "ATEventTimeEditCell.h"
-#import "ATRecurrenceController.h"
-
 #import "ATRecurrence.h"
 #import "ATDailyRecurrence.h"
 #import "ATWeeklyRecurrence.h"
 #import "ATMonthlyRecurrence.h"
 #import "ATYearlyRecurrence.h"
+
+#import "ATOccurrenceCache.h"
+#import "ATEventTextFieldCell.h"
+#import "ATEventTimeEditCell.h"
+#import "ATRecurrenceController.h"
+#import "ATEndRecurrenceController.h"
 
 
 NSString const*  ATEventEditBaseSectionHeader = @"ATEventEditBaseSectionHeader";
@@ -113,7 +114,7 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
     if (nil == event.recurence.endDate) {
       self.repeatEndCell.detailTextLabel.text = NSLocalizedString(@"Never", @"");
     }else{
-      self.repeatEndCell.detailTextLabel.text = [dateTimeFormatter_ stringFromDate:event.recurence.endDate];
+      self.repeatEndCell.detailTextLabel.text = [dateFormatter_ stringFromDate:event.recurence.endDate];
     }
   }else{
     self.repeatTypeCell.detailTextLabel.text = NSLocalizedString(@"Never", @"");;
@@ -179,6 +180,10 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
 
 
 #pragma mark -
+-(void)setEvent:(ATEvent *)event{
+  _event = event;
+  self.repeatEndVisible = self.event.isRecurrent;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -209,7 +214,6 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
                              action:@selector(saveButtonAction)];
   self.navigationItem.leftBarButtonItem = cancel;
   self.navigationItem.rightBarButtonItem = save;
-  self.repeatEndVisible = self.event.isRecurrent;
 }
 
 - (void)didReceiveMemoryWarning
@@ -218,7 +222,23 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
     // Dispose of any resources that can be recreated.
 }
 #pragma mark - Helpers
-
+-(void)showEndReccurenceSelection{
+  ATEndRecurrenceController* ctrl = [[ATEndRecurrenceController alloc] initWithStyle:UITableViewStyleGrouped];
+  ctrl.minimumDate = self.event.startDate;
+  ctrl.endDate = self.event.recurence.endDate;
+  typeof(self) __weak SELF = self;
+  typeof(ctrl) __weak CTRL = ctrl;
+  ctrl.endBlock = ^void (BOOL saveOrCancel){
+    if (saveOrCancel) {
+      if (saveOrCancel) {
+        SELF.event.recurence.endDate = CTRL.endDate;
+        [SELF updateViewWithEvent:SELF.event];
+      }
+    }
+    [SELF.navigationController popViewControllerAnimated:YES];
+  };
+  [self.navigationController pushViewController:ctrl animated:YES];
+}
 
 -(void)showReccurenceTypeSelection{
   ATRecurrenceController* ctrl = [[ATRecurrenceController alloc] initWithStyle:UITableViewStyleGrouped];
@@ -306,6 +326,7 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
       [self showReccurenceTypeSelection];
     }
     if (indexPath.row == 1) { // recurrence duration
+      [self showEndReccurenceSelection];
       
     }
   }
