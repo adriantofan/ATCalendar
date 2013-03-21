@@ -26,13 +26,12 @@
   self.event.startDate = [NSDate date];
   self.event.endDate = [NSDate date];
   [self updateViewWithEvent:self.event];
+  self.title = NSLocalizedString(@"Add event", @"Event add controller title");
 
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)didReceiveMemoryWarning{
+  [super didReceiveMemoryWarning];
 }
 
 @end

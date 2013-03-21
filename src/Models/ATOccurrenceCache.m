@@ -1,5 +1,5 @@
 #import "ATOccurrenceCache.h"
-
+#import "ATEvent.h"
 
 @interface ATOccurrenceCache ()
 
@@ -15,7 +15,7 @@
 
 -(BOOL)allDay{
   if ([self.startDate isEqualToDate:[self.startDate startOfCurrentDay]] &&
-      [self.endDate isEqualToDate:[self.endDate startOfCurrentDay]]) {
+      [self.endDate isEqualToDate:[self.endDate endOfCurrentDay]]) {
     return YES;
   }
   return NO;
@@ -23,22 +23,44 @@
 
 -(NSString*)durationDescription{
   NSString* description = @"";
-  NSDateFormatter* dayFormater = [[NSDateFormatter alloc] init];
-  [dayFormater setTimeStyle:NSDateFormatterNoStyle];
-  [dayFormater setDateStyle:NSDateFormatterLongStyle];
+  NSDateFormatter* dateTimeFormater = [[NSDateFormatter alloc] init];
+  [dateTimeFormater setTimeStyle:NSDateFormatterShortStyle];
+  [dateTimeFormater setDateStyle:NSDateFormatterLongStyle];
   NSDateFormatter* timeFormater = [[NSDateFormatter alloc] init];
   [timeFormater setTimeStyle:NSDateFormatterShortStyle];
-  [timeFormater setDateStyle:NSDateFormatterNoStyle];
-  
-  if (self.allDay) {
-    description = [NSString stringWithFormat:@"%@\n",[dayFormater stringFromDate:self.day]];
-    description = [description stringByAppendingFormat:@"%@\n",NSLocalizedString(@"All Day", @"")];
+  [timeFormater setDateStyle:NSDateFormatterNoStyle];\
+  NSDateFormatter* dateFormater = [[NSDateFormatter alloc] init];
+  [dateFormater setTimeStyle:NSDateFormatterNoStyle];
+  [dateFormater setDateStyle:NSDateFormatterFullStyle];
+  NSDateFormatter* formater = dateTimeFormater;
+  NSDate *start = self.occurrenceDate;
+  NSDate *end = [start dateByAddingTimeInterval:[self.event.endDate timeIntervalSinceDate:self.event.startDate]];
+  // :-(
+  if ([start isWithinSameDay:end] && !self.event.allDayValue) {
+    description =
+      [description stringByAppendingFormat:NSLocalizedString(@"%@ \nfrom %@ to%@",@""),
+        [dateFormater stringFromDate:start],
+        [timeFormater stringFromDate:start],
+        [timeFormater stringFromDate:end]];
   }else{
-    description = [NSString stringWithFormat:@"%@\n",[dayFormater stringFromDate:self.day]];
-    description = [description stringByAppendingFormat:NSLocalizedString(@"From %@ to %@\n",@"time span for an event occurence"),[timeFormater stringFromDate:self.startDate],[timeFormater stringFromDate:self.endDate]];
+    if (self.event.allDayValue) {
+      description = NSLocalizedString(@"All Day ",@"");
+      formater = dateFormater;
+    }
+    if ([start isWithinSameDay:end] && self.event.allDayValue) {
+      description =
+        [description stringByAppendingFormat:NSLocalizedString(@"%@",@""),
+         [dateFormater stringFromDate:start]];
+    }else{
+      description =
+      [description stringByAppendingFormat:NSLocalizedString(@"from %@ to %@",@""),
+       [formater stringFromDate:start],
+       [formater stringFromDate:end]];
+    }
   }
   return description;
 }
+
 // Custom logic goes here.
 
 @end

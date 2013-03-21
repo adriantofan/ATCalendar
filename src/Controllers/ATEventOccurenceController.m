@@ -21,6 +21,12 @@ NSString * const ATEventDetailCellId = @"ATEventDetailCell";
 
 @synthesize eventOccurence = eventOccurence_;
 
+-(void)dealloc{
+  tmpEvent_ = nil;
+  eventOccurence_ = nil;
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewDidLoad
 {
   [super viewDidLoad];
@@ -35,9 +41,10 @@ NSString * const ATEventDetailCellId = @"ATEventDetailCell";
                                            selector:@selector(saveMocNotif:)
                                                name:NSManagedObjectContextDidSaveNotification
                                              object:self.eventOccurence.managedObjectContext];
+  self.title = NSLocalizedString(@"Event details", @"View Event details controller title");
 }
-#pragma mark - Button actions
 
+#pragma mark - Button actions
 -(void)saveMocNotif:(NSNotification*)notification{
   NSSet* deleted = [notification.userInfo objectForKey:NSDeletedObjectsKey];
   if ([deleted containsObject:tmpEvent_]) {

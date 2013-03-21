@@ -29,6 +29,7 @@
   self.event = [self.sourceEvent MR_inContext:self.editingMoc];
   [self updateViewWithEvent:self.event];
   self.tableView.tableFooterView = self.footerView;
+  self.title = NSLocalizedString(@"Edit", @"Event edit controller title");
 }
 -(UIView*)footerView{
   if (nil == footerView_) {

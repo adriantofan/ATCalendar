@@ -40,8 +40,6 @@ typedef enum{
   [dateFormatter_ setTimeStyle:NSDateFormatterNoStyle];
   [dateFormatter_ setDateStyle:NSDateFormatterMediumStyle];
   picker_.locale = [NSLocale currentLocale];
-  startDateLabel_.text = [dateTimeFormatter_ stringFromDate:startDate_];
-  endDateLabel_.text = [dateTimeFormatter_ stringFromDate:endDate_];
   picker_.date = startDate_;
   allDaySwitch_.on = self.allDay;
   if (self.allDay) {
@@ -49,6 +47,7 @@ typedef enum{
   }else{
     picker_.datePickerMode = UIDatePickerModeDateAndTime;
   }
+  [self updateDatesToLabels];
 }
 
 - (void)didReceiveMemoryWarning

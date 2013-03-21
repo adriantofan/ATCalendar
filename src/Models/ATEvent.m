@@ -1,12 +1,53 @@
 #import "ATEvent.h"
 #import "ATOccurrenceCache.h"
-
+#import "ATDailyRecurrence.h"
+#import "ATWeeklyRecurrence.h"
+#import "ATMonthlyRecurrence.h"
+#import "ATYearlyRecurrence.h"
 
 @interface ATEvent ()
 @end
 
 
 @implementation ATEvent
+-(void)changeRecurenceType:(ATRecurrenceType)type{
+  if (self.recurence && (self.recurence.typeValue == type)) return;
+  if (ATRecurrenceTypeNone == type) {
+    [self.recurence MR_deleteInContext:self.managedObjectContext];
+    self.recurence = nil;
+    return;
+  }
+  NSDate* startDate;
+  NSDate* endDate;
+  if (self.recurence == nil) {
+    startDate = [NSDate date];
+    endDate = nil;
+  }else{
+    [self.recurence MR_deleteInContext:self.managedObjectContext];
+    startDate = self.recurence.startDate;
+    endDate = self.recurence.endDate;
+  }
+  ATRecurrence *reccurence = nil;
+  switch (type) {
+    case ATRecurrenceTypeNone:return;
+    case ATRecurrenceTypeDay:
+      reccurence = (ATRecurrence *)[ATDailyRecurrence MR_createInContext:self.managedObjectContext];
+      break;
+    case ATRecurrenceTypeWeek:
+      reccurence = (ATRecurrence *)[ATWeeklyRecurrence MR_createInContext:self.managedObjectContext];
+      break;
+    case ATRecurrenceTypeMonth:
+      reccurence = (ATRecurrence *)[ATMonthlyRecurrence MR_createInContext:self.managedObjectContext];
+      break;
+    case ATRecurrenceTypeYear:
+      reccurence = (ATRecurrence *)[ATYearlyRecurrence MR_createInContext:self.managedObjectContext];
+      break;
+  }
+  reccurence.typeValue = type;
+  reccurence.startDate = startDate;
+  reccurence.endDate = endDate;
+  self.recurence = reccurence;
+}
 
 + (NSArray*)nonRecurringEventsFrom:(NSDate*)fromDate to:(NSDate*)endDate{
   NSDate* start = fromDate?fromDate:[NSDate dateWithTimeIntervalSince1970:0];

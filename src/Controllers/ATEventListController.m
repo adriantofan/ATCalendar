@@ -26,7 +26,8 @@
   [super viewDidLoad];
   UIBarButtonItem *addButton =
     [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonAction)];
-  self.navigationItem.leftBarButtonItem = addButton;
+  self.navigationItem.rightBarButtonItem = addButton;
+  self.title = NSLocalizedString(@"Calendar",@"Day list controller title");
 }
 
 -(IBAction)eventEditSaved:(UIStoryboardSegue *)segue{

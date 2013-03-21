@@ -13,6 +13,13 @@
 #import "ATOccurrenceCache.h"
 #import "ATEventTextFieldCell.h"
 #import "ATEventTimeEditCell.h"
+#import "ATRecurrenceController.h"
+
+#import "ATRecurrence.h"
+#import "ATDailyRecurrence.h"
+#import "ATWeeklyRecurrence.h"
+#import "ATMonthlyRecurrence.h"
+#import "ATYearlyRecurrence.h"
 
 
 NSString const*  ATEventEditBaseSectionHeader = @"ATEventEditBaseSectionHeader";
@@ -25,7 +32,8 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
 
 
 @interface ATEventEditBaseController (){
-  NSDateFormatter *formatter_;
+  NSDateFormatter *dateTimeFormatter_;
+  NSDateFormatter *dateFormatter_;
 }
 @property (nonatomic,readwrite) ATEvent* event;
 @property (nonatomic,readwrite) NSManagedObjectContext* editingMoc;
@@ -35,6 +43,9 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
 @property (nonatomic,readonly) ATEventTextFieldCell* summaryCell;
 @property (nonatomic,readonly) ATEventTextFieldCell* placeCell;
 @property (nonatomic,readonly) ATEventTimeEditCell* timeEditCell;
+@property (nonatomic,readonly) UITableViewCell* repeatTypeCell;
+@property (nonatomic,readonly) UITableViewCell* repeatEndCell;
+
 
 @end
 
@@ -43,9 +54,29 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
 @synthesize summaryCell = summaryCell_;
 @synthesize placeCell = placeCell_;
 @synthesize timeEditCell = timeEditCell_;
+@synthesize repeatTypeCell = repeatTypeCell_;
+@synthesize repeatEndCell = repeatEndCell_;
 
 #pragma mark - Cells
+-(UITableViewCell*)repeatEndCell{
+  if (nil == repeatEndCell_) {
+    repeatEndCell_ = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"UITableViewCellStyleValue1Id"];
+    repeatEndCell_.textLabel.text = NSLocalizedString(@"End Repeat", @"");
+    repeatEndCell_.detailTextLabel.text = NSLocalizedString(@"Never", @"");
+    repeatEndCell_.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
+  }
+  return repeatEndCell_;
+}
+-(UITableViewCell*)repeatTypeCell{
+  if (nil == repeatTypeCell_) {
+    repeatTypeCell_ = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"UITableViewCellStyleValue1Id"];
+    repeatTypeCell_.textLabel.text = NSLocalizedString(@"Repeat", @"Repeat cell title");
+    repeatTypeCell_.detailTextLabel.text = NSLocalizedString(@"Never", @"");
+    repeatTypeCell_.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+  }
+  return repeatTypeCell_;
+}
 
 -(ATEventTimeEditCell*)timeEditCell{
   if (nil == timeEditCell_) {
@@ -71,10 +102,22 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
 #pragma mark - Table view model
 
 -(void)updateViewWithEvent:(ATEvent*)event{
-  self.timeEditCell.startDateLabel.text = [formatter_ stringFromDate:event.startDate];
-  self.timeEditCell.endDateLabel.text = [formatter_ stringFromDate:event.endDate];
+  NSDateFormatter *formater = event.allDayValue?dateFormatter_:dateTimeFormatter_;
+  self.timeEditCell.startDateLabel.text = [formater stringFromDate:event.startDate];
+  self.timeEditCell.endDateLabel.text = [formater stringFromDate:event.endDate];
   self.summaryCell.textField.text = event.summary;
   self.placeCell.textField.text = event.location;
+  if (event.recurence) {
+    self.repeatTypeCell.detailTextLabel.text = event.recurence.reccurenceTypeDescription;
+    if (nil == event.recurence.endDate) {
+      self.repeatEndCell.detailTextLabel.text = NSLocalizedString(@"Never", @"");
+    }else{
+      self.repeatEndCell.detailTextLabel.text = [dateTimeFormatter_ stringFromDate:event.recurence.endDate];
+    }
+  }else{
+    self.repeatTypeCell.detailTextLabel.text = NSLocalizedString(@"Never", @"");;
+    self.repeatEndCell.detailTextLabel.text = NSLocalizedString(@"Never", @"");;
+  }
 }
 
 -(void)updateFromView:(ATEvent*)event{
@@ -98,7 +141,8 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
 -(NSDictionary*)sectionCells {
   if (nil == sectionCells_) {
     sectionCells_ = @{ATEventEditBaseSectionHeader:@[self.summaryCell,self.placeCell],
-                      ATEventEditBaseSectionDate:@[self.timeEditCell]};
+                      ATEventEditBaseSectionDate:@[self.timeEditCell],
+                      ATEventEditBaseSectionRecurrence:@[self.repeatTypeCell,self.repeatEndCell]};
   }
   return sectionCells_;
 }
@@ -125,6 +169,7 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
   return 44.0;
 }
 
+
 #pragma mark -
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -139,9 +184,12 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  formatter_ = [[NSDateFormatter alloc] init];
-  [formatter_ setTimeStyle:NSDateFormatterShortStyle];
-  [formatter_ setDateStyle:NSDateFormatterMediumStyle];
+  dateTimeFormatter_ = [[NSDateFormatter alloc] init];
+  [dateTimeFormatter_ setTimeStyle:NSDateFormatterShortStyle];
+  [dateTimeFormatter_ setDateStyle:NSDateFormatterMediumStyle];
+  dateFormatter_ = [[NSDateFormatter alloc] init];
+  [dateFormatter_ setTimeStyle:NSDateFormatterNoStyle];
+  [dateFormatter_ setDateStyle:NSDateFormatterLongStyle];
   self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
   UIBarButtonItem* cancel = [[UIBarButtonItem alloc]
     initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
@@ -160,6 +208,34 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark - Helpers
+
+
+-(void)showReccurenceTypeSelection{
+  ATRecurrenceController* ctrl = [[ATRecurrenceController alloc] initWithStyle:UITableViewStyleGrouped];
+  ctrl.currentReccurrence  = self.event.recurence.typeValue;
+  typeof(self) __weak SELF = self;
+  typeof(ctrl) __weak CTRL = ctrl;
+  ctrl.endBlock = ^void (BOOL saveOrCancel){
+    if (saveOrCancel) {
+      [SELF.event changeRecurenceType:CTRL.currentReccurrence];
+      [SELF updateViewWithEvent:SELF.event];
+    }
+    [SELF.navigationController popViewControllerAnimated:YES];
+  };
+  [self.navigationController pushViewController:ctrl animated:YES];
+}
+
+-(void)showEventDurationSeclection{
+  UIStoryboard* story = [UIStoryboard storyboardWithName:@"Calendar" bundle:nil];
+  ATDurationEditController* ctrl = [story instantiateViewControllerWithIdentifier:@"ATDurationEditControllerSceneId"];
+  ctrl.startDate = self.event.startDate;
+  ctrl.endDate = self.event.endDate;
+  ctrl.allDay = self.event.allDayValue;
+  ctrl.delegate = self;
+  [self.navigationController pushViewController:ctrl animated:YES];
+}
+
 #pragma mark - Bar Button actions
 -(IBAction)cancelButtonAction{
   [self.delegate eventEditBaseController:self
@@ -198,16 +274,20 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
 
 #pragma mark - Table view delegate
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
   NSString *section = [self sectionNameForSection:indexPath.section];
   if (section == ATEventEditBaseSectionDate ) {
-    UIStoryboard* story = [UIStoryboard storyboardWithName:@"Calendar" bundle:nil];
-    ATDurationEditController* ctrl = [story instantiateViewControllerWithIdentifier:@"ATDurationEditControllerSceneId"];
-    ctrl.startDate = self.event.startDate;
-    ctrl.endDate = self.event.endDate;
-    ctrl.allDay = self.event.allDayValue;
-    ctrl.delegate = self;
-    [self.navigationController pushViewController:ctrl animated:YES];
+    [self showEventDurationSeclection];
+  }
+  
+  if (section == ATEventEditBaseSectionRecurrence ) {
+    if (indexPath.row == 0) { // recurrence type
+      [self showReccurenceTypeSelection];
+    }
+    if (indexPath.row == 1) { // recurrence duration
+      
+    }
   }
 }
 #pragma mark - ATDurationEditControllerDelegate protocol
@@ -217,8 +297,7 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
     self.event.startDate = ctrl.startDate;
     self.event.endDate = ctrl.endDate;
     self.event.allDayValue = ctrl.allDay;
-    self.timeEditCell.startDateLabel.text = [formatter_ stringFromDate:self.event.startDate];
-    self.timeEditCell.endDateLabel.text = [formatter_ stringFromDate:self.event.endDate];
+    [self updateViewWithEvent:self.event];
   }
   [self.navigationController  popViewControllerAnimated:YES];
 }

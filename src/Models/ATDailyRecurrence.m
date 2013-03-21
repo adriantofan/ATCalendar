@@ -17,5 +17,7 @@
   }
   return nil;
 }
-
+-(NSString*)reccurenceTypeDescription{
+  return NSLocalizedString(@"daily", @"daily reccurence type description");
+}
 @end

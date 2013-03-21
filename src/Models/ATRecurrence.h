@@ -1,11 +1,12 @@
 #import "_ATRecurrence.h"
 
 typedef enum {
-  ATRecurrenceTypeDay       = 0,
-  ATRecurrenceTypeWeek      = 1,
-  ATRecurrenceTypeMonth     = 2,
-  ATRecurrenceTypeYear      = 3,
-} ATRecurrenceType; 
+  ATRecurrenceTypeNone       = 0,
+  ATRecurrenceTypeDay       = 1,
+  ATRecurrenceTypeWeek      = 2,
+  ATRecurrenceTypeMonth     = 3,
+  ATRecurrenceTypeYear      = 4,
+} ATRecurrenceType;
 
 @interface ATRecurrence : _ATRecurrence {}
 // returns all Reccurrences having effect within |fromDate| to |endDate|
@@ -14,6 +15,8 @@ typedef enum {
 // Returns next occurence of the event after date if any
 // Method to subclass
 -(NSDate*)nextOccurenceAfter:(NSDate*)date;
+
+-(NSString*)reccurenceTypeDescription;
 @end
 
 @interface ATRecurrence (ATOccurenceCache)

@@ -37,7 +37,7 @@
     <entity name="WeeklyRecurrence" representedClassName="ATWeeklyRecurrence" parentEntity="Recurrence" syncable="YES">
         <attribute name="dayOfWeek" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
-    <entity name="YearlyRecurrence" representedClassName="ATYearleyRecurrence" parentEntity="Recurrence" syncable="YES"/>
+    <entity name="YearlyRecurrence" representedClassName="ATYearlyRecurrence" parentEntity="Recurrence" syncable="YES"/>
     <elements>
         <element name="DailyRecurrence" positionX="126" positionY="387" width="128" height="45"/>
         <element name="Event" positionX="448" positionY="-72" width="128" height="165"/>
@@ -46,6 +46,6 @@
         <element name="OccurrenceCache" positionX="781" positionY="-63" width="128" height="118"/>
         <element name="Recurrence" positionX="432" positionY="150" width="128" height="103"/>
         <element name="WeeklyRecurrence" positionX="351" positionY="378" width="128" height="58"/>
-        <element name="YearlyRecurrence" positionX="727" positionY="378" width="128" height="43"/>
+        <element name="YearlyRecurrence" positionX="727" positionY="378" width="128" height="45"/>
     </elements>
 </model>

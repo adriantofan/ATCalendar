@@ -43,6 +43,9 @@
   assert(false);
 }
 
+-(NSString*)reccurenceTypeDescription{
+  return @"not deffined";
+}
 @end
 
 @implementation ATRecurrence (ATOccurenceCache)
@@ -89,4 +92,5 @@
   }
   return [NSArray arrayWithArray:dates];
 }
+
 @end

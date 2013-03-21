@@ -88,6 +88,7 @@
 		40C3372516F38CCC002EDD52 /* ATOccurrenceCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012983116F23B0100C0DC35 /* ATOccurrenceCache.m */; };
 		40C3372616F38CD5002EDD52 /* ATEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012982216F22F9600C0DC35 /* ATEvent.m */; };
 		40C3372816F38CF8002EDD52 /* ATTimeSpan.m in Sources */ = {isa = PBXBuildFile; fileRef = 4059A96E16F32D69008F90F4 /* ATTimeSpan.m */; };
+		40C67D0516FB108100A65232 /* ATRecurrenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C67D0416FB108100A65232 /* ATRecurrenceController.m */; };
 		40D3BBCE16FA170F00EC54AD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40D3BBCD16FA170F00EC54AD /* QuartzCore.framework */; };
 		40FCA7C916F46F3600F22C81 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405EC2C916F219B400F590DD /* CoreGraphics.framework */; };
 		40FCA7EC16F4C40E00F22C81 /* _ATMonthlyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7DD16F4C40E00F22C81 /* _ATMonthlyRecurrence.m */; };
@@ -188,6 +189,8 @@
 		405EC2F116F219B400F590DD /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		405EC2FA16F219B400F590DD /* ATCalendarTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ATCalendarTests-Info.plist"; sourceTree = "<group>"; };
 		405EC2FC16F219B400F590DD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		40C67D0316FB108100A65232 /* ATRecurrenceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATRecurrenceController.h; sourceTree = "<group>"; };
+		40C67D0416FB108100A65232 /* ATRecurrenceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATRecurrenceController.m; sourceTree = "<group>"; };
 		40D3BBCD16FA170F00EC54AD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		40FCA7DB16F4BEF900F22C81 /* ATCalendar_reccurence.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ATCalendar_reccurence.xcdatamodel; sourceTree = "<group>"; };
 		40FCA7DC16F4C40E00F22C81 /* _ATMonthlyRecurrence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ATMonthlyRecurrence.h; sourceTree = "<group>"; };
@@ -318,6 +321,8 @@
 				400F6FCD16F870CE007285C3 /* ATEventCreateController.m */,
 				404A44DC16F8CD3300DAAD96 /* ATDurationEditController.h */,
 				404A44DD16F8CD3300DAAD96 /* ATDurationEditController.m */,
+				40C67D0316FB108100A65232 /* ATRecurrenceController.h */,
+				40C67D0416FB108100A65232 /* ATRecurrenceController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -621,6 +626,7 @@
 				40322DF016F8B0F500186611 /* ATEventTimeEditCell.m in Sources */,
 				404A44DE16F8CD3300DAAD96 /* ATDurationEditController.m in Sources */,
 				404A44E516F9C63A00DAAD96 /* ATEventDetailCell.m in Sources */,
+				40C67D0516FB108100A65232 /* ATRecurrenceController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

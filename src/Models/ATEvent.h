@@ -1,6 +1,9 @@
 #import "_ATEvent.h"
+#import "ATRecurrence.h"
 
 @interface ATEvent : _ATEvent {}
+
+-(void)changeRecurenceType:(ATRecurrenceType)type;
 // returns all the non recurring events having effect within |fromDate| to |endDate|
 + (NSArray*)nonRecurringEventsFrom:(NSDate*)fromDate to:(NSDate*)endDate;
 // returns a precise ending date assuming that |occurence| is in event
