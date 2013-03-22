@@ -10,16 +10,27 @@
 #import "ATEventEditController.h"
 #import "ATEventDetailCell.h"
 #import "ATEvent.h"
-NSString * const ATEventDetailCellId = @"ATEventDetailCell";
+NSString * const CellTitleSubtitleDescriptionlId = @"CellTitleSubtitleDescriptionlId";
 @interface ATEventOccurenceController ()
-
+@property (nonatomic)  NSArray* cellList;
 @end
+
+typedef enum{
+  CellTypeDescription     = 0,
+  CellTypeAlarms          = 20,
+  CellTypeAvilability     = 30,
+  CellTypeURL             = 40,
+  CellTypeNotes           = 50,
+}CellType;
 
 @implementation ATEventOccurenceController{
   ATEvent* tmpEvent_;
 }
 
 @synthesize eventOccurence = eventOccurence_;
+@synthesize cellList = cellList_;
+
+
 
 -(void)dealloc{
   tmpEvent_ = nil;
@@ -36,7 +47,7 @@ NSString * const ATEventDetailCellId = @"ATEventDetailCell";
                            action:@selector(editButtonAction)];
   self.navigationItem.rightBarButtonItem = edit;
   [self.tableView registerClass:[ATEventDetailCell class]
-         forCellReuseIdentifier:ATEventDetailCellId];
+         forCellReuseIdentifier:CellTitleSubtitleDescriptionlId];
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(saveMocNotif:)
                                                name:NSManagedObjectContextDidSaveNotification
@@ -44,7 +55,33 @@ NSString * const ATEventDetailCellId = @"ATEventDetailCell";
   self.title = NSLocalizedString(@"Event details", @"View Event details controller title");
 }
 
+#pragma mark - Setters & Getters
+
+-(void)setEventOccurence:(ATOccurrenceCache *)eventOccurence{
+  eventOccurence_ = eventOccurence;
+  cellList_ = nil; // force reload
+}
+
+-(NSArray*)cellList{
+  if (nil == cellList_) {
+    NSMutableArray* list = [[NSMutableArray alloc] init];
+    [list addObject:@(CellTypeDescription)];
+//    if (self.eventOccurence.event.allarms)[list addObject:@(CellTypeAlarms)];
+    if (self.eventOccurence.event.url
+        && ![self.eventOccurence.event.url isEqualToString:@""]){
+      [list addObject:@(CellTypeURL)];
+    }
+    if (self.eventOccurence.event.notes &&
+        ![self.eventOccurence.event.notes isEqualToString:@""]){
+      [list addObject:@(CellTypeNotes)];
+    }
+    cellList_ = [NSArray arrayWithArray:list];
+  }
+  return cellList_;
+}
+
 #pragma mark - Button actions
+
 -(void)saveMocNotif:(NSNotification*)notification{
   NSSet* deleted = [notification.userInfo objectForKey:NSDeletedObjectsKey];
   if ([deleted containsObject:tmpEvent_]) {
@@ -97,6 +134,9 @@ NSString * const ATEventDetailCellId = @"ATEventDetailCell";
   tmpEvent_  = self.eventOccurence.event;
 }
 
+
+
+
 #pragma mark - protocol ATEventEditBaseControllerDelegate
 
 -(void) eventEditBaseController:(ATEventEditBaseController*)controller
@@ -105,30 +145,93 @@ NSString * const ATEventDetailCellId = @"ATEventDetailCell";
   [self dismissViewControllerAnimated:YES completion:nil];
   if (successOrCancel) {
     [ctrl.editingMoc MR_saveToPersistentStoreAndWait];
+    self.cellList = nil;
     [self.tableView reloadData];
   }  
 }
+
+-(void)configureDescriptionCell:(ATEventDetailCell*)cell atIndexPath:(NSIndexPath*)indexPath{
+  cell.subtitleLabel.textColor = [UIColor lightGrayColor];
+  cell.descriptionLabel.textColor = [UIColor colorWithRed:0.200 green:0.310 blue:0.510 alpha:1.000];
+  
+  [cell setTitle:self.eventOccurence.event.summary
+        subtitle:self.eventOccurence.event.location
+     description:[self.eventOccurence durationDescription]];
+}
+
+-(void)configureURLCell:(ATEventDetailCell*)cell atIndexPath:(NSIndexPath*)indexPath{
+  cell.subtitleLabel.textColor = [UIColor lightGrayColor];
+  cell.descriptionLabel.textColor = [UIColor colorWithRed:0.200 green:0.310 blue:0.510 alpha:1.000];
+  [cell setTitle:NSLocalizedString(@"URL", @"URL field title")
+        subtitle:@""
+     description:self.eventOccurence.event.url];
+}
+
+-(void)configureNotesCell:(ATEventDetailCell*)cell atIndexPath:(NSIndexPath*)indexPath{
+  cell.subtitleLabel.textColor = [UIColor lightGrayColor];
+  cell.descriptionLabel.textColor = [UIColor colorWithRed:0.200 green:0.310 blue:0.510 alpha:1.000];
+  [cell setTitle:NSLocalizedString(@"Notes", @"Notes field title")
+        subtitle:@""
+     description:self.eventOccurence.event.notes];
+}
+
+#pragma mark - TableView model & Configuration
+
+
+-(CellType)cellTypeForIndexPath:(NSIndexPath*)indexPath{
+  return [[self.cellList objectAtIndex:indexPath.row] integerValue];
+}
+
+
 #pragma mark - Table View
+
 -(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-  return [ATEventDetailCell heightWithTitle:eventOccurence_.event.summary
-                                   subtitle:eventOccurence_.event.location
-                                description:[eventOccurence_ durationDescription]];
+  CellType type = [self cellTypeForIndexPath:indexPath];
+  if (type == CellTypeDescription) {
+    return [ATEventDetailCell heightWithTitle:self.eventOccurence.event.summary
+                                   subtitle:self.eventOccurence.event.location
+                                description:[self.eventOccurence durationDescription]];
+  }
+  if (type == CellTypeURL) {
+    return [ATEventDetailCell heightWithTitle:NSLocalizedString(@"URL", @"URL field title")
+                                     subtitle:@""
+                                  description:self.eventOccurence.event.url];
+  }
+  if (type == CellTypeNotes) {
+    return [ATEventDetailCell heightWithTitle:NSLocalizedString(@"Notes", @"Notes field title")
+                                     subtitle:@""
+                                  description:self.eventOccurence.event.notes];
+  }
+  return 44.0;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
   return 1;
 }
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-  return 1;
+  return [self.cellList count];
 }
+
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-  ATEventDetailCell* cell = [self.tableView dequeueReusableCellWithIdentifier:ATEventDetailCellId];
-  cell.subtitleLabel.textColor = [UIColor lightGrayColor];
-  cell.descriptionLabel.textColor = [UIColor colorWithRed:0.200 green:0.310 blue:0.510 alpha:1.000];
+
+  CellType type = [self cellTypeForIndexPath:indexPath];
   
-  [cell setTitle:eventOccurence_.event.summary
-        subtitle:eventOccurence_.event.location
-     description:[eventOccurence_ durationDescription]];
-  return cell;
+  if (type == CellTypeDescription) {
+    ATEventDetailCell* cell = [self.tableView dequeueReusableCellWithIdentifier:CellTitleSubtitleDescriptionlId];
+    [self configureDescriptionCell:cell atIndexPath:indexPath];
+    return cell;
+  }
+  if (type == CellTypeURL) {
+    ATEventDetailCell* cell = [self.tableView dequeueReusableCellWithIdentifier:CellTitleSubtitleDescriptionlId];
+    [self configureURLCell:cell atIndexPath:indexPath];
+    return cell;
+  }
+  if (type == CellTypeNotes) {
+    ATEventDetailCell* cell = [self.tableView dequeueReusableCellWithIdentifier:CellTitleSubtitleDescriptionlId];
+    [self configureNotesCell:cell atIndexPath:indexPath];
+    return cell;
+  }
+  return nil;
 }
 @end

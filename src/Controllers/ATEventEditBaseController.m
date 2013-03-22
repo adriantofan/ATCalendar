@@ -21,6 +21,7 @@
 #import "ATEventTimeEditCell.h"
 #import "ATRecurrenceController.h"
 #import "ATEndRecurrenceController.h"
+#import "ATEventTextViewCell.h"
 
 
 NSString const*  ATEventEditBaseSectionHeader = @"ATEventEditBaseSectionHeader";
@@ -47,7 +48,8 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
 @property (nonatomic,readonly) ATEventTimeEditCell* timeEditCell;
 @property (nonatomic,readonly) UITableViewCell* repeatTypeCell;
 @property (nonatomic,readonly) UITableViewCell* repeatEndCell;
-
+@property (nonatomic,readonly) ATEventTextFieldCell* urlCell;
+@property (nonatomic,readonly) ATEventTextViewCell* notesCell;
 
 @end
 
@@ -58,6 +60,8 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
 @synthesize timeEditCell = timeEditCell_;
 @synthesize repeatTypeCell = repeatTypeCell_;
 @synthesize repeatEndCell = repeatEndCell_;
+@synthesize urlCell = urlCell_;
+@synthesize notesCell = notesCell_;
 
 #pragma mark - Cells
 -(UITableViewCell*)repeatEndCell{
@@ -100,6 +104,24 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
   }
   return summaryCell_;
 }
+-(ATEventTextFieldCell*)urlCell{
+  if (nil == urlCell_) {
+    urlCell_ = [[ATEventTextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ATEventTextFieldCellName"];
+    urlCell_.textField.placeholder = NSLocalizedString(@"URL",@"Event URL");
+    urlCell_.textField.keyboardType = UIKeyboardTypeURL;
+  }
+  return urlCell_;
+}
+
+-(ATEventTextViewCell*)notesCell{
+  if (nil == notesCell_) {
+    notesCell_ = [[ATEventTextViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ATEventTextViewCellId"];
+    notesCell_.textView.placeholder = NSLocalizedString(@"Notes",@"Event notes");
+    notesCell_.textView.font = [UIFont systemFontOfSize:16.0];
+    notesCell_.textView.placeholderColor = [UIColor lightGrayColor];
+  }
+  return notesCell_;
+}
 
 #pragma mark - Table view model
 
@@ -120,11 +142,15 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
     self.repeatTypeCell.detailTextLabel.text = NSLocalizedString(@"Never", @"");;
     self.repeatEndCell.detailTextLabel.text = NSLocalizedString(@"Never", @"");;
   }
+  self.urlCell.textField.text = event.url;
+  self.notesCell.textView.text = event.notes;
 }
 
 -(void)updateFromView:(ATEvent*)event{
   event.summary = self.summaryCell.textField.text;
   event.location = self.placeCell.textField.text;
+  event.url = self.urlCell.textField.text;
+  event.notes = self.notesCell.textView.text;
 }
 
 -(NSArray*)sections{
@@ -144,7 +170,9 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
   if (nil == sectionCells_) {
     sectionCells_ = @{ATEventEditBaseSectionHeader:@[self.summaryCell,self.placeCell],
                       ATEventEditBaseSectionDate:@[self.timeEditCell],
-                      ATEventEditBaseSectionRecurrence:@[self.repeatTypeCell,self.repeatEndCell]};
+                      ATEventEditBaseSectionRecurrence:@[self.repeatTypeCell,self.repeatEndCell],
+                      ATEventEditBaseSectionURL:@[self.urlCell],
+                      ATEventEditBaseSectionNotes:@[self.notesCell]};
   }
   return sectionCells_;
 }
@@ -174,6 +202,9 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
   NSString* sectionName = [self sectionNameForSection:indexPath.section];
   if (sectionName == ATEventEditBaseSectionDate) {
     return [ATEventTimeEditCell height];
+  }
+  if (sectionName == ATEventEditBaseSectionNotes) {
+    return 100.0;
   }
   return 44.0;
 }
@@ -216,11 +247,7 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
   self.navigationItem.rightBarButtonItem = save;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 #pragma mark - Helpers
 -(void)showEndReccurenceSelection{
   ATEndRecurrenceController* ctrl = [[ATEndRecurrenceController alloc] initWithStyle:UITableViewStyleGrouped];
@@ -313,21 +340,33 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
 }
 
 #pragma mark - Table view delegate
-
+-(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
+  NSString *section = [self sectionNameForSection:indexPath.section];
+  if (section == ATEventEditBaseSectionRecurrence ) return YES;
+  if (section == ATEventEditBaseSectionDate ) return YES;
+  return NO;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
   NSString *section = [self sectionNameForSection:indexPath.section];
   if (section == ATEventEditBaseSectionDate ) {
-    [self showEventDurationSeclection];
+    dispatch_async(dispatch_get_main_queue(), ^{
+      [self.tableView endEditing:YES];
+      [self showEventDurationSeclection];
+    });
   }
-  
   if (section == ATEventEditBaseSectionRecurrence ) {
     if (indexPath.row == 0) { // recurrence type
-      [self showReccurenceTypeSelection];
+      [self.tableView endEditing:YES];
+      dispatch_async(dispatch_get_main_queue(), ^{
+        [self showReccurenceTypeSelection];
+      });
     }
     if (indexPath.row == 1) { // recurrence duration
-      [self showEndReccurenceSelection];
-      
+      [self.tableView endEditing:YES];
+      dispatch_async(dispatch_get_main_queue(), ^{
+        [self showEndReccurenceSelection];
+      });
     }
   }
 }

@@ -79,6 +79,10 @@
 		405EC2F416F219B400F590DD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405EC2C716F219B400F590DD /* Foundation.framework */; };
 		405EC2F516F219B400F590DD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405EC2CB16F219B400F590DD /* CoreData.framework */; };
 		405EC2FD16F219B400F590DD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 405EC2FB16F219B400F590DD /* InfoPlist.strings */; };
+		4068BF0B16FC43AD008F4B67 /* ATEventTextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4068BF0A16FC43AD008F4B67 /* ATEventTextViewCell.m */; };
+		4068BF0C16FC43AD008F4B67 /* ATEventTextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4068BF0A16FC43AD008F4B67 /* ATEventTextViewCell.m */; };
+		4068BF1016FC45EA008F4B67 /* ATPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4068BF0F16FC45EA008F4B67 /* ATPlaceHolderTextView.m */; };
+		4068BF1116FC45EA008F4B67 /* ATPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4068BF0F16FC45EA008F4B67 /* ATPlaceHolderTextView.m */; };
 		4077E61116F394CC00E9D80F /* ATRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012982416F22F9600C0DC35 /* ATRecurrence.m */; };
 		4077E61216F394CF00E9D80F /* _ATRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012982016F22F9600C0DC35 /* _ATRecurrence.m */; };
 		40C3372116F38CC0002EDD52 /* _ATEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012981E16F22F9600C0DC35 /* _ATEvent.m */; };
@@ -191,6 +195,10 @@
 		405EC2F116F219B400F590DD /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		405EC2FA16F219B400F590DD /* ATCalendarTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ATCalendarTests-Info.plist"; sourceTree = "<group>"; };
 		405EC2FC16F219B400F590DD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4068BF0916FC43AD008F4B67 /* ATEventTextViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATEventTextViewCell.h; sourceTree = "<group>"; };
+		4068BF0A16FC43AD008F4B67 /* ATEventTextViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATEventTextViewCell.m; sourceTree = "<group>"; };
+		4068BF0E16FC45EA008F4B67 /* ATPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATPlaceHolderTextView.h; sourceTree = "<group>"; };
+		4068BF0F16FC45EA008F4B67 /* ATPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATPlaceHolderTextView.m; sourceTree = "<group>"; };
 		40C67D0316FB108100A65232 /* ATRecurrenceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATRecurrenceController.h; sourceTree = "<group>"; };
 		40C67D0416FB108100A65232 /* ATRecurrenceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATRecurrenceController.m; sourceTree = "<group>"; };
 		40C67D0616FB562400A65232 /* ATEndRecurrenceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATEndRecurrenceController.h; sourceTree = "<group>"; };
@@ -260,6 +268,10 @@
 				40322DEF16F8B0F500186611 /* ATEventTimeEditCell.m */,
 				404A44E316F9C63A00DAAD96 /* ATEventDetailCell.h */,
 				404A44E416F9C63A00DAAD96 /* ATEventDetailCell.m */,
+				4068BF0916FC43AD008F4B67 /* ATEventTextViewCell.h */,
+				4068BF0A16FC43AD008F4B67 /* ATEventTextViewCell.m */,
+				4068BF0E16FC45EA008F4B67 /* ATPlaceHolderTextView.h */,
+				4068BF0F16FC45EA008F4B67 /* ATPlaceHolderTextView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -634,6 +646,8 @@
 				404A44E516F9C63A00DAAD96 /* ATEventDetailCell.m in Sources */,
 				40C67D0516FB108100A65232 /* ATRecurrenceController.m in Sources */,
 				40C67D0816FB562400A65232 /* ATEndRecurrenceController.m in Sources */,
+				4068BF0B16FC43AD008F4B67 /* ATEventTextViewCell.m in Sources */,
+				4068BF1016FC45EA008F4B67 /* ATPlaceHolderTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -675,6 +689,8 @@
 				404A44DF16F8CD3300DAAD96 /* ATDurationEditController.m in Sources */,
 				404A44E616F9C63A00DAAD96 /* ATEventDetailCell.m in Sources */,
 				40C67D0916FB562400A65232 /* ATEndRecurrenceController.m in Sources */,
+				4068BF0C16FC43AD008F4B67 /* ATEventTextViewCell.m in Sources */,
+				4068BF1116FC45EA008F4B67 /* ATPlaceHolderTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
