@@ -66,11 +66,12 @@
 
 - (NSDictionary*)matchingDateSets:(NSDate*)fromDate to:(NSDate*)endDate{
   NSArray* startingDates = [self matchingStartDates:fromDate to:endDate];
+  NSDate* intervalEnd = [self.endDate isBefore:endDate]?self.endDate:endDate;
   NSMutableDictionary *occurences = [NSMutableDictionary dictionaryWithCapacity:[startingDates count]];
   for (NSDate* match in startingDates) {
     NSUInteger offset = [match daysSinceDate:self.startDate];
     NSArray* subMatches = [self.event matchingDates:[match startOfCurrentDay]
-                                                 to:endDate
+                                                 to:intervalEnd
                                              offset:offset];
     [occurences setObject:subMatches
                    forKey:@(offset)];
@@ -80,15 +81,16 @@
 
 - (NSArray*)matchingStartDates:(NSDate*)fromDate to:(NSDate*)endDate{
   if ([self.endDate isBefore:fromDate]) {return @[];};
-  NSTimeInterval eventSpan = [self.event.startDate timeIntervalSinceDate:self.event.endDate];
+  NSTimeInterval eventSpan = [self.event.endDate timeIntervalSinceDate:self.event.startDate];
   NSMutableArray *dates = [[NSMutableArray alloc]initWithCapacity:10];
-  for (NSDate *begin = self.startDate;begin && [begin isBefore:endDate];) {
-    NSDate* end = [begin dateByAddingTimeInterval:eventSpan];
-    if ([begin isBetweenDate:fromDate andDate:endDate] ||
-        [end isBetweenDate:fromDate andDate:endDate]) {
-      [dates addObject:begin];
+  NSDate* intervalEnd = [self.endDate isBefore:endDate]?self.endDate:endDate;
+  for (NSDate *occurenceStart = self.startDate;occurenceStart && [occurenceStart isOnOrBefore:intervalEnd];) {
+    NSDate* occurenceEnd = [occurenceStart dateByAddingTimeInterval:eventSpan];
+    if ([occurenceStart isBetweenDate:fromDate andDate:intervalEnd] ||
+        [occurenceEnd isBetweenDate:fromDate andDate:intervalEnd]) {
+      [dates addObject:occurenceStart];
     }
-    begin = [self nextOccurenceAfter:begin];
+    occurenceStart = [self nextOccurenceAfter:occurenceStart];
   }
   return [NSArray arrayWithArray:dates];
 }

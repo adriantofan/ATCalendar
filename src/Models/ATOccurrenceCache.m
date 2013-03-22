@@ -9,6 +9,45 @@
 
 
 @implementation ATOccurrenceCache
++(NSArray*)firstOccurenceCacheOfEventAfter:(NSDate*)date inContext:(NSManagedObjectContext*)moc limit:(NSInteger)limit{
+  NSArray* ids =[ATOccurrenceCache eventsObjectIdsScheduledAfter:date inContext:moc limit:limit];
+  return [ATOccurrenceCache firstOccurenceCacheOfEventIDs:ids after:date inContext:moc limit:limit];
+}
+
++(NSArray*)firstOccurenceCacheOfEventIDs:(NSArray*)eventIDs after:(NSDate*)date inContext:(NSManagedObjectContext*)moc limit:(NSInteger)limit{
+//  NSArray* eventIDs = [ATOccurrenceCache eventsObjectIdsScheduledAfter:date inContext:moc limit:limit];
+  NSMutableArray *results = [[NSMutableArray alloc] initWithCapacity:[eventIDs count]];
+  for (NSManagedObjectID *eventID in eventIDs) {
+    NSPredicate *dateAndEventFilter = [NSPredicate predicateWithFormat:@"day >= %@ AND event = %@", [date startOfCurrentDay],eventID];
+    ATOccurrenceCache* occurence =
+      [ATOccurrenceCache MR_findFirstWithPredicate:dateAndEventFilter
+                                          sortedBy:@"day"
+                                         ascending:YES
+                                         inContext:moc];
+    if (occurence) {[results addObject:occurence];}
+  }
+  return results;
+}
+
+
++(NSArray*)eventsObjectIdsScheduledAfter:(NSDate*)date inContext:(NSManagedObjectContext*)moc limit:(NSInteger)limit{
+  NSPredicate *dateFilter = [NSPredicate predicateWithFormat:@"day >= %@", [date startOfCurrentDay]];
+  NSFetchRequest *eventsRequest =
+    [ATOccurrenceCache MR_requestAllSortedBy:@"day"
+                                   ascending:YES
+                               withPredicate:dateFilter
+                                   inContext:moc];
+  [eventsRequest setReturnsDistinctResults:YES];
+  eventsRequest.propertiesToFetch = [NSArray arrayWithObject:[[eventsRequest.entity propertiesByName] objectForKey:@"event"]];
+  eventsRequest.resultType = NSDictionaryResultType;
+  eventsRequest.fetchLimit = limit;
+  NSArray* results =  [ATOccurrenceCache MR_executeFetchRequest:eventsRequest inContext:moc];
+  results = [results map:^id(id obj) {
+    return [obj objectForKey:@"event"];
+  }];
+  return results;
+}
+
 -(NSTimeInterval) dayTimeStamp{
   return [self.day timeIntervalSinceReferenceDate];
 }

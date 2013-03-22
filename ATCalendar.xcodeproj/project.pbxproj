@@ -83,6 +83,8 @@
 		4068BF0C16FC43AD008F4B67 /* ATEventTextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4068BF0A16FC43AD008F4B67 /* ATEventTextViewCell.m */; };
 		4068BF1016FC45EA008F4B67 /* ATPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4068BF0F16FC45EA008F4B67 /* ATPlaceHolderTextView.m */; };
 		4068BF1116FC45EA008F4B67 /* ATPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4068BF0F16FC45EA008F4B67 /* ATPlaceHolderTextView.m */; };
+		4068BF4816FCA443008F4B67 /* ATRecurrenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C67D0416FB108100A65232 /* ATRecurrenceController.m */; };
+		4068BF4916FCA444008F4B67 /* ATRecurrenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C67D0416FB108100A65232 /* ATRecurrenceController.m */; };
 		4077E61116F394CC00E9D80F /* ATRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012982416F22F9600C0DC35 /* ATRecurrence.m */; };
 		4077E61216F394CF00E9D80F /* _ATRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012982016F22F9600C0DC35 /* _ATRecurrence.m */; };
 		40C3372116F38CC0002EDD52 /* _ATEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012981E16F22F9600C0DC35 /* _ATEvent.m */; };
@@ -92,7 +94,6 @@
 		40C3372516F38CCC002EDD52 /* ATOccurrenceCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012983116F23B0100C0DC35 /* ATOccurrenceCache.m */; };
 		40C3372616F38CD5002EDD52 /* ATEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012982216F22F9600C0DC35 /* ATEvent.m */; };
 		40C3372816F38CF8002EDD52 /* ATTimeSpan.m in Sources */ = {isa = PBXBuildFile; fileRef = 4059A96E16F32D69008F90F4 /* ATTimeSpan.m */; };
-		40C67D0516FB108100A65232 /* ATRecurrenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C67D0416FB108100A65232 /* ATRecurrenceController.m */; };
 		40C67D0816FB562400A65232 /* ATEndRecurrenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C67D0716FB562400A65232 /* ATEndRecurrenceController.m */; };
 		40C67D0916FB562400A65232 /* ATEndRecurrenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C67D0716FB562400A65232 /* ATEndRecurrenceController.m */; };
 		40D3BBCE16FA170F00EC54AD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40D3BBCD16FA170F00EC54AD /* QuartzCore.framework */; };
@@ -644,10 +645,10 @@
 				40322DF016F8B0F500186611 /* ATEventTimeEditCell.m in Sources */,
 				404A44DE16F8CD3300DAAD96 /* ATDurationEditController.m in Sources */,
 				404A44E516F9C63A00DAAD96 /* ATEventDetailCell.m in Sources */,
-				40C67D0516FB108100A65232 /* ATRecurrenceController.m in Sources */,
 				40C67D0816FB562400A65232 /* ATEndRecurrenceController.m in Sources */,
 				4068BF0B16FC43AD008F4B67 /* ATEventTextViewCell.m in Sources */,
 				4068BF1016FC45EA008F4B67 /* ATPlaceHolderTextView.m in Sources */,
+				4068BF4816FCA443008F4B67 /* ATRecurrenceController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -691,6 +692,7 @@
 				40C67D0916FB562400A65232 /* ATEndRecurrenceController.m in Sources */,
 				4068BF0C16FC43AD008F4B67 /* ATEventTextViewCell.m in Sources */,
 				4068BF1116FC45EA008F4B67 /* ATPlaceHolderTextView.m in Sources */,
+				4068BF4916FCA444008F4B67 /* ATRecurrenceController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

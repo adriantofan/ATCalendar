@@ -38,6 +38,118 @@
   d_ = [c_ oneDayNext];
 }
 
+-(void)testUpdateOccurencesFromWhenEndOfIntervalIsAfterRecurenceEnd{
+  NSDate *d0 = [NSDate date];
+  NSDate *d1 = [d0 dateMonthsAfter:1];
+  NSDate *d2 = [d0 dateMonthsAfter:2];
+  NSManagedObjectContext *moc = [NSManagedObjectContext MR_contextForCurrentThread];
+  ATEvent* reOustide = [ATEvent MR_createEntity];
+  reOustide.startDate = d0;
+  reOustide.endDate = d1;
+  ATRecurrence* rOutside = [ATDailyRecurrence MR_createEntity];
+  rOutside.startDate = d0;
+  rOutside.endDate = d2;
+  rOutside.event = reOustide;
+  [rOutside updateOccurencesFrom:d0 to:[d0 dateYearsAfter:2] inContext:moc];
+  [moc MR_saveToPersistentStoreAndWait];
+  NSArray* ocs = [ATOccurrenceCache MR_findAllSortedBy:@"day" ascending:YES];
+  NSArray* ocDays = [ocs filter:^BOOL(ATOccurrenceCache* obj) {
+    return [[obj day] isAfter:d2];
+  }];
+  assertThat(ocDays,hasCountOf(0));
+
+}
+
+-(void)testEventsScheduledAfterCornerCasesNonRecurring{
+  NSDate *d0 = [NSDate date];
+  NSDate *d1 = [d0 dateMonthsAfter:1];
+  NSDate *d2 = [d0 dateMonthsAfter:2];
+  NSDate *d3 = [d0 dateMonthsAfter:3];
+  NSDate *d4 = [d0 dateMonthsAfter:4];
+  NSDate *d5 = [d0 dateMonthsAfter:5];
+  NSManagedObjectContext *moc = [NSManagedObjectContext MR_contextForCurrentThread];
+  
+  ATEvent* nreOustide = [ATEvent MR_createEntity];
+  nreOustide.startDate = d0;
+  nreOustide.endDate = d1;
+  [nreOustide updateSimpleOccurencesFrom:d0 to:[d0 dateYearsAfter:2] inContext:moc];
+  ATEvent* nreOverlap = [ATEvent MR_createEntity];
+  nreOverlap.startDate = d2;
+  nreOverlap.endDate = d4;
+  [nreOverlap updateSimpleOccurencesFrom:d0 to:[d0 dateYearsAfter:2] inContext:moc];
+  ATEvent* nreInside = [ATEvent MR_createEntity];
+  nreInside.startDate = d4;
+  nreInside.endDate = d5;
+  [nreInside updateSimpleOccurencesFrom:d0 to:[d0 dateYearsAfter:2] inContext:moc];
+  
+  
+  ATEvent* reOustide = [ATEvent MR_createEntity];
+  reOustide.startDate = d0;
+  reOustide.endDate = d1;
+  ATRecurrence* rOutside = [ATDailyRecurrence MR_createEntity];
+  rOutside.startDate = d0;
+  rOutside.endDate = d2;
+  rOutside.event = reOustide;
+  [rOutside updateOccurencesFrom:d0 to:[d0 dateYearsAfter:2] inContext:moc];
+  
+  ATEvent* reOverlap = [ATEvent MR_createEntity];
+  reOverlap.startDate = d1;
+  reOverlap.endDate = d1;
+  ATRecurrence* rOverlap = [ATDailyRecurrence MR_createEntity];
+  rOverlap.startDate = d1;
+  rOverlap.endDate = d4;
+  rOverlap.event = reOverlap;
+  [rOverlap updateOccurencesFrom:d0 to:[d0 dateYearsAfter:2] inContext:moc];
+  
+  ATEvent* reInside = [ATEvent MR_createEntity];
+  reInside.startDate = d4;
+  reInside.endDate = d4;
+  ATRecurrence* rInside = [ATDailyRecurrence MR_createEntity];
+  rInside.startDate = d4;
+  rInside.endDate = d5;
+  rInside.event = reInside;
+  [rInside updateOccurencesFrom:d0 to:[d0 dateYearsAfter:2] inContext:moc];
+  
+  [moc MR_saveToPersistentStoreAndWait];
+  NSLog(@"time :%f",[d3 timeIntervalSinceReferenceDate]);
+  NSArray* ids =[ATOccurrenceCache eventsObjectIdsScheduledAfter:d3 inContext:moc limit:65];
+  NSArray* occurences =[ATOccurrenceCache firstOccurenceCacheOfEventIDs:ids after:d3 inContext:moc limit:65];
+  NSArray* events = [occurences map:^id(id obj) {
+    return [obj event];
+  }];
+  assertThat(events,hasItems(nreOverlap,nreInside,nil));
+  assertThat(events,isNot(hasItems(nreOustide,nil)));
+  assertThat(events,hasItems(reOverlap,reInside,nil));
+  assertThat(events,isNot(hasItems(reOustide,nil)));
+}
+
+
+
+
+-(void)testEventsScheduledAfter{
+  NSDate *d2 = [NSDate date];
+  NSDate *d1 = [d2 dateMonthsBefore:3];
+  NSDate *d0 = [d1 dateMonthsBefore:4];
+  
+  NSManagedObjectContext *moc = [NSManagedObjectContext MR_contextForCurrentThread];
+  ATEvent* event1 = [ATEvent MR_createEntity];
+  event1.startDate = d1;
+  event1.endDate = d1;
+  ATRecurrence *rec = [ATDailyRecurrence MR_createEntity];
+  rec.startDate = d1;
+  rec.endDate = nil;
+  event1.recurence = rec;
+  [rec updateOccurencesFrom:d0 to:[d0 dateYearsAfter:2] inContext:moc];
+  [moc MR_saveToPersistentStoreAndWait];
+  NSArray* results =[ATOccurrenceCache eventsObjectIdsScheduledAfter:d2 inContext:moc limit:65];
+  ATEvent *e = (ATEvent *)[moc objectWithID:[results objectAtIndex:0]];
+  assertThat(e, is(event1));
+  NSArray* os = [ATOccurrenceCache firstOccurenceCacheOfEventIDs:results after:d2 inContext:moc limit:65];
+  ATOccurrenceCache* o = [os objectAtIndex:0];
+  assertThat(o.event,is(event1));
+  assertThat(o.day,is([d2 startOfCurrentDay]));
+}
+
 -(void)testUpdateOccurencesFromTo{
   NSDate* d0 = [NSDate date];
   NSDate* d1 = [d0 dateDaysAfter:1];
@@ -107,9 +219,9 @@
 
 -(void)testMatchingStartDatesFromDateToDate_SyncOutsideReccurenceOnTheLeft_EndsSameDaySyncStart{
   NSDate*eventStart = [[a_ startOfCurrentDay] dateHoursAfter:10];
-  NSDate*eventEnd = [[eventStart dateHoursAfter:1] dateHoursAfter:1]; // two day event
-  NSDate*syncStart = [eventEnd dateHoursAfter:1];
-  NSDate*syncEnd = [syncStart dateDaysAfter:1]; 
+  NSDate*eventEnd = [[eventStart dateDaysAfter:1] dateHoursAfter:1]; // two day event
+  NSDate*syncStart = [[eventEnd dateHoursAfter:1] endOfCurrentDay];
+  NSDate*syncEnd = [[syncStart dateDaysAfter:1] endOfCurrentDay];
   ATEvent* event = [ATEvent MR_createEntity];
   event.startDate = eventStart;
   event.endDate = eventEnd;
@@ -130,12 +242,12 @@
   rec.startDate = a_;
   rec.endDate = c_;
   rec.event = event;
-  NSArray* result = [rec matchingStartDates:[b_ startOfCurrentDay] to:[d_ endOfCurrentDay]];
-  assertThat(result,hasCountOf(2));
-  assertThat(result,contains(b_,[b_ dateDaysAfter:1],nil));
+  NSArray* result = [rec matchingStartDates:[b_ endOfCurrentDay] to:[d_ endOfCurrentDay]];
+  assertThat(result,hasCountOf(1));
+  assertThat(result,contains(c_,nil));
   event.startDate = a_;
   event.endDate = b_;
-  result = [rec matchingStartDates:[b_ startOfCurrentDay] to:[d_ endOfCurrentDay]];
+  result = [rec matchingStartDates:[b_ endOfCurrentDay] to:[d_ endOfCurrentDay]];
   assertThat(result,hasCountOf(2));
   assertThat(result,contains(b_,[b_ dateDaysAfter:1],nil));
 }

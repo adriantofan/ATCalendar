@@ -13,6 +13,7 @@
 #import "ATEvent.h"
 #import "ATRecurrence.h"
 #import "ATOccurrenceCache.h"
+#import "ATDailyRecurrence.h"
 
 @interface ATEventTest: ATCoreDataTest {
   NSDate* a_;
@@ -36,6 +37,7 @@
   d_ = [c_ oneDayNext];
 
 }
+
 -(void)testUpdateOccurencesFromDateToDate{
   NSDate* today = [NSDate date];
   NSDate* a = [today dateDaysBefore:3];
