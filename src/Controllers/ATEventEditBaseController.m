@@ -22,6 +22,7 @@
 #import "ATRecurrenceController.h"
 #import "ATEndRecurrenceController.h"
 #import "ATEventTextViewCell.h"
+#import "ATAlertTypeController.h"
 
 
 NSString const*  ATEventEditBaseSectionHeader = @"ATEventEditBaseSectionHeader";
@@ -42,6 +43,8 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
 @property (nonatomic,readonly) NSArray* sections;
 @property (nonatomic,readonly) NSDictionary* sectionCells;
 @property (nonatomic) BOOL repeatEndVisible;
+@property (nonatomic) BOOL seccondAlertVisible;
+
 
 @property (nonatomic,readonly) ATEventTextFieldCell* summaryCell;
 @property (nonatomic,readonly) ATEventTextFieldCell* placeCell;
@@ -50,6 +53,10 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
 @property (nonatomic,readonly) UITableViewCell* repeatEndCell;
 @property (nonatomic,readonly) ATEventTextFieldCell* urlCell;
 @property (nonatomic,readonly) ATEventTextViewCell* notesCell;
+@property (nonatomic,readonly) UITableViewCell* firstAlertCell;
+@property (nonatomic,readonly) UITableViewCell* seccondAlertCell;
+
+
 
 @end
 
@@ -62,8 +69,32 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
 @synthesize repeatEndCell = repeatEndCell_;
 @synthesize urlCell = urlCell_;
 @synthesize notesCell = notesCell_;
+@synthesize firstAlertCell = firstAlertCell_;
+@synthesize seccondAlertCell = seccondAlertCell_;
 
 #pragma mark - Cells
+
+-(UITableViewCell*)firstAlertCell{
+  if (nil == firstAlertCell_) {
+    firstAlertCell_ = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"UITableViewCellStyleValue1Id"];
+    firstAlertCell_.textLabel.text = NSLocalizedString(@"Alert", @"");
+    firstAlertCell_.detailTextLabel.text = NSLocalizedString(@"None", @"");
+    firstAlertCell_.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+  }
+  return firstAlertCell_;
+}
+
+-(UITableViewCell*)seccondAlertCell{
+  if (nil == seccondAlertCell_) {
+    seccondAlertCell_ = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"UITableViewCellStyleValue1Id"];
+    seccondAlertCell_.textLabel.text = NSLocalizedString(@"Second Alert", @"");
+    seccondAlertCell_.detailTextLabel.text = NSLocalizedString(@"None", @"");
+    seccondAlertCell_.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+  }
+  return seccondAlertCell_;
+}
+
 -(UITableViewCell*)repeatEndCell{
   if (nil == repeatEndCell_) {
     repeatEndCell_ = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"UITableViewCellStyleValue1Id"];
@@ -125,6 +156,8 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
 
 #pragma mark - Table view model
 
+
+
 -(void)updateViewWithEvent:(ATEvent*)event{
   NSDateFormatter *formater = event.allDayValue?dateFormatter_:dateTimeFormatter_;
   self.timeEditCell.startDateLabel.text = [formater stringFromDate:event.startDate];
@@ -142,6 +175,8 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
     self.repeatTypeCell.detailTextLabel.text = NSLocalizedString(@"Never", @"");;
     self.repeatEndCell.detailTextLabel.text = NSLocalizedString(@"Never", @"");;
   }
+  self.firstAlertCell.detailTextLabel.text = [ATEvent descriptionFor:event.firstAlertTypeValue];
+  self.seccondAlertCell.detailTextLabel.text = [ATEvent descriptionFor:event.seccondAlertTypeValue];
   self.urlCell.textField.text = event.url;
   self.notesCell.textView.text = event.notes;
 }
@@ -172,7 +207,8 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
                       ATEventEditBaseSectionDate:@[self.timeEditCell],
                       ATEventEditBaseSectionRecurrence:@[self.repeatTypeCell,self.repeatEndCell],
                       ATEventEditBaseSectionURL:@[self.urlCell],
-                      ATEventEditBaseSectionNotes:@[self.notesCell]};
+                      ATEventEditBaseSectionNotes:@[self.notesCell],
+                      ATEventEditBaseSectionAlert:@[self.firstAlertCell,self.seccondAlertCell]};
   }
   return sectionCells_;
 }
@@ -190,6 +226,14 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
       return 1;
     }
   }
+  if (sectionName == ATEventEditBaseSectionAlert) {
+    if (self.seccondAlertVisible) {
+      return 2;
+    }else{
+      return 1;
+    }
+  }
+
   return [[self.sectionCells objectForKey:sectionName] count];
 }
 
@@ -213,7 +257,9 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
 #pragma mark -
 -(void)setEvent:(ATEvent *)event{
   _event = event;
-  self.repeatEndVisible = self.event.isRecurrent;
+  self.repeatEndVisible = event.isRecurrent;
+  self.seccondAlertVisible = event.firstAlertTypeValue != ATEventAlertTypeNone;
+
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -249,6 +295,62 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
 
 
 #pragma mark - Helpers
+-(void)showFirstAlertSelection{
+  ATAlertTypeController * ctrl = [[ATAlertTypeController alloc] initWithStyle:UITableViewStyleGrouped];
+  ctrl.type = self.event.firstAlertTypeValue;
+  typeof(self) __weak SELF = self;
+  typeof(ctrl) __weak CTRL = ctrl;
+  ctrl.endBlock = ^void (BOOL saveOrCancel){
+    if (saveOrCancel) {
+      if (saveOrCancel) {
+        if (CTRL.type == ATEventAlertTypeNone
+            && SELF.seccondAlertVisible
+            && SELF.event.seccondAlertTypeValue != ATEventAlertTypeNone) {
+          SELF.event.firstAlertTypeValue = SELF.event.seccondAlertTypeValue;
+          SELF.event.seccondAlertTypeValue = ATEventAlertTypeNone;
+          [SELF updateViewWithEvent:SELF.event];
+        }else{
+          SELF.event.firstAlertTypeValue = CTRL.type;
+          [SELF updateViewWithEvent:SELF.event];
+          NSIndexPath* endCellIndexPath = [NSIndexPath indexPathForRow:1 inSection:[SELF.sections indexOfObject:ATEventEditBaseSectionAlert]];
+          if ((SELF.event.firstAlertTypeValue != ATEventAlertTypeNone) &&
+              !SELF.seccondAlertVisible) {
+            SELF.seccondAlertVisible = YES;
+            [SELF.tableView insertRowsAtIndexPaths:@[endCellIndexPath]
+                                  withRowAnimation:UITableViewRowAnimationAutomatic];
+          }
+          if (!(SELF.event.firstAlertTypeValue != ATEventAlertTypeNone)
+              && SELF.seccondAlertVisible) {
+            SELF.seccondAlertVisible = NO;
+            [SELF.tableView deleteRowsAtIndexPaths:@[endCellIndexPath]
+                                  withRowAnimation:UITableViewRowAnimationAutomatic];
+          }
+          
+        }
+      }
+    }
+    [SELF.navigationController popViewControllerAnimated:YES];
+  };
+  [self.navigationController pushViewController:ctrl animated:YES];
+}
+
+-(void)showSeccondAlertSelection{
+  ATAlertTypeController * ctrl = [[ATAlertTypeController alloc] initWithStyle:UITableViewStyleGrouped];
+  ctrl.type = self.event.seccondAlertTypeValue;
+  typeof(self) __weak SELF = self;
+  typeof(ctrl) __weak CTRL = ctrl;
+  ctrl.endBlock = ^void (BOOL saveOrCancel){
+    if (saveOrCancel) {
+      if (saveOrCancel) {
+        SELF.event.seccondAlertTypeValue = CTRL.type;
+        [SELF updateViewWithEvent:SELF.event];
+      }
+    }
+    [SELF.navigationController popViewControllerAnimated:YES];
+  };
+  [self.navigationController pushViewController:ctrl animated:YES];
+
+}
 -(void)showEndReccurenceSelection{
   ATEndRecurrenceController* ctrl = [[ATEndRecurrenceController alloc] initWithStyle:UITableViewStyleGrouped];
   ctrl.minimumDate = self.event.startDate;
@@ -344,11 +446,28 @@ NSString const*  ATEventEditBaseSectionNotes = @"ATEventEditBaseSectionNotes";
   NSString *section = [self sectionNameForSection:indexPath.section];
   if (section == ATEventEditBaseSectionRecurrence ) return YES;
   if (section == ATEventEditBaseSectionDate ) return YES;
+  if (section == ATEventEditBaseSectionAlert ) return YES;
+
   return NO;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
   NSString *section = [self sectionNameForSection:indexPath.section];
+  
+  if (section == ATEventEditBaseSectionAlert ) {
+    if (indexPath.row == 0) { // recurrence type
+      [self.tableView endEditing:YES];
+      dispatch_async(dispatch_get_main_queue(), ^{
+        [self showFirstAlertSelection];
+      });
+    }
+    if (indexPath.row == 1) { // recurrence type
+      [self.tableView endEditing:YES];
+      dispatch_async(dispatch_get_main_queue(), ^{
+        [self showSeccondAlertSelection];
+      });
+    }
+  }
   if (section == ATEventEditBaseSectionDate ) {
     dispatch_async(dispatch_get_main_queue(), ^{
       [self.tableView endEditing:YES];

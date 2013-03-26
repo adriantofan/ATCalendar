@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="DailyRecurrence" representedClassName="ATDailyRecurrence" parentEntity="Recurrence" syncable="YES"/>
+    <entity name="Event" representedClassName="ATEvent">
+        <attribute name="allDay" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="firstAlertType" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="seccondAlertType" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date">
+            <userInfo/>
+        </attribute>
+        <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="recurence" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Recurrence" inverseName="event" inverseEntity="Recurrence" syncable="YES"/>
+        <userInfo/>
+    </entity>
+    <entity name="GlobalPropertyes" representedClassName="ATGlobalPropertyes" syncable="YES">
+        <attribute name="key" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="MonthlyRecurrence" representedClassName="ATMonthlyRecurrence" parentEntity="Recurrence" syncable="YES">
+        <attribute name="dayOfMonth" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="OccurrenceCache" representedClassName="ATOccurrenceCache" syncable="YES">
+        <attribute name="day" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="occurrenceDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="event" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Event" syncable="YES"/>
+    </entity>
+    <entity name="Recurrence" representedClassName="ATRecurrence" isAbstract="YES" syncable="YES">
+        <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="event" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="recurence" inverseEntity="Event" syncable="YES"/>
+    </entity>
+    <entity name="WeeklyRecurrence" representedClassName="ATWeeklyRecurrence" parentEntity="Recurrence" syncable="YES">
+        <attribute name="dayOfWeek" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="YearlyRecurrence" representedClassName="ATYearlyRecurrence" parentEntity="Recurrence" syncable="YES"/>
+    <elements>
+        <element name="DailyRecurrence" positionX="0" positionY="0" width="128" height="45"/>
+        <element name="Event" positionX="0" positionY="0" width="128" height="195"/>
+        <element name="GlobalPropertyes" positionX="0" positionY="0" width="128" height="75"/>
+        <element name="MonthlyRecurrence" positionX="0" positionY="0" width="128" height="60"/>
+        <element name="OccurrenceCache" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="Recurrence" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="WeeklyRecurrence" positionX="0" positionY="0" width="128" height="60"/>
+        <element name="YearlyRecurrence" positionX="0" positionY="0" width="128" height="45"/>
+    </elements>
+</model>

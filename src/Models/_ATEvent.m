@@ -6,8 +6,10 @@
 const struct ATEventAttributes ATEventAttributes = {
 	.allDay = @"allDay",
 	.endDate = @"endDate",
+	.firstAlertType = @"firstAlertType",
 	.location = @"location",
 	.notes = @"notes",
+	.seccondAlertType = @"seccondAlertType",
 	.startDate = @"startDate",
 	.summary = @"summary",
 	.url = @"url",
@@ -51,6 +53,16 @@ const struct ATEventFetchedProperties ATEventFetchedProperties = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
+	if ([key isEqualToString:@"firstAlertTypeValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"firstAlertType"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"seccondAlertTypeValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"seccondAlertType"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 
 	return keyPaths;
 }
@@ -91,6 +103,32 @@ const struct ATEventFetchedProperties ATEventFetchedProperties = {
 
 
 
+@dynamic firstAlertType;
+
+
+
+- (int32_t)firstAlertTypeValue {
+	NSNumber *result = [self firstAlertType];
+	return [result intValue];
+}
+
+- (void)setFirstAlertTypeValue:(int32_t)value_ {
+	[self setFirstAlertType:[NSNumber numberWithInt:value_]];
+}
+
+- (int32_t)primitiveFirstAlertTypeValue {
+	NSNumber *result = [self primitiveFirstAlertType];
+	return [result intValue];
+}
+
+- (void)setPrimitiveFirstAlertTypeValue:(int32_t)value_ {
+	[self setPrimitiveFirstAlertType:[NSNumber numberWithInt:value_]];
+}
+
+
+
+
+
 @dynamic location;
 
 
@@ -100,6 +138,32 @@ const struct ATEventFetchedProperties ATEventFetchedProperties = {
 
 @dynamic notes;
 
+
+
+
+
+
+@dynamic seccondAlertType;
+
+
+
+- (int32_t)seccondAlertTypeValue {
+	NSNumber *result = [self seccondAlertType];
+	return [result intValue];
+}
+
+- (void)setSeccondAlertTypeValue:(int32_t)value_ {
+	[self setSeccondAlertType:[NSNumber numberWithInt:value_]];
+}
+
+- (int32_t)primitiveSeccondAlertTypeValue {
+	NSNumber *result = [self primitiveSeccondAlertType];
+	return [result intValue];
+}
+
+- (void)setPrimitiveSeccondAlertTypeValue:(int32_t)value_ {
+	[self setPrimitiveSeccondAlertType:[NSNumber numberWithInt:value_]];
+}
 
 
 

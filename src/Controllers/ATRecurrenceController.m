@@ -29,15 +29,6 @@ static NSString *CellIdentifier = @"Cell";
   return reccurenceLabels_;
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
   [super viewDidLoad];
@@ -55,11 +46,6 @@ static NSString *CellIdentifier = @"Cell";
   [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 #pragma mark - Button actions
 
 -(IBAction)cancelButtonAction{
@@ -76,6 +62,7 @@ static NSString *CellIdentifier = @"Cell";
 -(NSInteger)currentSelectedCellIndex{
   return [self cellIndexForReccurence:self.currentReccurrence];
 }
+
 -(ATRecurrenceType)reccurenceForCellIndex:(NSInteger)index{
   switch (index) {
     case 0: return ATRecurrenceTypeNone;
@@ -104,7 +91,7 @@ static NSString *CellIdentifier = @"Cell";
 }
 
 -(BOOL)cellIsSelectedAtIndex:(NSInteger)index{
-  return self.currentReccurrence == index;
+  return [self currentSelectedCellIndex] == index;
 }
 
 #pragma mark - Table view data source

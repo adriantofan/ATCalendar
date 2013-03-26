@@ -10,6 +10,47 @@
 
 
 @implementation ATEvent
+
++ (NSString *)descriptionFor:(ATEventAlertType)alertType {
+  NSString *text;
+  switch (alertType) {
+    case ATEventAlertTypeNone:
+      text = NSLocalizedString(@"None", @"alert type");break;
+    case ATEventAlertTypeAtTime:
+      text = NSLocalizedString(@"At event time", @"alert type");break;
+    case ATEventAlertType5MinBefore:
+      text = NSLocalizedString(@"5 minutes before", @"alert type");break;
+    case ATEventAlertType15MinBefore:
+      text = NSLocalizedString(@"15 minutes before", @"alert type");break;
+    case ATEventAlertType30MinBefore:
+      text = NSLocalizedString(@"30 minutes before", @"alert type");break;
+    case ATEventAlertType1HBefore:
+      text = NSLocalizedString(@"1 hour before", @"alert type");break;
+    case ATEventAlertType2HBefore:
+      text = NSLocalizedString(@"2 hour before", @"alert type");break;
+    case ATEventAlertType1DayBefore:
+      text = NSLocalizedString(@"1 day before", @"alert type");break;
+    case ATEventAlertType2DaysBefore:
+      text = NSLocalizedString(@"2 days before", @"alert type");break;
+  }
+  return text;
+}
+
+-(NSString*)alertsDescription{
+  NSString* text;
+  if (self.firstAlertTypeValue != ATEventAlertTypeNone && self.seccondAlertTypeValue == ATEventAlertTypeNone ) {
+    text = [NSString stringWithFormat:@"%@\n",
+            [ATEvent descriptionFor:self.firstAlertTypeValue]];
+    return text;
+  }
+  if (self.firstAlertTypeValue != ATEventAlertTypeNone && self.seccondAlertTypeValue != ATEventAlertTypeNone ) {
+    text = [NSString stringWithFormat:@"%@\n%@\n",
+            [ATEvent descriptionFor:self.firstAlertTypeValue],
+            [ATEvent descriptionFor:self.seccondAlertTypeValue]];
+    return text;
+  }
+  return @"";
+}
 -(BOOL)isRecurrent{
   return self.recurence && (self.recurence.typeValue != ATRecurrenceTypeNone);
 }

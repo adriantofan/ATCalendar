@@ -1,7 +1,21 @@
 #import "_ATEvent.h"
 #import "ATRecurrence.h"
+typedef enum{
+  ATEventAlertTypeNone        =   0,
+  ATEventAlertTypeAtTime      =   10,
+  ATEventAlertType5MinBefore  =   20,
+  ATEventAlertType15MinBefore =   30,
+  ATEventAlertType30MinBefore =   40,
+  ATEventAlertType1HBefore    =   50,
+  ATEventAlertType2HBefore    =   60,
+  ATEventAlertType1DayBefore  =   70,
+  ATEventAlertType2DaysBefore =   80,
+} ATEventAlertType;
 
 @interface ATEvent : _ATEvent {}
++ (NSString *)descriptionFor:(ATEventAlertType)alertType;
+-(NSString*)alertsDescription;
+
 -(BOOL)isRecurrent;
 -(void)changeRecurenceType:(ATRecurrenceType)type;
 // returns all the non recurring events having effect within |fromDate| to |endDate|

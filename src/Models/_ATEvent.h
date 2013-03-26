@@ -7,8 +7,10 @@
 extern const struct ATEventAttributes {
 	__unsafe_unretained NSString *allDay;
 	__unsafe_unretained NSString *endDate;
+	__unsafe_unretained NSString *firstAlertType;
 	__unsafe_unretained NSString *location;
 	__unsafe_unretained NSString *notes;
+	__unsafe_unretained NSString *seccondAlertType;
 	__unsafe_unretained NSString *startDate;
 	__unsafe_unretained NSString *summary;
 	__unsafe_unretained NSString *url;
@@ -22,6 +24,8 @@ extern const struct ATEventFetchedProperties {
 } ATEventFetchedProperties;
 
 @class ATRecurrence;
+
+
 
 
 
@@ -68,6 +72,20 @@ extern const struct ATEventFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSNumber* firstAlertType;
+
+
+
+@property int32_t firstAlertTypeValue;
+- (int32_t)firstAlertTypeValue;
+- (void)setFirstAlertTypeValue:(int32_t)value_;
+
+//- (BOOL)validateFirstAlertType:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSString* location;
 
 
@@ -83,6 +101,20 @@ extern const struct ATEventFetchedProperties {
 
 
 //- (BOOL)validateNotes:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* seccondAlertType;
+
+
+
+@property int32_t seccondAlertTypeValue;
+- (int32_t)seccondAlertTypeValue;
+- (void)setSeccondAlertTypeValue:(int32_t)value_;
+
+//- (BOOL)validateSeccondAlertType:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -150,6 +182,15 @@ extern const struct ATEventFetchedProperties {
 
 
 
+- (NSNumber*)primitiveFirstAlertType;
+- (void)setPrimitiveFirstAlertType:(NSNumber*)value;
+
+- (int32_t)primitiveFirstAlertTypeValue;
+- (void)setPrimitiveFirstAlertTypeValue:(int32_t)value_;
+
+
+
+
 - (NSString*)primitiveLocation;
 - (void)setPrimitiveLocation:(NSString*)value;
 
@@ -158,6 +199,15 @@ extern const struct ATEventFetchedProperties {
 
 - (NSString*)primitiveNotes;
 - (void)setPrimitiveNotes:(NSString*)value;
+
+
+
+
+- (NSNumber*)primitiveSeccondAlertType;
+- (void)setPrimitiveSeccondAlertType:(NSNumber*)value;
+
+- (int32_t)primitiveSeccondAlertTypeValue;
+- (void)setPrimitiveSeccondAlertTypeValue:(int32_t)value_;
 
 
 

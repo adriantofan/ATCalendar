@@ -66,7 +66,8 @@ typedef enum{
   if (nil == cellList_) {
     NSMutableArray* list = [[NSMutableArray alloc] init];
     [list addObject:@(CellTypeDescription)];
-//    if (self.eventOccurence.event.allarms)[list addObject:@(CellTypeAlarms)];
+    if (self.eventOccurence.event.firstAlertTypeValue != ATEventAlertTypeNone)
+      [list addObject:@(CellTypeAlarms)];
     if (self.eventOccurence.event.url
         && ![self.eventOccurence.event.url isEqualToString:@""]){
       [list addObject:@(CellTypeURL)];
@@ -174,6 +175,13 @@ typedef enum{
         subtitle:@""
      description:self.eventOccurence.event.notes];
 }
+-(void)configureAlertCell:(ATEventDetailCell*)cell atIndexPath:(NSIndexPath*)indexPath{
+  cell.subtitleLabel.textColor = [UIColor lightGrayColor];
+  cell.descriptionLabel.textColor = [UIColor colorWithRed:0.200 green:0.310 blue:0.510 alpha:1.000];
+  [cell setTitle:NSLocalizedString(@"Alert", @"Alert field title")
+        subtitle:@""
+     description:[self.eventOccurence.event alertsDescription]];
+}
 
 #pragma mark - TableView model & Configuration
 
@@ -202,6 +210,12 @@ typedef enum{
                                      subtitle:@""
                                   description:self.eventOccurence.event.notes];
   }
+  if (type == CellTypeAlarms) {
+    return [ATEventDetailCell heightWithTitle:NSLocalizedString(@"Alert", @"Alert field title")
+                                     subtitle:@""
+                                  description:[self.eventOccurence.event alertsDescription]];
+  }
+
   return 44.0;
 }
 
@@ -230,6 +244,11 @@ typedef enum{
   if (type == CellTypeNotes) {
     ATEventDetailCell* cell = [self.tableView dequeueReusableCellWithIdentifier:CellTitleSubtitleDescriptionlId];
     [self configureNotesCell:cell atIndexPath:indexPath];
+    return cell;
+  }
+  if (type == CellTypeAlarms) {
+    ATEventDetailCell* cell = [self.tableView dequeueReusableCellWithIdentifier:CellTitleSubtitleDescriptionlId];
+    [self configureAlertCell:cell atIndexPath:indexPath];
     return cell;
   }
   return nil;
