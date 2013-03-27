@@ -51,6 +51,7 @@
 		40322DED16F8B04200186611 /* EventTimeEditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40322DEB16F8B04200186611 /* EventTimeEditCell.xib */; };
 		40322DF016F8B0F500186611 /* ATEventTimeEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40322DEF16F8B0F500186611 /* ATEventTimeEditCell.m */; };
 		40322DF116F8B0F500186611 /* ATEventTimeEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40322DEF16F8B0F500186611 /* ATEventTimeEditCell.m */; };
+		403329CD1702E865002FC8F5 /* ATAvilabilityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 403329CC1702E865002FC8F5 /* ATAvilabilityController.m */; };
 		404A3B5B1701FB13001C3CB8 /* ATAlertTypeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 404A3B5A1701FB13001C3CB8 /* ATAlertTypeController.m */; };
 		404A44DE16F8CD3300DAAD96 /* ATDurationEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 404A44DD16F8CD3300DAAD96 /* ATDurationEditController.m */; };
 		404A44DF16F8CD3300DAAD96 /* ATDurationEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 404A44DD16F8CD3300DAAD96 /* ATDurationEditController.m */; };
@@ -167,6 +168,8 @@
 		40322DEE16F8B0F500186611 /* ATEventTimeEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATEventTimeEditCell.h; sourceTree = "<group>"; };
 		40322DEF16F8B0F500186611 /* ATEventTimeEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATEventTimeEditCell.m; sourceTree = "<group>"; };
 		403329CA1702E7A7002FC8F5 /* ATCalendar_busy.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = ATCalendar_busy.xcdatamodel; sourceTree = "<group>"; };
+		403329CB1702E865002FC8F5 /* ATAvilabilityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATAvilabilityController.h; sourceTree = "<group>"; };
+		403329CC1702E865002FC8F5 /* ATAvilabilityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATAvilabilityController.m; sourceTree = "<group>"; };
 		404A3B581701F640001C3CB8 /* ATCalendar_alarm.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ATCalendar_alarm.xcdatamodel; sourceTree = "<group>"; };
 		404A3B591701FB13001C3CB8 /* ATAlertTypeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATAlertTypeController.h; sourceTree = "<group>"; };
 		404A3B5A1701FB13001C3CB8 /* ATAlertTypeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATAlertTypeController.m; sourceTree = "<group>"; };
@@ -328,6 +331,8 @@
 		402638AB16F78042002E5C6D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				403329CB1702E865002FC8F5 /* ATAvilabilityController.h */,
+				403329CC1702E865002FC8F5 /* ATAvilabilityController.m */,
 				404A3B591701FB13001C3CB8 /* ATAlertTypeController.h */,
 				404A3B5A1701FB13001C3CB8 /* ATAlertTypeController.m */,
 				40C67D0316FB108100A65232 /* ATRecurrenceController.h */,
@@ -657,6 +662,7 @@
 				4068BF1016FC45EA008F4B67 /* ATPlaceHolderTextView.m in Sources */,
 				4068BF4816FCA443008F4B67 /* ATRecurrenceController.m in Sources */,
 				404A3B5B1701FB13001C3CB8 /* ATAlertTypeController.m in Sources */,
+				403329CD1702E865002FC8F5 /* ATAvilabilityController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

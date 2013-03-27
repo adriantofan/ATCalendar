@@ -14,6 +14,7 @@ typedef enum{
 
 @interface ATEvent : _ATEvent {}
 + (NSString *)descriptionFor:(ATEventAlertType)alertType;
+-(NSString*)avilabilityDescription;
 -(NSString*)alertsDescription;
 
 -(BOOL)isRecurrent;

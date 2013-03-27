@@ -134,6 +134,8 @@ static NSString *CellIdentifier = @"Cell";
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
   if ([self cellIsSelectedAtIndex:indexPath.row]) {
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
+  }else{
+    cell.accessoryType = UITableViewCellAccessoryNone;
   }
 }
 

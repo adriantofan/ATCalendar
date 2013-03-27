@@ -11,6 +11,14 @@
 
 @implementation ATEvent
 
+-(NSString*)avilabilityDescription{
+  if (self.busyValue) {
+    return NSLocalizedString(@"Busy", @"Busy label");
+  }else{
+    return NSLocalizedString(@"Free", @"Free label");
+  }
+}
+
 + (NSString *)descriptionFor:(ATEventAlertType)alertType {
   NSString *text;
   switch (alertType) {

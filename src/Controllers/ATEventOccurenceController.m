@@ -68,6 +68,7 @@ typedef enum{
     [list addObject:@(CellTypeDescription)];
     if (self.eventOccurence.event.firstAlertTypeValue != ATEventAlertTypeNone)
       [list addObject:@(CellTypeAlarms)];
+    [list addObject:@(CellTypeAvilability)];
     if (self.eventOccurence.event.url
         && ![self.eventOccurence.event.url isEqualToString:@""]){
       [list addObject:@(CellTypeURL)];
@@ -183,6 +184,14 @@ typedef enum{
      description:[self.eventOccurence.event alertsDescription]];
 }
 
+-(void)configureAvilabilityCell:(ATEventDetailCell*)cell atIndexPath:(NSIndexPath*)indexPath{
+  cell.subtitleLabel.textColor = [UIColor lightGrayColor];
+  cell.descriptionLabel.textColor = [UIColor colorWithRed:0.200 green:0.310 blue:0.510 alpha:1.000];
+  [cell setTitle:NSLocalizedString(@"Avilability", @"Avilability field title")
+        subtitle:@""
+     description:[self.eventOccurence.event avilabilityDescription]];
+}
+
 #pragma mark - TableView model & Configuration
 
 
@@ -215,6 +224,11 @@ typedef enum{
                                      subtitle:@""
                                   description:[self.eventOccurence.event alertsDescription]];
   }
+  if (type == CellTypeAvilability) {
+    return [ATEventDetailCell heightWithTitle:NSLocalizedString(@"Avilability", @"Avilability field title")
+                                     subtitle:@""
+                                  description:[self.eventOccurence.event avilabilityDescription]];
+  }
 
   return 44.0;
 }
@@ -230,7 +244,11 @@ typedef enum{
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
   CellType type = [self cellTypeForIndexPath:indexPath];
-  
+  if (type == CellTypeAvilability) {
+    ATEventDetailCell* cell = [self.tableView dequeueReusableCellWithIdentifier:CellTitleSubtitleDescriptionlId];
+    [self configureAvilabilityCell:cell atIndexPath:indexPath];
+    return cell;
+  }
   if (type == CellTypeDescription) {
     ATEventDetailCell* cell = [self.tableView dequeueReusableCellWithIdentifier:CellTitleSubtitleDescriptionlId];
     [self configureDescriptionCell:cell atIndexPath:indexPath];
