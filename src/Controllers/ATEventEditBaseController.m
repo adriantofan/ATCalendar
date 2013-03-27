@@ -15,6 +15,7 @@
 #import "ATWeeklyRecurrence.h"
 #import "ATMonthlyRecurrence.h"
 #import "ATYearlyRecurrence.h"
+#import "ATEvent+LocalNotifications.h"
 
 #import "ATOccurrenceCache.h"
 #import "ATEventTextFieldCell.h"
@@ -445,14 +446,7 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
 
 -(IBAction)saveButtonAction{
   [self updateFromView:self.event];
-  NSPredicate* eventPredicate = [NSPredicate predicateWithFormat:@"event == %@"
-                                                   argumentArray:@[self.event]];
-  [ATOccurrenceCache MR_deleteAllMatchingPredicate:eventPredicate inContext:self.editingMoc];
-  ATTimeSpan* syncSpan = [[ATCalendar sharedInstance] currentSyncSpan];
-  [self.event updateSimpleOccurencesFrom:syncSpan.start to:syncSpan.end inContext:self.editingMoc];
-  if (self.event.recurence) {
-    [self.event.recurence updateOccurencesFrom:syncSpan.start to:syncSpan.end inContext:self.editingMoc];
-  }
+  [ATOccurrenceCache updateCachesAndAlertsAfterEventChange:self.event];
   [self.delegate eventEditBaseController:self
                         didFinishEditing:TRUE];
 }

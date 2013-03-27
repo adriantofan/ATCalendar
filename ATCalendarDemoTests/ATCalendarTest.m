@@ -16,10 +16,64 @@
 #import "ATEvent.h"
 #import "ATOccurrenceCache.h"
 
+#pragma mark - mocks
+@interface ATEventMock: NSObject
+@property (nonatomic) BOOL localNotificationsRemovedCalled;
+@property (nonatomic) BOOL scheduleLocalNotificationCalled;
+@end
+@implementation ATEventMock
+-(void)removeExistingLocalNotifications{
+  self.localNotificationsRemovedCalled = TRUE;
+}
+-(void)scheduleLocalNotificationForOccurenceStart:(NSDate*)eventStart{
+  self.scheduleLocalNotificationCalled = TRUE;
+}
+@end
+@interface ATOccurrenceCacheMock : NSObject
+@property (nonatomic, strong) NSDate* occurrenceDate;
+@property (nonatomic) ATEventMock* event;
+@end
+@implementation ATOccurrenceCacheMock
+@end
+@interface ATAlertNotificationMock :NSObject
+@property (nonatomic) ATEventMock* event;
+@end
+@implementation ATAlertNotificationMock
+@end
+
+#pragma  mark - tests
+
 @interface ATCalendarTest : ATCoreDataTest
 @end
 
 @implementation ATCalendarTest
+
+-(void)testUpdateAlarmLocalNotificationsForEventOccurences{
+  ATCalendar* cal = [ATCalendar sharedInstance];
+  ATEventMock *e1 = [ATEventMock new];
+  ATEventMock *e2 = [ATEventMock new];
+  ATEventMock *e3 = [ATEventMock new];
+  ATOccurrenceCacheMock *o1 = [ATOccurrenceCacheMock new];
+  ATOccurrenceCacheMock *o2 = [ATOccurrenceCacheMock new];
+  ATAlertNotificationMock* an1 = [ATAlertNotificationMock new];
+  ATAlertNotificationMock* an3 = [ATAlertNotificationMock new];
+  o1.event = e1;
+  o2.event = e2;
+  an1.event = e1;
+  an3.event = e3;
+  NSArray* current = @[o1,o2,];
+  NSArray* actives = @[an1,an3];
+  // o2 should be added and an3 should be deleted
+  [cal updateAlarmLocalNotificationsForEventOccurences:current
+                                andActiveNotifications:actives];
+  assertThatBool(e1.localNotificationsRemovedCalled,equalToBool(FALSE));
+  assertThatBool(e2.localNotificationsRemovedCalled,equalToBool(FALSE));
+  assertThatBool(e3.localNotificationsRemovedCalled,equalToBool(TRUE));
+  assertThatBool(e1.scheduleLocalNotificationCalled,equalToBool(FALSE));
+  assertThatBool(e2.scheduleLocalNotificationCalled,equalToBool(TRUE));
+  assertThatBool(e3.scheduleLocalNotificationCalled,equalToBool(FALSE));
+  
+}
 
 -(void)testSyncNonRecurringEventsFrom{
   ATCalendar* cal = [ATCalendar sharedInstance];

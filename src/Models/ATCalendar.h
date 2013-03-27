@@ -13,10 +13,12 @@
 @interface ATCalendar : NSObject
 
 +(ATCalendar*)sharedInstance;
+-(NSInteger)maxSystemNotificationsCount;
 // Checks last  sync date against toDate and syncs daycache
 -(void)syncCachesIfNeeded:(NSDate*)toDate inContext:(NSManagedObjectContext*)moc;
 // Returns current expected sync span
 -(ATTimeSpan*)currentSyncSpan;
+-(void)updateAlarmLocalNotificationsInContext:(NSManagedObjectContext*)moc;
 
 @end
 
@@ -33,4 +35,9 @@
 - (void)clearOccurenceCache;
 // returns a list of days to sync spaning fromDate - toDate
 -(NSArray*)dateArrayToSyncFrom:(NSDate*)fromDate to:(NSDate*)toDate;
+
+// current array of ATOccurrenceCache / actives array of ATAlertNotification
+-(void)updateAlarmLocalNotificationsForEventOccurences:(NSArray*)current
+                                andActiveNotifications:(NSArray*)actives;
+
 @end

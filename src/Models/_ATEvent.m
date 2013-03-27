@@ -17,7 +17,9 @@ const struct ATEventAttributes ATEventAttributes = {
 };
 
 const struct ATEventRelationships ATEventRelationships = {
+	.firstAlertNotification = @"firstAlertNotification",
 	.recurence = @"recurence",
+	.seccondAlertNotification = @"seccondAlertNotification",
 };
 
 const struct ATEventFetchedProperties ATEventFetchedProperties = {
@@ -222,7 +224,15 @@ const struct ATEventFetchedProperties ATEventFetchedProperties = {
 
 
 
+@dynamic firstAlertNotification;
+
+	
+
 @dynamic recurence;
+
+	
+
+@dynamic seccondAlertNotification;
 
 	
 

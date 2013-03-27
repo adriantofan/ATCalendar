@@ -9,6 +9,8 @@
 #import "ATEventEditController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "ATOccurrenceCache.h"
+#import "ATEvent+LocalNotifications.h"
+#import "ATCalendar.h"
 
 @interface ATEventEditController (){
   
@@ -45,10 +47,15 @@
 }
 
 -(IBAction)deleteButtonAction{
+  BOOL sholdRemoveLocalNotifications = self.event.firstAlertNotification || self.event.seccondAlertNotification;
+  
+  if (sholdRemoveLocalNotifications) [self.event removeExistingLocalNotifications];
   NSPredicate* eventPredicate = [NSPredicate predicateWithFormat:@"event == %@"
                                                    argumentArray:@[self.event]];
   [ATOccurrenceCache MR_deleteAllMatchingPredicate:eventPredicate inContext:self.editingMoc];
   [self.event MR_deleteInContext:self.editingMoc];
+  if (sholdRemoveLocalNotifications)
+    [[ATCalendar sharedInstance] updateAlarmLocalNotificationsInContext:self.event.managedObjectContext];
   [self.delegate eventEditBaseController:self
                         didFinishEditing:TRUE];
 }

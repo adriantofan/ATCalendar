@@ -13,6 +13,10 @@ typedef enum{
 } ATEventAlertType;
 
 @interface ATEvent : _ATEvent {}
+
+///
+
+/// description
 + (NSString *)descriptionFor:(ATEventAlertType)alertType;
 -(NSString*)avilabilityDescription;
 -(NSString*)alertsDescription;

@@ -18,13 +18,17 @@ extern const struct ATEventAttributes {
 } ATEventAttributes;
 
 extern const struct ATEventRelationships {
+	__unsafe_unretained NSString *firstAlertNotification;
 	__unsafe_unretained NSString *recurence;
+	__unsafe_unretained NSString *seccondAlertNotification;
 } ATEventRelationships;
 
 extern const struct ATEventFetchedProperties {
 } ATEventFetchedProperties;
 
+@class ATAlertNotification;
 @class ATRecurrence;
+@class ATAlertNotification;
 
 
 
@@ -166,9 +170,23 @@ extern const struct ATEventFetchedProperties {
 
 
 
+@property (nonatomic, strong) ATAlertNotification *firstAlertNotification;
+
+//- (BOOL)validateFirstAlertNotification:(id*)value_ error:(NSError**)error_;
+
+
+
+
 @property (nonatomic, strong) ATRecurrence *recurence;
 
 //- (BOOL)validateRecurence:(id*)value_ error:(NSError**)error_;
+
+
+
+
+@property (nonatomic, strong) ATAlertNotification *seccondAlertNotification;
+
+//- (BOOL)validateSeccondAlertNotification:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -256,8 +274,18 @@ extern const struct ATEventFetchedProperties {
 
 
 
+- (ATAlertNotification*)primitiveFirstAlertNotification;
+- (void)setPrimitiveFirstAlertNotification:(ATAlertNotification*)value;
+
+
+
 - (ATRecurrence*)primitiveRecurence;
 - (void)setPrimitiveRecurence:(ATRecurrence*)value;
+
+
+
+- (ATAlertNotification*)primitiveSeccondAlertNotification;
+- (void)setPrimitiveSeccondAlertNotification:(ATAlertNotification*)value;
 
 
 @end

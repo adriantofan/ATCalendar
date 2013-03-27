@@ -1,5 +1,9 @@
 #import "ATOccurrenceCache.h"
 #import "ATEvent.h"
+#import "ATCalendar.h"
+#import "ATTimeSpan.h"
+#import "ATEvent+LocalNotifications.h"
+
 
 @interface ATOccurrenceCache ()
 
@@ -9,8 +13,22 @@
 
 
 @implementation ATOccurrenceCache
-+(NSArray*)firstOccurenceCacheOfEventAfter:(NSDate*)date inContext:(NSManagedObjectContext*)moc limit:(NSInteger)limit{
-  NSArray* ids =[ATOccurrenceCache eventsObjectIdsScheduledAfter:date inContext:moc limit:limit];
+
++(void)updateCachesAndAlertsAfterEventChange:(ATEvent*)event{
+  
+  NSPredicate* eventPredicate = [NSPredicate predicateWithFormat:@"event == %@"
+                                                   argumentArray:@[event]];
+  [ATOccurrenceCache MR_deleteAllMatchingPredicate:eventPredicate inContext:event.managedObjectContext];
+  ATTimeSpan* syncSpan = [[ATCalendar sharedInstance] currentSyncSpan];
+  [event updateSimpleOccurencesFrom:syncSpan.start to:syncSpan.end inContext:event.managedObjectContext];
+  if (event.recurence) {
+    [event.recurence updateOccurencesFrom:syncSpan.start to:syncSpan.end inContext:event.managedObjectContext];
+  }
+  [event updateLocalNotificationsAfterChange];
+}
+
++(NSArray*)firstOccurenceCacheOfEventWithAlarmAfter:(NSDate*)date inContext:(NSManagedObjectContext*)moc limit:(NSInteger)limit{
+  NSArray* ids =[ATOccurrenceCache eventIDsWithAlertAfter:date inContext:moc limit:limit];
   return [ATOccurrenceCache firstOccurenceCacheOfEventIDs:ids after:date inContext:moc limit:limit];
 }
 
@@ -30,8 +48,8 @@
 }
 
 
-+(NSArray*)eventsObjectIdsScheduledAfter:(NSDate*)date inContext:(NSManagedObjectContext*)moc limit:(NSInteger)limit{
-  NSPredicate *dateFilter = [NSPredicate predicateWithFormat:@"day >= %@", [date startOfCurrentDay]];
++(NSArray*)eventIDsWithAlertAfter:(NSDate*)date inContext:(NSManagedObjectContext*)moc limit:(NSInteger)limit{
+  NSPredicate *dateFilter = [NSPredicate predicateWithFormat:@"day >= %@ AND (event.firstAlertType != 0 OR event.seccondAlertType != 0)", [date startOfCurrentDay]];
   NSFetchRequest *eventsRequest =
     [ATOccurrenceCache MR_requestAllSortedBy:@"day"
                                    ascending:YES

@@ -13,10 +13,64 @@
 #import "ATEvent.h"
 #import "ATTimeSpan.h"
 #import "ATRecurrence.h"
+#import "ATAlertNotification.h"
+#import "ATEvent+LocalNotifications.h"
 
+const int kMaxNotifications;
 
 @implementation ATCalendar
 static ATCalendar* ___sharedInstance;
+-(NSInteger)maxSystemNotificationsCount{
+  return kMaxNotifications;
+}
+
+-(void)updateAlarmLocalNotificationsInContext:(NSManagedObjectContext*)moc{
+  NSArray* current =
+    [ATOccurrenceCache firstOccurenceCacheOfEventWithAlarmAfter:self.currentSyncSpan.start
+                                                    inContext:moc
+                                                        limit:kMaxNotifications];
+  
+  NSArray* actives = [ATAlertNotification MR_findAllInContext:moc];
+  [self updateAlarmLocalNotificationsForEventOccurences:current
+                                 andActiveNotifications:actives];
+}
+
+-(void)updateAlarmLocalNotificationsForEventOccurences:(NSArray*)current
+                                andActiveNotifications:(NSArray*)actives{
+  NSArray* currentEvents = [current map:^id(ATOccurrenceCache* obj) {
+    return [obj event];
+  }];
+  
+  NSArray* activeEvents = [[actives map:^id(ATAlertNotification* obj) {
+    return [obj event];}]
+                           reduce:^id(NSMutableArray* memo, id obj) {
+                             if (![memo containsObject:obj]) [memo addObject:obj];
+                             return memo;
+                           }
+                           withInitialMemo:[NSMutableArray new]];
+  
+  // events to delete : what's active and not in current (active - current)
+  NSArray* toDelete = [activeEvents filter:^BOOL(id obj) {
+    return ![currentEvents containsObject:obj];
+  }];
+  [toDelete enumerateObjectsUsingBlock:^(ATEvent* e, NSUInteger idx, BOOL *stop) {
+    [e removeExistingLocalNotifications];
+  }];
+  
+  // events to add : what's current and not active (current - active)
+  NSArray* toAdd = [currentEvents filter:^BOOL(id obj) {
+    return ![activeEvents containsObject:obj];
+  }];
+  [toAdd enumerateObjectsUsingBlock:^(ATEvent* e, NSUInteger idx, BOOL *stop) {
+    [current enumerateObjectsUsingBlock:^(ATOccurrenceCache* o, NSUInteger idx, BOOL *stop) {
+      if (o.event == e) {
+        [e scheduleLocalNotificationForOccurenceStart:o.occurrenceDate];
+        *stop = TRUE;
+      }
+    }];
+  }];  
+}
+
 
 +(ATCalendar*)sharedInstance{
   static dispatch_once_t onceToken;

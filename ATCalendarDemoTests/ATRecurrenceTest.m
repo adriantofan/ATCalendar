@@ -13,6 +13,7 @@
 #import "ATDailyRecurrence.h"
 #import "ATOccurrenceCache.h"
 #import "ATEvent.h"
+#import "ATAlertNotification.h"
 
 
 
@@ -70,20 +71,24 @@
   NSManagedObjectContext *moc = [NSManagedObjectContext MR_contextForCurrentThread];
   
   ATEvent* nreOustide = [ATEvent MR_createEntity];
+  nreOustide.firstAlertTypeValue = 1;
   nreOustide.startDate = d0;
   nreOustide.endDate = d1;
   [nreOustide updateSimpleOccurencesFrom:d0 to:[d0 dateYearsAfter:2] inContext:moc];
   ATEvent* nreOverlap = [ATEvent MR_createEntity];
+  nreOverlap.firstAlertTypeValue = 1;
   nreOverlap.startDate = d2;
   nreOverlap.endDate = d4;
   [nreOverlap updateSimpleOccurencesFrom:d0 to:[d0 dateYearsAfter:2] inContext:moc];
   ATEvent* nreInside = [ATEvent MR_createEntity];
+  nreInside.firstAlertTypeValue = 1;
   nreInside.startDate = d4;
   nreInside.endDate = d5;
   [nreInside updateSimpleOccurencesFrom:d0 to:[d0 dateYearsAfter:2] inContext:moc];
   
   
   ATEvent* reOustide = [ATEvent MR_createEntity];
+  reOustide.firstAlertTypeValue = 1;
   reOustide.startDate = d0;
   reOustide.endDate = d1;
   ATRecurrence* rOutside = [ATDailyRecurrence MR_createEntity];
@@ -93,6 +98,7 @@
   [rOutside updateOccurencesFrom:d0 to:[d0 dateYearsAfter:2] inContext:moc];
   
   ATEvent* reOverlap = [ATEvent MR_createEntity];
+  reOverlap.firstAlertTypeValue = 1;
   reOverlap.startDate = d1;
   reOverlap.endDate = d1;
   ATRecurrence* rOverlap = [ATDailyRecurrence MR_createEntity];
@@ -102,6 +108,7 @@
   [rOverlap updateOccurencesFrom:d0 to:[d0 dateYearsAfter:2] inContext:moc];
   
   ATEvent* reInside = [ATEvent MR_createEntity];
+  reInside.firstAlertTypeValue = 1;
   reInside.startDate = d4;
   reInside.endDate = d4;
   ATRecurrence* rInside = [ATDailyRecurrence MR_createEntity];
@@ -112,7 +119,7 @@
   
   [moc MR_saveToPersistentStoreAndWait];
   NSLog(@"time :%f",[d3 timeIntervalSinceReferenceDate]);
-  NSArray* ids =[ATOccurrenceCache eventsObjectIdsScheduledAfter:d3 inContext:moc limit:65];
+  NSArray* ids =[ATOccurrenceCache eventIDsWithAlertAfter:d3 inContext:moc limit:65];
   NSArray* occurences =[ATOccurrenceCache firstOccurenceCacheOfEventIDs:ids after:d3 inContext:moc limit:65];
   NSArray* events = [occurences map:^id(id obj) {
     return [obj event];
@@ -133,6 +140,7 @@
   
   NSManagedObjectContext *moc = [NSManagedObjectContext MR_contextForCurrentThread];
   ATEvent* event1 = [ATEvent MR_createEntity];
+  event1.firstAlertTypeValue = 1;
   event1.startDate = d1;
   event1.endDate = d1;
   ATRecurrence *rec = [ATDailyRecurrence MR_createEntity];
@@ -141,7 +149,7 @@
   event1.recurence = rec;
   [rec updateOccurencesFrom:d0 to:[d0 dateYearsAfter:2] inContext:moc];
   [moc MR_saveToPersistentStoreAndWait];
-  NSArray* results =[ATOccurrenceCache eventsObjectIdsScheduledAfter:d2 inContext:moc limit:65];
+  NSArray* results =[ATOccurrenceCache eventIDsWithAlertAfter:d2 inContext:moc limit:65];
   ATEvent *e = (ATEvent *)[moc objectWithID:[results objectAtIndex:0]];
   assertThat(e, is(event1));
   NSArray* os = [ATOccurrenceCache firstOccurenceCacheOfEventIDs:results after:d2 inContext:moc limit:65];

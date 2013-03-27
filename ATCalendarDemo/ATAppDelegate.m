@@ -31,9 +31,12 @@
 #endif
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   [MagicalRecord setupCoreDataStackWithStoreNamed:@"ATCalendar.sqlite"];
-  [[ATCalendar sharedInstance] syncCachesIfNeeded:[NSDate date] inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
+  NSManagedObjectContext* moc = [NSManagedObjectContext MR_contextForCurrentThread];
+  [[ATCalendar sharedInstance] syncCachesIfNeeded:[NSDate date] inContext:moc];
   [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
-  
+  [[ATCalendar sharedInstance] updateAlarmLocalNotificationsInContext:moc];
+  [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
+
   ATEventListController* controller = [[ATEventListController alloc] initWithStyle:UITableViewStylePlain];
   UINavigationController* navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
   self.window.rootViewController = navigationController;
