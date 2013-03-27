@@ -5,7 +5,6 @@
 #import "ATRecurrence.h"
 
 extern const struct ATWeeklyRecurrenceAttributes {
-	__unsafe_unretained NSString *dayOfWeek;
 } ATWeeklyRecurrenceAttributes;
 
 extern const struct ATWeeklyRecurrenceRelationships {
@@ -13,7 +12,6 @@ extern const struct ATWeeklyRecurrenceRelationships {
 
 extern const struct ATWeeklyRecurrenceFetchedProperties {
 } ATWeeklyRecurrenceFetchedProperties;
-
 
 
 
@@ -30,20 +28,6 @@ extern const struct ATWeeklyRecurrenceFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSNumber* dayOfWeek;
-
-
-
-@property int32_t dayOfWeekValue;
-- (int32_t)dayOfWeekValue;
-- (void)setDayOfWeekValue:(int32_t)value_;
-
-//- (BOOL)validateDayOfWeek:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
 
 @end
 
@@ -52,15 +36,6 @@ extern const struct ATWeeklyRecurrenceFetchedProperties {
 @end
 
 @interface _ATWeeklyRecurrence (CoreDataGeneratedPrimitiveAccessors)
-
-
-- (NSNumber*)primitiveDayOfWeek;
-- (void)setPrimitiveDayOfWeek:(NSNumber*)value;
-
-- (int32_t)primitiveDayOfWeekValue;
-- (void)setPrimitiveDayOfWeekValue:(int32_t)value_;
-
-
 
 
 @end

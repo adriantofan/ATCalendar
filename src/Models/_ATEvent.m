@@ -5,6 +5,7 @@
 
 const struct ATEventAttributes ATEventAttributes = {
 	.allDay = @"allDay",
+	.busy = @"busy",
 	.endDate = @"endDate",
 	.firstAlertType = @"firstAlertType",
 	.location = @"location",
@@ -53,6 +54,11 @@ const struct ATEventFetchedProperties ATEventFetchedProperties = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
+	if ([key isEqualToString:@"busyValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"busy"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 	if ([key isEqualToString:@"firstAlertTypeValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"firstAlertType"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -90,6 +96,32 @@ const struct ATEventFetchedProperties ATEventFetchedProperties = {
 
 - (void)setPrimitiveAllDayValue:(BOOL)value_ {
 	[self setPrimitiveAllDay:[NSNumber numberWithBool:value_]];
+}
+
+
+
+
+
+@dynamic busy;
+
+
+
+- (BOOL)busyValue {
+	NSNumber *result = [self busy];
+	return [result boolValue];
+}
+
+- (void)setBusyValue:(BOOL)value_ {
+	[self setBusy:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveBusyValue {
+	NSNumber *result = [self primitiveBusy];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveBusyValue:(BOOL)value_ {
+	[self setPrimitiveBusy:[NSNumber numberWithBool:value_]];
 }
 
 

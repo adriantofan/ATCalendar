@@ -6,6 +6,7 @@
 
 extern const struct ATEventAttributes {
 	__unsafe_unretained NSString *allDay;
+	__unsafe_unretained NSString *busy;
 	__unsafe_unretained NSString *endDate;
 	__unsafe_unretained NSString *firstAlertType;
 	__unsafe_unretained NSString *location;
@@ -24,6 +25,7 @@ extern const struct ATEventFetchedProperties {
 } ATEventFetchedProperties;
 
 @class ATRecurrence;
+
 
 
 
@@ -57,6 +59,20 @@ extern const struct ATEventFetchedProperties {
 - (void)setAllDayValue:(BOOL)value_;
 
 //- (BOOL)validateAllDay:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* busy;
+
+
+
+@property BOOL busyValue;
+- (BOOL)busyValue;
+- (void)setBusyValue:(BOOL)value_;
+
+//- (BOOL)validateBusy:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -172,6 +188,15 @@ extern const struct ATEventFetchedProperties {
 
 - (BOOL)primitiveAllDayValue;
 - (void)setPrimitiveAllDayValue:(BOOL)value_;
+
+
+
+
+- (NSNumber*)primitiveBusy;
+- (void)setPrimitiveBusy:(NSNumber*)value;
+
+- (BOOL)primitiveBusyValue;
+- (void)setPrimitiveBusyValue:(BOOL)value_;
 
 
 
