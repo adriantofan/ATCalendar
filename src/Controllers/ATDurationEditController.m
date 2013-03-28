@@ -7,6 +7,9 @@
 //
 
 #import "ATDurationEditController.h"
+#import "ATTZPickerController.h"
+
+
 typedef enum{
   ATDurationEditControllerEditElementStart,
   ATDurationEditControllerEditElementEnd
@@ -17,9 +20,9 @@ typedef enum{
   IBOutlet UILabel *endDateLabel_;
   IBOutlet UIDatePicker *picker_;
   IBOutlet UISwitch *allDaySwitch_;
+  IBOutlet UILabel *timeZoneLabel_;
   NSDateFormatter* dateTimeFormatter_;
   NSDateFormatter* dateFormatter_;
-
   ATDurationEditControllerEditElement edigingElement_;
 }
 
@@ -28,6 +31,9 @@ typedef enum{
 @implementation ATDurationEditController
 @synthesize startDate = startDate_;
 @synthesize endDate = endDate_;
+@synthesize timeZone = timeZone_;
+
+
 
 - (void)viewDidLoad
 {
@@ -39,7 +45,9 @@ typedef enum{
   dateFormatter_ = [[NSDateFormatter alloc] init];
   [dateFormatter_ setTimeStyle:NSDateFormatterNoStyle];
   [dateFormatter_ setDateStyle:NSDateFormatterMediumStyle];
-  picker_.locale = [NSLocale currentLocale];
+  dateFormatter_.timeZone = timeZone_;
+  dateTimeFormatter_.timeZone = timeZone_;
+//  picker_.locale = [NSLocale currentLocale];
   picker_.date = startDate_;
   allDaySwitch_.on = self.allDay;
   if (self.allDay) {
@@ -47,6 +55,7 @@ typedef enum{
   }else{
     picker_.datePickerMode = UIDatePickerModeDateAndTime;
   }
+  [self updateTimeZone:timeZone_];
   [self updateDatesToLabels];
 }
 
@@ -56,17 +65,64 @@ typedef enum{
     // Dispose of any resources that can be recreated.
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{  
   if (indexPath.row == 0) {
     edigingElement_ = ATDurationEditControllerEditElementStart;
+    [self updateDatesToPicker];
   }else
   if (indexPath.row == 1) {
     edigingElement_ = ATDurationEditControllerEditElementEnd;
-  }else {return;}
-  [self updateDatesToPicker];
+    [self updateDatesToPicker];
+  }else if (indexPath.row == 3){
+    [self showTimeZonePicker];
+  }
+}
+-(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
+  if (indexPath.row == 2) {
+    return NO;
+  }
+  return YES;
 }
 
+
 #pragma mark -
+
+
+-(void)updateTimeZone:(NSTimeZone*) timeZone{
+  NSTimeZone *current             = timeZone_;
+  NSTimeInterval currentOffset    = [current secondsFromGMTForDate:startDate_];
+  NSTimeInterval toOffset         = [timeZone secondsFromGMTForDate:startDate_];
+  NSTimeInterval diff             = currentOffset - toOffset;
+  startDate_ = [startDate_ dateByAddingTimeInterval:diff];
+  currentOffset    = [current secondsFromGMTForDate:endDate_];
+  toOffset         = [timeZone secondsFromGMTForDate:endDate_];
+  diff             = currentOffset - toOffset;
+  endDate_ = [endDate_ dateByAddingTimeInterval:diff];
+
+  self.timeZone = timeZone;
+  picker_.timeZone = timeZone;
+  timeZoneLabel_.text = [timeZone name];
+  timeZone_ = timeZone;
+  dateFormatter_.timeZone = timeZone_;
+  dateTimeFormatter_.timeZone = timeZone_;
+  [self updateDatesToPicker];
+  [self updateDatesToLabels];
+}
+
+-(void)showTimeZonePicker{
+  ATTZPickerController *picker  = [[ATTZPickerController alloc] initWithStyle:UITableViewStylePlain];
+  picker.timeZone = self.timeZone;
+  __weak ATTZPickerController * P = picker;
+  __weak typeof (self) SELF = self;
+  picker.endBlock = ^(BOOL save){
+    if (save) {
+      [SELF updateTimeZone:P.timeZone];
+    }
+    [SELF dismissViewControllerAnimated:YES completion:nil];
+  };
+  [self presentViewController:[[UINavigationController alloc] initWithRootViewController:picker]  animated:YES completion:nil];
+}
+
 -(void)updateDatesToLabels{
   NSDateFormatter* formater = self.allDay ? dateFormatter_:dateTimeFormatter_;
   startDateLabel_.text = [formater stringFromDate:startDate_];

@@ -15,10 +15,11 @@
 @end
 
 
-@interface ATDurationEditController : UITableViewController
+@interface ATDurationEditController : UITableViewController <UISearchDisplayDelegate>
 @property (nonatomic,strong,readwrite) NSDate *startDate;
 @property (nonatomic,strong,readwrite) NSDate *endDate;
 @property (nonatomic,readwrite) BOOL allDay;
+@property (nonatomic,readwrite) NSTimeZone *timeZone;
 
 @property (nonatomic,weak) id <ATDurationEditControllerDelegate> delegate;
 @end

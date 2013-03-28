@@ -10,6 +10,10 @@
 
 
 @implementation ATEvent
+-(void)awakeFromInsert{
+  [super awakeFromInsert];
+  self.timeZone = [NSTimeZone defaultTimeZone];
+}
 
 -(NSString*)avilabilityDescription{
   if (self.busyValue) {

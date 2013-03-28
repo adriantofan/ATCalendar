@@ -29,8 +29,20 @@
 }
 
 -(void)scheduleLocalNotificationForOccurenceStart:(NSDate*)eventStart{
-  
-  
+  if (self.firstAlertTypeValue != ATEventAlertTypeNone) {
+    if (self.isRecurrent) {
+      
+    }else{
+      UILocalNotification* not = [UILocalNotification new];
+      not.fireDate = eventStart;
+      // TODO fixme
+      not.timeZone = nil;
+      not.alertBody = @"";
+    }
+  }
+  if (self.seccondAlertTypeValue != ATEventAlertTypeNone) {
+    
+  }
 }
 
 -(void)removeLocalNotificationsBeforeDelete{

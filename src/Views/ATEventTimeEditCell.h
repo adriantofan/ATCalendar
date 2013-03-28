@@ -12,4 +12,5 @@
 +(float)height;
 @property (strong, nonatomic) IBOutlet UILabel *startDateLabel;
 @property (strong, nonatomic) IBOutlet UILabel *endDateLabel;
+@property (strong, nonatomic) IBOutlet UILabel *timeZoneLabel;
 @end

@@ -13,6 +13,7 @@ const struct ATEventAttributes ATEventAttributes = {
 	.seccondAlertType = @"seccondAlertType",
 	.startDate = @"startDate",
 	.summary = @"summary",
+	.timeZone = @"timeZone",
 	.url = @"url",
 };
 
@@ -211,6 +212,13 @@ const struct ATEventFetchedProperties ATEventFetchedProperties = {
 
 
 @dynamic summary;
+
+
+
+
+
+
+@dynamic timeZone;
 
 
 

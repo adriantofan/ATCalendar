@@ -172,6 +172,8 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
 
 
 -(void)updateViewWithEvent:(ATEvent*)event{
+  dateTimeFormatter_.timeZone = event.timeZone;
+  dateFormatter_.timeZone = event.timeZone;
   NSDateFormatter *formater = event.allDayValue?dateFormatter_:dateTimeFormatter_;
   self.timeEditCell.startDateLabel.text = [formater stringFromDate:event.startDate];
   self.timeEditCell.endDateLabel.text = [formater stringFromDate:event.endDate];
@@ -197,6 +199,7 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
   }else{
     self.busyCell.detailTextLabel.text = NSLocalizedString(@"Free", @"Free label");
   }
+  self.timeEditCell.timeZoneLabel.text = [event.timeZone name];
 }
 
 -(void)updateFromView:(ATEvent*)event{
@@ -277,9 +280,10 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
 #pragma mark -
 -(void)setEvent:(ATEvent *)event{
   _event = event;
+  dateTimeFormatter_.timeZone = event.timeZone;
+  dateFormatter_.timeZone = event.timeZone;
   self.repeatEndVisible = event.isRecurrent;
   self.seccondAlertVisible = event.firstAlertTypeValue != ATEventAlertTypeNone;
-
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -434,6 +438,7 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
   ctrl.startDate = self.event.startDate;
   ctrl.endDate = self.event.endDate;
   ctrl.allDay = self.event.allDayValue;
+  ctrl.timeZone = self.event.timeZone;
   ctrl.delegate = self;
   [self.navigationController pushViewController:ctrl animated:YES];
 }
@@ -528,6 +533,7 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
     self.event.startDate = ctrl.startDate;
     self.event.endDate = ctrl.endDate;
     self.event.allDayValue = ctrl.allDay;
+    self.event.timeZone = ctrl.timeZone;
     [self updateViewWithEvent:self.event];
   }
   [self.navigationController  popViewControllerAnimated:YES];

@@ -10,6 +10,6 @@
 
 @implementation ATEventTimeEditCell
 +(float)height{
-  return 54.0;
+  return 72.0;
 }
 @end
