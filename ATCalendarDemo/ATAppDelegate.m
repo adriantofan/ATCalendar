@@ -50,6 +50,8 @@
 -(NSManagedObjectContext*)managedObjectContext{
   return [NSManagedObjectContext MR_context];
 }
-
+-(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
+  NSLog(@"Recieved notification: %@",[notification description]);
+}
 - (void)applicationWillTerminate:(UIApplication *)application { [MagicalRecord cleanUp]; }
 @end

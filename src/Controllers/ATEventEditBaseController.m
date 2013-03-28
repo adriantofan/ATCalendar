@@ -451,7 +451,6 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
 
 -(IBAction)saveButtonAction{
   [self updateFromView:self.event];
-  [ATOccurrenceCache updateCachesAndAlertsAfterEventChange:self.event];
   [self.delegate eventEditBaseController:self
                         didFinishEditing:TRUE];
 }

@@ -36,8 +36,14 @@
       UILocalNotification* not = [UILocalNotification new];
       not.fireDate = eventStart;
       // TODO fixme
-      not.timeZone = nil;
-      not.alertBody = @"";
+      not.timeZone = self.timeZone;
+      not.alertBody = @"Alert";
+      [[UIApplication sharedApplication] scheduleLocalNotification:not];
+      ATAlertNotification *notLink = [ATAlertNotification MR_createInContext:self.managedObjectContext];
+      self.firstAlertNotification = notLink;
+      notLink.notification = not;
+      NSLog(@"Scheduled notification: %@",[not description]);
+
     }
   }
   if (self.seccondAlertTypeValue != ATEventAlertTypeNone) {

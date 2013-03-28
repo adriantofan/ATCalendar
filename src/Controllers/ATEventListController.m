@@ -12,6 +12,7 @@
 #import "ATEvent.h"
 #import "ATEventOccurenceController.h"
 #import "ATEventCreateController.h"
+#import "ATEvent+LocalNotifications.h"
 
 @interface ATEventListController (){
   NSManagedObjectContext* addingContext_;
@@ -55,8 +56,14 @@
 
 -(void) eventEditBaseController:(ATEventEditBaseController*)controller
                didFinishEditing:(BOOL)successOrCancel{
-  if (successOrCancel) {
+  if (successOrCancel) { // This can only be an add action
+    // TODO : disable fetched results controller temporary
     [controller.editingMoc MR_saveToPersistentStoreAndWait];
+    [ATOccurrenceCache updateCachesAndAlertsAfterEventChange:controller.event];
+    [controller.editingMoc MR_saveToPersistentStoreAndWait];
+    [controller.event updateLocalNotificationsAfterChange];
+    [controller.editingMoc MR_saveToPersistentStoreAndWait];
+
   }
   [self dismissViewControllerAnimated:YES completion:nil];
 }

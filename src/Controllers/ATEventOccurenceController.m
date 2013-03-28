@@ -10,6 +10,8 @@
 #import "ATEventEditController.h"
 #import "ATEventDetailCell.h"
 #import "ATEvent.h"
+#import "ATEvent+LocalNotifications.h"
+
 NSString * const CellTitleSubtitleDescriptionlId = @"CellTitleSubtitleDescriptionlId";
 @interface ATEventOccurenceController ()
 @property (nonatomic)  NSArray* cellList;
@@ -146,7 +148,13 @@ typedef enum{
   ATEventEditBaseController* ctrl = controller; // keep a reff
   [self dismissViewControllerAnimated:YES completion:nil];
   if (successOrCancel) {
-    [ctrl.editingMoc MR_saveToPersistentStoreAndWait];
+    [controller.editingMoc MR_saveToPersistentStoreAndWait];
+    if (!controller.event.isDeleted && controller.event.managedObjectContext) {
+      [ATOccurrenceCache updateCachesAndAlertsAfterEventChange:controller.event];
+      [controller.editingMoc MR_saveToPersistentStoreAndWait];
+      [controller.event updateLocalNotificationsAfterChange];
+      [controller.editingMoc MR_saveToPersistentStoreAndWait];
+    }
     self.cellList = nil;
     [self.tableView reloadData];
   }  

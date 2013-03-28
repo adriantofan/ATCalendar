@@ -24,7 +24,6 @@
   if (event.recurence) {
     [event.recurence updateOccurencesFrom:syncSpan.start to:syncSpan.end inContext:event.managedObjectContext];
   }
-  [event updateLocalNotificationsAfterChange];
 }
 
 +(NSArray*)firstOccurenceCacheOfEventWithAlarmAfter:(NSDate*)date inContext:(NSManagedObjectContext*)moc limit:(NSInteger)limit{
