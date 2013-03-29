@@ -174,6 +174,7 @@
 		402638B316F78042002E5C6D /* ATEventListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATEventListController.m; sourceTree = "<group>"; };
 		402638B416F78042002E5C6D /* ATEventRecurenceEditProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATEventRecurenceEditProtocol.h; sourceTree = "<group>"; };
 		402638B516F78042002E5C6D /* ATEventStartEndEditProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATEventStartEndEditProtocol.h; sourceTree = "<group>"; };
+		402B14E91705E9BF00B32594 /* ATCalendar_Notification_eventuserinfo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = ATCalendar_Notification_eventuserinfo.xcdatamodel; sourceTree = "<group>"; };
 		40322DEB16F8B04200186611 /* EventTimeEditCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventTimeEditCell.xib; sourceTree = "<group>"; };
 		40322DEE16F8B0F500186611 /* ATEventTimeEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATEventTimeEditCell.h; sourceTree = "<group>"; };
 		40322DEF16F8B0F500186611 /* ATEventTimeEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATEventTimeEditCell.m; sourceTree = "<group>"; };
@@ -962,6 +963,7 @@
 			children = (
 				40CB4776170345690026DD9C /* ATCalendar_Notification_2.xcdatamodel */,
 				40339D8E17044A56008D7190 /* ATCalendar_Notification_TZ.xcdatamodel */,
+				402B14E91705E9BF00B32594 /* ATCalendar_Notification_eventuserinfo.xcdatamodel */,
 				403329CF1702F915002FC8F5 /* ATCalendar_Notification.xcdatamodel */,
 				403329CA1702E7A7002FC8F5 /* ATCalendar_busy.xcdatamodel */,
 				404A3B581701F640001C3CB8 /* ATCalendar_alarm.xcdatamodel */,
@@ -971,7 +973,7 @@
 				4026388516F76C8F002E5C6D /* ATCalendar_reccurence_take2.xcdatamodel */,
 				401297BA16F21C2D00C0DC35 /* ATCalendar.xcdatamodel */,
 			);
-			currentVersion = 40339D8E17044A56008D7190 /* ATCalendar_Notification_TZ.xcdatamodel */;
+			currentVersion = 402B14E91705E9BF00B32594 /* ATCalendar_Notification_eventuserinfo.xcdatamodel */;
 			path = ATCalendar.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -15,6 +15,7 @@ const struct ATEventAttributes ATEventAttributes = {
 	.summary = @"summary",
 	.timeZone = @"timeZone",
 	.url = @"url",
+	.userInfo = @"userInfo",
 };
 
 const struct ATEventRelationships ATEventRelationships = {
@@ -226,6 +227,13 @@ const struct ATEventFetchedProperties ATEventFetchedProperties = {
 
 
 @dynamic url;
+
+
+
+
+
+
+@dynamic userInfo;
 
 
 

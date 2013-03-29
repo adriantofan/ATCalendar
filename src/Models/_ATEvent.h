@@ -16,6 +16,7 @@ extern const struct ATEventAttributes {
 	__unsafe_unretained NSString *summary;
 	__unsafe_unretained NSString *timeZone;
 	__unsafe_unretained NSString *url;
+	__unsafe_unretained NSString *userInfo;
 } ATEventAttributes;
 
 extern const struct ATEventRelationships {
@@ -42,6 +43,7 @@ extern const struct ATEventFetchedProperties {
 
 @class NSTimeZone;
 
+@class NSDictionary;
 
 @interface ATEventID : NSManagedObjectID {}
 @end
@@ -182,6 +184,16 @@ extern const struct ATEventFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSDictionary* userInfo;
+
+
+
+//- (BOOL)validateUserInfo:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) ATAlertNotification *firstAlertNotification;
 
 //- (BOOL)validateFirstAlertNotification:(id*)value_ error:(NSError**)error_;
@@ -287,6 +299,12 @@ extern const struct ATEventFetchedProperties {
 
 - (NSString*)primitiveUrl;
 - (void)setPrimitiveUrl:(NSString*)value;
+
+
+
+
+- (NSDictionary*)primitiveUserInfo;
+- (void)setPrimitiveUserInfo:(NSDictionary*)value;
 
 
 
