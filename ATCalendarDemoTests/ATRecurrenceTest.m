@@ -39,6 +39,15 @@
   d_ = [c_ oneDayNext];
 }
 
+-(void)testFetchCount{
+  NSManagedObjectContext* moc = [NSManagedObjectContext MR_contextForCurrentThread];
+  assertThatInteger([ATRecurrence MR_countOfEntitiesWithContext:moc],equalToInteger(0));
+  ATRecurrence*r = [ATRecurrence MR_createInContext:moc];
+  r = [ATRecurrence MR_createInContext:moc];
+  [r MR_deleteEntity];
+  assertThatInteger([ATRecurrence MR_countOfEntitiesWithContext:moc],equalToInteger(1));
+}
+
 -(void)testUpdateOccurencesFromWhenEndOfIntervalIsAfterRecurenceEnd{
   NSDate *d0 = [NSDate date];
   NSDate *d1 = [d0 dateMonthsAfter:1];

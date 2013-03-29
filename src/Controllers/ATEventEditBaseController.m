@@ -470,6 +470,9 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
 {
   return [self cachedCellForRowAtIndexPath:indexPath];
 }
+- (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+  return UITableViewCellEditingStyleNone;
+}
 
 #pragma mark - Table view delegate
 -(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath{

@@ -16,6 +16,9 @@
   [NSTimeZone setDefaultTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
   [MagicalRecord setDefaultModelFromClass:[self class]];
   [MagicalRecord setupCoreDataStackWithStoreNamed:@"unitttest.sqlite"];
+  NSPersistentStore* pc = [[[NSPersistentStoreCoordinator MR_defaultStoreCoordinator] persistentStores] objectAtIndex:0];
+  NSURL* storeURL = pc.URL;
+  NSLog(@"Store URL:%@",[storeURL description]);
 }
 
 - (void)tearDown;

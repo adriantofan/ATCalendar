@@ -69,6 +69,9 @@
 }
 
 #pragma mark - Table View
+- (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+  return UITableViewCellEditingStyleNone;
+}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
   [self.fetchedResultsController objectAtIndexPath:indexPath];

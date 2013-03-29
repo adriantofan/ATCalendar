@@ -51,7 +51,7 @@
   return [NSManagedObjectContext MR_context];
 }
 -(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
-  NSLog(@"Recieved notification: %@",[notification description]);
+  [[ATCalendar sharedInstance] handleLocalNotification:notification];
 }
 - (void)applicationWillTerminate:(UIApplication *)application { [MagicalRecord cleanUp]; }
 @end

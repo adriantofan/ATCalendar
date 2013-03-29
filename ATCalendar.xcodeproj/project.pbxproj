@@ -47,6 +47,7 @@
 		402638B916F78042002E5C6D /* ATEventEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 402638B016F78042002E5C6D /* ATEventEditController.m */; };
 		402638BA16F78042002E5C6D /* ATEventListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 402638B316F78042002E5C6D /* ATEventListController.m */; };
 		402638BB16F78042002E5C6D /* ATEventListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 402638B316F78042002E5C6D /* ATEventListController.m */; };
+		402B14E81705E20400B32594 /* ATTZPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40339D90170456E6008D7190 /* ATTZPickerController.m */; };
 		40322DEC16F8B04200186611 /* EventTimeEditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40322DEB16F8B04200186611 /* EventTimeEditCell.xib */; };
 		40322DED16F8B04200186611 /* EventTimeEditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40322DEB16F8B04200186611 /* EventTimeEditCell.xib */; };
 		40322DF016F8B0F500186611 /* ATEventTimeEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40322DEF16F8B0F500186611 /* ATEventTimeEditCell.m */; };
@@ -186,7 +187,7 @@
 		403329D31702FB57002FC8F5 /* ATAlertNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATAlertNotification.m; sourceTree = "<group>"; };
 		403329DA17033784002FC8F5 /* ATEvent+LocalNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ATEvent+LocalNotifications.h"; sourceTree = "<group>"; };
 		403329DB17033784002FC8F5 /* ATEvent+LocalNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ATEvent+LocalNotifications.m"; sourceTree = "<group>"; };
-		40339D8E17044A56008D7190 /* ATCalendar_Notification_TZ.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = ATCalendar_Notification_TZ.xcdatamodel; sourceTree = "<group>"; };
+		40339D8E17044A56008D7190 /* ATCalendar_Notification_TZ.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ATCalendar_Notification_TZ.xcdatamodel; sourceTree = "<group>"; };
 		40339D8F170456E6008D7190 /* ATTZPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTZPickerController.h; sourceTree = "<group>"; };
 		40339D90170456E6008D7190 /* ATTZPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTZPickerController.m; sourceTree = "<group>"; };
 		404A3B581701F640001C3CB8 /* ATCalendar_alarm.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ATCalendar_alarm.xcdatamodel; sourceTree = "<group>"; };
@@ -744,6 +745,7 @@
 				403329D81702FED5002FC8F5 /* ATAlertTypeController.m in Sources */,
 				403329D91702FF09002FC8F5 /* ATAvilabilityController.m in Sources */,
 				403329DD17033784002FC8F5 /* ATEvent+LocalNotifications.m in Sources */,
+				402B14E81705E20400B32594 /* ATTZPickerController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

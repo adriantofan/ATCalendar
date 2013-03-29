@@ -16,9 +16,19 @@
 #import "ATAlertNotification.h"
 #import "ATEvent+LocalNotifications.h"
 
-const int kMaxNotifications;
+const int kMaxNotifications = 30;
 
 @implementation ATCalendar
+-(void)handleLocalNotification:(UILocalNotification*)notification{
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                  message:notification.alertBody
+                                                 delegate:nil
+                                        cancelButtonTitle:@"OK"
+                                        otherButtonTitles:nil];
+  [alert show];
+}
+
+
 static ATCalendar* ___sharedInstance;
 -(NSInteger)maxSystemNotificationsCount{
   return kMaxNotifications;

@@ -41,6 +41,54 @@
                <Test
                   Identifier = "ATCoreDataTest">
                </Test>
+               <Test
+                  Identifier = "ATCalendarTest">
+               </Test>
+               <Test
+                  Identifier = "ATEventTest">
+               </Test>
+               <Test
+                  Identifier = "ATGlobalPropertyesTest">
+               </Test>
+               <Test
+                  Identifier = "ATRecurrenceTest/testEventsScheduledAfter">
+               </Test>
+               <Test
+                  Identifier = "ATRecurrenceTest/testEventsScheduledAfterCornerCasesNonRecurring">
+               </Test>
+               <Test
+                  Identifier = "ATRecurrenceTest/testmatchingDatesFromDateToEndDate">
+               </Test>
+               <Test
+                  Identifier = "ATRecurrenceTest/testMatchingStartDatesFromDateToDate_SyncContainedInReccurence">
+               </Test>
+               <Test
+                  Identifier = "ATRecurrenceTest/testMatchingStartDatesFromDateToDate_SyncOutsideReccurenceOnTheLeft">
+               </Test>
+               <Test
+                  Identifier = "ATRecurrenceTest/testMatchingStartDatesFromDateToDate_SyncOutsideReccurenceOnTheLeft_EndsSameDaySyncStart">
+               </Test>
+               <Test
+                  Identifier = "ATRecurrenceTest/testMatchingStartDatesFromDateToDate_SyncOutsideReccurenceOnTheRight">
+               </Test>
+               <Test
+                  Identifier = "ATRecurrenceTest/testMatchingStartDatesFromDateToDate_SyncOverlapingReccurenceLeft">
+               </Test>
+               <Test
+                  Identifier = "ATRecurrenceTest/testMatchingStartDatesFromDateToDate_SyncOverlapingReccurenceRight">
+               </Test>
+               <Test
+                  Identifier = "ATRecurrenceTest/testMatchingStartDatesFromDateToDate_SyncOverlappsReccurence">
+               </Test>
+               <Test
+                  Identifier = "ATRecurrenceTest/testRecurrencesFromTo">
+               </Test>
+               <Test
+                  Identifier = "ATRecurrenceTest/testUpdateOccurencesFromTo">
+               </Test>
+               <Test
+                  Identifier = "ATRecurrenceTest/testUpdateOccurencesFromWhenEndOfIntervalIsAfterRecurenceEnd">
+               </Test>
             </SkippedTests>
          </TestableReference>
       </Testables>
@@ -56,7 +104,7 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "-com.apple.CoreData.SQLDebug 1"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
       <EnvironmentVariables>
@@ -88,7 +136,7 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "-com.apple.CoreData.SQLDebug 1"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
