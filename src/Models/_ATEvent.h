@@ -21,6 +21,7 @@ extern const struct ATEventAttributes {
 
 extern const struct ATEventRelationships {
 	__unsafe_unretained NSString *firstAlertNotification;
+	__unsafe_unretained NSString *properties;
 	__unsafe_unretained NSString *recurence;
 	__unsafe_unretained NSString *seccondAlertNotification;
 } ATEventRelationships;
@@ -29,6 +30,7 @@ extern const struct ATEventFetchedProperties {
 } ATEventFetchedProperties;
 
 @class ATAlertNotification;
+@class EventProperty;
 @class ATRecurrence;
 @class ATAlertNotification;
 
@@ -201,6 +203,13 @@ extern const struct ATEventFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSSet *properties;
+
+- (NSMutableSet*)propertiesSet;
+
+
+
+
 @property (nonatomic, strong) ATRecurrence *recurence;
 
 //- (BOOL)validateRecurence:(id*)value_ error:(NSError**)error_;
@@ -219,6 +228,11 @@ extern const struct ATEventFetchedProperties {
 @end
 
 @interface _ATEvent (CoreDataGeneratedAccessors)
+
+- (void)addProperties:(NSSet*)value_;
+- (void)removeProperties:(NSSet*)value_;
+- (void)addPropertiesObject:(EventProperty*)value_;
+- (void)removePropertiesObject:(EventProperty*)value_;
 
 @end
 
@@ -312,6 +326,11 @@ extern const struct ATEventFetchedProperties {
 
 - (ATAlertNotification*)primitiveFirstAlertNotification;
 - (void)setPrimitiveFirstAlertNotification:(ATAlertNotification*)value;
+
+
+
+- (NSMutableSet*)primitiveProperties;
+- (void)setPrimitiveProperties:(NSMutableSet*)value;
 
 
 

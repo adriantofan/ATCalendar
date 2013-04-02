@@ -20,6 +20,7 @@ const struct ATEventAttributes ATEventAttributes = {
 
 const struct ATEventRelationships ATEventRelationships = {
 	.firstAlertNotification = @"firstAlertNotification",
+	.properties = @"properties",
 	.recurence = @"recurence",
 	.seccondAlertNotification = @"seccondAlertNotification",
 };
@@ -242,6 +243,19 @@ const struct ATEventFetchedProperties ATEventFetchedProperties = {
 
 @dynamic firstAlertNotification;
 
+	
+
+@dynamic properties;
+
+	
+- (NSMutableSet*)propertiesSet {
+	[self willAccessValueForKey:@"properties"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"properties"];
+  
+	[self didAccessValueForKey:@"properties"];
+	return result;
+}
 	
 
 @dynamic recurence;
