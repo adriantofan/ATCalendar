@@ -285,13 +285,8 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
   self.seccondAlertVisible = event.firstAlertTypeValue != ATEventAlertTypeNone;
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+-(void)viewWillDisappear:(BOOL)animated{
+  [self updateFromView:self.event];
 }
 
 - (void)viewDidLoad
