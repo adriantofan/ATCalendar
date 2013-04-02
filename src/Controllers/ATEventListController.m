@@ -75,8 +75,8 @@
   UIBarButtonItem * today = [[UIBarButtonItem alloc]
                              initWithTitle:NSLocalizedString(@"Today", @"")
                                      style:UIBarButtonItemStyleBordered
-                                    target:nil
-                                    action:nil];
+                                    target:self
+                                    action:@selector(showToday)];
   UIBarButtonItem * spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
   UISegmentedControl *segCtrl = [[UISegmentedControl alloc] initWithItems: @[NSLocalizedString(@"Month", @""), NSLocalizedString(@"Week", @""),NSLocalizedString(@"Day", @"") ]];
   segCtrl.selectedSegmentIndex = 0;
@@ -86,7 +86,7 @@
   UIBarButtonItem *segCtrlItem = [[UIBarButtonItem alloc] initWithCustomView:segCtrl];
   NSArray* items = @[today,spacer,segCtrlItem];
   [self setToolbarItems:items animated:YES];
-  self.selectedDisplayStyle = 0;
+//  self.selectedDisplayStyle = 0;
 }
 
 -(void)setSelectedDisplayStyle:(NSInteger)selectedDisplayStyle{
@@ -97,7 +97,38 @@
 }
 
 -(void)showToday{
-  
+  NSDate *now = [NSDate date];
+  ATOccurrenceCache* today;
+  NSPredicate *before = [NSPredicate predicateWithFormat:@"day >= %@" argumentArray:@[now]];
+  ATOccurrenceCache* prev = [ATOccurrenceCache MR_findFirstWithPredicate:before
+                                                                sortedBy:@"day"
+                                                               ascending:NO
+                                                               inContext:self.moc];
+  NSPredicate *after = [NSPredicate predicateWithFormat:@"day <= %@" argumentArray:@[now]];
+  ATOccurrenceCache* next = [ATOccurrenceCache MR_findFirstWithPredicate:after
+                                                                sortedBy:@"day"
+                                                               ascending:YES
+                                                               inContext:self.moc];
+  if (prev && next) {
+    if ([prev.day mt_isWithinSameDay:now] && ![next.day mt_isWithinSameDay:now] ) {
+      today = prev;
+    }else
+      if ([next.day mt_isWithinSameDay:now] && ![prev.day mt_isWithinSameDay:now] ) {
+        today = next;
+      }else{
+        today = prev; // return before by default
+      }
+  }else if (prev){
+    today = prev;
+  }else if (next){
+    today = next;
+  }else{
+    return;
+  }
+  NSIndexPath* indexPath = [self.fetchedResultsController indexPathForObject:today];
+  [self.tableView scrollToRowAtIndexPath:indexPath
+                        atScrollPosition:UITableViewScrollPositionMiddle
+                                animated:[UIView areAnimationsEnabled]?YES:NO];
 }
 
 #pragma mark - Button Actions
@@ -132,7 +163,11 @@
 -(void) eventEditBaseController:(ATEventEditBaseController*)controller
                didFinishEditing:(BOOL)successOrCancel{
   if (successOrCancel) { // This can only be an add action
+    self.fetchedResultsController.delegate = nil;
+    self.fetchedResultsController = nil;
+
     [controller.event saveToPersistentStoreAndUpdateCaches];
+    [self.tableView reloadData];
   }
   [self dismissViewControllerAnimated:YES completion:nil];
 }
