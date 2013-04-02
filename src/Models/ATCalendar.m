@@ -93,16 +93,18 @@ static ATCalendar* ___sharedInstance;
 -(void)syncCachesIfNeeded:(NSDate*)toDate inContext:(NSManagedObjectContext*)moc{
   NSDate *lastCachedDay = [ATGlobalPropertyes lastCachedDay];
   NSDate * from,* to;
-  if ([lastCachedDay isAfter:toDate]) {
+  if ([lastCachedDay mt_isAfter:toDate]) {
     [self clearOccurenceCache];
     from = nil;
   }
-  from = [lastCachedDay startOfCurrentDay];
-  to = [toDate endOfCurrentDay];
+  from = [lastCachedDay mt_startOfCurrentDay];
+  to = [toDate mt_endOfCurrentDay];
   ATTimeSpan* syncSpan = [self timeSpanToSyncFrom:from to:to];
-  [self syncNonRecurringEventsFrom:syncSpan.start to:syncSpan.end inContext:moc];
-  [self syncRecurringEventsFrom:syncSpan.start to:syncSpan.end inContext:moc];
-  [ATGlobalPropertyes setLastCachedDay:toDate];
+  if (syncSpan) {
+    [self syncNonRecurringEventsFrom:syncSpan.start to:syncSpan.end inContext:moc];
+    [self syncRecurringEventsFrom:syncSpan.start to:syncSpan.end inContext:moc];
+    [ATGlobalPropertyes setLastCachedDay:toDate];    
+  }
 }
 
 -(ATTimeSpan*)currentSyncSpan{
@@ -140,25 +142,25 @@ static ATCalendar* ___sharedInstance;
     return nil;
   }else
     if (nil == fromDate) {
-      return [ATTimeSpan timeSpanFrom:[[toDate oneYearPrevious] startOfCurrentDay]
-                                   to:[[[toDate oneYearNext] oneYearNext] endOfCurrentDay]];
+      return [ATTimeSpan timeSpanFrom:[[toDate mt_oneYearPrevious] mt_startOfCurrentDay]
+                                   to:[[[toDate mt_oneYearNext] mt_oneYearNext] mt_endOfCurrentDay]];
     }else
-      if ([fromDate isWithinSameDay:toDate]) {
+      if ([fromDate mt_isWithinSameDay:toDate]) {
         return nil;
       }else{
-        return [ATTimeSpan timeSpanFrom: [[fromDate dateDaysAfter:1] startOfCurrentDay]
-                                     to:[toDate endOfCurrentDay]];
+        return [ATTimeSpan timeSpanFrom: [[fromDate mt_dateDaysAfter:1] mt_startOfCurrentDay]
+                                     to:[toDate mt_endOfCurrentDay]];
       }
   
 }
 
 -(NSArray*)dateArrayToSyncFrom:(NSDate*)fromDate to:(NSDate*)toDate{
   ATTimeSpan* timeSpan = [self timeSpanToSyncFrom:fromDate to:toDate];
-  if ([timeSpan.start isWithinSameDay:timeSpan.end]) {
-    return @[[timeSpan.start startOfCurrentDay]];
+  if ([timeSpan.start mt_isWithinSameDay:timeSpan.end]) {
+    return @[[timeSpan.start mt_startOfCurrentDay]];
   }else
-    return [NSDate datesCollectionFromDate:[[timeSpan.start oneDayPrevious] startOfCurrentDay]
-                                 untilDate:[timeSpan.end startOfCurrentDay]];
+    return [NSDate mt_datesCollectionFromDate:[[timeSpan.start mt_oneDayPrevious] mt_startOfCurrentDay]
+                                 untilDate:[timeSpan.end mt_startOfCurrentDay]];
 }
 
 @end

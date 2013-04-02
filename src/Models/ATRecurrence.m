@@ -57,20 +57,20 @@
                                        ATOccurrenceCache *occurence = [ATOccurrenceCache MR_createInContext:moc];
                                        occurence.startDate = [self.event eventStartAtDate:occurenceDate offset:[offset integerValue]];
                                        occurence.endDate = [self.event eventEndAtDate:occurenceDate offset:[offset integerValue]];
-                                       occurence.occurrenceDate = [self.event.startDate dateDaysAfter:[offset integerValue]];
+                                       occurence.occurrenceDate = [self.event.startDate mt_dateDaysAfter:[offset integerValue]];
                                        occurence.event = self.event;
-                                       occurence.day = [occurenceDate startOfCurrentDay];
+                                       occurence.day = [occurenceDate mt_startOfCurrentDay];
                                      }
                                    }];
 }
 
 - (NSDictionary*)matchingDateSets:(NSDate*)fromDate to:(NSDate*)endDate{
   NSArray* startingDates = [self matchingStartDates:fromDate to:endDate];
-  NSDate* intervalEnd = [self.endDate isBefore:endDate]?self.endDate:endDate;
+  NSDate* intervalEnd = [self.endDate mt_isBefore:endDate]?self.endDate:endDate;
   NSMutableDictionary *occurences = [NSMutableDictionary dictionaryWithCapacity:[startingDates count]];
   for (NSDate* match in startingDates) {
-    NSUInteger offset = [match daysSinceDate:self.startDate];
-    NSArray* subMatches = [self.event matchingDates:[match startOfCurrentDay]
+    NSUInteger offset = [match mt_daysSinceDate:self.startDate];
+    NSArray* subMatches = [self.event matchingDates:[match mt_startOfCurrentDay]
                                                  to:intervalEnd
                                              offset:offset];
     [occurences setObject:subMatches
@@ -80,14 +80,14 @@
 }
 
 - (NSArray*)matchingStartDates:(NSDate*)fromDate to:(NSDate*)endDate{
-  if ([self.endDate isBefore:fromDate]) {return @[];};
+  if ([self.endDate mt_isBefore:fromDate]) {return @[];};
   NSTimeInterval eventSpan = [self.event.endDate timeIntervalSinceDate:self.event.startDate];
   NSMutableArray *dates = [[NSMutableArray alloc]initWithCapacity:10];
-  NSDate* intervalEnd = [self.endDate isBefore:endDate]?self.endDate:endDate;
-  for (NSDate *occurenceStart = self.startDate;occurenceStart && [occurenceStart isOnOrBefore:intervalEnd];) {
+  NSDate* intervalEnd = [self.endDate mt_isBefore:endDate]?self.endDate:endDate;
+  for (NSDate *occurenceStart = self.startDate;occurenceStart && [occurenceStart mt_isOnOrBefore:intervalEnd];) {
     NSDate* occurenceEnd = [occurenceStart dateByAddingTimeInterval:eventSpan];
-    if ([occurenceStart isBetweenDate:fromDate andDate:intervalEnd] ||
-        [occurenceEnd isBetweenDate:fromDate andDate:intervalEnd]) {
+    if ([occurenceStart mt_isBetweenDate:fromDate andDate:intervalEnd] ||
+        [occurenceEnd mt_isBetweenDate:fromDate andDate:intervalEnd]) {
       [dates addObject:occurenceStart];
     }
     occurenceStart = [self nextOccurenceAfter:occurenceStart];

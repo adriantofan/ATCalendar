@@ -11,8 +11,8 @@
 @implementation ATDailyRecurrence
 
 -(NSDate*)nextOccurenceAfter:(NSDate*)date{
-  NSDate* next = [date dateDaysAfter:1];
-  if ([next isBetweenDate:self.startDate andDate:self.endDate]) {
+  NSDate* next = [date mt_dateDaysAfter:1];
+  if ([next mt_isBetweenDate:self.startDate andDate:self.endDate]) {
     return next;
   }
   return nil;

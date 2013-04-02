@@ -133,7 +133,7 @@ typedef enum{
   NSInteger timeSpan = [endDate_ timeIntervalSinceDate:startDate_];
   if (edigingElement_ == ATDurationEditControllerEditElementStart) {
     startDate_ = picker_.date;
-    if ([startDate_ isAfter:endDate_]) {
+    if ([startDate_ mt_isAfter:endDate_]) {
       endDate_ = [startDate_ dateByAddingTimeInterval:timeSpan];
     }
     self.navigationItem.rightBarButtonItem.enabled = YES;
@@ -143,7 +143,7 @@ typedef enum{
   }
   if (edigingElement_ == ATDurationEditControllerEditElementEnd) {
     endDate_ = picker_.date;
-    if ([startDate_ isAfter:endDate_]) {
+    if ([startDate_ mt_isAfter:endDate_]) {
       self.navigationItem.rightBarButtonItem.enabled = NO;
       startDateLabel_.textColor = [UIColor redColor];
       endDateLabel_.textColor = [UIColor redColor];
@@ -168,15 +168,15 @@ typedef enum{
   if (allDaySwitch_.on) {
     if (!self.allDay) {
       self.allDay = TRUE;
-      startDate_ = [startDate_ startOfCurrentDay];
-      endDate_ = [endDate_ endOfCurrentDay];
+      startDate_ = [startDate_ mt_startOfCurrentDay];
+      endDate_ = [endDate_ mt_endOfCurrentDay];
       picker_.datePickerMode = UIDatePickerModeDate;
     }
   }else{
     if (self.allDay) {
       self.allDay = NO;
       startDate_ = [NSDate date];
-      endDate_ = [startDate_ oneHourNext];
+      endDate_ = [startDate_ mt_oneHourNext];
       picker_.datePickerMode = UIDatePickerModeDateAndTime;
     }
   }
@@ -192,7 +192,7 @@ typedef enum{
   [self.delegate durationEditController:self didFinishWithSave:NO];
 }
 - (IBAction)saveButtonAction:(id)sender {
-  if ([startDate_ isAfter:endDate_]) {
+  if ([startDate_ mt_isAfter:endDate_]) {
     UIAlertView *allert =
     [[UIAlertView alloc] initWithTitle:NSLocalizedString(
  @"Cannot save event",@"")

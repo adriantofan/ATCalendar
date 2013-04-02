@@ -22,7 +22,7 @@
 -(UILocalNotification*)notificationWithDate:(NSDate*)eventStart alertType:(ATEventAlertType)type{
   UILocalNotification* not = [UILocalNotification new];
   // ignore secconds
-  not.fireDate = [eventStart dateByAddingTimeInterval:[eventStart secondOfMinute]*-1.0];
+  not.fireDate = [eventStart dateByAddingTimeInterval:[eventStart mt_secondOfMinute]*-1.0];
   // TODO fixme
   not.timeZone = self.timeZone;
   not.alertBody = self.summary;
@@ -46,25 +46,25 @@
     case ATEventAlertTypeAtTime:
       break;
     case ATEventAlertType5MinBefore:
-      not.fireDate = [not.fireDate dateMinutesBefore:5];
+      not.fireDate = [not.fireDate mt_dateMinutesBefore:5];
       break;
     case ATEventAlertType15MinBefore:
-      not.fireDate = [not.fireDate dateMinutesBefore:15];
+      not.fireDate = [not.fireDate mt_dateMinutesBefore:15];
       break;
     case ATEventAlertType30MinBefore:
-      not.fireDate = [not.fireDate dateMinutesBefore:30];
+      not.fireDate = [not.fireDate mt_dateMinutesBefore:30];
       break;
     case ATEventAlertType1HBefore:
-      not.fireDate = [not.fireDate dateHoursBefore:1];
+      not.fireDate = [not.fireDate mt_dateHoursBefore:1];
       break;
     case ATEventAlertType2HBefore:
-      not.fireDate = [not.fireDate dateHoursBefore:2];
+      not.fireDate = [not.fireDate mt_dateHoursBefore:2];
       break;
     case ATEventAlertType1DayBefore:
-      not.fireDate = [not.fireDate dateDaysBefore:1];
+      not.fireDate = [not.fireDate mt_dateDaysBefore:1];
       break;
     case ATEventAlertType2DaysBefore:
-      not.fireDate = [not.fireDate dateDaysBefore:2];
+      not.fireDate = [not.fireDate mt_dateDaysBefore:2];
       break;
   }
   not.userInfo = @{@"ATEventURI":self.objectID.URIRepresentation};

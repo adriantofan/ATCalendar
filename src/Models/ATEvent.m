@@ -4,6 +4,7 @@
 #import "ATWeeklyRecurrence.h"
 #import "ATMonthlyRecurrence.h"
 #import "ATYearlyRecurrence.h"
+#import "ATEvent+LocalNotifications.h"
 
 @interface ATEvent ()
 @end
@@ -125,30 +126,30 @@
 
 
 - (NSDate*)eventStartAtDate:(NSDate*)occurence offset:(NSInteger)days{
-  NSDate *offsetedStartDate = [self.startDate dateDaysAfter:days];
-  NSDate *offsetedEndDate = [self.endDate dateDaysAfter:days];
+  NSDate *offsetedStartDate = [self.startDate mt_dateDaysAfter:days];
+  NSDate *offsetedEndDate = [self.endDate mt_dateDaysAfter:days];
   if (occurence == nil)
     return nil;
-  if ([occurence isWithinSameDay:offsetedStartDate]) {
+  if ([occurence mt_isWithinSameDay:offsetedStartDate]) {
     return offsetedStartDate;
   }
-  if ([occurence isBetweenDate:[offsetedStartDate startOfCurrentDay] andDate:[offsetedEndDate endOfCurrentDay]]) {
-    return [occurence startOfCurrentDay];
+  if ([occurence mt_isBetweenDate:[offsetedStartDate mt_startOfCurrentDay] andDate:[offsetedEndDate mt_endOfCurrentDay]]) {
+    return [occurence mt_startOfCurrentDay];
   }
   return nil;
 }
 
 - (NSDate*)eventEndAtDate:(NSDate*)occurence offset:(NSInteger)days{
-  NSDate *offsetedStartDate = [self.startDate dateDaysAfter:days];
-  NSDate *offsetedEndDate = [self.endDate dateDaysAfter:days];
+  NSDate *offsetedStartDate = [self.startDate mt_dateDaysAfter:days];
+  NSDate *offsetedEndDate = [self.endDate mt_dateDaysAfter:days];
   if (occurence == nil)
     return nil;
   else
-    if ([occurence isWithinSameDay:offsetedEndDate])
+    if ([occurence mt_isWithinSameDay:offsetedEndDate])
       return offsetedEndDate;
     else
-      if ([occurence isBetweenDate:[offsetedStartDate startOfCurrentDay] andDate:[offsetedEndDate endOfCurrentDay]])
-        return [occurence endOfCurrentDay];
+      if ([occurence mt_isBetweenDate:[offsetedStartDate mt_startOfCurrentDay] andDate:[offsetedEndDate mt_endOfCurrentDay]])
+        return [occurence mt_endOfCurrentDay];
   return nil;
 }
 
@@ -163,13 +164,19 @@
 @end
 
 @implementation ATEvent (ATOccurenceCache)
-
+-(void)saveToPersistentStoreAndUpdateCaches{
+  [self.managedObjectContext MR_saveToPersistentStoreAndWait];
+  [ATOccurrenceCache updateCachesAndAlertsAfterEventChange:self];
+  [self.managedObjectContext MR_saveToPersistentStoreAndWait];
+  [self updateLocalNotificationsAfterChange];
+  [self.managedObjectContext MR_saveToPersistentStoreAndWait];
+}
 - (void)updateSimpleOccurencesFrom:(NSDate *)fromDate to:(NSDate *)toDate inContext:(NSManagedObjectContext*)moc{
   if (self.recurence) {return; };
   NSArray* eventMatchingDates = [self matchingDates:fromDate to:toDate];
   for (NSDate *occurenceDate in eventMatchingDates) {
     ATOccurrenceCache *occurence = [ATOccurrenceCache MR_createInContext:moc];
-    occurence.day = [occurenceDate startOfCurrentDay];
+    occurence.day = [occurenceDate mt_startOfCurrentDay];
     occurence.startDate = [self eventStartAtDate:occurenceDate];
     occurence.occurrenceDate = self.startDate;
     occurence.endDate = [self eventEndAtDate:occurenceDate];
@@ -180,29 +187,29 @@
 - (NSArray*)matchingDates:(NSDate*)fromDate to:(NSDate*)endDate offset:(NSUInteger)days{
   if (!fromDate || !endDate) { return [NSArray array]; }
   
-  if ([fromDate isAfter:endDate]) {
+  if ([fromDate mt_isAfter:endDate]) {
     NSDate *tmp = endDate;
     endDate = fromDate;
     fromDate = tmp;
   }
-  NSDate* crtStartDate = [self.startDate dateDaysAfter:days];
-  NSDate* crtEndDate = [self.endDate dateDaysAfter:days];
-  if ([crtStartDate isBefore:fromDate] && [crtEndDate isBefore:fromDate])
+  NSDate* crtStartDate = [self.startDate mt_dateDaysAfter:days];
+  NSDate* crtEndDate = [self.endDate mt_dateDaysAfter:days];
+  if ([crtStartDate mt_isBefore:fromDate] && [crtEndDate mt_isBefore:fromDate])
     return [NSArray array];
-  if ([crtStartDate isAfter:endDate] && [crtEndDate isAfter:endDate])
+  if ([crtStartDate mt_isAfter:endDate] && [crtEndDate mt_isAfter:endDate])
     return [NSArray array];
   NSDate* start,*end;
-  if ([fromDate isBefore:crtStartDate]) {
-    start = [crtStartDate startOfCurrentDay];
+  if ([fromDate mt_isBefore:crtStartDate]) {
+    start = [crtStartDate mt_startOfCurrentDay];
   }else{
-    start = [fromDate startOfCurrentDay];
+    start = [fromDate mt_startOfCurrentDay];
   }
-  if ([endDate isAfter:crtEndDate]) {
-    end = [crtEndDate startOfCurrentDay];
+  if ([endDate mt_isAfter:crtEndDate]) {
+    end = [crtEndDate mt_startOfCurrentDay];
   }else{
-    end = [endDate startOfCurrentDay];
+    end = [endDate mt_startOfCurrentDay];
   }
-  return [NSDate datesCollectionFromDate:start untilDate:[end oneDayNext]];
+  return [NSDate mt_datesCollectionFromDate:start untilDate:[end mt_oneDayNext]];
 }
 
 - (NSArray*)matchingDates:(NSDate*)fromDate to:(NSDate*)endDate{

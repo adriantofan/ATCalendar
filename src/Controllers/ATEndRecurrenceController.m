@@ -50,7 +50,7 @@
                       action:@selector(dateChanged:)
             forControlEvents:UIControlEventValueChanged];
   if (!self.endDate) {
-    self.endDate = [[NSDate date] endOfCurrentDay];
+    self.endDate = [[NSDate date] mt_endOfCurrentDay];
   }
   self.pickerView.minimumDate = self.minimumDate;
   self.pickerView.date = self.endDate;
@@ -115,7 +115,7 @@
 }
 
 -(IBAction)dateChanged:(id)sender{
-  self.endDate = [pickerView_.date endOfCurrentDay];
+  self.endDate = [pickerView_.date mt_endOfCurrentDay];
   self.dateCell.detailTextLabel.text = [formater_ stringFromDate:self.endDate];
 }
 

@@ -33,9 +33,9 @@
   [MagicalRecord setupCoreDataStackWithStoreNamed:@"ATCalendar.sqlite"];
   NSManagedObjectContext* moc = [NSManagedObjectContext MR_contextForCurrentThread];
   [[ATCalendar sharedInstance] syncCachesIfNeeded:[NSDate date] inContext:moc];
-  [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
+  [moc MR_saveToPersistentStoreAndWait];
   [[ATCalendar sharedInstance] updateAlarmLocalNotificationsInContext:moc];
-  [[NSManagedObjectContext MR_contextForCurrentThread] MR_saveToPersistentStoreAndWait];
+  [moc MR_saveToPersistentStoreAndWait];
 
   ATEventListController* controller = [[ATEventListController alloc] initWithStyle:UITableViewStylePlain];
   UINavigationController* navigationController = [[UINavigationController alloc] initWithRootViewController:controller];

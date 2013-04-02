@@ -10,8 +10,8 @@
 
 @implementation ATWeeklyRecurrence
 -(NSDate*)nextOccurenceAfter:(NSDate*)date{
-  NSDate* next = [date dateWeeksAfter:1];
-  if ([next isBetweenDate:self.startDate andDate:self.endDate]) {
+  NSDate* next = [date mt_dateWeeksAfter:1];
+  if ([next mt_isBetweenDate:self.startDate andDate:self.endDate]) {
     return next;
   }
   return nil;

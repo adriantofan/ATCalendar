@@ -35,7 +35,7 @@
 //  NSArray* eventIDs = [ATOccurrenceCache eventsObjectIdsScheduledAfter:date inContext:moc limit:limit];
   NSMutableArray *results = [[NSMutableArray alloc] initWithCapacity:[eventIDs count]];
   for (NSManagedObjectID *eventID in eventIDs) {
-    NSPredicate *dateAndEventFilter = [NSPredicate predicateWithFormat:@"day >= %@ AND event = %@", [date startOfCurrentDay],eventID];
+    NSPredicate *dateAndEventFilter = [NSPredicate predicateWithFormat:@"day >= %@ AND event = %@", [date mt_startOfCurrentDay],eventID];
     ATOccurrenceCache* occurence =
       [ATOccurrenceCache MR_findFirstWithPredicate:dateAndEventFilter
                                           sortedBy:@"day"
@@ -48,7 +48,7 @@
 
 
 +(NSArray*)eventIDsWithAlertAfter:(NSDate*)date inContext:(NSManagedObjectContext*)moc limit:(NSInteger)limit{
-  NSPredicate *dateFilter = [NSPredicate predicateWithFormat:@"day >= %@ AND (event.firstAlertType != 0 OR event.seccondAlertType != 0)", [date startOfCurrentDay]];
+  NSPredicate *dateFilter = [NSPredicate predicateWithFormat:@"day >= %@ AND (event.firstAlertType != 0 OR event.seccondAlertType != 0)", [date mt_startOfCurrentDay]];
   NSFetchRequest *eventsRequest =
     [ATOccurrenceCache MR_requestAllSortedBy:@"day"
                                    ascending:YES
@@ -70,8 +70,8 @@
 }
 
 -(BOOL)allDay{
-  if ([self.startDate isEqualToDate:[self.startDate startOfCurrentDay]] &&
-      [self.endDate isEqualToDate:[self.endDate endOfCurrentDay]]) {
+  if ([self.startDate isEqualToDate:[self.startDate mt_startOfCurrentDay]] &&
+      [self.endDate isEqualToDate:[self.endDate mt_endOfCurrentDay]]) {
     return YES;
   }
   return NO;
@@ -92,7 +92,7 @@
   NSDate *start = self.occurrenceDate;
   NSDate *end = [start dateByAddingTimeInterval:[self.event.endDate timeIntervalSinceDate:self.event.startDate]];
   // :-(
-  if ([start isWithinSameDay:end] && !self.event.allDayValue) {
+  if ([start mt_isWithinSameDay:end] && !self.event.allDayValue) {
     description =
       [description stringByAppendingFormat:NSLocalizedString(@"%@ \nfrom %@ to %@",@""),
         [dateFormater stringFromDate:start],
@@ -103,7 +103,7 @@
       description = NSLocalizedString(@"All Day ",@"");
       formater = dateFormater;
     }
-    if ([start isWithinSameDay:end] && self.event.allDayValue) {
+    if ([start mt_isWithinSameDay:end] && self.event.allDayValue) {
       description =
         [description stringByAppendingFormat:NSLocalizedString(@"%@",@""),
          [dateFormater stringFromDate:start]];

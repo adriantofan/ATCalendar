@@ -15,7 +15,6 @@
 #import "ATWeeklyRecurrence.h"
 #import "ATMonthlyRecurrence.h"
 #import "ATYearlyRecurrence.h"
-#import "ATEvent+LocalNotifications.h"
 
 #import "ATOccurrenceCache.h"
 #import "ATEventTextFieldCell.h"

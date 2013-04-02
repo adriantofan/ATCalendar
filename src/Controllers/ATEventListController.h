@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ATEventEditBaseController.h"
 
-@interface ATEventListController : UITableViewController<NSFetchedResultsControllerDelegate,ATEventEditBaseControllerDelegate>
-@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@interface ATEventListController : UIViewController<UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate,ATEventEditBaseControllerDelegate, UISearchDisplayDelegate>
 @property (strong, nonatomic) NSManagedObjectContext *moc;
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end

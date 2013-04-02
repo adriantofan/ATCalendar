@@ -10,8 +10,8 @@
 
 @implementation ATMonthlyRecurrence
 -(NSDate*)nextOccurenceAfter:(NSDate*)date{
-  NSDate* next = [date dateMonthsAfter:1];
-  if ([next isBetweenDate:self.startDate andDate:self.endDate]) {
+  NSDate* next = [date mt_dateMonthsAfter:1];
+  if ([next mt_isBetweenDate:self.startDate andDate:self.endDate]) {
     return next;
   }
   return nil;

@@ -36,6 +36,7 @@ typedef enum{
 @end
 
 @interface ATEvent (ATOccurenceCache)
+-(void)saveToPersistentStoreAndUpdateCaches;
 
 // updates event's ocurence cache between |fromDate| to |endDate| (inclusive)
 // Should be used with simple occurences
