@@ -1,5 +1,5 @@
 platform :ios
-pod 'MTDates' , '~> 0.8.0'
+pod 'MTDates' , '~> 0.9.1'
 pod 'Functional.m', :local => '~/Desktop/Functional.m'
 pod 'MagicalRecord', '~> 2.1.0'
 pod 'CocoaLumberjack'

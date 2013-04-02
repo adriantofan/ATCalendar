@@ -13,6 +13,7 @@
 #import "ATEventOccurenceController.h"
 #import "ATEventCreateController.h"
 #import "ATEvent+LocalNotifications.h"
+#import "ATEventOccurenceCell.h"
 
 @interface ATEventListController (){
   NSManagedObjectContext* addingContext_;
@@ -83,6 +84,8 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  self.eventCellClass = [ATEventOccurenceCell class];
+  self.searchResultsEventCellClass = [ATEventOccurenceCell class];
   [self.tableView registerClass:self.eventCellClass forCellReuseIdentifier:self.eventCellId];
   UISearchDisplayController *searchDisplayCtrl =
     [[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
@@ -441,7 +444,16 @@
 
 - (void)configureCell:(UITableViewCell *)cell forObject:(ATOccurrenceCache*)object
 {
-  cell.textLabel.text = object.event.summary;
+  ATEventOccurenceCell* c;
+  if ([cell isKindOfClass:[ATEventOccurenceCell class]]) {
+    c = (ATEventOccurenceCell*)cell;
+  }
+  c.summaryLabel.text = object.event.summary;
+  c.timeLabel.text = [object timeSpanDescription];
+  c.summaryLabel.font = [UIFont boldSystemFontOfSize:20.0];
+  c.timeLabel.textColor = [UIColor colorWithRed:0x6c/255.0 green:0x72/255.0 blue:0x7c/255.0 alpha:1.0] ;
+  c.summaryLabel.font = [UIFont boldSystemFontOfSize:18.0];
+  c.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+  c.selectionStyle = UITableViewCellSelectionStyleGray;
 }
-
 @end

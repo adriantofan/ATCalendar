@@ -37,7 +37,7 @@
   [[ATCalendar sharedInstance] updateAlarmLocalNotificationsInContext:moc];
   [moc MR_saveToPersistentStoreAndWait];
 
-  ATEventListController* controller = [[ATEventListController alloc] initWithStyle:UITableViewStylePlain];
+  ATEventListController* controller = [[ATEventListController alloc] init];
   UINavigationController* navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
   self.window.rootViewController = navigationController;
     // Override point for customization after application launch.
