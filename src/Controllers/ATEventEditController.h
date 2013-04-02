@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "ATEventEditBaseController.h"
-@interface ATEventEditController : ATEventEditBaseController
+@interface ATEventEditController : ATEventEditBaseController <UIActionSheetDelegate>
 @property (nonatomic,readwrite) ATEvent* sourceEvent;
 @end

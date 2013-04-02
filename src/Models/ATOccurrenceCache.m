@@ -83,6 +83,18 @@
   }
   return NO;
 }
+-(NSString*)timeSpanDescription{
+  if ([self.startDate isEqualToDate:self.day] && [self.endDate isEqualToDate:[self.day mt_endOfCurrentDay]]) {
+    return NSLocalizedString(@"all-day",@"marks event end");
+  }if (![self.occurrenceDate mt_isWithinSameDay:self.day] &&
+       [self.endDate mt_isWithinSameDay:self.day]) {
+    return [NSString stringWithFormat:NSLocalizedString(@"ends\n%@", @"event occurence end time"),
+            [self.endDate mt_stringFromDateWithHourAndMinuteFormat:MTDateHourFormat24Hour]];
+  }else
+  return  [self.occurrenceDate mt_stringFromDateWithHourAndMinuteFormat:MTDateHourFormat24Hour];
+  return @"*";
+}
+
 
 -(NSString*)durationDescription{
   NSString* description = @"";

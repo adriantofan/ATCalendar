@@ -11,6 +11,9 @@
 
 -(NSString*)durationDescription;
 
+// All day, ends or 10:33
+-(NSString*)timeSpanDescription;
+
 //
 // Array of one ATOccurrenceCache
 +(NSArray*)firstOccurenceCacheOfEventIDs:(NSArray*)eventIDs after:(NSDate*)date inContext:(NSManagedObjectContext*)moc limit:(NSInteger)limit;

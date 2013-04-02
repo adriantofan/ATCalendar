@@ -8,8 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "ATEventEditBaseController.h"
-
+@class ATOccurrenceCache;
 @interface ATEventListController : UIViewController<UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate,ATEventEditBaseControllerDelegate, UISearchDisplayDelegate>
 @property (strong, nonatomic) NSManagedObjectContext *moc;
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+@property (nonatomic) UITableView* tableView;
+
+@property (nonatomic,strong) NSString* searchResultsEventCellId;
+@property (nonatomic,strong) NSString* eventCellId;
+@property (nonatomic,assign) Class searchResultsEventCellClass;
+@property (nonatomic,assign) Class eventCellClass;
+
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (strong, nonatomic) NSFetchedResultsController *sFetchedResultsController;
+
+- (void)configureCell:(UITableViewCell *)cell forObject:(ATOccurrenceCache*)object;
+
 @end

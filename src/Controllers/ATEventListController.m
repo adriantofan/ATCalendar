@@ -18,11 +18,8 @@
   NSManagedObjectContext* addingContext_;
 }
 @property (nonatomic) UISearchBar* searchBar;
-@property (nonatomic) UITableView* tableView;
 @property (nonatomic, strong) NSString *searchString;
 @property (nonatomic,strong) UISearchDisplayController *searchDisplayCtrl;
-@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
-@property (strong, nonatomic) NSFetchedResultsController *sFetchedResultsController;
 @property (strong, nonatomic)  UISegmentedControl *segCtrl;
 @property (nonatomic) NSInteger selectedDisplayStyle; // 0,1,2 / Month, Week, Day
 @end
@@ -32,6 +29,37 @@
 @synthesize sFetchedResultsController = sFetchedResultsController_;
 @synthesize searchString = searchString_;
 @synthesize selectedDisplayStyle = selectedDisplayStyle_;
+@synthesize searchResultsEventCellId = searchResultsEventCellId_;
+@synthesize eventCellId = eventCellId_;
+@synthesize searchResultsEventCellClass = searchResultsEventCellClass_;
+@synthesize eventCellClass = eventCellClass_;
+
+-(Class)eventCellClass{
+  if (nil == eventCellClass_) {
+    eventCellClass_ = [UITableViewCell class];
+  }
+  return eventCellClass_;
+}
+
+-(Class)searchResultsEventCellClass{
+  if (nil == searchResultsEventCellClass_) {
+    searchResultsEventCellClass_ = [UITableViewCell class];
+  }
+  return searchResultsEventCellClass_;
+}
+
+-(NSString*)searchResultsEventCellId{
+  if (nil == searchResultsEventCellId_) {
+    searchResultsEventCellId_ = @"searchResultsEventCellIdDefault";
+  }
+  return searchResultsEventCellId_;
+}
+-(NSString*)eventCellId{
+  if (nil == eventCellId_) {
+    eventCellId_ = @"eventCellIdDefault";
+  }
+  return eventCellId_;
+}
 
 -(void)viewWillAppear:(BOOL)animated{
   [super viewWillAppear:animated];
@@ -45,7 +73,7 @@
 - (void)loadView{
   [super loadView];
   self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.bounds.size.width, 44.0)];
-  self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, 44.0, self.view.bounds.size.width, self.view.bounds.size.height-44.0)];
+  self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, 44.0, self.view.bounds.size.width, self.view.bounds.size.height-44.0-138.0)]; // just before the toolbar
   [self.view addSubview:self.searchBar];
   [self.view addSubview:self.tableView];
   self.tableView.delegate = self;
@@ -55,6 +83,7 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  [self.tableView registerClass:self.eventCellClass forCellReuseIdentifier:self.eventCellId];
   UISearchDisplayController *searchDisplayCtrl =
     [[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
   searchDisplayCtrl.delegate = self;
@@ -86,7 +115,6 @@
   UIBarButtonItem *segCtrlItem = [[UIBarButtonItem alloc] initWithCustomView:segCtrl];
   NSArray* items = @[today,spacer,segCtrlItem];
   [self setToolbarItems:items animated:YES];
-//  self.selectedDisplayStyle = 0;
 }
 
 -(void)setSelectedDisplayStyle:(NSInteger)selectedDisplayStyle{
@@ -235,9 +263,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  ;
-  UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-  [self configureCell:cell atIndexPath:indexPath];
+  UITableViewCell *cell;
+  ATOccurrenceCache *object;
+  if (tableView == self.searchDisplayController.searchResultsTableView) {
+    cell = [tableView dequeueReusableCellWithIdentifier:self.searchResultsEventCellId];
+    object = [self.sFetchedResultsController objectAtIndexPath:indexPath];
+  }else{
+    cell = [tableView dequeueReusableCellWithIdentifier:self.eventCellId];
+    object = [self.fetchedResultsController objectAtIndexPath:indexPath];
+  }
+  [self configureCell:cell forObject:object];
   return cell;
 }
 
@@ -363,7 +398,8 @@
       break;
       
     case NSFetchedResultsChangeUpdate:
-      [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+      [self configureCell:[tableView cellForRowAtIndexPath:indexPath]
+              forObject:[controller objectAtIndexPath:indexPath]];
       break;
       
     case NSFetchedResultsChangeMove:
@@ -393,16 +429,18 @@
   self.sFetchedResultsController = nil;
   return YES;
 }
+-(void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView{
+  [tableView registerClass:self.searchResultsEventCellClass forCellReuseIdentifier:self.searchResultsEventCellId];
 
+}
 // This gets called when you cancel or close the search bar
 -(void)searchDisplayController:(UISearchDisplayController *)controller willUnloadSearchResultsTableView:(UITableView *)tableView {
   self.searchString = nil;
   self.sFetchedResultsController = nil;
 }
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void)configureCell:(UITableViewCell *)cell forObject:(ATOccurrenceCache*)object
 {
-  ATOccurrenceCache *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
   cell.textLabel.text = object.event.summary;
 }
 

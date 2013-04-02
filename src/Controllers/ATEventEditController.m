@@ -41,12 +41,11 @@
     btn.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [footerView_ addSubview:btn];
     [btn setTitle:NSLocalizedString(@"Delete", @"") forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(deleteButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    [btn addTarget:self action:@selector(deleteButtonAction:) forControlEvents:UIControlEventTouchUpInside];
   }
   return footerView_;
 }
-
--(IBAction)deleteButtonAction{
+-(void)deleteCurrentEventAndNotifyDelegate{
   BOOL sholdRemoveLocalNotifications = self.event.firstAlertNotification || self.event.seccondAlertNotification;
   
   if (sholdRemoveLocalNotifications) [self.event removeExistingLocalNotifications];
@@ -58,6 +57,28 @@
     [[ATCalendar sharedInstance] updateAlarmLocalNotificationsInContext:self.event.managedObjectContext];
   [self.delegate eventEditBaseController:self
                         didFinishEditing:TRUE];
+}
+-(IBAction)deleteButtonAction:(UIButton*)sender{
+  if (self.event.isRecurrent) {
+    UIActionSheet *a = [[UIActionSheet alloc]
+                        initWithTitle:NSLocalizedString(@"This event is recurrent", @"")
+                        delegate:self
+                        cancelButtonTitle:NSLocalizedString(@"Cancel",@"")
+                        destructiveButtonTitle:NSLocalizedString(@"Delete all occurences",@"")
+                        otherButtonTitles:nil];
+    [a showFromRect:sender.frame
+             inView:self.view
+           animated:YES];
+  }else{
+    [self deleteCurrentEventAndNotifyDelegate];
+  }
+}
+
+#pragma mark -
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0) {
+      [self deleteCurrentEventAndNotifyDelegate];
+    }
 }
 
 @end
