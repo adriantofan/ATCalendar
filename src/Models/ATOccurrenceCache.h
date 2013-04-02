@@ -6,6 +6,9 @@
 // Array of one ATOccurrenceCache
 +(NSArray*)firstOccurenceCacheOfEventWithAlarmAfter:(NSDate*)date inContext:(NSManagedObjectContext*)moc limit:(NSInteger)limit;
 -(NSTimeInterval) dayTimeStamp;
+-(NSTimeInterval) weekTimeStamp;
+-(NSTimeInterval) monthTimeStamp;
+
 -(NSString*)durationDescription;
 
 //

@@ -23,12 +23,15 @@
 @property (nonatomic,strong) UISearchDisplayController *searchDisplayCtrl;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSFetchedResultsController *sFetchedResultsController;
+@property (strong, nonatomic)  UISegmentedControl *segCtrl;
+@property (nonatomic) NSInteger selectedDisplayStyle; // 0,1,2 / Month, Week, Day
 @end
 
 @implementation ATEventListController
 @synthesize fetchedResultsController = fetchedResultsController_;
 @synthesize sFetchedResultsController = sFetchedResultsController_;
 @synthesize searchString = searchString_;
+@synthesize selectedDisplayStyle = selectedDisplayStyle_;
 
 -(void)viewWillAppear:(BOOL)animated{
   [super viewWillAppear:animated];
@@ -75,13 +78,34 @@
                                     target:nil
                                     action:nil];
   UIBarButtonItem * spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-  UISegmentedControl *segCtrl = [[UISegmentedControl alloc] initWithItems: @[NSLocalizedString(@"Month", @""), NSLocalizedString(@"Week", @"") ]];
+  UISegmentedControl *segCtrl = [[UISegmentedControl alloc] initWithItems: @[NSLocalizedString(@"Month", @""), NSLocalizedString(@"Week", @""),NSLocalizedString(@"Day", @"") ]];
+  segCtrl.selectedSegmentIndex = 0;
+  [segCtrl addTarget:self action:@selector(segCtrlChanged:) forControlEvents:UIControlEventValueChanged];
   segCtrl.segmentedControlStyle = UISegmentedControlStyleBar;
+  self.segCtrl = segCtrl;
   UIBarButtonItem *segCtrlItem = [[UIBarButtonItem alloc] initWithCustomView:segCtrl];
   NSArray* items = @[today,spacer,segCtrlItem];
   [self setToolbarItems:items animated:YES];
+  self.selectedDisplayStyle = 0;
 }
+
+-(void)setSelectedDisplayStyle:(NSInteger)selectedDisplayStyle{
+  selectedDisplayStyle_ = selectedDisplayStyle;
+  self.fetchedResultsController = nil;
+  [self.tableView reloadData];
+  [self showToday];
+}
+
+-(void)showToday{
+  
+}
+
 #pragma mark - Button Actions
+
+-(IBAction)segCtrlChanged:(id)sender{
+  NSAssert(sender == self.segCtrl, @"Expecting sender to be current segmented control");
+  self.selectedDisplayStyle = self.segCtrl.selectedSegmentIndex;
+}
 
 -(IBAction)eventEditSaved:(UIStoryboardSegue *)segue{
   [self dismissViewControllerAnimated:YES completion:^{
@@ -160,7 +184,17 @@
     [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     NSDate* day = [NSDate dateWithTimeIntervalSinceReferenceDate:refTime];
-    return [dateFormatter stringFromDate:day];
+    if (self.selectedDisplayStyle == 2) { // day
+      return [dateFormatter stringFromDate:day];
+    }else if (self.selectedDisplayStyle == 1) { // week
+      NSDate * endDate = [day mt_endOfCurrentWeek];
+      return [NSString stringWithFormat:@"%@ - %@",
+              [dateFormatter stringFromDate:day],
+              [dateFormatter stringFromDate:endDate]];
+    }else{ //month
+      return [day mt_stringFromDateWithFormat:@"MMM, yyyy" localized:YES];
+    }
+    return @"";
   }
 }
 
@@ -223,7 +257,13 @@
                                  inContext:self.moc];
   NSFetchedResultsController *aFetchedResultsController;
 //  BOOL shouldFilter = searchString_ && [searchString_ isNotEmpty];
-  aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.moc sectionNameKeyPath:@"dayTimeStamp" cacheName:nil];
+  NSString* sectionNameKeyPath;
+  switch (self.selectedDisplayStyle) {
+    case 0:sectionNameKeyPath = @"monthTimeStamp";break;
+    case 1:sectionNameKeyPath = @"weekTimeStamp";break;
+    case 2:sectionNameKeyPath = @"dayTimeStamp";break;
+  }
+  aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.moc sectionNameKeyPath:sectionNameKeyPath cacheName:nil];
   [fetchRequest setFetchBatchSize:20];
   aFetchedResultsController.delegate = self;
   self.fetchedResultsController = aFetchedResultsController;

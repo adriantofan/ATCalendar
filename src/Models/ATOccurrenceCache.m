@@ -69,6 +69,13 @@
   return [self.day timeIntervalSinceReferenceDate];
 }
 
+-(NSTimeInterval) weekTimeStamp{
+  return [[self.day mt_startOfCurrentWeek] timeIntervalSinceReferenceDate];
+}
+-(NSTimeInterval) monthTimeStamp{
+  return [[self.day mt_startOfNextMonth] timeIntervalSinceReferenceDate];
+}
+
 -(BOOL)allDay{
   if ([self.startDate isEqualToDate:[self.startDate mt_startOfCurrentDay]] &&
       [self.endDate isEqualToDate:[self.endDate mt_endOfCurrentDay]]) {
