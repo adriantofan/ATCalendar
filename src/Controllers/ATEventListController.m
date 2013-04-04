@@ -212,6 +212,11 @@
 - (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
   return UITableViewCellEditingStyleNone;
 }
+-(ATEventOccurenceController*)createEventOccurenceControllerWith:(ATOccurrenceCache*)o{
+  ATEventOccurenceController *c = [[ATEventOccurenceController alloc] initWithStyle:UITableViewStyleGrouped];
+  c.eventOccurence = [o MR_inContext:self.moc];
+  return c;
+}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
   ATOccurrenceCache* occurence ;
@@ -220,8 +225,7 @@
   }else{
     occurence = [self.fetchedResultsController objectAtIndexPath:indexPath];
   }
-  ATEventOccurenceController *edit = [[ATEventOccurenceController alloc] initWithStyle:UITableViewStyleGrouped];
-  edit.eventOccurence = [occurence MR_inContext:self.moc];
+  ATEventOccurenceController *edit = [self createEventOccurenceControllerWith:occurence];
   [self.navigationController pushViewController:edit
                                        animated:YES];  
 }
