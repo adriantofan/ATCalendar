@@ -46,7 +46,7 @@
   return footerView_;
 }
 -(void)deleteCurrentEventAndNotifyDelegate{
-  BOOL sholdRemoveLocalNotifications = self.event.firstAlertNotification || self.event.seccondAlertNotification;
+  BOOL sholdRemoveLocalNotifications = [self.event.alertNotifications count];
   
   if (sholdRemoveLocalNotifications) [self.event removeExistingLocalNotifications];
   NSPredicate* eventPredicate = [NSPredicate predicateWithFormat:@"event == %@"

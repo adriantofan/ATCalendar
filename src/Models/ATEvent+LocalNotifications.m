@@ -67,49 +67,43 @@
       not.fireDate = [not.fireDate mt_dateDaysBefore:2];
       break;
   }
-  not.userInfo = @{@"ATEventURI":self.objectID.URIRepresentation};
+  not.userInfo = @{@"ATEventURI":[self.objectID.URIRepresentation absoluteString]};
   return not;
 }
 
 
 -(void)removeExistingLocalNotifications{
-  if (self.firstAlertNotification.notification) {
-    [[UIApplication sharedApplication] cancelLocalNotification:self.firstAlertNotification.notification];
-    [self.firstAlertNotification MR_deleteInContext:self.managedObjectContext];
-    self.firstAlertNotification = nil;
+  for (ATAlertNotification* not in self.alertNotifications) {
+    [[UIApplication sharedApplication] cancelLocalNotification:not.notification];
+    [not MR_deleteEntity];
   }
-  if (self.seccondAlertNotification.notification) {
-    [[UIApplication sharedApplication] cancelLocalNotification:self.seccondAlertNotification.notification];
-    [self.seccondAlertNotification MR_deleteInContext:self.managedObjectContext];
-    self.seccondAlertNotification = nil;
-  }
+  self.alertNotifications = [NSSet set];
 }
 
 -(void)scheduleLocalNotificationForOccurenceStart:(NSDate*)eventStart{
+  if ([self.alertNotifications count]) {
+    [self removeExistingLocalNotifications]; // How to do it otherwise ?
+  }
   if (self.firstAlertTypeValue != ATEventAlertTypeNone) {
     UILocalNotification* not = [self notificationWithDate:eventStart alertType:self.firstAlertTypeValue];
     ATAlertNotification *notLink = [ATAlertNotification MR_createInContext:self.managedObjectContext];
-    self.firstAlertNotification = notLink;
     notLink.notification = not;
     notLink.event = self;
+    [self.alertNotificationsSet addObject:notLink];
     [[UIApplication sharedApplication] scheduleLocalNotification:not];
-    NSLog(@"Scheduled first notification: %@",[not description]);
-
-
   }
   if (self.seccondAlertTypeValue != ATEventAlertTypeNone) {
     UILocalNotification* not = [self notificationWithDate:eventStart alertType:self.seccondAlertTypeValue];
     ATAlertNotification *notLink = [ATAlertNotification MR_createInContext:self.managedObjectContext];
-    self.seccondAlertNotification = notLink;
     notLink.notification = not;
     notLink.event = self;
-    NSLog(@"Scheduled seccond notification: %@",[not description]);
+    [self.alertNotificationsSet addObject:notLink];
     [[UIApplication sharedApplication] scheduleLocalNotification:not];
   }
 }
 
 -(void)removeLocalNotificationsBeforeDelete{
-  if (self.firstAlertNotification || self.seccondAlertNotification) {
+  if ([self.alertNotifications count]) {
     [self removeExistingLocalNotifications];
     ATCalendar* cal = [ATCalendar sharedInstance];
     [cal updateAlarmLocalNotificationsInContext:self.managedObjectContext];

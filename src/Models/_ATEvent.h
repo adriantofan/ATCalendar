@@ -20,10 +20,9 @@ extern const struct ATEventAttributes {
 } ATEventAttributes;
 
 extern const struct ATEventRelationships {
-	__unsafe_unretained NSString *firstAlertNotification;
+	__unsafe_unretained NSString *alertNotifications;
 	__unsafe_unretained NSString *properties;
 	__unsafe_unretained NSString *recurence;
-	__unsafe_unretained NSString *seccondAlertNotification;
 } ATEventRelationships;
 
 extern const struct ATEventFetchedProperties {
@@ -32,7 +31,6 @@ extern const struct ATEventFetchedProperties {
 @class ATAlertNotification;
 @class EventProperty;
 @class ATRecurrence;
-@class ATAlertNotification;
 
 
 
@@ -196,9 +194,9 @@ extern const struct ATEventFetchedProperties {
 
 
 
-@property (nonatomic, strong) ATAlertNotification *firstAlertNotification;
+@property (nonatomic, strong) NSSet *alertNotifications;
 
-//- (BOOL)validateFirstAlertNotification:(id*)value_ error:(NSError**)error_;
+- (NSMutableSet*)alertNotificationsSet;
 
 
 
@@ -217,17 +215,15 @@ extern const struct ATEventFetchedProperties {
 
 
 
-@property (nonatomic, strong) ATAlertNotification *seccondAlertNotification;
-
-//- (BOOL)validateSeccondAlertNotification:(id*)value_ error:(NSError**)error_;
-
-
-
-
 
 @end
 
 @interface _ATEvent (CoreDataGeneratedAccessors)
+
+- (void)addAlertNotifications:(NSSet*)value_;
+- (void)removeAlertNotifications:(NSSet*)value_;
+- (void)addAlertNotificationsObject:(ATAlertNotification*)value_;
+- (void)removeAlertNotificationsObject:(ATAlertNotification*)value_;
 
 - (void)addProperties:(NSSet*)value_;
 - (void)removeProperties:(NSSet*)value_;
@@ -324,8 +320,8 @@ extern const struct ATEventFetchedProperties {
 
 
 
-- (ATAlertNotification*)primitiveFirstAlertNotification;
-- (void)setPrimitiveFirstAlertNotification:(ATAlertNotification*)value;
+- (NSMutableSet*)primitiveAlertNotifications;
+- (void)setPrimitiveAlertNotifications:(NSMutableSet*)value;
 
 
 
@@ -336,11 +332,6 @@ extern const struct ATEventFetchedProperties {
 
 - (ATRecurrence*)primitiveRecurence;
 - (void)setPrimitiveRecurence:(ATRecurrence*)value;
-
-
-
-- (ATAlertNotification*)primitiveSeccondAlertNotification;
-- (void)setPrimitiveSeccondAlertNotification:(ATAlertNotification*)value;
 
 
 @end

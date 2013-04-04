@@ -47,12 +47,14 @@ static ATCalendar* ___sharedInstance;
 
 -(void)updateAlarmLocalNotificationsForEventOccurences:(NSArray*)current
                                 andActiveNotifications:(NSArray*)actives{
-  NSArray* currentEvents = [current map:^id(ATOccurrenceCache* obj) {
+  NSArray* currentEvents = [current map:^id(ATOccurrenceCache* obj){
     return [obj event];
   }];
   
   NSArray* activeEvents = [[actives map:^id(ATAlertNotification* obj) {
-    return [obj event];}]
+    ATEvent*event = [obj event];
+    NSAssert(event,@"each ATAlertNotification need an associated event");
+    return [obj event];}] 
                            reduce:^id(NSMutableArray* memo, id obj) {
                              if (![memo containsObject:obj]) [memo addObject:obj];
                              return memo;

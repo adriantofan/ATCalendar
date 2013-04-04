@@ -2,7 +2,7 @@
 @class ATEvent;
 @interface ATOccurrenceCache : _ATOccurrenceCache {}
 
-+(void)updateCachesAndAlertsAfterEventChange:(ATEvent*)event;
++(void)updateCachesAfterEventChange:(ATEvent*)event;
 // Array of one ATOccurrenceCache
 +(NSArray*)firstOccurenceCacheOfEventWithAlarmAfter:(NSDate*)date inContext:(NSManagedObjectContext*)moc limit:(NSInteger)limit;
 -(NSTimeInterval) dayTimeStamp;

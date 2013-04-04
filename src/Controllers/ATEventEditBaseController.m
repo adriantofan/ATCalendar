@@ -25,6 +25,8 @@
 #import "ATAlertTypeController.h"
 #import "ATAvilabilityController.h"
 
+NSString * const ATEventEditControllerEventWillSaveNotification = @"ATEventEditControllerEventWillSaveNotification";
+NSString * const ATEventEditControllerEventDidSaveNotification = @"ATEventEditControllerEventDidSaveNotification";
 
 NSString const*  ATEventEditBaseSectionHeader = @"ATEventEditBaseSectionHeader";
 NSString const*  ATEventEditBaseSectionDate = @"ATEventEditBaseSectionDate";
@@ -444,9 +446,12 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
 }
 
 -(IBAction)saveButtonAction{
+  [[NSNotificationCenter defaultCenter] postNotificationName:ATEventEditControllerEventWillSaveNotification object:self.event];
+
   [self updateFromView:self.event];
   [self.delegate eventEditBaseController:self
                         didFinishEditing:TRUE];
+  [[NSNotificationCenter defaultCenter] postNotificationName:ATEventEditControllerEventDidSaveNotification object:self.event];
 }
 #pragma mark - Table view data source
 

@@ -65,9 +65,10 @@
 -(void)viewWillAppear:(BOOL)animated{
   [super viewWillAppear:animated];
   self.navigationController.toolbarHidden = NO;
+  [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
 }
--(void)viewWillDisappear:(BOOL)animated{
-  [super viewWillDisappear:animated];
+-(void)viewDidDisappear:(BOOL)animated{
+  [super viewDidDisappear:animated];
   self.navigationController.toolbarHidden = YES; // hmmm
 }
 

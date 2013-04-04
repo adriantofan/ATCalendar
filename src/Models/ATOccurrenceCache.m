@@ -14,7 +14,7 @@
 
 @implementation ATOccurrenceCache
 
-+(void)updateCachesAndAlertsAfterEventChange:(ATEvent*)event{
++(void)updateCachesAfterEventChange:(ATEvent*)event{
   
   NSPredicate* eventPredicate = [NSPredicate predicateWithFormat:@"event == %@"
                                                    argumentArray:@[event]];
@@ -73,7 +73,7 @@
   return [[self.day mt_startOfCurrentWeek] timeIntervalSinceReferenceDate];
 }
 -(NSTimeInterval) monthTimeStamp{
-  return [[self.day mt_startOfNextMonth] timeIntervalSinceReferenceDate];
+  return [[self.day mt_startOfCurrentMonth] timeIntervalSinceReferenceDate];
 }
 
 -(BOOL)allDay{

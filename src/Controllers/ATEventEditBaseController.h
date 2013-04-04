@@ -10,6 +10,8 @@
 #import "ATEvent.h"
 #import "ATDurationEditController.h"
 
+extern  NSString * const ATEventEditControllerEventWillSaveNotification;
+extern  NSString * const ATEventEditControllerEventDidSaveNotification;
 
 @class ATEventEditBaseController;
 @protocol ATEventEditBaseControllerDelegate <NSObject>

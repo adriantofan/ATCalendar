@@ -14,6 +14,8 @@
 -(void)awakeFromInsert{
   [super awakeFromInsert];
   self.timeZone = [NSTimeZone defaultTimeZone];
+  self.firstAlertTypeValue = ATEventAlertTypeNone;
+  self.seccondAlertTypeValue = ATEventAlertTypeNone;
 }
 
 -(NSString*)avilabilityDescription{
@@ -166,7 +168,7 @@
 @implementation ATEvent (ATOccurenceCache)
 -(void)saveToPersistentStoreAndUpdateCaches{
   [self.managedObjectContext MR_saveToPersistentStoreAndWait];
-  [ATOccurrenceCache updateCachesAndAlertsAfterEventChange:self];
+  [ATOccurrenceCache updateCachesAfterEventChange:self];
   [self.managedObjectContext MR_saveToPersistentStoreAndWait];
   [self updateLocalNotificationsAfterChange];
   [self.managedObjectContext MR_saveToPersistentStoreAndWait];

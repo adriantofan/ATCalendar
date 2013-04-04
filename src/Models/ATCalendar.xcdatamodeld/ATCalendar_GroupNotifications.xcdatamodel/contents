@@ -6,7 +6,7 @@
                 <entry key="attributeValueClassName" value="UILocalNotification"/>
             </userInfo>
         </attribute>
-        <relationship name="event" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Event" syncable="YES"/>
+        <relationship name="event" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="alertNotifications" inverseEntity="Event" syncable="YES"/>
     </entity>
     <entity name="DailyRecurrence" representedClassName="ATDailyRecurrence" parentEntity="Recurrence" syncable="YES"/>
     <entity name="Event" representedClassName="ATEvent">
@@ -32,10 +32,9 @@
                 <entry key="attributeValueClassName" value="NSDictionary"/>
             </userInfo>
         </attribute>
-        <relationship name="firstAlertNotification" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="AlertNotification" syncable="YES"/>
+        <relationship name="alertNotifications" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AlertNotification" inverseName="event" inverseEntity="AlertNotification" syncable="YES"/>
         <relationship name="properties" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="EventProperty" inverseName="event" inverseEntity="EventProperty" syncable="YES"/>
         <relationship name="recurence" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Recurrence" inverseName="event" inverseEntity="Recurrence" syncable="YES"/>
-        <relationship name="seccondAlertNotification" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="AlertNotification" syncable="YES"/>
         <userInfo/>
     </entity>
     <entity name="EventProperty" representedClassName="EventProperty" syncable="YES">
@@ -66,7 +65,7 @@
     <elements>
         <element name="AlertNotification" positionX="160" positionY="192" width="128" height="75"/>
         <element name="DailyRecurrence" positionX="0" positionY="0" width="128" height="45"/>
-        <element name="Event" positionX="0" positionY="0" width="128" height="285"/>
+        <element name="Event" positionX="0" positionY="0" width="128" height="270"/>
         <element name="EventProperty" positionX="160" positionY="192" width="128" height="90"/>
         <element name="GlobalPropertyes" positionX="0" positionY="0" width="128" height="75"/>
         <element name="MonthlyRecurrence" positionX="0" positionY="0" width="128" height="45"/>

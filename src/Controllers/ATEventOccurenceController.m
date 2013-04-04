@@ -150,7 +150,7 @@ typedef enum{
   if (successOrCancel) {
     [controller.editingMoc MR_saveToPersistentStoreAndWait];
     if (!controller.event.isDeleted && controller.event.managedObjectContext) {
-      [ATOccurrenceCache updateCachesAndAlertsAfterEventChange:controller.event];
+      [ATOccurrenceCache updateCachesAfterEventChange:controller.event];
       [controller.editingMoc MR_saveToPersistentStoreAndWait];
       [controller.event updateLocalNotificationsAfterChange];
       [controller.editingMoc MR_saveToPersistentStoreAndWait];
