@@ -131,15 +131,57 @@
   [self showToday];
 }
 
--(void)showToday{
+-(void)selectClosestMatchForEvent:(ATEvent*)event displayDetail:(BOOL)show{
   NSDate *now = [NSDate date];
   ATOccurrenceCache* today;
-  NSPredicate *before = [NSPredicate predicateWithFormat:@"day >= %@" argumentArray:@[now]];
+  NSPredicate *before = [NSPredicate predicateWithFormat:@"day <= %@ AND event = %@" argumentArray:@[now,event]];
   ATOccurrenceCache* prev = [ATOccurrenceCache MR_findFirstWithPredicate:before
                                                                 sortedBy:@"day"
                                                                ascending:NO
                                                                inContext:self.moc];
-  NSPredicate *after = [NSPredicate predicateWithFormat:@"day <= %@" argumentArray:@[now]];
+  NSPredicate *after = [NSPredicate predicateWithFormat:@"day >= %@ AND event = %@" argumentArray:@[now,event]];
+  ATOccurrenceCache* next = [ATOccurrenceCache MR_findFirstWithPredicate:after
+                                                                sortedBy:@"day"
+                                                               ascending:YES
+                                                               inContext:self.moc];
+  if (prev && next) {
+    if ([prev.day mt_isWithinSameDay:now] && ![next.day mt_isWithinSameDay:now] ) {
+      today = prev;
+    }else
+      if ([next.day mt_isWithinSameDay:now] && ![prev.day mt_isWithinSameDay:now] ) {
+        today = next;
+      }else{
+        today = prev; // return before by default
+      }
+  }else if (prev){
+    today = prev;
+  }else if (next){
+    today = next;
+  }else{
+    return;
+  }
+  NSIndexPath* indexPath = [self.fetchedResultsController indexPathForObject:today];
+  [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+
+  [self.tableView scrollToRowAtIndexPath:indexPath
+                        atScrollPosition:UITableViewScrollPositionMiddle
+                                animated:NO];
+  if (show) {
+    ATEventOccurenceController *viewController = [self createEventOccurenceControllerWith:today];
+    [self.navigationController pushViewController:viewController
+                                         animated:NO];
+  }
+} 
+
+-(void)showToday{
+  NSDate *now = [NSDate date];
+  ATOccurrenceCache* today;
+  NSPredicate *before = [NSPredicate predicateWithFormat:@"day <= %@" argumentArray:@[now]];
+  ATOccurrenceCache* prev = [ATOccurrenceCache MR_findFirstWithPredicate:before
+                                                                sortedBy:@"day"
+                                                               ascending:NO
+                                                               inContext:self.moc];
+  NSPredicate *after = [NSPredicate predicateWithFormat:@"day >= %@" argumentArray:@[now]];
   ATOccurrenceCache* next = [ATOccurrenceCache MR_findFirstWithPredicate:after
                                                                 sortedBy:@"day"
                                                                ascending:YES

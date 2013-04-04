@@ -23,4 +23,5 @@
 
 - (void)configureCell:(UITableViewCell *)cell forObject:(ATOccurrenceCache*)object;
 -(ATEventOccurenceController*)createEventOccurenceControllerWith:(ATOccurrenceCache*)o;
+-(void)selectClosestMatchForEvent:(ATEvent*)event displayDetail:(BOOL)show;
 @end

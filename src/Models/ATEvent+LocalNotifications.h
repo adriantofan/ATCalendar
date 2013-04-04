@@ -7,7 +7,7 @@
 //
 
 #import "ATEvent.h"
-
+extern NSString* const ATEventURIKey;
 @interface ATEvent (LocalNotifications)
 
 -(void)scheduleLocalNotificationForOccurenceStart:(NSDate*)eventStart;
