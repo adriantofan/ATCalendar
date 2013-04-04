@@ -7,6 +7,7 @@
 //
 
 #import "ATAvilabilityController.h"
+#import "ATCalendarUIConfig.h"
 
 @interface ATAvilabilityController ()
 
@@ -21,6 +22,9 @@ static NSString *CellIdentifier = @"Cell";
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  self.tableView.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
+  self.tableView.backgroundView.backgroundColor = [[ATCalendarUIConfig sharedConfig] groupedTableViewBGCollor];
+  
   UIBarButtonItem* cancel = [[UIBarButtonItem alloc]
                              initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
                              target:self
@@ -63,6 +67,7 @@ static NSString *CellIdentifier = @"Cell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+  cell.selectionStyle = [[ATCalendarUIConfig sharedConfig] tableViewCellSelectionStyle];
   if (indexPath.row == 0) {
     cell.textLabel.text = NSLocalizedString(@"Busy", @"Busy label");
   }else{

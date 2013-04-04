@@ -7,6 +7,7 @@
 //
 
 #import "ATTZPickerController.h"
+#import "ATCalendarUIConfig.h"
 
 @interface ATTZPickerController ()
 @property (nonatomic) NSArray* timeZoneNames;
@@ -76,6 +77,7 @@ static NSString *CellIdentifier = @"Cell";
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
   cell.textLabel.text = [self.timeZoneNames objectAtIndex:indexPath.row];
+  cell.selectionStyle = [[ATCalendarUIConfig sharedConfig] tableViewCellSelectionStyle];
     return cell;
 }
 

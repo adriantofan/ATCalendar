@@ -14,6 +14,9 @@
 #import "ATEventCreateController.h"
 #import "ATEvent+LocalNotifications.h"
 #import "ATEventOccurenceCell.h"
+#import "ATCalendarUIConfig.h"
+
+
 
 @interface ATEventListController (){
   NSManagedObjectContext* addingContext_;
@@ -452,9 +455,9 @@
   c.summaryLabel.text = object.event.summary;
   c.timeLabel.text = [object timeSpanDescription];
   c.summaryLabel.font = [UIFont boldSystemFontOfSize:20.0];
-  c.timeLabel.textColor = [UIColor colorWithRed:0x6c/255.0 green:0x72/255.0 blue:0x7c/255.0 alpha:1.0] ;
+  c.timeLabel.textColor = [[ATCalendarUIConfig sharedConfig] eventTimeLabelCollor] ;
   c.summaryLabel.font = [UIFont boldSystemFontOfSize:18.0];
   c.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-  c.selectionStyle = UITableViewCellSelectionStyleGray;
+  c.selectionStyle = [[ATCalendarUIConfig sharedConfig] tableViewCellSelectionStyle];
 }
 @end

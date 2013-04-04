@@ -11,6 +11,11 @@
 #import "ATEventDetailCell.h"
 #import "ATEvent.h"
 #import "ATEvent+LocalNotifications.h"
+#import "ATCalendarUIConfig.h"
+#import "ATCalendarUIConfig.h"
+#import "ATCalendarUIConfig.h"
+
+
 
 NSString * const CellTitleSubtitleDescriptionlId = @"CellTitleSubtitleDescriptionlId";
 @interface ATEventOccurenceController ()
@@ -43,6 +48,8 @@ typedef enum{
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  self.tableView.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
+  self.tableView.backgroundView.backgroundColor = [[ATCalendarUIConfig sharedConfig] groupedTableViewBGCollor];
   UIBarButtonItem *edit = [[UIBarButtonItem alloc]
     initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
                            target:self
@@ -161,43 +168,52 @@ typedef enum{
 }
 
 -(void)configureDescriptionCell:(ATEventDetailCell*)cell atIndexPath:(NSIndexPath*)indexPath{
-  cell.subtitleLabel.textColor = [UIColor lightGrayColor];
-  cell.descriptionLabel.textColor = [UIColor colorWithRed:0.200 green:0.310 blue:0.510 alpha:1.000];
-  
+  ATCalendarUIConfig* c = [ATCalendarUIConfig sharedConfig] ;
+  cell.subtitleLabel.textColor =    c.cellSubtitleLabelCollor;
+  cell.descriptionLabel.textColor = c.cellTextLabelCollor;
   [cell setTitle:self.eventOccurence.event.summary
         subtitle:self.eventOccurence.event.location
      description:[self.eventOccurence durationDescription]];
+  cell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 -(void)configureURLCell:(ATEventDetailCell*)cell atIndexPath:(NSIndexPath*)indexPath{
-  cell.subtitleLabel.textColor = [UIColor lightGrayColor];
-  cell.descriptionLabel.textColor = [UIColor colorWithRed:0.200 green:0.310 blue:0.510 alpha:1.000];
+  ATCalendarUIConfig* c = [ATCalendarUIConfig sharedConfig] ;
+  cell.subtitleLabel.textColor = c.cellSubtitleLabelCollor;
+  cell.descriptionLabel.textColor = c.cellTextLabelCollor;
   [cell setTitle:NSLocalizedString(@"URL", @"URL field title")
         subtitle:@""
      description:self.eventOccurence.event.url];
+  cell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 -(void)configureNotesCell:(ATEventDetailCell*)cell atIndexPath:(NSIndexPath*)indexPath{
-  cell.subtitleLabel.textColor = [UIColor lightGrayColor];
-  cell.descriptionLabel.textColor = [UIColor colorWithRed:0.200 green:0.310 blue:0.510 alpha:1.000];
+  ATCalendarUIConfig* c = [ATCalendarUIConfig sharedConfig] ;
+  cell.subtitleLabel.textColor = c.cellSubtitleLabelCollor;
+  cell.descriptionLabel.textColor = c.cellTextLabelCollor;
   [cell setTitle:NSLocalizedString(@"Notes", @"Notes field title")
         subtitle:@""
      description:self.eventOccurence.event.notes];
+  cell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 -(void)configureAlertCell:(ATEventDetailCell*)cell atIndexPath:(NSIndexPath*)indexPath{
-  cell.subtitleLabel.textColor = [UIColor lightGrayColor];
-  cell.descriptionLabel.textColor = [UIColor colorWithRed:0.200 green:0.310 blue:0.510 alpha:1.000];
+  ATCalendarUIConfig* c = [ATCalendarUIConfig sharedConfig] ;
+  cell.subtitleLabel.textColor = c.cellSubtitleLabelCollor;
+  cell.descriptionLabel.textColor = c.cellTextLabelCollor;
   [cell setTitle:NSLocalizedString(@"Alert", @"Alert field title")
         subtitle:@""
      description:[self.eventOccurence.event alertsDescription]];
+  cell.selectionStyle = [[ATCalendarUIConfig sharedConfig] tableViewCellSelectionStyle];
 }
 
 -(void)configureAvilabilityCell:(ATEventDetailCell*)cell atIndexPath:(NSIndexPath*)indexPath{
-  cell.subtitleLabel.textColor = [UIColor lightGrayColor];
-  cell.descriptionLabel.textColor = [UIColor colorWithRed:0.200 green:0.310 blue:0.510 alpha:1.000];
+  ATCalendarUIConfig* c = [ATCalendarUIConfig sharedConfig] ;
+  cell.subtitleLabel.textColor = c.cellSubtitleLabelCollor;
+  cell.descriptionLabel.textColor = c.cellTextLabelCollor;
   [cell setTitle:NSLocalizedString(@"Avilability", @"Avilability field title")
         subtitle:@""
      description:[self.eventOccurence.event avilabilityDescription]];
+  cell.selectionStyle = [[ATCalendarUIConfig sharedConfig] tableViewCellSelectionStyle];
 }
 
 #pragma mark - TableView model & Configuration

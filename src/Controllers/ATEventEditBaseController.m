@@ -24,6 +24,8 @@
 #import "ATEventTextViewCell.h"
 #import "ATAlertTypeController.h"
 #import "ATAvilabilityController.h"
+#import "ATCalendarUIConfig.h"
+
 
 NSString * const ATEventEditControllerEventWillSaveNotification = @"ATEventEditControllerEventWillSaveNotification";
 NSString * const ATEventEditControllerEventDidSaveNotification = @"ATEventEditControllerEventDidSaveNotification";
@@ -84,7 +86,9 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
     busyCell_ = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"UITableViewCellStyleValue1Id"];
     busyCell_.textLabel.text = NSLocalizedString(@"Avilability", @"");
     busyCell_.detailTextLabel.text = NSLocalizedString(@"", @"");
+    busyCell_.detailTextLabel.textColor = [[ATCalendarUIConfig sharedConfig] tableViewCellDetailLabelCollor];
     busyCell_.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    busyCell_.selectionStyle = [[ATCalendarUIConfig sharedConfig] tableViewCellSelectionStyle];
   }
   return busyCell_;
 }
@@ -93,7 +97,9 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
     firstAlertCell_ = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"UITableViewCellStyleValue1Id"];
     firstAlertCell_.textLabel.text = NSLocalizedString(@"Alert", @"");
     firstAlertCell_.detailTextLabel.text = NSLocalizedString(@"None", @"");
+    firstAlertCell_.detailTextLabel.textColor = [[ATCalendarUIConfig sharedConfig] tableViewCellDetailLabelCollor];
     firstAlertCell_.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    firstAlertCell_.selectionStyle = [[ATCalendarUIConfig sharedConfig] tableViewCellSelectionStyle];
     
   }
   return firstAlertCell_;
@@ -104,7 +110,9 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
     seccondAlertCell_ = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"UITableViewCellStyleValue1Id"];
     seccondAlertCell_.textLabel.text = NSLocalizedString(@"Second Alert", @"");
     seccondAlertCell_.detailTextLabel.text = NSLocalizedString(@"None", @"");
+    seccondAlertCell_.detailTextLabel.textColor = [[ATCalendarUIConfig sharedConfig] tableViewCellDetailLabelCollor];
     seccondAlertCell_.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    seccondAlertCell_.selectionStyle = [[ATCalendarUIConfig sharedConfig] tableViewCellSelectionStyle];
   }
   return seccondAlertCell_;
 }
@@ -114,7 +122,9 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
     repeatEndCell_ = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"UITableViewCellStyleValue1Id"];
     repeatEndCell_.textLabel.text = NSLocalizedString(@"End Repeat", @"");
     repeatEndCell_.detailTextLabel.text = NSLocalizedString(@"Never", @"");
+    repeatEndCell_.detailTextLabel.textColor = [[ATCalendarUIConfig sharedConfig] tableViewCellDetailLabelCollor];
     repeatEndCell_.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    repeatEndCell_.selectionStyle = [[ATCalendarUIConfig sharedConfig] tableViewCellSelectionStyle];
 
   }
   return repeatEndCell_;
@@ -124,7 +134,9 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
     repeatTypeCell_ = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"UITableViewCellStyleValue1Id"];
     repeatTypeCell_.textLabel.text = NSLocalizedString(@"Repeat", @"Repeat cell title");
     repeatTypeCell_.detailTextLabel.text = NSLocalizedString(@"Never", @"");
+    repeatTypeCell_.detailTextLabel.textColor = [[ATCalendarUIConfig sharedConfig] tableViewCellDetailLabelCollor];
     repeatTypeCell_.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    repeatTypeCell_.selectionStyle = [[ATCalendarUIConfig sharedConfig] tableViewCellSelectionStyle];
   }
   return repeatTypeCell_;
 }
@@ -132,6 +144,8 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
 -(ATEventTimeEditCell*)timeEditCell{
   if (nil == timeEditCell_) {
     timeEditCell_ = [[[NSBundle mainBundle]loadNibNamed:@"EventTimeEditCell" owner:nil options:nil] objectAtIndex:0];
+    timeEditCell_.selectionStyle = [[ATCalendarUIConfig sharedConfig] tableViewCellSelectionStyle];
+
   }
   return timeEditCell_;
 }
@@ -139,6 +153,7 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
   if (nil == placeCell_) {
     placeCell_ = [[ATEventTextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ATEventTextFieldCellPlace"];
     placeCell_.textField.placeholder = NSLocalizedString(@"Location",@"Event Location");
+    placeCell_.selectionStyle = UITableViewCellSelectionStyleNone;
   }
   return placeCell_;
 }
@@ -146,6 +161,7 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
   if (nil == summaryCell_) {
     summaryCell_ = [[ATEventTextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ATEventTextFieldCellName"];
     summaryCell_.textField.placeholder = NSLocalizedString(@"Title",@"Event Title");
+    summaryCell_.selectionStyle = UITableViewCellSelectionStyleNone;
   }
   return summaryCell_;
 }
@@ -154,7 +170,9 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
     urlCell_ = [[ATEventTextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ATEventTextFieldCellName"];
     urlCell_.textField.placeholder = NSLocalizedString(@"URL",@"Event URL");
     urlCell_.textField.keyboardType = UIKeyboardTypeURL;
+    urlCell_.selectionStyle = UITableViewCellSelectionStyleNone;
   }
+  
   return urlCell_;
 }
 
@@ -164,6 +182,7 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
     notesCell_.textView.placeholder = NSLocalizedString(@"Notes",@"Event notes");
     notesCell_.textView.font = [UIFont systemFontOfSize:16.0];
     notesCell_.textView.placeholderColor = [UIColor lightGrayColor];
+    notesCell_.selectionStyle = UITableViewCellSelectionStyleNone;
   }
   return notesCell_;
 }
@@ -294,6 +313,9 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  self.tableView.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
+  self.tableView.backgroundView.backgroundColor = [[ATCalendarUIConfig sharedConfig] groupedTableViewBGCollor];
+
   dateTimeFormatter_ = [[NSDateFormatter alloc] init];
   [dateTimeFormatter_ setTimeStyle:NSDateFormatterShortStyle];
   [dateTimeFormatter_ setDateStyle:NSDateFormatterMediumStyle];

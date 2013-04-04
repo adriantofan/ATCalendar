@@ -8,6 +8,8 @@
 
 #import "ATEventDetailCell.h"
 #import <Quartzcore/QuartzCore.h>
+#import "ATCalendarUIConfig.h"
+
 
 #define DESCRIPTION_FONT_SIZE 14.0f
 #define SUBTITLE_FONT_SIZE 14.0f
@@ -109,6 +111,7 @@ UIFont* subtitleFont(){
 {
     self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
     if (self) {
+      UIColor* c = [[ATCalendarUIConfig sharedConfig] tableViewCellDetailLabelCollor];
       titleLabel_ = [[UILabel alloc] initWithFrame:CGRectZero];
       subtitleLabel_ = [[UILabel alloc] initWithFrame:CGRectZero];
       descriptionLabel_ = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -118,13 +121,17 @@ UIFont* subtitleFont(){
       [titleLabel_ setLineBreakMode:NSLineBreakByWordWrapping];
       [titleLabel_ setFont:titleFont()];
       [titleLabel_ setNumberOfLines:20];
+      titleLabel_.backgroundColor = [UIColor clearColor];
       [subtitleLabel_ setLineBreakMode:NSLineBreakByWordWrapping];
       [subtitleLabel_ setFont:subtitleFont()];
+      subtitleLabel_.textColor = c;
+      subtitleLabel_.backgroundColor = [UIColor clearColor];
       [subtitleLabel_ setNumberOfLines:20];
       [descriptionLabel_ setLineBreakMode:NSLineBreakByWordWrapping];
       [descriptionLabel_ setFont:descriptionFont()];
       [descriptionLabel_ setNumberOfLines:20];
-
+      descriptionLabel_.textColor = c;
+      descriptionLabel_.backgroundColor = [UIColor clearColor];
     }
     return self;
 }

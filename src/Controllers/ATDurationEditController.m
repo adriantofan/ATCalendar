@@ -8,6 +8,8 @@
 
 #import "ATDurationEditController.h"
 #import "ATTZPickerController.h"
+#import "ATCalendarUIConfig.h"
+#import "ATCalendarUIConfig.h"
 
 
 typedef enum{
@@ -38,6 +40,12 @@ typedef enum{
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  self.tableView.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
+  self.tableView.backgroundView.backgroundColor = [[ATCalendarUIConfig sharedConfig] groupedTableViewBGCollor];
+  startDateLabel_.textColor = [[ATCalendarUIConfig sharedConfig] tableViewCellDetailLabelCollor];
+  endDateLabel_.textColor = [[ATCalendarUIConfig sharedConfig] tableViewCellDetailLabelCollor];
+  timeZoneLabel_.textColor = [[ATCalendarUIConfig sharedConfig] tableViewCellDetailLabelCollor];
+
   edigingElement_ = ATDurationEditControllerEditElementStart;
   dateTimeFormatter_ = [[NSDateFormatter alloc] init];
   [dateTimeFormatter_ setTimeStyle:NSDateFormatterShortStyle];
@@ -64,7 +72,13 @@ typedef enum{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+  UITableViewCell* cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+  if (cell.selectionStyle != UITableViewCellSelectionStyleNone) {
+    cell.selectionStyle = [[ATCalendarUIConfig sharedConfig] tableViewCellSelectionStyle];
+  }
+  return cell;
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{  
   if (indexPath.row == 0) {
     edigingElement_ = ATDurationEditControllerEditElementStart;
@@ -130,6 +144,7 @@ typedef enum{
 }
 
 -(void)updateDatesFromPicker{
+  UIColor* c = [[ATCalendarUIConfig sharedConfig] tableViewCellDetailLabelCollor];
   NSInteger timeSpan = [endDate_ timeIntervalSinceDate:startDate_];
   if (edigingElement_ == ATDurationEditControllerEditElementStart) {
     startDate_ = picker_.date;
@@ -137,8 +152,8 @@ typedef enum{
       endDate_ = [startDate_ dateByAddingTimeInterval:timeSpan];
     }
     self.navigationItem.rightBarButtonItem.enabled = YES;
-    startDateLabel_.textColor = [UIColor blackColor];
-    endDateLabel_.textColor = [UIColor blackColor];
+    startDateLabel_.textColor = c;
+    endDateLabel_.textColor = c;
 
   }
   if (edigingElement_ == ATDurationEditControllerEditElementEnd) {
@@ -149,8 +164,8 @@ typedef enum{
       endDateLabel_.textColor = [UIColor redColor];
     }else{
       self.navigationItem.rightBarButtonItem.enabled = YES;
-      startDateLabel_.textColor = [UIColor blackColor];
-      endDateLabel_.textColor = [UIColor blackColor];
+      startDateLabel_.textColor = c;
+      endDateLabel_.textColor = c;
     }
   }
   [self updateDatesToLabels];

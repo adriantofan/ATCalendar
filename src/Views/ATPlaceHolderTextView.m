@@ -29,6 +29,7 @@
 
 - (void)awakeFromNib
 {
+  self.backgroundColor  = [UIColor clearColor];
   [super awakeFromNib];
   [self setPlaceholder:@""];
   [self setPlaceholderColor:[UIColor lightGrayColor]];
@@ -39,6 +40,7 @@
 {
   if( (self = [super initWithFrame:frame]) )
   {
+    self.backgroundColor  = [UIColor clearColor];
     [self setPlaceholder:@""];
     [self setPlaceholderColor:[UIColor lightGrayColor]];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textChanged:) name:UITextViewTextDidChangeNotification object:nil];

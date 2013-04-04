@@ -8,6 +8,8 @@
 
 #import "ATAlertTypeController.h"
 #import "ATEvent.h"
+#import "ATCalendarUIConfig.h"
+
 
 @interface ATAlertTypeController ()
 @property (nonatomic) NSArray* alertLabels;
@@ -38,6 +40,8 @@ static NSString *CellIdentifier = @"Cell";
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  self.tableView.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
+  self.tableView.backgroundView.backgroundColor = [[ATCalendarUIConfig sharedConfig] groupedTableViewBGCollor];
   UIBarButtonItem* cancel = [[UIBarButtonItem alloc]
                              initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
                              target:self
@@ -127,6 +131,7 @@ static NSString *CellIdentifier = @"Cell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+  cell.selectionStyle = [[ATCalendarUIConfig sharedConfig] tableViewCellSelectionStyle];
   cell.textLabel.text = [self.alertLabels objectAtIndex:indexPath.row];
   return cell;
 }

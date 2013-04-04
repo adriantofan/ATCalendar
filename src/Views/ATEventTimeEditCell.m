@@ -7,9 +7,18 @@
 //
 
 #import "ATEventTimeEditCell.h"
+#import "ATCalendarUIConfig.h"
 
 @implementation ATEventTimeEditCell
 +(float)height{
   return 72.0;
 }
+-(void)awakeFromNib{
+  [super awakeFromNib];
+  UIColor* c = [[ATCalendarUIConfig sharedConfig] tableViewCellDetailLabelCollor];
+  self.startDateLabel.textColor = c;
+  self.endDateLabel.textColor = c;
+  self.timeZoneLabel.textColor = c;
+}
+
 @end

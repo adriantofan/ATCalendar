@@ -7,6 +7,7 @@
 //
 
 #import "ATEndRecurrenceController.h"
+#import "ATCalendarUIConfig.h"
 
 @interface ATEndRecurrenceController (){
   NSDateFormatter *formater_;
@@ -27,6 +28,7 @@
     dateCell_ = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"UITableViewCellStyleValue1Id"];
     dateCell_.textLabel.text = NSLocalizedString(@"End repeat", @"End repeat cell label");
     dateCell_.detailTextLabel.text = @"vvv";
+    dateCell_.selectionStyle = [[ATCalendarUIConfig sharedConfig] tableViewCellSelectionStyle];
   }
   return dateCell_;
 }
@@ -34,7 +36,8 @@
   if (nil == buttonCell_) {
         buttonCell_ = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCellStyleDefaultId"];
     buttonCell_.textLabel.text = NSLocalizedString(@"Repeat forever", @"");
-    buttonCell_.textLabel.textAlignment = UITextAlignmentCenter;
+    buttonCell_.textLabel.textAlignment = NSTextAlignmentCenter;
+    buttonCell_.selectionStyle = [[ATCalendarUIConfig sharedConfig] tableViewCellSelectionStyle];
 
   }
   return buttonCell_;
@@ -44,6 +47,8 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  self.tableView.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
+  self.tableView.backgroundView.backgroundColor = [[ATCalendarUIConfig sharedConfig] groupedTableViewBGCollor];
   self.pickerView = [[UIDatePicker alloc] initWithFrame:CGRectZero];
   self.pickerView.datePickerMode = UIDatePickerModeDate;
   [self.pickerView addTarget:self
