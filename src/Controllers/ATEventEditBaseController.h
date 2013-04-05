@@ -19,7 +19,7 @@ extern  NSString * const ATEventEditControllerEventDidSaveNotification;
                didFinishEditing:(BOOL)successOrCancel;
 @end
 
-@interface ATEventEditBaseController : UITableViewController <ATDurationEditControllerDelegate>
+@interface ATEventEditBaseController : UITableViewController <ATDurationEditControllerDelegate, UITextFieldDelegate>
 @property (nonatomic,readonly) ATEvent* event;
 @property (nonatomic,readonly) NSManagedObjectContext* editingMoc;
 @property (nonatomic,weak) id <ATEventEditBaseControllerDelegate> delegate;

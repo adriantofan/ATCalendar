@@ -6,8 +6,11 @@
 //  Copyright (c) 2013 Adrian Tofan. All rights reserved.
 //
 
+
 #import "ATEventEditBaseController.h"
 
+
+#import "NSString_ATExtra.h"
 #import "ATCalendar.h"
 #import "ATTimeSpan.h"
 #import "ATRecurrence.h"
@@ -26,6 +29,7 @@
 #import "ATAvilabilityController.h"
 #import "ATCalendarUIConfig.h"
 
+#define ISEMPTYSTRING(str) ((nil ==str) || ([str length] == 0) || ([[str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0))
 
 NSString * const ATEventEditControllerEventWillSaveNotification = @"ATEventEditControllerEventWillSaveNotification";
 NSString * const ATEventEditControllerEventDidSaveNotification = @"ATEventEditControllerEventDidSaveNotification";
@@ -43,6 +47,7 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
 @interface ATEventEditBaseController (){
   NSDateFormatter *dateTimeFormatter_;
   NSDateFormatter *dateFormatter_;
+  UIBarButtonItem* saveButton_;
 }
 @property (nonatomic,readwrite) ATEvent* event;
 @property (nonatomic,readwrite) NSManagedObjectContext* editingMoc;
@@ -162,6 +167,7 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
     summaryCell_ = [[ATEventTextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ATEventTextFieldCellName"];
     summaryCell_.textField.placeholder = NSLocalizedString(@"Title",@"Event Title");
     summaryCell_.selectionStyle = UITableViewCellSelectionStyleNone;
+    summaryCell_.textField.delegate = self;
   }
   return summaryCell_;
 }
@@ -304,6 +310,9 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
   dateFormatter_.timeZone = event.timeZone;
   self.repeatEndVisible = event.isRecurrent;
   self.seccondAlertVisible = event.firstAlertTypeValue != ATEventAlertTypeNone;
+  if ( ![event.summary isNotEmpty]) {
+    saveButton_.enabled = NO;
+  }
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -331,6 +340,7 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
                              initWithBarButtonSystemItem:UIBarButtonSystemItemSave
                              target:self
                              action:@selector(saveButtonAction)];
+  saveButton_ = save;
   self.navigationItem.leftBarButtonItem = cancel;
   self.navigationItem.rightBarButtonItem = save;
 }
@@ -561,4 +571,23 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
   }
   [self.navigationController  popViewControllerAnimated:YES];
 }
+
+
+
+#pragma mark - UITextFieldDelegate protocol
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+  if (textField == self.summaryCell.textField) {
+    NSMutableString *newText = [textField.text mutableCopy];
+    [newText replaceCharactersInRange:range withString:string];
+    if (!ISEMPTYSTRING(newText)) {
+      [saveButton_ setEnabled:YES];
+    }else{
+      [saveButton_ setEnabled:NO];
+    }
+    return YES;
+  }
+  
+  return YES;
+}
+
 @end

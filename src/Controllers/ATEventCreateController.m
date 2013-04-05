@@ -22,7 +22,7 @@
   [super viewDidLoad];
   self.editingMoc = [NSManagedObjectContext MR_contextWithParent:self.sourceMoc];
   self.event = [ATEvent MR_createInContext:self.editingMoc];
-  self.event.summary = @"some event";
+  self.event.summary = @"";
   self.event.startDate = [NSDate date];
   self.event.endDate = [NSDate date];
   [self updateViewWithEvent:self.event];
