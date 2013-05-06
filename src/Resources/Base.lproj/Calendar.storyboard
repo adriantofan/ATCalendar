@@ -209,6 +209,21 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             <point key="canvasLocation" x="-847" y="-34"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="ATDurationEditController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ATDurationEditController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="allDaySwitch_" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="endDateLabel_" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="picker_" candidateClass="UIDatePicker"/>
+                <relationship kind="outlet" name="startDateLabel_" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="timeZoneLabel_" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

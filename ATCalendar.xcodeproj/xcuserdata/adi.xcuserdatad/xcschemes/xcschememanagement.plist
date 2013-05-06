@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>ATCalendar.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
 		<key>ATCalendarDemo.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -18,6 +23,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>401297BD16F21CA100C0DC35</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4046276C1737E57900EA06BE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
