@@ -1,5 +1,5 @@
 #import "ATMonthlyRecurrence.h"
-
+#import "NSBundle+ATCalendar.h"
 
 @interface ATMonthlyRecurrence ()
 
@@ -18,6 +18,6 @@
 }
 // Custom logic goes here.
 -(NSString*)reccurenceTypeDescription{
-  return NSLocalizedString(@"monthly", @"Monthly reccurence type description");
+  return ATLocalizedString(@"monthly", @"Monthly reccurence type description");
 }
 @end

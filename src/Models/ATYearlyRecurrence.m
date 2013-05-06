@@ -1,5 +1,6 @@
 #import "ATYearlyRecurrence.h"
-
+#import "NSBundle+ATCalendar.h"
+#import "NSDate+MTDates.h"
 
 @interface ATYearlyRecurrence ()
 
@@ -18,7 +19,7 @@
 }
 
 -(NSString*)reccurenceTypeDescription{
-  return NSLocalizedString(@"yearly", @"Yearly reccurence type description");
+  return ATLocalizedString(@"yearly", @"Yearly reccurence type description");
 }
 
 @end

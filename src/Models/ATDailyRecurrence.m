@@ -1,5 +1,5 @@
 #import "ATDailyRecurrence.h"
-
+#import "NSBundle+ATCalendar.h"
 
 @interface ATDailyRecurrence ()
 
@@ -18,6 +18,6 @@
   return nil;
 }
 -(NSString*)reccurenceTypeDescription{
-  return NSLocalizedString(@"daily", @"daily reccurence type description");
+  return ATLocalizedString(@"daily", @"daily reccurence type description");
 }
 @end

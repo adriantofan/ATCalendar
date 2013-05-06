@@ -9,7 +9,7 @@
 #import "ATAlertTypeController.h"
 #import "ATEvent.h"
 #import "ATCalendarUIConfig.h"
-
+#import "NSBundle+ATCalendar.h"
 
 @interface ATAlertTypeController ()
 @property (nonatomic) NSArray* alertLabels;
@@ -23,15 +23,15 @@ static NSString *CellIdentifier = @"Cell";
 
 -(NSArray*)alertLabels{
   if (nil == alertLabels_) {
-    alertLabels_ = @[NSLocalizedString(@"None", @"alert type"),
-                     NSLocalizedString(@"At event time", @"alert type"),
-                     NSLocalizedString(@"5 minutes before", @"alert type"),
-                     NSLocalizedString(@"15 minutes before", @"alert type"),
-                     NSLocalizedString(@"30 minutes before", @"alert type"),
-                     NSLocalizedString(@"1 hour before", @"alert type"),
-                     NSLocalizedString(@"2 hours before", @"alert type"),
-                     NSLocalizedString(@"1 day before", @"alert type"),
-                     NSLocalizedString(@"2 days before", @"alert type"),
+    alertLabels_ = @[ATLocalizedString(@"None", @"alert type"),
+                     ATLocalizedString(@"At event time", @"alert type"),
+                     ATLocalizedString(@"5 minutes before", @"alert type"),
+                     ATLocalizedString(@"15 minutes before", @"alert type"),
+                     ATLocalizedString(@"30 minutes before", @"alert type"),
+                     ATLocalizedString(@"1 hour before", @"alert type"),
+                     ATLocalizedString(@"2 hours before", @"alert type"),
+                     ATLocalizedString(@"1 day before", @"alert type"),
+                     ATLocalizedString(@"2 days before", @"alert type"),
                           ];
   }
   return alertLabels_;
@@ -52,7 +52,7 @@ static NSString *CellIdentifier = @"Cell";
                            action:@selector(saveButtonAction)];
   self.navigationItem.leftBarButtonItem = cancel;
   self.navigationItem.rightBarButtonItem = save;
-  self.title = NSLocalizedString(@"Event Alert", @"Event Alert controller title");
+  self.title = ATLocalizedString(@"Event Alert", @"Event Alert controller title");
   [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
 }
 #pragma mark - Button actions

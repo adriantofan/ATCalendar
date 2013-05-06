@@ -8,13 +8,14 @@
 
 #import "ATCalendar.h"
 #import "ATGlobalPropertyes.h"
-#import "NSDate+MTDates.h"
+//#import "NSDate+MTDates.h"
 #import "ATOccurrenceCache.h"
 #import "ATEvent.h"
 #import "ATTimeSpan.h"
 #import "ATRecurrence.h"
 #import "ATAlertNotification.h"
 #import "ATEvent+LocalNotifications.h"
+#import "NSBundle+ATCalendar.h"
 
 const int kMaxNotifications = 30;
 

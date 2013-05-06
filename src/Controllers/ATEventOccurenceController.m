@@ -12,9 +12,7 @@
 #import "ATEvent.h"
 #import "ATEvent+LocalNotifications.h"
 #import "ATCalendarUIConfig.h"
-#import "ATCalendarUIConfig.h"
-#import "ATCalendarUIConfig.h"
-
+#import "NSBundle+ATCalendar.h"
 
 
 NSString * const CellTitleSubtitleDescriptionlId = @"CellTitleSubtitleDescriptionlId";
@@ -61,7 +59,7 @@ typedef enum{
                                            selector:@selector(saveMocNotif:)
                                                name:NSManagedObjectContextDidSaveNotification
                                              object:self.eventOccurence.managedObjectContext];
-  self.title = NSLocalizedString(@"Event details", @"View Event details controller title");
+  self.title = ATLocalizedString(@"Event details", @"View Event details controller title");
 }
 
 #pragma mark - Setters & Getters
@@ -181,7 +179,7 @@ typedef enum{
   ATCalendarUIConfig* c = [ATCalendarUIConfig sharedConfig] ;
   cell.subtitleLabel.textColor = c.cellSubtitleLabelCollor;
   cell.descriptionLabel.textColor = c.cellTextLabelCollor;
-  [cell setTitle:NSLocalizedString(@"URL", @"URL field title")
+  [cell setTitle:ATLocalizedString(@"URL", @"URL field title")
         subtitle:@""
      description:self.eventOccurence.event.url];
   cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -191,7 +189,7 @@ typedef enum{
   ATCalendarUIConfig* c = [ATCalendarUIConfig sharedConfig] ;
   cell.subtitleLabel.textColor = c.cellSubtitleLabelCollor;
   cell.descriptionLabel.textColor = c.cellTextLabelCollor;
-  [cell setTitle:NSLocalizedString(@"Notes", @"Notes field title")
+  [cell setTitle:ATLocalizedString(@"Notes", @"Notes field title")
         subtitle:@""
      description:self.eventOccurence.event.notes];
   cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -200,7 +198,7 @@ typedef enum{
   ATCalendarUIConfig* c = [ATCalendarUIConfig sharedConfig] ;
   cell.subtitleLabel.textColor = c.cellSubtitleLabelCollor;
   cell.descriptionLabel.textColor = c.cellTextLabelCollor;
-  [cell setTitle:NSLocalizedString(@"Alert", @"Alert field title")
+  [cell setTitle:ATLocalizedString(@"Alert", @"Alert field title")
         subtitle:@""
      description:[self.eventOccurence.event alertsDescription]];
   cell.selectionStyle = [[ATCalendarUIConfig sharedConfig] tableViewCellSelectionStyle];
@@ -210,7 +208,7 @@ typedef enum{
   ATCalendarUIConfig* c = [ATCalendarUIConfig sharedConfig] ;
   cell.subtitleLabel.textColor = c.cellSubtitleLabelCollor;
   cell.descriptionLabel.textColor = c.cellTextLabelCollor;
-  [cell setTitle:NSLocalizedString(@"Avilability", @"Avilability field title")
+  [cell setTitle:ATLocalizedString(@"Avilability", @"Avilability field title")
         subtitle:@""
      description:[self.eventOccurence.event avilabilityDescription]];
   cell.selectionStyle = [[ATCalendarUIConfig sharedConfig] tableViewCellSelectionStyle];
@@ -234,22 +232,22 @@ typedef enum{
                                 description:[self.eventOccurence durationDescription]];
   }
   if (type == CellTypeURL) {
-    return [ATEventDetailCell heightWithTitle:NSLocalizedString(@"URL", @"URL field title")
+    return [ATEventDetailCell heightWithTitle:ATLocalizedString(@"URL", @"URL field title")
                                      subtitle:@""
                                   description:self.eventOccurence.event.url];
   }
   if (type == CellTypeNotes) {
-    return [ATEventDetailCell heightWithTitle:NSLocalizedString(@"Notes", @"Notes field title")
+    return [ATEventDetailCell heightWithTitle:ATLocalizedString(@"Notes", @"Notes field title")
                                      subtitle:@""
                                   description:self.eventOccurence.event.notes];
   }
   if (type == CellTypeAlarms) {
-    return [ATEventDetailCell heightWithTitle:NSLocalizedString(@"Alert", @"Alert field title")
+    return [ATEventDetailCell heightWithTitle:ATLocalizedString(@"Alert", @"Alert field title")
                                      subtitle:@""
                                   description:[self.eventOccurence.event alertsDescription]];
   }
   if (type == CellTypeAvilability) {
-    return [ATEventDetailCell heightWithTitle:NSLocalizedString(@"Avilability", @"Avilability field title")
+    return [ATEventDetailCell heightWithTitle:ATLocalizedString(@"Avilability", @"Avilability field title")
                                      subtitle:@""
                                   description:[self.eventOccurence.event avilabilityDescription]];
   }

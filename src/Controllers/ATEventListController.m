@@ -15,6 +15,7 @@
 #import "ATEvent+LocalNotifications.h"
 #import "ATEventOccurenceCell.h"
 #import "ATCalendarUIConfig.h"
+#import "NSBundle+ATCalendar.h"
 #import <objc/runtime.h>
 
 #define DisplayStyleKey(obj) [NSString stringWithFormat:@"%@_DisplayStyle",[NSString stringWithUTF8String:class_getName([obj class])]] 
@@ -108,14 +109,16 @@
   UIBarButtonItem *addButton =
     [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonAction)];
   self.navigationItem.rightBarButtonItem = addButton;
-  self.title = NSLocalizedString(@"Calendar",@"Day list controller title");
+  self.title = ATLocalizedString(@"Calendar",@"Day list controller title");
   UIBarButtonItem * today = [[UIBarButtonItem alloc]
-                             initWithTitle:NSLocalizedString(@"Today", @"")
+                             initWithTitle:ATLocalizedString(@"Today", @"Show today button label")
                                      style:UIBarButtonItemStyleBordered
                                     target:self
                                     action:@selector(showToday)];
   UIBarButtonItem * spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-  UISegmentedControl *segCtrl = [[UISegmentedControl alloc] initWithItems: @[NSLocalizedString(@"Month", @""), NSLocalizedString(@"Week", @""),NSLocalizedString(@"Day", @"") ]];
+  UISegmentedControl *segCtrl = [[UISegmentedControl alloc] initWithItems: @[ATLocalizedString(@"Month", @"Filter by month button label"),
+        ATLocalizedString(@"Week", @"Filter by Week button label"),
+        ATLocalizedString(@"Day", @"Filter by day button label") ]];
   segCtrl.selectedSegmentIndex = 0;
   [segCtrl addTarget:self action:@selector(segCtrlChanged:) forControlEvents:UIControlEventValueChanged];
   segCtrl.segmentedControlStyle = UISegmentedControlStyleBar;

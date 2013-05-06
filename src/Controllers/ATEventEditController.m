@@ -11,6 +11,7 @@
 #import "ATOccurrenceCache.h"
 #import "ATEvent+LocalNotifications.h"
 #import "ATCalendar.h"
+#import "NSBundle+ATCalendar.h"
 
 @interface ATEventEditController (){
   
@@ -31,7 +32,7 @@
   self.event = [self.sourceEvent MR_inContext:self.editingMoc];
   [self updateViewWithEvent:self.event];
   self.tableView.tableFooterView = self.footerView;
-  self.title = NSLocalizedString(@"Edit", @"Event edit controller title");
+  self.title = ATLocalizedString(@"Edit", @"Event edit controller title");
 }
 -(UIView*)footerView{
   if (nil == footerView_) {
@@ -40,7 +41,7 @@
     btn.frame = CGRectMake(10.0, 5.0, 300.0, 45.0);
     btn.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [footerView_ addSubview:btn];
-    [btn setTitle:NSLocalizedString(@"Delete", @"") forState:UIControlStateNormal];
+    [btn setTitle:ATLocalizedString(@"Delete", @"Delete event button label") forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(deleteButtonAction:) forControlEvents:UIControlEventTouchUpInside];
   }
   return footerView_;
@@ -61,10 +62,10 @@
 -(IBAction)deleteButtonAction:(UIButton*)sender{
   if (self.event.isRecurrent) {
     UIActionSheet *a = [[UIActionSheet alloc]
-                        initWithTitle:NSLocalizedString(@"This event is recurrent", @"")
+                        initWithTitle:ATLocalizedString(@"This event is recurrent", @"Allert shown when a recurent event is deleted")
                         delegate:self
-                        cancelButtonTitle:NSLocalizedString(@"Cancel",@"")
-                        destructiveButtonTitle:NSLocalizedString(@"Delete all occurences",@"")
+                        cancelButtonTitle:ATLocalizedString(@"Cancel",@"button label for  allert shown when a recurent event is deleted - cancel delete")
+                        destructiveButtonTitle:ATLocalizedString(@"Delete all occurences",@"button label for Allert shown when a recurent event is deleted - delete all occurences")
                         otherButtonTitles:nil];
     [a showFromRect:sender.frame
              inView:self.view

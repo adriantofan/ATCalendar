@@ -8,6 +8,7 @@
 
 #import "ATTZPickerController.h"
 #import "ATCalendarUIConfig.h"
+#import "NSBundle+ATCalendar.h"
 
 @interface ATTZPickerController ()
 @property (nonatomic) NSArray* timeZoneNames;
@@ -46,7 +47,7 @@ static NSString *CellIdentifier = @"Cell";
                              target:self
                              action:@selector(cancelButtonAction)];
   [self.navigationController setNavigationBarHidden:NO];
-  self.navigationItem.prompt = NSLocalizedString(@"Type a city name",@"Time zone selection controller name");
+  self.navigationItem.prompt = ATLocalizedString(@"Type a city name",@"Time zone selection controller name");
   self.navigationItem.rightBarButtonItem = cancel;
   UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 270, 40)] ;
   searchBar.backgroundImage = [[UIImage alloc] init];

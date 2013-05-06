@@ -8,6 +8,7 @@
 
 #import "ATEndRecurrenceController.h"
 #import "ATCalendarUIConfig.h"
+#import "NSBundle+ATCalendar.h"
 
 @interface ATEndRecurrenceController (){
   NSDateFormatter *formater_;
@@ -26,7 +27,7 @@
 -(UITableViewCell*)dateCell{
   if (nil == dateCell_) {
     dateCell_ = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"UITableViewCellStyleValue1Id"];
-    dateCell_.textLabel.text = NSLocalizedString(@"End repeat", @"End repeat cell label");
+    dateCell_.textLabel.text = ATLocalizedString(@"End repeat", @"End repeat cell label");
     dateCell_.detailTextLabel.text = @"vvv";
     dateCell_.selectionStyle = [[ATCalendarUIConfig sharedConfig] tableViewCellSelectionStyle];
   }
@@ -35,7 +36,7 @@
 -(UITableViewCell*)buttonCell{
   if (nil == buttonCell_) {
         buttonCell_ = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCellStyleDefaultId"];
-    buttonCell_.textLabel.text = NSLocalizedString(@"Repeat forever", @"");
+    buttonCell_.textLabel.text = ATLocalizedString(@"Repeat forever", @"");
     buttonCell_.textLabel.textAlignment = NSTextAlignmentCenter;
     buttonCell_.selectionStyle = [[ATCalendarUIConfig sharedConfig] tableViewCellSelectionStyle];
 
@@ -62,7 +63,7 @@
   formater_ = [[NSDateFormatter alloc] init];
   formater_.dateStyle = NSDateFormatterLongStyle;
   formater_.timeStyle = NSDateFormatterNoStyle;
-  self.title = NSLocalizedString(@"End Repeat", @"End repeat viewcontroller title");
+  self.title = ATLocalizedString(@"End Repeat", @"End repeat viewcontroller title");
   self.tableView.scrollEnabled = NO;
   self.dateCell.detailTextLabel.text = [formater_ stringFromDate:self.endDate];
   UIBarButtonItem* cancel = [[UIBarButtonItem alloc]

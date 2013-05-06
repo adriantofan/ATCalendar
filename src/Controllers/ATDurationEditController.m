@@ -10,7 +10,7 @@
 #import "ATTZPickerController.h"
 #import "ATCalendarUIConfig.h"
 #import "ATCalendarUIConfig.h"
-
+#import "NSBundle+ATCalendar.h"
 
 typedef enum{
   ATDurationEditControllerEditElementStart,
@@ -209,11 +209,11 @@ typedef enum{
 - (IBAction)saveButtonAction:(id)sender {
   if ([startDate_ mt_isAfter:endDate_]) {
     UIAlertView *allert =
-    [[UIAlertView alloc] initWithTitle:NSLocalizedString(
+    [[UIAlertView alloc] initWithTitle:ATLocalizedString(
  @"Cannot save event",@"")
-                                message:NSLocalizedString(@"The start date must be before the end date",@"")
+                                message:ATLocalizedString(@"The start date must be before the end date",@"")
                                delegate:nil
-                     cancelButtonTitle:NSLocalizedString(@"OK", @"OK button text")
+                     cancelButtonTitle:ATLocalizedString(@"OK", @"OK button text")
                      otherButtonTitles:nil];
     [allert show];
   }else{

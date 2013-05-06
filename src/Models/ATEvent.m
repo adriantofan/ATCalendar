@@ -5,6 +5,7 @@
 #import "ATMonthlyRecurrence.h"
 #import "ATYearlyRecurrence.h"
 #import "ATEvent+LocalNotifications.h"
+#import "NSBundle+ATCalendar.h"
 
 @interface ATEvent ()
 @end
@@ -20,9 +21,9 @@
 
 -(NSString*)avilabilityDescription{
   if (self.busyValue) {
-    return NSLocalizedString(@"Busy", @"Busy label");
+    return ATLocalizedString(@"Busy", @"Busy label");
   }else{
-    return NSLocalizedString(@"Free", @"Free label");
+    return ATLocalizedString(@"Free", @"Free label");
   }
 }
 
@@ -30,23 +31,23 @@
   NSString *text;
   switch (alertType) {
     case ATEventAlertTypeNone:
-      text = NSLocalizedString(@"None", @"alert type");break;
+      text = ATLocalizedString(@"None", @"alert type");break;
     case ATEventAlertTypeAtTime:
-      text = NSLocalizedString(@"At event time", @"alert type");break;
+      text = ATLocalizedString(@"At event time", @"alert type");break;
     case ATEventAlertType5MinBefore:
-      text = NSLocalizedString(@"5 minutes before", @"alert type");break;
+      text = ATLocalizedString(@"5 minutes before", @"alert type");break;
     case ATEventAlertType15MinBefore:
-      text = NSLocalizedString(@"15 minutes before", @"alert type");break;
+      text = ATLocalizedString(@"15 minutes before", @"alert type");break;
     case ATEventAlertType30MinBefore:
-      text = NSLocalizedString(@"30 minutes before", @"alert type");break;
+      text = ATLocalizedString(@"30 minutes before", @"alert type");break;
     case ATEventAlertType1HBefore:
-      text = NSLocalizedString(@"1 hour before", @"alert type");break;
+      text = ATLocalizedString(@"1 hour before", @"alert type");break;
     case ATEventAlertType2HBefore:
-      text = NSLocalizedString(@"2 hour before", @"alert type");break;
+      text = ATLocalizedString(@"2 hour before", @"alert type");break;
     case ATEventAlertType1DayBefore:
-      text = NSLocalizedString(@"1 day before", @"alert type");break;
+      text = ATLocalizedString(@"1 day before", @"alert type");break;
     case ATEventAlertType2DaysBefore:
-      text = NSLocalizedString(@"2 days before", @"alert type");break;
+      text = ATLocalizedString(@"2 days before", @"alert type");break;
   }
   return text;
 }

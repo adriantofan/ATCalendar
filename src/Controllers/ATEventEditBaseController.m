@@ -27,6 +27,7 @@
 #import "ATAlertTypeController.h"
 #import "ATAvilabilityController.h"
 #import "ATCalendarUIConfig.h"
+#import "NSBundle+ATCalendar.h"
 
 #define ISEMPTYSTRING(str) ((nil ==str) || ([str length] == 0) || ([[str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] == 0))
 
@@ -88,8 +89,8 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
 -(UITableViewCell*)busyCell{
   if (nil == busyCell_) {
     busyCell_ = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"UITableViewCellStyleValue1Id"];
-    busyCell_.textLabel.text = NSLocalizedString(@"Avilability", @"");
-    busyCell_.detailTextLabel.text = NSLocalizedString(@"", @"");
+    busyCell_.textLabel.text = ATLocalizedString(@"Avilability", @"Avilability cell label");
+    busyCell_.detailTextLabel.text = ATLocalizedString(@"", @"");
     busyCell_.detailTextLabel.textColor = [[ATCalendarUIConfig sharedConfig] tableViewCellDetailLabelCollor];
     busyCell_.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     busyCell_.selectionStyle = [[ATCalendarUIConfig sharedConfig] tableViewCellSelectionStyle];
@@ -99,8 +100,8 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
 -(UITableViewCell*)firstAlertCell{
   if (nil == firstAlertCell_) {
     firstAlertCell_ = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"UITableViewCellStyleValue1Id"];
-    firstAlertCell_.textLabel.text = NSLocalizedString(@"Alert", @"");
-    firstAlertCell_.detailTextLabel.text = NSLocalizedString(@"None", @"");
+    firstAlertCell_.textLabel.text = ATLocalizedString(@"Alert", @"Alert cell label");
+    firstAlertCell_.detailTextLabel.text = ATLocalizedString(@"None", @"Alert cell default to no alert");
     firstAlertCell_.detailTextLabel.textColor = [[ATCalendarUIConfig sharedConfig] tableViewCellDetailLabelCollor];
     firstAlertCell_.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     firstAlertCell_.selectionStyle = [[ATCalendarUIConfig sharedConfig] tableViewCellSelectionStyle];
@@ -112,8 +113,8 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
 -(UITableViewCell*)seccondAlertCell{
   if (nil == seccondAlertCell_) {
     seccondAlertCell_ = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"UITableViewCellStyleValue1Id"];
-    seccondAlertCell_.textLabel.text = NSLocalizedString(@"Second Alert", @"");
-    seccondAlertCell_.detailTextLabel.text = NSLocalizedString(@"None", @"");
+    seccondAlertCell_.textLabel.text = ATLocalizedString(@"Second Alert", @"Alert cell label");
+    seccondAlertCell_.detailTextLabel.text = ATLocalizedString(@"None", @"Alert cell default to no alert");
     seccondAlertCell_.detailTextLabel.textColor = [[ATCalendarUIConfig sharedConfig] tableViewCellDetailLabelCollor];
     seccondAlertCell_.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     seccondAlertCell_.selectionStyle = [[ATCalendarUIConfig sharedConfig] tableViewCellSelectionStyle];
@@ -124,8 +125,8 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
 -(UITableViewCell*)repeatEndCell{
   if (nil == repeatEndCell_) {
     repeatEndCell_ = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"UITableViewCellStyleValue1Id"];
-    repeatEndCell_.textLabel.text = NSLocalizedString(@"End Repeat", @"");
-    repeatEndCell_.detailTextLabel.text = NSLocalizedString(@"Never", @"");
+    repeatEndCell_.textLabel.text = ATLocalizedString(@"End Repeat", @"When repeating ends");
+    repeatEndCell_.detailTextLabel.text = ATLocalizedString(@"Never", @"Repeat forever");
     repeatEndCell_.detailTextLabel.textColor = [[ATCalendarUIConfig sharedConfig] tableViewCellDetailLabelCollor];
     repeatEndCell_.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     repeatEndCell_.selectionStyle = [[ATCalendarUIConfig sharedConfig] tableViewCellSelectionStyle];
@@ -136,8 +137,8 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
 -(UITableViewCell*)repeatTypeCell{
   if (nil == repeatTypeCell_) {
     repeatTypeCell_ = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"UITableViewCellStyleValue1Id"];
-    repeatTypeCell_.textLabel.text = NSLocalizedString(@"Repeat", @"Repeat cell title");
-    repeatTypeCell_.detailTextLabel.text = NSLocalizedString(@"Never", @"");
+    repeatTypeCell_.textLabel.text = ATLocalizedString(@"Repeat", @"Repeat type cell title");
+    repeatTypeCell_.detailTextLabel.text = ATLocalizedString(@"Never", @"Do not repeat");
     repeatTypeCell_.detailTextLabel.textColor = [[ATCalendarUIConfig sharedConfig] tableViewCellDetailLabelCollor];
     repeatTypeCell_.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     repeatTypeCell_.selectionStyle = [[ATCalendarUIConfig sharedConfig] tableViewCellSelectionStyle];
@@ -156,7 +157,7 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
 -(ATEventTextFieldCell*)placeCell{
   if (nil == placeCell_) {
     placeCell_ = [[ATEventTextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ATEventTextFieldCellPlace"];
-    placeCell_.textField.placeholder = NSLocalizedString(@"Location",@"Event Location");
+    placeCell_.textField.placeholder = ATLocalizedString(@"Location",@"Event Location");
     placeCell_.selectionStyle = UITableViewCellSelectionStyleNone;
   }
   return placeCell_;
@@ -164,7 +165,7 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
 -(ATEventTextFieldCell*)summaryCell{
   if (nil == summaryCell_) {
     summaryCell_ = [[ATEventTextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ATEventTextFieldCellName"];
-    summaryCell_.textField.placeholder = NSLocalizedString(@"Title",@"Event Title");
+    summaryCell_.textField.placeholder = ATLocalizedString(@"Title",@"Event Title");
     summaryCell_.selectionStyle = UITableViewCellSelectionStyleNone;
     summaryCell_.textField.delegate = self;
   }
@@ -173,7 +174,7 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
 -(ATEventTextFieldCell*)urlCell{
   if (nil == urlCell_) {
     urlCell_ = [[ATEventTextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ATEventTextFieldCellName"];
-    urlCell_.textField.placeholder = NSLocalizedString(@"URL",@"Event URL");
+    urlCell_.textField.placeholder = ATLocalizedString(@"URL",@"Event URL");
     urlCell_.textField.keyboardType = UIKeyboardTypeURL;
     urlCell_.selectionStyle = UITableViewCellSelectionStyleNone;
   }
@@ -184,7 +185,7 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
 -(ATEventTextViewCell*)notesCell{
   if (nil == notesCell_) {
     notesCell_ = [[ATEventTextViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ATEventTextViewCellId"];
-    notesCell_.textView.placeholder = NSLocalizedString(@"Notes",@"Event notes");
+    notesCell_.textView.placeholder = ATLocalizedString(@"Notes",@"Event notes");
     notesCell_.textView.font = [UIFont systemFontOfSize:16.0];
     notesCell_.textView.placeholderColor = [UIColor lightGrayColor];
     notesCell_.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -207,22 +208,22 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
   if (event.recurence) {
     self.repeatTypeCell.detailTextLabel.text = event.recurence.reccurenceTypeDescription;
     if (nil == event.recurence.endDate) {
-      self.repeatEndCell.detailTextLabel.text = NSLocalizedString(@"Never", @"");
+      self.repeatEndCell.detailTextLabel.text = ATLocalizedString(@"Never", @"Do not repeat");
     }else{
       self.repeatEndCell.detailTextLabel.text = [dateFormatter_ stringFromDate:event.recurence.endDate];
     }
   }else{
-    self.repeatTypeCell.detailTextLabel.text = NSLocalizedString(@"Never", @"");;
-    self.repeatEndCell.detailTextLabel.text = NSLocalizedString(@"Never", @"");;
+    self.repeatTypeCell.detailTextLabel.text = ATLocalizedString(@"Never", @"Do not repeat");;
+    self.repeatEndCell.detailTextLabel.text = ATLocalizedString(@"Never", @"Do not repeat");;
   }
   self.firstAlertCell.detailTextLabel.text = [ATEvent descriptionFor:event.firstAlertTypeValue];
   self.seccondAlertCell.detailTextLabel.text = [ATEvent descriptionFor:event.seccondAlertTypeValue];
   self.urlCell.textField.text = event.url;
   self.notesCell.textView.text = event.notes;
   if(self.event.busyValue){
-    self.busyCell.detailTextLabel.text = NSLocalizedString(@"Busy", @"Busy label");
+    self.busyCell.detailTextLabel.text = ATLocalizedString(@"Busy", @"Busy label");
   }else{
-    self.busyCell.detailTextLabel.text = NSLocalizedString(@"Free", @"Free label");
+    self.busyCell.detailTextLabel.text = ATLocalizedString(@"Free", @"Free label");
   }
   self.timeEditCell.timeZoneLabel.text = [event.timeZone name];
 }

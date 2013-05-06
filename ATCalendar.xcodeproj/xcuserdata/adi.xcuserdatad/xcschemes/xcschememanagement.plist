@@ -14,6 +14,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>ATCalendarResources.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
 		<key>Mogenerator.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -28,6 +33,11 @@
 			<true/>
 		</dict>
 		<key>4046276C1737E57900EA06BE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>404627B41737E8D300EA06BE</key>
 		<dict>
 			<key>primary</key>
 			<true/>

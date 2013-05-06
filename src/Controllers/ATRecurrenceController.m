@@ -8,6 +8,7 @@
 
 #import "ATRecurrenceController.h"
 #import "ATCalendarUIConfig.h"
+#import "NSBundle+ATCalendar.h"
 
 @interface ATRecurrenceController ()
 @property (nonatomic) NSArray* reccurenceLabels;
@@ -20,11 +21,11 @@ static NSString *CellIdentifier = @"Cell";
 @synthesize reccurenceLabels = reccurenceLabels_;
 -(NSArray*)reccurenceLabels{
   if (nil == reccurenceLabels_) {
-    reccurenceLabels_ = @[NSLocalizedString(@"None", @"repeat selection"),
-                          NSLocalizedString(@"Every Day", @"repeat selection"),
-                          NSLocalizedString(@"Every Week", @"repeat selection"),
-                          NSLocalizedString(@"Every Month", @"repeat selection"),
-                          NSLocalizedString(@"Every Year", @"repeat selection"),
+    reccurenceLabels_ = @[ATLocalizedString(@"None", @"repeat selection"),
+                          ATLocalizedString(@"Every Day", @"repeat selection"),
+                          ATLocalizedString(@"Every Week", @"repeat selection"),
+                          ATLocalizedString(@"Every Month", @"repeat selection"),
+                          ATLocalizedString(@"Every Year", @"repeat selection"),
                           ];
   }
   return reccurenceLabels_;
@@ -46,7 +47,7 @@ static NSString *CellIdentifier = @"Cell";
                            action:@selector(saveButtonAction)];
   self.navigationItem.leftBarButtonItem = cancel;
   self.navigationItem.rightBarButtonItem = save;
-  self.title = NSLocalizedString(@"Repeat", @"Recurrence controller title");
+  self.title = ATLocalizedString(@"Repeat", @"Recurrence controller title");
   [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
 }
 

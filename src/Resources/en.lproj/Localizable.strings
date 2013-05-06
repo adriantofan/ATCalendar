@@ -1,0 +1,182 @@
+/* Localizable.strings
+  ATCalendar
+
+  Created by Adrian Tofan on 06/05/13.
+  Copyright (c) 2013 Adrian Tofan. All rights reserved. */
+
+/* No comment provided by engineer. */
+"" = "";
+
+/* No comment provided by engineer. */
+"%@ \nfrom %@ to %@" = "%1$@ \nfrom %2$@ to %3$@";
+
+/* No comment provided by engineer. */
+"%@" = "%@";
+
+/* alert type */
+"1 day before" = "1 day before";
+
+/* alert type */
+"1 hour before" = "1 hour before";
+
+/* alert type */
+"2 days before" = "2 days before";
+
+/* alert type */
+"2 hour before" = "2 hour before";
+
+/* alert type */
+"2 hours before" = "2 hours before";
+
+/* alert type */
+"5 minutes before" = "5 minutes before";
+
+/* alert type */
+"15 minutes before" = "15 minutes before";
+
+/* alert type */
+"30 minutes before" = "30 minutes before";
+
+/* Event add controller title */
+"Add event" = "Add event";
+
+/* Alert field title */
+"Alert" = "Alert";
+
+/* No comment provided by engineer. */
+"All Day " = "All Day ";
+
+/* marks event end */
+"all-day" = "all-day";
+
+/* alert type */
+"At event time" = "At event time";
+
+/* Avilability controller title
+   Avilability field title */
+"Avilability" = "Avilability";
+
+/* Busy label */
+"Busy" = "Busy";
+
+/* Day list controller title */
+"Calendar" = "Calendar";
+
+/* No comment provided by engineer. */
+"Cancel" = "Cancel";
+
+/* No comment provided by engineer. */
+"Cannot save event" = "Cannot save event";
+
+/* daily reccurence type description */
+"daily" = "daily";
+
+/* No comment provided by engineer. */
+"Day" = "Day";
+
+/* No comment provided by engineer. */
+"Delete all occurences" = "Delete all occurences";
+
+/* No comment provided by engineer. */
+"Delete" = "Delete";
+
+/* Event edit controller title */
+"Edit" = "Edit";
+
+/* End repeat cell label */
+"End repeat" = "End repeat";
+
+/* End repeat viewcontroller title */
+"End Repeat" = "End Repeat";
+
+/* event occurence end time */
+"ends\n%@" = "ends\n%@";
+
+/* Event Alert controller title */
+"Event Alert" = "Event Alert";
+
+/* View Event details controller title */
+"Event details" = "Event details";
+
+/* repeat selection */
+"Every Day" = "Every Day";
+
+/* repeat selection */
+"Every Month" = "Every Month";
+
+/* repeat selection */
+"Every Week" = "Every Week";
+
+/* repeat selection */
+"Every Year" = "Every Year";
+
+/* Free label */
+"Free" = "Free";
+
+/* No comment provided by engineer. */
+"from %@ to %@" = "from %1$@ to %2$@";
+
+/* Event Location */
+"Location" = "Location";
+
+/* No comment provided by engineer. */
+"Month" = "Month";
+
+/* Monthly reccurence type description */
+"monthly" = "monthly";
+
+/* No comment provided by engineer. */
+"Never" = "Never";
+
+/* alert type
+   repeat selection */
+"None" = "None";
+
+/* Event notes
+   Notes field title */
+"Notes" = "Notes";
+
+/* OK button text */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"Repeat forever" = "Repeat forever";
+
+/* Recurrence controller title
+   Repeat cell title */
+"Repeat" = "Repeat";
+
+/* No comment provided by engineer. */
+"Second Alert" = "Second Alert";
+
+/* No comment provided by engineer. */
+"The start date must be before the end date" = "The start date must be before the end date";
+
+/* No comment provided by engineer. */
+"This event is recurrent" = "This event is recurrent";
+
+/* Event Title */
+"Title" = "Title";
+
+/* No comment provided by engineer. */
+"Today" = "Today";
+
+/* Time zone selection controller name */
+"Type a city name" = "Type a city name";
+
+/* Event URL
+   URL field title */
+"URL" = "URL";
+
+/* No comment provided by engineer. */
+"Week" = "Week";
+
+/* Weekley reccurence type description */
+"weekley" = "weekley";
+
+/* Yearly reccurence type description */
+"yearly" = "yearly";
+
+/* EG: repeats (every day) , where every day is the event reccurence */
+"repeats %@" = "repeats %@";
+

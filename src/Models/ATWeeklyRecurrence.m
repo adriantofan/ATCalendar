@@ -1,5 +1,5 @@
 #import "ATWeeklyRecurrence.h"
-
+#import "NSBundle+ATCalendar.h"
 
 @interface ATWeeklyRecurrence ()
 
@@ -19,6 +19,6 @@
 
 // Custom logic goes here.
 -(NSString*)reccurenceTypeDescription{
-  return NSLocalizedString(@"weekley", @"Weekley reccurence type description");
+  return ATLocalizedString(@"weekley", @"Weekley reccurence type description");
 }
 @end

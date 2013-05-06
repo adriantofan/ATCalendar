@@ -3,7 +3,7 @@
 #import "ATCalendar.h"
 #import "ATTimeSpan.h"
 #import "ATEvent+LocalNotifications.h"
-
+#import "NSBundle+ATCalendar.h"
 
 @interface ATOccurrenceCache ()
 
@@ -85,10 +85,10 @@
 }
 -(NSString*)timeSpanDescription{
   if ([self.startDate isEqualToDate:self.day] && [self.endDate isEqualToDate:[self.day mt_endOfCurrentDay]]) {
-    return NSLocalizedString(@"all-day",@"marks event end");
+    return ATLocalizedString(@"all-day",@"marks event end");
   }if (![self.occurrenceDate mt_isWithinSameDay:self.day] &&
        [self.endDate mt_isWithinSameDay:self.day]) {
-    return [NSString stringWithFormat:NSLocalizedString(@"ends\n%@", @"event occurence end time"),
+    return [NSString stringWithFormat:ATLocalizedString(@"ends\n%@", @"event occurence end time"),
             [self.endDate mt_stringFromDateWithHourAndMinuteFormat:MTDateHourFormat24Hour]];
   }else
   return  [self.occurrenceDate mt_stringFromDateWithHourAndMinuteFormat:MTDateHourFormat24Hour];
@@ -113,29 +113,30 @@
   // :-(
   if ([start mt_isWithinSameDay:end] && !self.event.allDayValue) {
     description =
-      [description stringByAppendingFormat:NSLocalizedString(@"%@ \nfrom %@ to %@",@""),
+      [description stringByAppendingFormat:ATLocalizedString(@"%@ \nfrom %@ to %@",@""),
         [dateFormater stringFromDate:start],
         [timeFormater stringFromDate:start],
         [timeFormater stringFromDate:end]];
   }else{
     if (self.event.allDayValue) {
-      description = NSLocalizedString(@"All Day ",@"");
+      description = ATLocalizedString(@"All Day ",@"All day event type");
       formater = dateFormater;
     }
     if ([start mt_isWithinSameDay:end] && self.event.allDayValue) {
       description =
-        [description stringByAppendingFormat:NSLocalizedString(@"%@",@""),
+        [description stringByAppendingFormat:@"%@",
          [dateFormater stringFromDate:start]];
     }else{
       description =
-      [description stringByAppendingFormat:NSLocalizedString(@"from %@ to %@",@""),
+      [description stringByAppendingFormat:ATLocalizedString(@"from %@ to %@",@"event span"),
        [formater stringFromDate:start],
        [formater stringFromDate:end]];
     }
   }
   if (self.event.recurence) {
     description = [description stringByAppendingString:@"\n"];
-    description = [description stringByAppendingFormat:@"repeats %@",[self.event.recurence reccurenceTypeDescription]];
+    description = [description stringByAppendingFormat:ATLocalizedString(@"repeats %@",@"EG: repeats (every day) , where every day is the event reccurence  "),
+                   [self.event.recurence reccurenceTypeDescription]];
   }
   return description;
 }

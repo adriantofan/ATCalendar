@@ -7,7 +7,7 @@
 //
 
 #import "ATEventCreateController.h"
-
+#import "NSBundle+ATCalendar.h"
 @interface ATEventCreateController ()
 
 @property (nonatomic,readwrite) NSManagedObjectContext* editingMoc;
@@ -26,7 +26,7 @@
   self.event.startDate = [NSDate date];
   self.event.endDate = [NSDate date];
   [self updateViewWithEvent:self.event];
-  self.title = NSLocalizedString(@"Add event", @"Event add controller title");
+  self.title = ATLocalizedString(@"Add event", @"Event add controller title");
 
 }
 

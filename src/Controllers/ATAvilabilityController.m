@@ -8,6 +8,7 @@
 
 #import "ATAvilabilityController.h"
 #import "ATCalendarUIConfig.h"
+#import "NSBundle+ATCalendar.h"
 
 @interface ATAvilabilityController ()
 
@@ -35,7 +36,7 @@ static NSString *CellIdentifier = @"Cell";
                            action:@selector(saveButtonAction)];
   self.navigationItem.leftBarButtonItem = cancel;
   self.navigationItem.rightBarButtonItem = save;
-  self.title = NSLocalizedString(@"Avilability", @"Avilability controller title");
+  self.title = ATLocalizedString(@"Avilability", @"Avilability controller title");
   [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
 }
 
@@ -69,9 +70,9 @@ static NSString *CellIdentifier = @"Cell";
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
   cell.selectionStyle = [[ATCalendarUIConfig sharedConfig] tableViewCellSelectionStyle];
   if (indexPath.row == 0) {
-    cell.textLabel.text = NSLocalizedString(@"Busy", @"Busy label");
+    cell.textLabel.text = ATLocalizedString(@"Busy", @"Busy label");
   }else{
-    cell.textLabel.text = NSLocalizedString(@"Free", @"Free label");
+    cell.textLabel.text = ATLocalizedString(@"Free", @"Free label");
   }
   return cell;
 }
