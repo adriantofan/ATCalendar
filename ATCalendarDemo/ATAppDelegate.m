@@ -11,6 +11,7 @@
 #import "ATMasterViewController.h"
 #import "ATEventListController.h"
 #import "ATCalendar.h"
+#import "NSBundle+ATCalendar.h"
 
 
 @implementation ATAppDelegate
@@ -30,6 +31,8 @@
     return YES;
 #endif
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+  [NSManagedObjectModel MR_setDefaultManagedObjectModel:
+   [NSManagedObjectModel mergedModelFromBundles:@[[NSBundle at_calendar_defaultBundle]]]];
   [MagicalRecord setupCoreDataStackWithStoreNamed:@"ATCalendar.sqlite"];
   NSManagedObjectContext* moc = [NSManagedObjectContext MR_contextForCurrentThread];
   [[ATCalendar sharedInstance] syncCachesIfNeeded:[NSDate date] inContext:moc];
