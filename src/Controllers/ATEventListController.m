@@ -15,8 +15,9 @@
 #import "ATEvent+LocalNotifications.h"
 #import "ATEventOccurenceCell.h"
 #import "ATCalendarUIConfig.h"
+#import <objc/runtime.h>
 
-
+#define DisplayStyleKey(obj) [NSString stringWithFormat:@"%@_DisplayStyle",[NSString stringWithUTF8String:class_getName([obj class])]] 
 
 @interface ATEventListController (){
   NSManagedObjectContext* addingContext_;
@@ -122,6 +123,9 @@
   UIBarButtonItem *segCtrlItem = [[UIBarButtonItem alloc] initWithCustomView:segCtrl];
   NSArray* items = @[today,spacer,segCtrlItem];
   [self setToolbarItems:items animated:YES];
+  self.selectedDisplayStyle = [[NSUserDefaults standardUserDefaults] integerForKey:DisplayStyleKey(self)];
+  [segCtrl setSelectedSegmentIndex:self.selectedDisplayStyle];
+  [self  showToday];
 }
 
 -(void)setSelectedDisplayStyle:(NSInteger)selectedDisplayStyle{
@@ -212,6 +216,9 @@
 
 -(IBAction)segCtrlChanged:(id)sender{
   NSAssert(sender == self.segCtrl, @"Expecting sender to be current segmented control");
+  [[NSUserDefaults standardUserDefaults] setInteger:self.segCtrl.selectedSegmentIndex
+                                             forKey:DisplayStyleKey(self)];
+  [[NSUserDefaults standardUserDefaults] synchronize];
   self.selectedDisplayStyle = self.segCtrl.selectedSegmentIndex;
 }
 
