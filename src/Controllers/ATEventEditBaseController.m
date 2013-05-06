@@ -148,7 +148,11 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
 
 -(ATEventTimeEditCell*)timeEditCell{
   if (nil == timeEditCell_) {
-    timeEditCell_ = [[[NSBundle mainBundle]loadNibNamed:@"EventTimeEditCell" owner:nil options:nil] objectAtIndex:0];
+    timeEditCell_ = [[[NSBundle at_calendar_defaultBundle]
+                      loadNibNamed:@"EventTimeEditCell"
+                             owner:nil
+                           options:nil]
+                     objectAtIndex:0];
     timeEditCell_.selectionStyle = [[ATCalendarUIConfig sharedConfig] tableViewCellSelectionStyle];
 
   }
