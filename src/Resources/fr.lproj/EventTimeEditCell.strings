@@ -1,0 +1,18 @@
+
+/* Class = "IBUILabel"; text = "Starts"; ObjectID = "24"; */
+"24.text" = "Starts";
+
+/* Class = "IBUILabel"; text = "12:00"; ObjectID = "25"; */
+"25.text" = "12:00";
+
+/* Class = "IBUILabel"; text = "mar 13 nov. 11:00"; ObjectID = "26"; */
+"26.text" = "mar 13 nov. 11:00";
+
+/* Class = "IBUILabel"; text = "Ends"; ObjectID = "27"; */
+"27.text" = "Ends";
+
+/* Class = "IBUILabel"; text = "Paris"; ObjectID = "42"; */
+"42.text" = "Paris";
+
+/* Class = "IBUILabel"; text = "Time Zone"; ObjectID = "43"; */
+"43.text" = "Time Zone";

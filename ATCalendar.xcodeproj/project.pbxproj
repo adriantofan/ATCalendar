@@ -51,8 +51,6 @@
 		402638BA16F78042002E5C6D /* ATEventListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 402638B316F78042002E5C6D /* ATEventListController.m */; };
 		402638BB16F78042002E5C6D /* ATEventListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 402638B316F78042002E5C6D /* ATEventListController.m */; };
 		402B14E81705E20400B32594 /* ATTZPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40339D90170456E6008D7190 /* ATTZPickerController.m */; };
-		40322DEC16F8B04200186611 /* EventTimeEditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40322DEB16F8B04200186611 /* EventTimeEditCell.xib */; };
-		40322DED16F8B04200186611 /* EventTimeEditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40322DEB16F8B04200186611 /* EventTimeEditCell.xib */; };
 		40322DF016F8B0F500186611 /* ATEventTimeEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40322DEF16F8B0F500186611 /* ATEventTimeEditCell.m */; };
 		40322DF116F8B0F500186611 /* ATEventTimeEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40322DEF16F8B0F500186611 /* ATEventTimeEditCell.m */; };
 		403329CD1702E865002FC8F5 /* ATAvilabilityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 403329CC1702E865002FC8F5 /* ATAvilabilityController.m */; };
@@ -66,11 +64,11 @@
 		403969B5170C928F0098B7DA /* ATEvent+LocalNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 403329DB17033784002FC8F5 /* ATEvent+LocalNotifications.m */; };
 		403969B6170C92900098B7DA /* ATEvent+LocalNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 403329DB17033784002FC8F5 /* ATEvent+LocalNotifications.m */; };
 		403969EE170D79CE0098B7DA /* ATCalendarUIConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 403969ED170D79CE0098B7DA /* ATCalendarUIConfig.m */; };
+		404627591737DF9300EA06BE /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4046275B1737DF9300EA06BE /* Calendar.storyboard */; };
+		4046275C1737DFA200EA06BE /* EventTimeEditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4046275E1737DFA200EA06BE /* EventTimeEditCell.xib */; };
 		404A3B5B1701FB13001C3CB8 /* ATAlertTypeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 404A3B5A1701FB13001C3CB8 /* ATAlertTypeController.m */; };
 		404A44DE16F8CD3300DAAD96 /* ATDurationEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 404A44DD16F8CD3300DAAD96 /* ATDurationEditController.m */; };
 		404A44DF16F8CD3300DAAD96 /* ATDurationEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 404A44DD16F8CD3300DAAD96 /* ATDurationEditController.m */; };
-		404A44E116F8CE5E00DAAD96 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 404A44E016F8CE5E00DAAD96 /* Calendar.storyboard */; };
-		404A44E216F8CE5E00DAAD96 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 404A44E016F8CE5E00DAAD96 /* Calendar.storyboard */; };
 		404A44E516F9C63A00DAAD96 /* ATEventDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 404A44E416F9C63A00DAAD96 /* ATEventDetailCell.m */; };
 		404A44E616F9C63A00DAAD96 /* ATEventDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 404A44E416F9C63A00DAAD96 /* ATEventDetailCell.m */; };
 		4059A96716F24600008F90F4 /* ATCalendarTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4059A96616F24600008F90F4 /* ATCalendarTest.m */; };
@@ -186,7 +184,6 @@
 		402638B416F78042002E5C6D /* ATEventRecurenceEditProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATEventRecurenceEditProtocol.h; sourceTree = "<group>"; };
 		402638B516F78042002E5C6D /* ATEventStartEndEditProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATEventStartEndEditProtocol.h; sourceTree = "<group>"; };
 		402B14E91705E9BF00B32594 /* ATCalendar_Notification_eventuserinfo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ATCalendar_Notification_eventuserinfo.xcdatamodel; sourceTree = "<group>"; };
-		40322DEB16F8B04200186611 /* EventTimeEditCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventTimeEditCell.xib; sourceTree = "<group>"; };
 		40322DEE16F8B0F500186611 /* ATEventTimeEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATEventTimeEditCell.h; sourceTree = "<group>"; };
 		40322DEF16F8B0F500186611 /* ATEventTimeEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATEventTimeEditCell.m; sourceTree = "<group>"; };
 		403329CA1702E7A7002FC8F5 /* ATCalendar_busy.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ATCalendar_busy.xcdatamodel; sourceTree = "<group>"; };
@@ -205,12 +202,19 @@
 		403969B4170C8DE90098B7DA /* ATCalendar_GroupNotifications.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ATCalendar_GroupNotifications.xcdatamodel; sourceTree = "<group>"; };
 		403969EC170D79CE0098B7DA /* ATCalendarUIConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATCalendarUIConfig.h; sourceTree = "<group>"; };
 		403969ED170D79CE0098B7DA /* ATCalendarUIConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCalendarUIConfig.m; sourceTree = "<group>"; };
+		4046275F1737DFAF00EA06BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file; name = Base; path = Base.lproj/Calendar.storyboard; sourceTree = "<group>"; };
+		404627601737DFAF00EA06BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file; name = Base; path = Base.lproj/EventTimeEditCell.xib; sourceTree = "<group>"; };
+		404627621737DFC700EA06BE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Calendar.strings; sourceTree = "<group>"; };
+		404627641737DFD100EA06BE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/EventTimeEditCell.strings; sourceTree = "<group>"; };
+		404627651737E1C900EA06BE /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Calendar.strings; sourceTree = "<group>"; };
+		404627661737E1C900EA06BE /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/EventTimeEditCell.strings; sourceTree = "<group>"; };
+		404627671737E1C900EA06BE /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		404627681737E1C900EA06BE /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		404A3B581701F640001C3CB8 /* ATCalendar_alarm.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ATCalendar_alarm.xcdatamodel; sourceTree = "<group>"; };
 		404A3B591701FB13001C3CB8 /* ATAlertTypeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATAlertTypeController.h; sourceTree = "<group>"; };
 		404A3B5A1701FB13001C3CB8 /* ATAlertTypeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATAlertTypeController.m; sourceTree = "<group>"; };
 		404A44DC16F8CD3300DAAD96 /* ATDurationEditController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATDurationEditController.h; sourceTree = "<group>"; };
 		404A44DD16F8CD3300DAAD96 /* ATDurationEditController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATDurationEditController.m; sourceTree = "<group>"; };
-		404A44E016F8CE5E00DAAD96 /* Calendar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Calendar.storyboard; path = src/Calendar.storyboard; sourceTree = SOURCE_ROOT; };
 		404A44E316F9C63A00DAAD96 /* ATEventDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATEventDetailCell.h; sourceTree = "<group>"; };
 		404A44E416F9C63A00DAAD96 /* ATEventDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATEventDetailCell.m; sourceTree = "<group>"; };
 		4059A96616F24600008F90F4 /* ATCalendarTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATCalendarTest.m; sourceTree = "<group>"; };
@@ -307,10 +311,8 @@
 			children = (
 				4011027C170B499C00C59572 /* ATEventOccurenceCell.h */,
 				4011027D170B499C00C59572 /* ATEventOccurenceCell.m */,
-				404A44E016F8CE5E00DAAD96 /* Calendar.storyboard */,
 				400F6FD116F879F8007285C3 /* ATEventTextFieldCell.h */,
 				400F6FD216F879F8007285C3 /* ATEventTextFieldCell.m */,
-				40322DEB16F8B04200186611 /* EventTimeEditCell.xib */,
 				40322DEE16F8B0F500186611 /* ATEventTimeEditCell.h */,
 				40322DEF16F8B0F500186611 /* ATEventTimeEditCell.m */,
 				404A44E316F9C63A00DAAD96 /* ATEventDetailCell.h */,
@@ -406,6 +408,15 @@
 				40339D90170456E6008D7190 /* ATTZPickerController.m */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		404627541737DF4D00EA06BE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4046275B1737DF9300EA06BE /* Calendar.storyboard */,
+				4046275E1737DFA200EA06BE /* EventTimeEditCell.xib */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		4059A96C16F32D51008F90F4 /* General */ = {
@@ -509,6 +520,7 @@
 		405EC30916F21B0500F590DD /* src */ = {
 			isa = PBXGroup;
 			children = (
+				404627541737DF4D00EA06BE /* Resources */,
 				400F6FD016F879F8007285C3 /* Views */,
 				402638AB16F78042002E5C6D /* Controllers */,
 				401297B816F21C2D00C0DC35 /* Models */,
@@ -574,6 +586,8 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
+				fr,
 			);
 			mainGroup = 405EC2B916F219B400F590DD;
 			productRefGroup = 405EC2C316F219B400F590DD /* Products */;
@@ -597,8 +611,8 @@
 				405EC2DC16F219B400F590DD /* Default@2x.png in Resources */,
 				405EC2DE16F219B400F590DD /* Default-568h@2x.png in Resources */,
 				4059A96A16F24CB0008F90F4 /* Pods.xcconfig in Resources */,
-				40322DEC16F8B04200186611 /* EventTimeEditCell.xib in Resources */,
-				404A44E116F8CE5E00DAAD96 /* Calendar.storyboard in Resources */,
+				404627591737DF9300EA06BE /* Calendar.storyboard in Resources */,
+				4046275C1737DFA200EA06BE /* EventTimeEditCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -608,8 +622,6 @@
 			files = (
 				405EC2FD16F219B400F590DD /* InfoPlist.strings in Resources */,
 				4059A96B16F24CB0008F90F4 /* Pods.xcconfig in Resources */,
-				40322DED16F8B04200186611 /* EventTimeEditCell.xib in Resources */,
-				404A44E216F8CE5E00DAAD96 /* Calendar.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -779,10 +791,31 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		4046275B1737DF9300EA06BE /* Calendar.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4046275F1737DFAF00EA06BE /* Base */,
+				404627621737DFC700EA06BE /* en */,
+				404627651737E1C900EA06BE /* fr */,
+			);
+			name = Calendar.storyboard;
+			sourceTree = "<group>";
+		};
+		4046275E1737DFA200EA06BE /* EventTimeEditCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				404627601737DFAF00EA06BE /* Base */,
+				404627641737DFD100EA06BE /* en */,
+				404627661737E1C900EA06BE /* fr */,
+			);
+			name = EventTimeEditCell.xib;
+			sourceTree = "<group>";
+		};
 		405EC2D016F219B400F590DD /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				405EC2D116F219B400F590DD /* en */,
+				404627671737E1C900EA06BE /* fr */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -791,6 +824,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				405EC2FC16F219B400F590DD /* en */,
+				404627681737E1C900EA06BE /* fr */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

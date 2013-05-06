@@ -1,0 +1,24 @@
+
+/* Class = "IBUILabel"; text = "Commence"; ObjectID = "2uK-W9-ORM"; */
+"2uK-W9-ORM.text" = "Commence";
+
+/* Class = "IBUILabel"; text = "13/11/12 10:00"; ObjectID = "4qn-pD-cWd"; */
+"4qn-pD-cWd.text" = "13/11/12 10:00";
+
+/* Class = "IBUINavigationItem"; title = "Début et fin"; ObjectID = "7eq-wz-c4j"; */
+"7eq-wz-c4j.title" = "Début et fin";
+
+/* Class = "IBUILabel"; text = "All-day"; ObjectID = "8VK-Od-i24"; */
+"8VK-Od-i24.text" = "All-day";
+
+/* Class = "IBUILabel"; text = "Time Zone"; ObjectID = "eqq-XQ-0zx"; */
+"eqq-XQ-0zx.text" = "Time Zone";
+
+/* Class = "IBUILabel"; text = "12:00"; ObjectID = "man-c7-R4m"; */
+"man-c7-R4m.text" = "12:00";
+
+/* Class = "IBUILabel"; text = "Paris"; ObjectID = "tuQ-aB-jZR"; */
+"tuQ-aB-jZR.text" = "Paris";
+
+/* Class = "IBUILabel"; text = "Se termine"; ObjectID = "y4s-mk-La2"; */
+"y4s-mk-La2.text" = "Se termine";
