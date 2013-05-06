@@ -1,8 +1,8 @@
 platform :ios
 pod 'MTDates' , '~> 0.9.1'
-pod 'Functional.m', :local => '~/Desktop/Functional.m'
+pod 'Functional.m', '~>1.0'
 pod 'MagicalRecord', '~> 2.1.0'
-pod 'CocoaLumberjack'
+pod 'CocoaLumberjack', '~> 1.6.2'
 target :test do
  pod 'OCHamcrest', '~>1.9'
  link_with 'ATCalendarTests'

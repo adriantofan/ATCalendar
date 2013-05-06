@@ -1,5 +1,7 @@
 #import "ATMonthlyRecurrence.h"
 #import "NSBundle+ATCalendar.h"
+#define MR_SHORTHAND
+#import "CoreData+MagicalRecord.h"
 
 @interface ATMonthlyRecurrence ()
 

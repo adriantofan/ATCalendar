@@ -16,6 +16,8 @@
 #import "ATAlertNotification.h"
 #import "ATEvent+LocalNotifications.h"
 #import "NSBundle+ATCalendar.h"
+#define MR_SHORTHAND
+#import "CoreData+MagicalRecord.h"
 
 const int kMaxNotifications = 30;
 

@@ -9,6 +9,8 @@
 #import "ATEndRecurrenceController.h"
 #import "ATCalendarUIConfig.h"
 #import "NSBundle+ATCalendar.h"
+#define MR_SHORTHAND
+#import "CoreData+MagicalRecord.h"
 
 @interface ATEndRecurrenceController (){
   NSDateFormatter *formater_;

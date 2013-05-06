@@ -1,7 +1,0 @@
-//
-// Prefix header for all source files of the 'ATCalendar' target in the 'ATCalendar' project
-//
-
-#ifdef __OBJC__
-  #import <Foundation/Foundation.h>
-#endif

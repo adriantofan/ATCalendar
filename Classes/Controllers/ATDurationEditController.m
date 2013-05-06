@@ -11,6 +11,8 @@
 #import "ATCalendarUIConfig.h"
 #import "ATCalendarUIConfig.h"
 #import "NSBundle+ATCalendar.h"
+#define MR_SHORTHAND
+#import "CoreData+MagicalRecord.h"
 
 typedef enum{
   ATDurationEditControllerEditElementStart,

@@ -114,6 +114,8 @@
 		40D3BBCE16FA170F00EC54AD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40D3BBCD16FA170F00EC54AD /* QuartzCore.framework */; };
 		40F92ACC1737ED2C00AF1665 /* NSBundle+ATCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F92ACB1737ED2C00AF1665 /* NSBundle+ATCalendar.m */; };
 		40F92AD01737F62B00AF1665 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 40F92AD21737F62B00AF1665 /* Localizable.strings */; };
+		40F92B001738006700AF1665 /* ATCalendar.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 40F92AFF1738006700AF1665 /* ATCalendar.podspec */; };
+		40F92B02173801CC00AF1665 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 40F92B01173801CC00AF1665 /* Podfile */; };
 		40FCA7C916F46F3600F22C81 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405EC2C916F219B400F590DD /* CoreGraphics.framework */; };
 		40FCA7EC16F4C40E00F22C81 /* _ATMonthlyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7DD16F4C40E00F22C81 /* _ATMonthlyRecurrence.m */; };
 		40FCA7ED16F4C40E00F22C81 /* _ATMonthlyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7DD16F4C40E00F22C81 /* _ATMonthlyRecurrence.m */; };
@@ -213,7 +215,6 @@
 		404627661737E1C900EA06BE /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/EventTimeEditCell.strings; sourceTree = "<group>"; };
 		404627671737E1C900EA06BE /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		404627681737E1C900EA06BE /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		404627711737E57A00EA06BE /* ATCalendar-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ATCalendar-Prefix.pch"; sourceTree = "<group>"; };
 		404627A21737E6CC00EA06BE /* ATCalendar.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ATCalendar.xcdatamodel; sourceTree = "<group>"; };
 		404627A31737E6CC00EA06BE /* ATCalendar_alarm.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ATCalendar_alarm.xcdatamodel; sourceTree = "<group>"; };
 		404627A41737E6CC00EA06BE /* ATCalendar_busy.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ATCalendar_busy.xcdatamodel; sourceTree = "<group>"; };
@@ -274,8 +275,12 @@
 		40D3BBCD16FA170F00EC54AD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		40F92ACA1737ED2C00AF1665 /* NSBundle+ATCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+ATCalendar.h"; sourceTree = "<group>"; };
 		40F92ACB1737ED2C00AF1665 /* NSBundle+ATCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+ATCalendar.m"; sourceTree = "<group>"; };
-		40F92AD11737F62B00AF1665 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		40F92AD31737F62D00AF1665 /* fr */ = {isa = PBXFileReference; lastKnownFileType = file; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		40F92AD11737F62B00AF1665 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		40F92AD31737F62D00AF1665 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		40F92AFB1737FFDD00AF1665 /*  Readme.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = " Readme.markdown"; sourceTree = "<group>"; };
+		40F92AFD1737FFEF00AF1665 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		40F92AFF1738006700AF1665 /* ATCalendar.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = ATCalendar.podspec; sourceTree = "<group>"; };
+		40F92B01173801CC00AF1665 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = Podfile; sourceTree = "<group>"; };
 		40FCA7DC16F4C40E00F22C81 /* _ATMonthlyRecurrence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ATMonthlyRecurrence.h; sourceTree = "<group>"; };
 		40FCA7DD16F4C40E00F22C81 /* _ATMonthlyRecurrence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _ATMonthlyRecurrence.m; sourceTree = "<group>"; };
 		40FCA7DE16F4C40E00F22C81 /* _ATWeeklyRecurrence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ATWeeklyRecurrence.h; sourceTree = "<group>"; };
@@ -409,37 +414,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		4046276F1737E57A00EA06BE /* ATCalendar */ = {
-			isa = PBXGroup;
-			children = (
-				404627701737E57A00EA06BE /* Supporting Files */,
-			);
-			path = ATCalendar;
-			sourceTree = "<group>";
-		};
-		404627701737E57A00EA06BE /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				404627711737E57A00EA06BE /* ATCalendar-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		404627B81737E8D300EA06BE /* ATCalendarResources */ = {
-			isa = PBXGroup;
-			children = (
-				404627B91737E8D300EA06BE /* Supporting Files */,
-			);
-			path = ATCalendarResources;
-			sourceTree = "<group>";
-		};
-		404627B91737E8D300EA06BE /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		4059A96C16F32D51008F90F4 /* General */ = {
 			isa = PBXGroup;
 			children = (
@@ -452,11 +426,14 @@
 		405EC2B916F219B400F590DD = {
 			isa = PBXGroup;
 			children = (
+				40F92B01173801CC00AF1665 /* Podfile */,
+				40F92AFF1738006700AF1665 /* ATCalendar.podspec */,
+				40F92AFD1737FFEF00AF1665 /* LICENSE */,
+				40F92AFB1737FFDD00AF1665 /*  Readme.markdown */,
+				404627541737DF4D00EA06BE /* Resources */,
 				405EC30916F21B0500F590DD /* src */,
 				405EC2CD16F219B400F590DD /* ATCalendarDemo */,
 				405EC2F816F219B400F590DD /* ATCalendarDemoTests */,
-				4046276F1737E57A00EA06BE /* ATCalendar */,
-				404627B81737E8D300EA06BE /* ATCalendarResources */,
 				405EC2C416F219B400F590DD /* Frameworks */,
 				405EC2C316F219B400F590DD /* Products */,
 				8AFFA37E5D9B470888607BEB /* Pods.xcconfig */,
@@ -545,14 +522,14 @@
 		405EC30916F21B0500F590DD /* src */ = {
 			isa = PBXGroup;
 			children = (
-				404627541737DF4D00EA06BE /* Resources */,
 				400F6FD016F879F8007285C3 /* Views */,
 				402638AB16F78042002E5C6D /* Controllers */,
 				401297B816F21C2D00C0DC35 /* Models */,
 				403969EC170D79CE0098B7DA /* ATCalendarUIConfig.h */,
 				403969ED170D79CE0098B7DA /* ATCalendarUIConfig.m */,
 			);
-			path = src;
+			name = src;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		40F92AC91737ECE600AF1665 /* Database */ = {
@@ -718,6 +695,8 @@
 				405EC2DC16F219B400F590DD /* Default@2x.png in Resources */,
 				405EC2DE16F219B400F590DD /* Default-568h@2x.png in Resources */,
 				4059A96A16F24CB0008F90F4 /* Pods.xcconfig in Resources */,
+				40F92B001738006700AF1665 /* ATCalendar.podspec in Resources */,
+				40F92B02173801CC00AF1665 /* Podfile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -982,7 +961,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				INFOPLIST_FILE = "src/Resources/Resources-Info.plist";
+				INFOPLIST_FILE = "Resources/Resources-Info.plist";
 				PRODUCT_NAME = ATCalendar;
 				WRAPPER_EXTENSION = bundle;
 			};
@@ -996,7 +975,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				INFOPLIST_FILE = "src/Resources/Resources-Info.plist";
+				INFOPLIST_FILE = "Resources/Resources-Info.plist";
 				PRODUCT_NAME = ATCalendar;
 				WRAPPER_EXTENSION = bundle;
 			};
