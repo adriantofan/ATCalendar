@@ -16,7 +16,7 @@
 #import "ATMonthlyRecurrence.h"
 #import "ATYearlyRecurrence.h"
 
-NSString* const ATEventURIKey = @"ATEventURI";
+NSString* const ATEventURIKey = @"ATEventURIKey";
 
 @implementation ATEvent (LocalNotifications)
 
@@ -68,7 +68,7 @@ NSString* const ATEventURIKey = @"ATEventURI";
       not.fireDate = [not.fireDate mt_dateDaysBefore:2];
       break;
   }
-  not.userInfo = @{@"ATEventURIKey":[self.objectID.URIRepresentation absoluteString]};
+  not.userInfo = @{ATEventURIKey:[self.objectID.URIRepresentation absoluteString]};
   return not;
 }
 
