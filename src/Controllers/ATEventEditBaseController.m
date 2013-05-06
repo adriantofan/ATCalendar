@@ -10,7 +10,6 @@
 #import "ATEventEditBaseController.h"
 
 
-#import "NSString_ATExtra.h"
 #import "ATCalendar.h"
 #import "ATTimeSpan.h"
 #import "ATRecurrence.h"
@@ -310,7 +309,7 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
   dateFormatter_.timeZone = event.timeZone;
   self.repeatEndVisible = event.isRecurrent;
   self.seccondAlertVisible = event.firstAlertTypeValue != ATEventAlertTypeNone;
-  if ( ![event.summary isNotEmpty]) {
+  if (!event.summary ||( 0 == [[event.summary stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length])) {
     saveButton_.enabled = NO;
   }
 }
