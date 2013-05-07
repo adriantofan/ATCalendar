@@ -12,6 +12,7 @@
 #import "ATEvent+LocalNotifications.h"
 #import "ATCalendar.h"
 #import "NSBundle+ATCalendar.h"
+#import "CoreData+MagicalRecord.h"
 
 @interface ATEventEditController (){
   

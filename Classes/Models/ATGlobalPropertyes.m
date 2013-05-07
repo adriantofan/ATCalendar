@@ -1,4 +1,5 @@
 #import "ATGlobalPropertyes.h"
+#import "CoreData+MagicalRecord.h"
 
 
 @interface ATGlobalPropertyes ()

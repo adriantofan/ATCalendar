@@ -8,6 +8,9 @@
 
 #import "ATEventCreateController.h"
 #import "NSBundle+ATCalendar.h"
+#import "CoreData+MagicalRecord.h"
+
+
 @interface ATEventCreateController ()
 
 @property (nonatomic,readwrite) NSManagedObjectContext* editingMoc;

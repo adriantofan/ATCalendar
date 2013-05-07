@@ -62,7 +62,6 @@
 		403969B5170C928F0098B7DA /* ATEvent+LocalNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 403329DB17033784002FC8F5 /* ATEvent+LocalNotifications.m */; };
 		403969B6170C92900098B7DA /* ATEvent+LocalNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 403329DB17033784002FC8F5 /* ATEvent+LocalNotifications.m */; };
 		403969EE170D79CE0098B7DA /* ATCalendarUIConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 403969ED170D79CE0098B7DA /* ATCalendarUIConfig.m */; };
-		404627C31737E91800EA06BE /* Resources-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 404627C21737E91800EA06BE /* Resources-Info.plist */; };
 		404627C41737EADE00EA06BE /* ATCalendar.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 404627A11737E6CC00EA06BE /* ATCalendar.xcdatamodeld */; };
 		404627C51737EAE500EA06BE /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4046275B1737DF9300EA06BE /* Calendar.storyboard */; };
 		404627C61737EAE900EA06BE /* EventTimeEditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4046275E1737DFA200EA06BE /* EventTimeEditCell.xib */; };
@@ -678,7 +677,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				404627C31737E91800EA06BE /* Resources-Info.plist in Resources */,
 				404627C51737EAE500EA06BE /* Calendar.storyboard in Resources */,
 				404627C61737EAE900EA06BE /* EventTimeEditCell.xib in Resources */,
 				40F92AD01737F62B00AF1665 /* Localizable.strings in Resources */,

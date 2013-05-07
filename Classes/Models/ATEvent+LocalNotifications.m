@@ -17,6 +17,8 @@
 #import "ATYearlyRecurrence.h"
 #define MR_SHORTHAND
 #import "CoreData+MagicalRecord.h"
+#import "NSDate+MTDates.h"
+
 
 NSString* const ATEventURIKey = @"ATEventURIKey";
 

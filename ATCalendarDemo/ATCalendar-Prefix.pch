@@ -10,11 +10,11 @@
 #ifdef __OBJC__
   #import <UIKit/UIKit.h>
   #import <Foundation/Foundation.h>
-  #import <CoreData/CoreData.h>
-  #import "CoreData+MagicalRecord.h"
-  #import "NSDate+MTDates.h"
-  #import "NSDateComponents+MTDates.h"
-  #import "NSArray+F.h"
-  #import "NSDictionary+F.h"
-  #import "NSNumber+F.h"
+//  #import <CoreData/CoreData.h>
+//  #import "CoreData+MagicalRecord.h"
+//  #import "NSDate+MTDates.h"
+//  #import "NSDateComponents+MTDates.h"
+//  #import "NSArray+F.h"
+//  #import "NSDictionary+F.h"
+//  #import "NSNumber+F.h"
 #endif

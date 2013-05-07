@@ -1,8 +1,9 @@
 #import "ATRecurrence.h"
 #import "ATEvent.h"
 #import "ATOccurrenceCache.h"
-#define MR_SHORTHAND
+#import "NSDate+MTDates.h"
 #import "CoreData+MagicalRecord.h"
+
 
 @interface ATRecurrence ()
 

@@ -4,8 +4,10 @@
 #import "ATTimeSpan.h"
 #import "ATEvent+LocalNotifications.h"
 #import "NSBundle+ATCalendar.h"
-#define MR_SHORTHAND
 #import "CoreData+MagicalRecord.h"
+#import "NSDate+MTDates.h"
+#import "NSArray+F.h"
+
 
 @interface ATOccurrenceCache ()
 

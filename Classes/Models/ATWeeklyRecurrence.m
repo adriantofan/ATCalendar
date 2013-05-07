@@ -1,7 +1,7 @@
 #import "ATWeeklyRecurrence.h"
 #import "NSBundle+ATCalendar.h"
-#define MR_SHORTHAND
-#import "CoreData+MagicalRecord.h"
+#import "NSDate+MTDates.h"
+
 
 @interface ATWeeklyRecurrence ()
 

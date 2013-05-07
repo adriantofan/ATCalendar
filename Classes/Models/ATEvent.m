@@ -6,7 +6,7 @@
 #import "ATYearlyRecurrence.h"
 #import "ATEvent+LocalNotifications.h"
 #import "NSBundle+ATCalendar.h"
-#define MR_SHORTHAND
+#import "NSDate+MTDates.h"
 #import "CoreData+MagicalRecord.h"
 
 @interface ATEvent ()

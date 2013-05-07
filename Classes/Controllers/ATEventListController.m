@@ -17,8 +17,9 @@
 #import "ATCalendarUIConfig.h"
 #import "NSBundle+ATCalendar.h"
 #import <objc/runtime.h>
-#define MR_SHORTHAND
 #import "CoreData+MagicalRecord.h"
+#import "NSDate+MTDates.h"
+
 
 #define DisplayStyleKey(obj) [NSString stringWithFormat:@"%@_DisplayStyle",[NSString stringWithUTF8String:class_getName([obj class])]] 
 

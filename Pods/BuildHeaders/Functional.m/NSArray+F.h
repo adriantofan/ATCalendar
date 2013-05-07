@@ -1,1 +1,1 @@
-../../../../Functional.m/NSArray+F.h
+../../Functional.m/NSArray+F.h
