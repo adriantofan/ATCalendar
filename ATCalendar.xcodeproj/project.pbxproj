@@ -279,7 +279,7 @@
 		40F92AFB1737FFDD00AF1665 /*  Readme.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = " Readme.markdown"; sourceTree = "<group>"; };
 		40F92AFD1737FFEF00AF1665 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		40F92AFF1738006700AF1665 /* ATCalendar.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = ATCalendar.podspec; sourceTree = "<group>"; };
-		40F92B01173801CC00AF1665 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = Podfile; sourceTree = "<group>"; };
+		40F92B01173801CC00AF1665 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		40FCA7DC16F4C40E00F22C81 /* _ATMonthlyRecurrence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ATMonthlyRecurrence.h; sourceTree = "<group>"; };
 		40FCA7DD16F4C40E00F22C81 /* _ATMonthlyRecurrence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _ATMonthlyRecurrence.m; sourceTree = "<group>"; };
 		40FCA7DE16F4C40E00F22C81 /* _ATWeeklyRecurrence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ATWeeklyRecurrence.h; sourceTree = "<group>"; };

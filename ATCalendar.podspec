@@ -6,8 +6,7 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/adriantofan/ATCalendar"
   s.license      = { :type => 'BSD', :file => 'LICENSE' }
   s.author       = { "Adrian Tofan" => "adrian@tofan.co" }
-  #s.source       = { :git => "https://github.com/adriantofan/ATCalendar.git"}
-  s.source       = { :path => "/Users/adi/Desktop/ATCalendarDemo"}
+  s.source       = { :git => "https://github.com/adriantofan/ATCalendar.git"}
   s.platform     = :ios, "6.0"
   s.source_files = "Classes", "Classes/**/*.{h,m}"
 
@@ -23,14 +22,10 @@ Pod::Spec.new do |s|
   s.frameworks = 'QuartzCore', 'UIKit', 'Foundation', 'CoreGraphics', 'CoreData'
   s.requires_arc = true
   s.dependency 'MTDates' , '~> 0.9.1'
-  s.dependency 'MagicalRecord', '~> 2.1.0'
+  s.dependency 'MagicalRecord', '~> 2.1'
   s.dependency 'CocoaLumberjack', '~> 1.6.2'
   s.dependency 'Functional.m', '~>1.0'
   s.preserve_paths = 'ATCalendar.xcodeproj', 'Resources'
-  s.pre_install do |pod_representation, library_representation|
-    puts pod_representation.root
-  end
-  
   def s.post_install(target)
     puts "\nGenerating ATCalendar resources bundle\n".yellow if config.verbose?
     if Version.new(Pod::VERSION) >= Version.new('0.16.999')
@@ -51,7 +46,7 @@ Pod::Spec.new do |s|
         script_path = File.join(config.project_pods_root, target.target_definition.copy_resources_script_name)
         end
       File.open(script_path, 'a') do |file|
-        file.puts "install_resource 'Resources/SSToolkitResources.bundle'"
+        file.puts "install_resource 'Resources/ATCalendar.bundle'"
       end
     end
   end
