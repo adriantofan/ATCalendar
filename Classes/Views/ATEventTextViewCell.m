@@ -21,11 +21,20 @@
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-      textView_ = [[ATPlaceHolderTextView alloc] initWithFrame:CGRectZero];
-      [self.contentView addSubview:textView_];
-    }
-    return self;
+  self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+  if (self) {
+    textView_ = [[ATPlaceHolderTextView alloc] initWithFrame:CGRectZero];
+    [self.contentView addSubview:textView_];
+  }
+  return self;
+}
+
+-(void)setEditing:(BOOL)editing animated:(BOOL)animated{
+  [super setEditing:editing animated:(BOOL)animated];
+  if (editing) {
+    textView_.userInteractionEnabled = YES;
+  }else{
+    textView_.userInteractionEnabled = NO;
+  }
 }
 @end
