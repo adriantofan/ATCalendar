@@ -465,7 +465,9 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
 }
 
 -(void)showEventDurationSeclection{
-  UIStoryboard* story = [UIStoryboard storyboardWithName:@"Calendar" bundle:nil];
+  NSString *resourceBundlePath = [[NSBundle mainBundle] pathForResource:@"ATCalendar" ofType:@"bundle"];
+  UIStoryboard* story = [UIStoryboard storyboardWithName:@"Calendar"
+                                                  bundle:[NSBundle bundleWithPath:resourceBundlePath]];
   ATDurationEditController* ctrl = [story instantiateViewControllerWithIdentifier:@"ATDurationEditControllerSceneId"];
   ctrl.startDate = self.event.startDate;
   ctrl.endDate = self.event.endDate;
