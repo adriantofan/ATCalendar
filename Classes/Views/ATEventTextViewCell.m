@@ -28,13 +28,4 @@
   }
   return self;
 }
-
--(void)setEditing:(BOOL)editing animated:(BOOL)animated{
-  [super setEditing:editing animated:(BOOL)animated];
-  if (editing) {
-    textView_.userInteractionEnabled = YES;
-  }else{
-    textView_.userInteractionEnabled = NO;
-  }
-}
 @end
