@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "ATCalendar"
-  s.version      = "0.1.3"
+  s.version      = "0.1.4"
   s.summary      = "Calendar app like implementation with CoreData store"
   s.homepage     = "https://github.com/adriantofan/ATCalendar"
   s.license      = { :type => 'BSD', :file => 'LICENSE' }

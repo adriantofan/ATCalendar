@@ -19,11 +19,13 @@
   return self;
 }
 -(void)updateLayout{
-  CGRect frame = self.contentView.frame;
-  frame.size.width -= 6.0;
+  CGRect frame = self.contentView.bounds;
+  frame.origin.x = 8.0;
+  frame.origin.y = 11.0;
+  frame.size.width -= 16.0;
   frame.size.height = 21.0;
   textField_.frame = frame;
-  textField_.center = self.contentView.center;
+//  textField_.center = self.contentView.center;
 }
 
 -(void)setFrame:(CGRect)frame{

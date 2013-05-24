@@ -12,14 +12,16 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.63529411759999999" green="0.64705882349999999" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
-                        <datePicker key="tableFooterView" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" id="w4D-1x-X15">
+                        <view key="tableFooterView" contentMode="scaleToFill" id="Xf3-hc-QfF">
                             <rect key="frame" x="0.0" y="162" width="320" height="216"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <date key="date" timeIntervalSinceReferenceDate="374494299.07653803">
-                                <!--2012-11-13 10:11:39 +0000-->
-                            </date>
-                            <timeZone key="timeZone" name="America/Los_Angeles">
-                                <data key="data">
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="szN-km-njk">
+                                    <date key="date" timeIntervalSinceReferenceDate="391094415.09231597">
+                                        <!--2013-05-24 13:20:15 +0000-->
+                                    </date>
+                                    <timeZone key="timeZone" name="America/Los_Angeles">
+                                        <mutableData key="data">
 VFppZgAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAC5AAAABAAAABCepkign7sVkKCGKqChmveQ
 y4kaoNIj9HDSYSYQ1v50INiArZDa/tGg28CQENzes6DdqayQ3r6VoN+JjpDgnneg4WlwkOJ+WaDjSVKQ
 5F47oOUpNJDmR1gg5xJREOgnOiDo8jMQ6gccIOrSFRDr5v4g7LH3EO3G4CDukdkQ76/8oPBxuxDxj96g
@@ -37,16 +39,22 @@ f5gqkAABAAECAwEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
 AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
 AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
 AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
-</data>
-                            </timeZone>
-                            <connections>
-                                <action selector="dateChanged:" destination="MiP-WH-QOU" eventType="valueChanged" id="cIA-Yi-M7n"/>
-                            </connections>
-                        </datePicker>
+</mutableData>
+                                    </timeZone>
+                                </datePicker>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="centerX" secondItem="szN-km-njk" secondAttribute="centerX" type="user" id="0hz-MT-aAW"/>
+                                <constraint firstItem="szN-km-njk" firstAttribute="leading" secondItem="Xf3-hc-QfF" secondAttribute="leading" type="default" id="ElI-Hj-9Wy"/>
+                                <constraint firstItem="szN-km-njk" firstAttribute="top" secondItem="Xf3-hc-QfF" secondAttribute="top" type="default" id="hqW-CF-84U"/>
+                                <constraint firstAttribute="centerY" secondItem="szN-km-njk" secondAttribute="centerY" type="user" id="naV-0n-5zp"/>
+                            </constraints>
+                        </view>
                         <sections>
                             <tableViewSection id="pvw-cn-VWR">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="35" id="d7b-Wy-h2J">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="35" id="d7b-Wy-h2J" customClass="ATBugFixTableViewCell">
                                         <rect key="frame" x="0.0" y="10" width="320" height="36"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -55,16 +63,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Commence" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="90" translatesAutoresizingMaskIntoConstraints="NO" id="2uK-W9-ORM">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="90" id="7ev-gg-PwV"/>
+                                                        <constraint firstAttribute="width" constant="90" type="user" id="7ev-gg-PwV"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="13/11/12 10:00" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="184" translatesAutoresizingMaskIntoConstraints="NO" id="4qn-pD-cWd">
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="184" id="eRD-v4-rtJ"/>
-                                                    </constraints>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="13/11/12 10:00" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="206" translatesAutoresizingMaskIntoConstraints="NO" id="4qn-pD-cWd">
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -75,11 +80,12 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         <constraints>
                                             <constraint firstItem="2uK-W9-ORM" firstAttribute="top" secondItem="d7b-Wy-h2J" secondAttribute="top" constant="8" id="5hX-jn-ZtO"/>
                                             <constraint firstItem="4qn-pD-cWd" firstAttribute="baseline" secondItem="2uK-W9-ORM" secondAttribute="baseline" type="default" id="Ep8-f7-IrW"/>
-                                            <constraint firstItem="4qn-pD-cWd" firstAttribute="leading" secondItem="2uK-W9-ORM" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="sdl-GS-X8A"/>
-                                            <constraint firstAttribute="trailing" secondItem="4qn-pD-cWd" secondAttribute="trailing" constant="20" type="default" id="wtl-d4-Np9"/>
+                                            <constraint firstItem="2uK-W9-ORM" firstAttribute="leading" secondItem="d7b-Wy-h2J" secondAttribute="leading" constant="8" type="user" id="h1w-WH-J6k"/>
+                                            <constraint firstItem="4qn-pD-cWd" firstAttribute="leading" secondItem="2uK-W9-ORM" secondAttribute="trailing" constant="8" symbolic="YES" type="user" id="sdl-GS-X8A"/>
+                                            <constraint firstAttribute="trailing" secondItem="4qn-pD-cWd" secondAttribute="trailing" constant="8" type="user" id="wtl-d4-Np9"/>
                                         </constraints>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="35" id="LMV-T8-rBn">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="35" id="LMV-T8-rBn" customClass="ATBugFixTableViewCell">
                                         <rect key="frame" x="0.0" y="46" width="320" height="35"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -88,16 +94,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Se termine" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="90" translatesAutoresizingMaskIntoConstraints="NO" id="y4s-mk-La2">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="90" id="COY-Ht-Xof"/>
+                                                        <constraint firstAttribute="width" constant="90" type="user" id="COY-Ht-Xof"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="12:00" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="183" translatesAutoresizingMaskIntoConstraints="NO" id="man-c7-R4m">
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="183" id="fEW-xW-yaM"/>
-                                                    </constraints>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="12:00" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="206" translatesAutoresizingMaskIntoConstraints="NO" id="man-c7-R4m">
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -108,11 +111,12 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         <constraints>
                                             <constraint firstItem="y4s-mk-La2" firstAttribute="top" secondItem="LMV-T8-rBn" secondAttribute="top" constant="7" id="5UA-Sz-lbY"/>
                                             <constraint firstItem="man-c7-R4m" firstAttribute="baseline" secondItem="y4s-mk-La2" secondAttribute="baseline" type="default" id="E1Y-tt-72N"/>
-                                            <constraint firstItem="man-c7-R4m" firstAttribute="leading" secondItem="y4s-mk-La2" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="oRZ-p2-E8i"/>
-                                            <constraint firstItem="y4s-mk-La2" firstAttribute="leading" secondItem="LMV-T8-rBn" secondAttribute="leading" constant="18" id="oXN-tR-ghT"/>
+                                            <constraint firstAttribute="trailing" secondItem="man-c7-R4m" secondAttribute="trailing" constant="8" type="user" id="h4e-9K-wei"/>
+                                            <constraint firstItem="man-c7-R4m" firstAttribute="leading" secondItem="y4s-mk-La2" secondAttribute="trailing" constant="8" symbolic="YES" type="user" id="oRZ-p2-E8i"/>
+                                            <constraint firstItem="y4s-mk-La2" firstAttribute="leading" secondItem="LMV-T8-rBn" secondAttribute="leading" constant="8" type="user" id="oXN-tR-ghT"/>
                                         </constraints>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="35" id="r9r-OL-lbE">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="35" id="r9r-OL-lbE" customClass="ATBugFixTableViewCell">
                                         <rect key="frame" x="0.0" y="81" width="320" height="35"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -136,13 +140,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="3ns-fo-sGp" firstAttribute="top" secondItem="r9r-OL-lbE" secondAttribute="top" constant="4" id="8p9-BH-mMU"/>
-                                            <constraint firstAttribute="trailing" secondItem="3ns-fo-sGp" secondAttribute="trailing" constant="20" type="default" id="L4i-dW-tau"/>
+                                            <constraint firstAttribute="trailing" secondItem="3ns-fo-sGp" secondAttribute="trailing" constant="8" type="user" id="L4i-dW-tau"/>
+                                            <constraint firstItem="3ns-fo-sGp" firstAttribute="centerY" secondItem="r9r-OL-lbE" secondAttribute="centerY" type="default" id="U1o-PP-B4v"/>
                                             <constraint firstItem="8VK-Od-i24" firstAttribute="top" secondItem="r9r-OL-lbE" secondAttribute="top" constant="7" id="cBK-Sj-LAV"/>
-                                            <constraint firstItem="8VK-Od-i24" firstAttribute="leading" secondItem="r9r-OL-lbE" secondAttribute="leading" constant="18" id="vur-sn-kJU"/>
+                                            <constraint firstItem="8VK-Od-i24" firstAttribute="leading" secondItem="r9r-OL-lbE" secondAttribute="leading" constant="8" type="user" id="vur-sn-kJU"/>
                                         </constraints>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="35" id="4fO-og-4rw">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="35" id="4fO-og-4rw" customClass="ATBugFixTableViewCell">
                                         <rect key="frame" x="0.0" y="116" width="320" height="36"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -151,16 +155,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Time Zone" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="90" translatesAutoresizingMaskIntoConstraints="NO" id="eqq-XQ-0zx">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="90" id="QQn-5C-9pd"/>
+                                                        <constraint firstAttribute="width" constant="90" type="user" id="QQn-5C-9pd"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Paris" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="183" translatesAutoresizingMaskIntoConstraints="NO" id="tuQ-aB-jZR">
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="183" id="blH-qh-tCb"/>
-                                                    </constraints>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Paris" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="206" translatesAutoresizingMaskIntoConstraints="NO" id="tuQ-aB-jZR">
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -170,8 +171,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         </view>
                                         <constraints>
                                             <constraint firstItem="tuQ-aB-jZR" firstAttribute="baseline" secondItem="eqq-XQ-0zx" secondAttribute="baseline" type="default" id="Eef-DE-Tik"/>
-                                            <constraint firstItem="eqq-XQ-0zx" firstAttribute="leading" secondItem="4fO-og-4rw" secondAttribute="leading" constant="18" id="bEr-JG-DNN"/>
-                                            <constraint firstItem="tuQ-aB-jZR" firstAttribute="leading" secondItem="eqq-XQ-0zx" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="huz-lc-IqN"/>
+                                            <constraint firstItem="eqq-XQ-0zx" firstAttribute="leading" secondItem="4fO-og-4rw" secondAttribute="leading" constant="8" type="user" id="bEr-JG-DNN"/>
+                                            <constraint firstItem="tuQ-aB-jZR" firstAttribute="leading" secondItem="eqq-XQ-0zx" secondAttribute="trailing" constant="8" symbolic="YES" type="user" id="huz-lc-IqN"/>
+                                            <constraint firstAttribute="trailing" secondItem="tuQ-aB-jZR" secondAttribute="trailing" constant="8" type="user" id="vtl-Nv-e9n"/>
                                             <constraint firstItem="eqq-XQ-0zx" firstAttribute="top" secondItem="4fO-og-4rw" secondAttribute="top" constant="7" id="xTn-kY-VlY"/>
                                         </constraints>
                                     </tableViewCell>
@@ -199,7 +201,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <connections>
                         <outlet property="allDaySwitch_" destination="3ns-fo-sGp" id="aDo-dS-460"/>
                         <outlet property="endDateLabel_" destination="man-c7-R4m" id="kdw-K0-tbL"/>
-                        <outlet property="picker_" destination="w4D-1x-X15" id="RJA-r4-ddp"/>
+                        <outlet property="picker_" destination="szN-km-njk" id="82i-el-TcL"/>
                         <outlet property="startDateLabel_" destination="4qn-pD-cWd" id="63K-VY-ldG"/>
                         <outlet property="timeZoneLabel_" destination="tuQ-aB-jZR" id="vHX-IQ-PY9"/>
                     </connections>
@@ -210,9 +212,14 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         </scene>
     </scenes>
     <classes>
+        <class className="ATBugFixTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ATBugFixTableViewCell.h"/>
+        </class>
         <class className="ATDurationEditController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ATDurationEditController.h"/>
             <relationships>
+                <relationship kind="action" name="allDayButtonAction:"/>
+                <relationship kind="action" name="dateChanged:"/>
                 <relationship kind="outlet" name="allDaySwitch_" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="endDateLabel_" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="picker_" candidateClass="UIDatePicker"/>

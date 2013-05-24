@@ -101,6 +101,7 @@
 		4068BF4916FCA444008F4B67 /* ATRecurrenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C67D0416FB108100A65232 /* ATRecurrenceController.m */; };
 		4077E61116F394CC00E9D80F /* ATRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012982416F22F9600C0DC35 /* ATRecurrence.m */; };
 		4077E61216F394CF00E9D80F /* _ATRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012982016F22F9600C0DC35 /* _ATRecurrence.m */; };
+		409FA0B4174F9E7C00683248 /* ATBugFixTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 409FA0B3174F9E7C00683248 /* ATBugFixTableViewCell.m */; };
 		40C3372116F38CC0002EDD52 /* _ATEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012981E16F22F9600C0DC35 /* _ATEvent.m */; };
 		40C3372216F38CC4002EDD52 /* _ATGlobalPropertyes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012982B16F23B0100C0DC35 /* _ATGlobalPropertyes.m */; };
 		40C3372316F38CC7002EDD52 /* _ATOccurrenceCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012982D16F23B0100C0DC35 /* _ATOccurrenceCache.m */; };
@@ -267,6 +268,8 @@
 		4068BF0A16FC43AD008F4B67 /* ATEventTextViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATEventTextViewCell.m; sourceTree = "<group>"; };
 		4068BF0E16FC45EA008F4B67 /* ATPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATPlaceHolderTextView.h; sourceTree = "<group>"; };
 		4068BF0F16FC45EA008F4B67 /* ATPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATPlaceHolderTextView.m; sourceTree = "<group>"; };
+		409FA0B2174F9E7C00683248 /* ATBugFixTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATBugFixTableViewCell.h; sourceTree = "<group>"; };
+		409FA0B3174F9E7C00683248 /* ATBugFixTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATBugFixTableViewCell.m; sourceTree = "<group>"; };
 		40C67D0316FB108100A65232 /* ATRecurrenceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATRecurrenceController.h; sourceTree = "<group>"; };
 		40C67D0416FB108100A65232 /* ATRecurrenceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATRecurrenceController.m; sourceTree = "<group>"; };
 		40C67D0616FB562400A65232 /* ATEndRecurrenceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATEndRecurrenceController.h; sourceTree = "<group>"; };
@@ -354,6 +357,8 @@
 				4068BF0A16FC43AD008F4B67 /* ATEventTextViewCell.m */,
 				4068BF0E16FC45EA008F4B67 /* ATPlaceHolderTextView.h */,
 				4068BF0F16FC45EA008F4B67 /* ATPlaceHolderTextView.m */,
+				409FA0B2174F9E7C00683248 /* ATBugFixTableViewCell.h */,
+				409FA0B3174F9E7C00683248 /* ATBugFixTableViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -825,6 +830,7 @@
 				403969B5170C928F0098B7DA /* ATEvent+LocalNotifications.m in Sources */,
 				403969EE170D79CE0098B7DA /* ATCalendarUIConfig.m in Sources */,
 				40F92ACC1737ED2C00AF1665 /* NSBundle+ATCalendar.m in Sources */,
+				409FA0B4174F9E7C00683248 /* ATBugFixTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1042,11 +1048,13 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ATCalendarDemo/ATCalendar-Prefix.pch";
 				INFOPLIST_FILE = "ATCalendarDemo/ATCalendarDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1058,11 +1066,13 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ATCalendarDemo/ATCalendar-Prefix.pch";
 				INFOPLIST_FILE = "ATCalendarDemo/ATCalendarDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
