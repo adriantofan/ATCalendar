@@ -9,6 +9,7 @@
 #import "ATEventCreateController.h"
 #import "NSBundle+ATCalendar.h"
 #import "CoreData+MagicalRecord.h"
+#import "NSDate+MTDates.h"
 
 
 @interface ATEventCreateController ()
@@ -27,7 +28,7 @@
   self.event = [ATEvent MR_createInContext:self.editingMoc];
   self.event.summary = @"";
   self.event.startDate = [NSDate date];
-  self.event.endDate = [NSDate date];
+  self.event.endDate = [[NSDate date] mt_oneHourNext];
   [self updateViewWithEvent:self.event];
   self.title = ATLocalizedString(@"Add event", @"Event add controller title");
 
