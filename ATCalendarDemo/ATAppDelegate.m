@@ -48,8 +48,15 @@
     // Override point for customization after application launch.
   controller.moc = self.managedObjectContext;
   [self.window makeKeyAndVisible];
-
-   return YES;
+  UILocalNotification *notification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+  if (notification) {
+    double delayInSeconds = 0.1;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+      [self application:application didReceiveLocalNotification:notification];
+    });
+  }
+  return YES;
 }
 
 -(NSManagedObjectContext*)managedObjectContext{
@@ -57,6 +64,8 @@
 }
 -(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
   [[ATCalendar sharedInstance] handleLocalNotification:notification];
+  NSLog(@"didReceiveLocalNotification notification");
+
 }
 - (void)applicationWillTerminate:(UIApplication *)application { [MagicalRecord cleanUp]; }
 @end
