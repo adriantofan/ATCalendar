@@ -1,7 +1,181 @@
-/* 
-  Localizable.strings
+/* Localizable.strings
   ATCalendar
 
   Created by Adrian Tofan on 06/05/13.
-  Copyright (c) 2013 Adrian Tofan. All rights reserved.
-*/
+  Copyright (c) 2013 Adrian Tofan. All rights reserved. */
+
+/* No comment provided by engineer. */
+"%@ \nfrom %@ to %@" = "%1$@ \nde %2$@ à %3$@";
+
+/* No comment provided by engineer. */
+"%@" = "%@";
+
+/* alert type */
+"1 day before" = "1 jour avant";
+
+/* alert type */
+"1 hour before" = "1 heure avant";
+
+/* alert type */
+"2 days before" = "2 jours avant";
+
+/* alert type */
+"2 hour before" = "1 heure avant";
+
+/* alert type */
+"2 hours before" = "2 heures avant";
+
+/* alert type */
+"5 minutes before" = "5 minutes avant";
+
+/* alert type */
+"15 minutes before" = "15 minutes avant";
+
+/* alert type */
+"30 minutes before" = "30 minutes avant";
+
+/* Event add controller title */
+"Add event" = "Événement";
+
+/* Alert field title */
+"Alert" = "Alarme";
+
+/* No comment provided by engineer. */
+"All Day " = "Jour entier";
+
+/* marks event end */
+"all-day" = "Jour entier";
+
+/* alert type */
+"At event time" = "Le jour de l'événement";
+
+/* Avilability controller title
+   Avilability field title */
+"Avilability" = "Disponibilité";
+
+/* Busy label */
+"Busy" = "Occupé";
+
+/* Day list controller title */
+"Calendar" = "Agenda";
+
+/* No comment provided by engineer. */
+"Cancel" = "Annuler";
+
+/* No comment provided by engineer. */
+"Cannot save event" = "Impossible d'enregistrer l'événement";
+
+/* daily reccurence type description */
+"daily" = "Journalier";
+
+/* No comment provided by engineer. */
+"Day" = "Jour";
+
+/* No comment provided by engineer. */
+"Delete all occurences" = "Supprimer toutes les occurrences";
+
+/* No comment provided by engineer. */
+"Delete" = "Supprimer";
+
+/* Event edit controller title */
+"Edit" = "Modifier";
+
+/* End repeat cell label */
+"End repeat" = "Fin de la récurrence";
+
+/* End repeat viewcontroller title */
+"End Repeat" = "Fin de la récurrence";
+
+/* event occurence end time */
+"ends\n%@" = "fin\n%@";
+
+/* Event Alert controller title */
+"Event Alert" = "Alarme";
+
+/* View Event details controller title */
+"Event details" = "Événement";
+
+/* repeat selection */
+"Every Day" = "Tous les jours";
+
+/* repeat selection */
+"Every Month" = "Tous les mois";
+
+/* repeat selection */
+"Every Week" = "Toutes les semaines";
+
+/* repeat selection */
+"Every Year" = "Tous les ans";
+
+/* Free label */
+"Free" = "Libre";
+
+/* No comment provided by engineer. */
+"from %@ to %@" = "de %1$@ à %2$@";
+
+/* Event Location */
+"Location" = "Lieu";
+
+/* No comment provided by engineer. */
+"Month" = "Mois";
+
+/* Monthly reccurence type description */
+"monthly" = "Mensuel";
+
+/* No comment provided by engineer. */
+"Never" = "Jamais";
+
+/* alert type
+   repeat selection */
+"None" = "Aucun";
+
+/* Event notes
+   Notes field title */
+"Notes" = "Notes";
+
+/* OK button text */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"Repeat forever" = "Répéter indéfiniment";
+
+/* Recurrence controller title
+   Repeat cell title */
+"Repeat" = "Récurrence";
+
+/* No comment provided by engineer. */
+"Second Alert" = "Deuxième alarme";
+
+/* No comment provided by engineer. */
+"The start date must be before the end date" = "La date de début doit être avant la date de fin";
+
+/* No comment provided by engineer. */
+"This event is recurrent" = "Cet événement est récurrent.";
+
+/* Event Title */
+"Title" = "Titre";
+
+/* No comment provided by engineer. */
+"Today" = "Auj.";
+
+/* Time zone selection controller name */
+"Type a city name" = "Entrez une capitale";
+
+/* Event URL
+   URL field title */
+"URL" = "URL";
+
+/* No comment provided by engineer. */
+"Week" = "Semaine";
+
+/* Weekley reccurence type description */
+"weekley" = "Hebdomadaire";
+
+/* Yearly reccurence type description */
+"yearly" = "Annuel";
+
+/* EG: repeats (every day) , where every day is the event reccurence */
+"repeats %@" = "répétitions %@";
+
+" " = " ";
+
