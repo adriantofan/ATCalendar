@@ -151,9 +151,7 @@ typedef enum{
   NSInteger timeSpan = [endDate_ timeIntervalSinceDate:startDate_];
   if (edigingElement_ == ATDurationEditControllerEditElementStart) {
     startDate_ = picker_.date;
-    if ([startDate_ mt_isAfter:endDate_]) {
-      endDate_ = [startDate_ dateByAddingTimeInterval:timeSpan];
-    }
+    endDate_ = [startDate_ dateByAddingTimeInterval:timeSpan];
     self.navigationItem.rightBarButtonItem.enabled = YES;
     startDateLabel_.textColor = c;
     endDateLabel_.textColor = c;
