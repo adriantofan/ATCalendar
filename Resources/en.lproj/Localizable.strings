@@ -23,7 +23,7 @@
 "2 days before" = "2 days before";
 
 /* alert type */
-"2 hour before" = "2 hour before";
+"2 hour before" = "1 hour before";
 
 /* alert type */
 "2 hours before" = "2 hours before";
@@ -179,4 +179,6 @@
 
 /* EG: repeats (every day) , where every day is the event reccurence */
 "repeats %@" = "repeats %@";
+
+" " = "";
 

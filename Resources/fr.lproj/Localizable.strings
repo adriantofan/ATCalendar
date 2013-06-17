@@ -5,6 +5,9 @@
   Copyright (c) 2013 Adrian Tofan. All rights reserved. */
 
 /* No comment provided by engineer. */
+"" = "";
+
+/* No comment provided by engineer. */
 "%@ \nfrom %@ to %@" = "%1$@ \nde %2$@ à %3$@";
 
 /* No comment provided by engineer. */
