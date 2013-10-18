@@ -47,7 +47,7 @@
 "All Day " = "Jour entier ";
 
 /* marks event end */
-"all-day" = "Jour entier ";
+"all-day" = "Jour entier";
 
 /* alert type */
 "At event time" = "Le jour de l'événement";

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>F9072823-C1C1-4AC6-B92C-454EF46C5D9F</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ATCalendar</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>B5735621-A432-4659-8CB7-7742259124E0</key>
+		<string>ssh://github.com/adriantofan/ATCalendar.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ATCalendar.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>B5735621-A432-4659-8CB7-7742259124E0</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/adriantofan/ATCalendar.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>B5735621-A432-4659-8CB7-7742259124E0</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>B5735621-A432-4659-8CB7-7742259124E0</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ATCalendarDemo</string>
+		</dict>
+	</array>
+</dict>
+</plist>

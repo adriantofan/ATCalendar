@@ -1048,7 +1048,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ATCalendarDemo/ATCalendar-Prefix.pch";
 				INFOPLIST_FILE = "ATCalendarDemo/ATCalendarDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -1066,7 +1066,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ATCalendarDemo/ATCalendar-Prefix.pch";
 				INFOPLIST_FILE = "ATCalendarDemo/ATCalendarDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",

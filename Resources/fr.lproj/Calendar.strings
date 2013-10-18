@@ -8,7 +8,7 @@
 "7eq-wz-c4j.title" = "Début et fin";
 
 /* Class = "IBUILabel"; text = "All-day"; ObjectID = "8VK-Od-i24"; */
-"8VK-Od-i24.text" = "Jour entier";
+"8VK-Od-i24.text" = "Jour entier ";
 
 /* Class = "IBUILabel"; text = "Time Zone"; ObjectID = "eqq-XQ-0zx"; */
 "eqq-XQ-0zx.text" = "Fuseau horaire";
