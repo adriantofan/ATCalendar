@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
   s.dependency 'MagicalRecord', '~> 2.1'
   s.dependency 'CocoaLumberjack', '~> 1.6.2'
   s.dependency 'Functional.m', '~>1.0'
-  s.resource_bundles = { 'ATCalendar' => ['ATCalendar/Resources/*.png'] }
+  s.resource_bundles = { 'ATCalendar' => ['Resources/*'] }
 
 
 end
