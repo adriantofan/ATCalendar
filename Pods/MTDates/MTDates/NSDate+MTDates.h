@@ -57,7 +57,12 @@ typedef enum {
 - (NSDate *)mt_dateByAddingYears:(NSInteger)years months:(NSInteger)months weeks:(NSInteger)weeks days:(NSInteger)days hours:(NSInteger)hours minutes:(NSInteger)minutes seconds:(NSInteger)seconds;
 + (NSDate *)mt_dateFromComponents:(NSDateComponents *)components;
 
-
++ (NSDate*)mt_startOfToday;
++ (NSDate*)mt_startOfYesterday;
++ (NSDate*)mt_startOfTomorrow;
++ (NSDate*)mt_endOfToday;
++ (NSDate*)mt_endOfYesterday;
++ (NSDate*)mt_endOfTomorrow;
 
 
 #pragma mark - SYMBOLS
@@ -76,6 +81,7 @@ typedef enum {
 
 - (NSUInteger)mt_year;
 - (NSUInteger)mt_weekOfYear;
+- (NSUInteger)mt_dayOfYear;
 - (NSUInteger)mt_weekdayOfWeek;
 - (NSUInteger)mt_weekOfMonth;
 - (NSUInteger)mt_monthOfYear;
@@ -297,6 +303,12 @@ typedef enum {
 + (NSDate *)dateFromYear:(NSUInteger)year week:(NSUInteger)week weekday:(NSUInteger)weekday hour:(NSUInteger)hour minute:(NSUInteger)minute second:(NSUInteger)second;
 - (NSDate *)dateByAddingYears:(NSInteger)years months:(NSInteger)months weeks:(NSInteger)weeks days:(NSInteger)days hours:(NSInteger)hours minutes:(NSInteger)minutes seconds:(NSInteger)seconds;
 + (NSDate *)dateFromComponents:(NSDateComponents *)components;
++ (NSDate*)startOfToday;
++ (NSDate*)startOfYesterday;
++ (NSDate*)startOfTomorrow;
++ (NSDate*)endOfToday;
++ (NSDate*)endOfYesterday;
++ (NSDate*)endOfTomorrow;
 
 + (NSArray *)shortWeekdaySymbols;
 + (NSArray *)weekdaySymbols;
@@ -307,6 +319,7 @@ typedef enum {
 
 - (NSUInteger)year;
 - (NSUInteger)weekOfYear;
+- (NSUInteger)dayOfYear;
 - (NSUInteger)weekdayOfWeek;
 - (NSUInteger)weekOfMonth;
 - (NSUInteger)monthOfYear;
