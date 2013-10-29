@@ -6,6 +6,12 @@
 // project.
 
 
+// ATCalendar
+#define COCOAPODS_POD_AVAILABLE_ATCalendar
+#define COCOAPODS_VERSION_MAJOR_ATCalendar 0
+#define COCOAPODS_VERSION_MINOR_ATCalendar 1
+#define COCOAPODS_VERSION_PATCH_ATCalendar 13
+
 // CocoaLumberjack
 #define COCOAPODS_POD_AVAILABLE_CocoaLumberjack
 #define COCOAPODS_VERSION_MAJOR_CocoaLumberjack 1

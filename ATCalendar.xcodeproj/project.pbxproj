@@ -21,60 +21,31 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		400F6FCA16F86FC4007285C3 /* ATEventEditBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 400F6FC916F86FC4007285C3 /* ATEventEditBaseController.m */; };
 		400F6FCB16F86FC4007285C3 /* ATEventEditBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 400F6FC916F86FC4007285C3 /* ATEventEditBaseController.m */; };
-		400F6FCE16F870CE007285C3 /* ATEventCreateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 400F6FCD16F870CE007285C3 /* ATEventCreateController.m */; };
 		400F6FCF16F870CE007285C3 /* ATEventCreateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 400F6FCD16F870CE007285C3 /* ATEventCreateController.m */; };
-		400F6FD316F879F8007285C3 /* ATEventTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 400F6FD216F879F8007285C3 /* ATEventTextFieldCell.m */; };
 		400F6FD416F879F8007285C3 /* ATEventTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 400F6FD216F879F8007285C3 /* ATEventTextFieldCell.m */; };
-		4011027E170B499C00C59572 /* ATEventOccurenceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4011027D170B499C00C59572 /* ATEventOccurenceCell.m */; };
-		40110284170B4C8A00C59572 /* _EventProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 40110281170B4C8A00C59572 /* _EventProperty.m */; };
-		40110285170B4C8A00C59572 /* EventProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 40110283170B4C8A00C59572 /* EventProperty.m */; };
 		4012981C16F2277D00C0DC35 /* ATCoreDataTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012981B16F2277D00C0DC35 /* ATCoreDataTest.m */; };
-		4012982516F22F9600C0DC35 /* _ATEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012981E16F22F9600C0DC35 /* _ATEvent.m */; };
-		4012982616F22F9600C0DC35 /* _ATRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012982016F22F9600C0DC35 /* _ATRecurrence.m */; };
-		4012982716F22F9600C0DC35 /* ATEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012982216F22F9600C0DC35 /* ATEvent.m */; };
-		4012982816F22F9600C0DC35 /* ATRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012982416F22F9600C0DC35 /* ATRecurrence.m */; };
-		4012983216F23B0100C0DC35 /* _ATGlobalPropertyes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012982B16F23B0100C0DC35 /* _ATGlobalPropertyes.m */; };
-		4012983316F23B0100C0DC35 /* _ATOccurrenceCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012982D16F23B0100C0DC35 /* _ATOccurrenceCache.m */; };
-		4012983416F23B0100C0DC35 /* ATGlobalPropertyes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012982F16F23B0100C0DC35 /* ATGlobalPropertyes.m */; };
-		4012983516F23B0100C0DC35 /* ATOccurrenceCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012983116F23B0100C0DC35 /* ATOccurrenceCache.m */; };
 		4012983816F23E6800C0DC35 /* ATGlobalPropertyesTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012983716F23E6800C0DC35 /* ATGlobalPropertyesTest.m */; };
-		4012983F16F2435600C0DC35 /* ATCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012983E16F2435600C0DC35 /* ATCalendar.m */; };
 		4012984016F2435600C0DC35 /* ATCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012983E16F2435600C0DC35 /* ATCalendar.m */; };
-		402638B616F78042002E5C6D /* ATEventOccurenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 402638AE16F78042002E5C6D /* ATEventOccurenceController.m */; };
 		402638B716F78042002E5C6D /* ATEventOccurenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 402638AE16F78042002E5C6D /* ATEventOccurenceController.m */; };
-		402638B816F78042002E5C6D /* ATEventEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 402638B016F78042002E5C6D /* ATEventEditController.m */; };
 		402638B916F78042002E5C6D /* ATEventEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 402638B016F78042002E5C6D /* ATEventEditController.m */; };
-		402638BA16F78042002E5C6D /* ATEventListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 402638B316F78042002E5C6D /* ATEventListController.m */; };
 		402638BB16F78042002E5C6D /* ATEventListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 402638B316F78042002E5C6D /* ATEventListController.m */; };
 		402B14E81705E20400B32594 /* ATTZPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40339D90170456E6008D7190 /* ATTZPickerController.m */; };
-		40322DF016F8B0F500186611 /* ATEventTimeEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40322DEF16F8B0F500186611 /* ATEventTimeEditCell.m */; };
+		402FC53B181FAEAE006951ED /* ATTimeSpan.m in Sources */ = {isa = PBXBuildFile; fileRef = 4059A96E16F32D69008F90F4 /* ATTimeSpan.m */; };
 		40322DF116F8B0F500186611 /* ATEventTimeEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40322DEF16F8B0F500186611 /* ATEventTimeEditCell.m */; };
-		403329CD1702E865002FC8F5 /* ATAvilabilityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 403329CC1702E865002FC8F5 /* ATAvilabilityController.m */; };
-		403329D41702FB57002FC8F5 /* _ATAlertNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 403329D11702FB57002FC8F5 /* _ATAlertNotification.m */; };
 		403329D51702FB57002FC8F5 /* _ATAlertNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 403329D11702FB57002FC8F5 /* _ATAlertNotification.m */; };
-		403329D61702FB57002FC8F5 /* ATAlertNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 403329D31702FB57002FC8F5 /* ATAlertNotification.m */; };
 		403329D71702FB57002FC8F5 /* ATAlertNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 403329D31702FB57002FC8F5 /* ATAlertNotification.m */; };
 		403329D81702FED5002FC8F5 /* ATAlertTypeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 404A3B5A1701FB13001C3CB8 /* ATAlertTypeController.m */; };
 		403329D91702FF09002FC8F5 /* ATAvilabilityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 403329CC1702E865002FC8F5 /* ATAvilabilityController.m */; };
-		40339D91170456E6008D7190 /* ATTZPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40339D90170456E6008D7190 /* ATTZPickerController.m */; };
-		403969B5170C928F0098B7DA /* ATEvent+LocalNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 403329DB17033784002FC8F5 /* ATEvent+LocalNotifications.m */; };
 		403969B6170C92900098B7DA /* ATEvent+LocalNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 403329DB17033784002FC8F5 /* ATEvent+LocalNotifications.m */; };
-		403969EE170D79CE0098B7DA /* ATCalendarUIConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 403969ED170D79CE0098B7DA /* ATCalendarUIConfig.m */; };
 		404627C41737EADE00EA06BE /* ATCalendar.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 404627A11737E6CC00EA06BE /* ATCalendar.xcdatamodeld */; };
 		404627C51737EAE500EA06BE /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4046275B1737DF9300EA06BE /* Calendar.storyboard */; };
 		404627C61737EAE900EA06BE /* EventTimeEditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4046275E1737DFA200EA06BE /* EventTimeEditCell.xib */; };
-		404627CB1737EBAC00EA06BE /* ATCalendar.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 404627B51737E8D300EA06BE /* ATCalendar.bundle */; };
-		404A3B5B1701FB13001C3CB8 /* ATAlertTypeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 404A3B5A1701FB13001C3CB8 /* ATAlertTypeController.m */; };
-		404A44DE16F8CD3300DAAD96 /* ATDurationEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 404A44DD16F8CD3300DAAD96 /* ATDurationEditController.m */; };
 		404A44DF16F8CD3300DAAD96 /* ATDurationEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 404A44DD16F8CD3300DAAD96 /* ATDurationEditController.m */; };
-		404A44E516F9C63A00DAAD96 /* ATEventDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 404A44E416F9C63A00DAAD96 /* ATEventDetailCell.m */; };
 		404A44E616F9C63A00DAAD96 /* ATEventDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 404A44E416F9C63A00DAAD96 /* ATEventDetailCell.m */; };
 		4059A96716F24600008F90F4 /* ATCalendarTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4059A96616F24600008F90F4 /* ATCalendarTest.m */; };
 		4059A96A16F24CB0008F90F4 /* Pods.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 8AFFA37E5D9B470888607BEB /* Pods.xcconfig */; };
 		4059A96B16F24CB0008F90F4 /* Pods.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 8AFFA37E5D9B470888607BEB /* Pods.xcconfig */; };
-		4059A96F16F32D69008F90F4 /* ATTimeSpan.m in Sources */ = {isa = PBXBuildFile; fileRef = 4059A96E16F32D69008F90F4 /* ATTimeSpan.m */; };
 		4059A97216F358B1008F90F4 /* ATEventTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4059A97116F358B1008F90F4 /* ATEventTest.m */; };
 		405EC2C616F219B400F590DD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405EC2C516F219B400F590DD /* UIKit.framework */; };
 		405EC2C816F219B400F590DD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405EC2C716F219B400F590DD /* Foundation.framework */; };
@@ -93,60 +64,34 @@
 		405EC2F416F219B400F590DD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405EC2C716F219B400F590DD /* Foundation.framework */; };
 		405EC2F516F219B400F590DD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405EC2CB16F219B400F590DD /* CoreData.framework */; };
 		405EC2FD16F219B400F590DD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 405EC2FB16F219B400F590DD /* InfoPlist.strings */; };
-		4068BF0B16FC43AD008F4B67 /* ATEventTextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4068BF0A16FC43AD008F4B67 /* ATEventTextViewCell.m */; };
 		4068BF0C16FC43AD008F4B67 /* ATEventTextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4068BF0A16FC43AD008F4B67 /* ATEventTextViewCell.m */; };
-		4068BF1016FC45EA008F4B67 /* ATPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4068BF0F16FC45EA008F4B67 /* ATPlaceHolderTextView.m */; };
 		4068BF1116FC45EA008F4B67 /* ATPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4068BF0F16FC45EA008F4B67 /* ATPlaceHolderTextView.m */; };
-		4068BF4816FCA443008F4B67 /* ATRecurrenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C67D0416FB108100A65232 /* ATRecurrenceController.m */; };
 		4068BF4916FCA444008F4B67 /* ATRecurrenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C67D0416FB108100A65232 /* ATRecurrenceController.m */; };
 		4077E61116F394CC00E9D80F /* ATRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012982416F22F9600C0DC35 /* ATRecurrence.m */; };
 		4077E61216F394CF00E9D80F /* _ATRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012982016F22F9600C0DC35 /* _ATRecurrence.m */; };
-		409FA0B4174F9E7C00683248 /* ATBugFixTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 409FA0B3174F9E7C00683248 /* ATBugFixTableViewCell.m */; };
 		40C3372116F38CC0002EDD52 /* _ATEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012981E16F22F9600C0DC35 /* _ATEvent.m */; };
 		40C3372216F38CC4002EDD52 /* _ATGlobalPropertyes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012982B16F23B0100C0DC35 /* _ATGlobalPropertyes.m */; };
 		40C3372316F38CC7002EDD52 /* _ATOccurrenceCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012982D16F23B0100C0DC35 /* _ATOccurrenceCache.m */; };
 		40C3372416F38CC9002EDD52 /* ATGlobalPropertyes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012982F16F23B0100C0DC35 /* ATGlobalPropertyes.m */; };
 		40C3372516F38CCC002EDD52 /* ATOccurrenceCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012983116F23B0100C0DC35 /* ATOccurrenceCache.m */; };
 		40C3372616F38CD5002EDD52 /* ATEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 4012982216F22F9600C0DC35 /* ATEvent.m */; };
-		40C3372816F38CF8002EDD52 /* ATTimeSpan.m in Sources */ = {isa = PBXBuildFile; fileRef = 4059A96E16F32D69008F90F4 /* ATTimeSpan.m */; };
-		40C67D0816FB562400A65232 /* ATEndRecurrenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C67D0716FB562400A65232 /* ATEndRecurrenceController.m */; };
 		40C67D0916FB562400A65232 /* ATEndRecurrenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C67D0716FB562400A65232 /* ATEndRecurrenceController.m */; };
 		40D3BBCE16FA170F00EC54AD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40D3BBCD16FA170F00EC54AD /* QuartzCore.framework */; };
-		40F92ACC1737ED2C00AF1665 /* NSBundle+ATCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F92ACB1737ED2C00AF1665 /* NSBundle+ATCalendar.m */; };
 		40F92AD01737F62B00AF1665 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 40F92AD21737F62B00AF1665 /* Localizable.strings */; };
-		40F92B001738006700AF1665 /* ATCalendar.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 40F92AFF1738006700AF1665 /* ATCalendar.podspec */; };
 		40F92B02173801CC00AF1665 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 40F92B01173801CC00AF1665 /* Podfile */; };
 		40FCA7C916F46F3600F22C81 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405EC2C916F219B400F590DD /* CoreGraphics.framework */; };
-		40FCA7EC16F4C40E00F22C81 /* _ATMonthlyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7DD16F4C40E00F22C81 /* _ATMonthlyRecurrence.m */; };
 		40FCA7ED16F4C40E00F22C81 /* _ATMonthlyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7DD16F4C40E00F22C81 /* _ATMonthlyRecurrence.m */; };
-		40FCA7EE16F4C40E00F22C81 /* _ATWeeklyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7DF16F4C40E00F22C81 /* _ATWeeklyRecurrence.m */; };
 		40FCA7EF16F4C40E00F22C81 /* _ATWeeklyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7DF16F4C40E00F22C81 /* _ATWeeklyRecurrence.m */; };
-		40FCA7F016F4C40E00F22C81 /* _ATYearlyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7E116F4C40E00F22C81 /* _ATYearlyRecurrence.m */; };
 		40FCA7F116F4C40E00F22C81 /* _ATYearlyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7E116F4C40E00F22C81 /* _ATYearlyRecurrence.m */; };
-		40FCA7F216F4C40E00F22C81 /* ATMonthlyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7E316F4C40E00F22C81 /* ATMonthlyRecurrence.m */; };
 		40FCA7F316F4C40E00F22C81 /* ATMonthlyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7E316F4C40E00F22C81 /* ATMonthlyRecurrence.m */; };
-		40FCA7F416F4C40E00F22C81 /* ATWeeklyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7E516F4C40E00F22C81 /* ATWeeklyRecurrence.m */; };
 		40FCA7F516F4C40E00F22C81 /* ATWeeklyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7E516F4C40E00F22C81 /* ATWeeklyRecurrence.m */; };
-		40FCA7F616F4C40E00F22C81 /* ATYearlyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7E716F4C40E00F22C81 /* ATYearlyRecurrence.m */; };
 		40FCA7F716F4C40E00F22C81 /* ATYearlyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7E716F4C40E00F22C81 /* ATYearlyRecurrence.m */; };
-		40FCA7F816F4C40E00F22C81 /* _ATDailyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7E916F4C40E00F22C81 /* _ATDailyRecurrence.m */; };
 		40FCA7F916F4C40E00F22C81 /* _ATDailyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7E916F4C40E00F22C81 /* _ATDailyRecurrence.m */; };
-		40FCA7FA16F4C40E00F22C81 /* ATDailyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7EB16F4C40E00F22C81 /* ATDailyRecurrence.m */; };
 		40FCA7FB16F4C40E00F22C81 /* ATDailyRecurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7EB16F4C40E00F22C81 /* ATDailyRecurrence.m */; };
 		40FCA7FD16F4CD0100F22C81 /* ATRecurrenceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FCA7FC16F4CD0100F22C81 /* ATRecurrenceTest.m */; };
 		628016158C39494FB1B9D4B1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 841B0704C9154AE4852A0DEE /* libPods.a */; };
 		B3E538D3BD1C478298F3F8BB /* libPods-test.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38736638942241C7A5F4162B /* libPods-test.a */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		404627C91737EB8000EA06BE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 405EC2BA16F219B400F590DD /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 404627B41737E8D300EA06BE;
-			remoteInfo = ATCalendarResources;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		38736638942241C7A5F4162B /* libPods-test.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-test.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -619,7 +564,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				404627CA1737EB8000EA06BE /* PBXTargetDependency */,
 			);
 			name = ATCalendarDemo;
 			productName = ATCalendarDemo;
@@ -692,13 +636,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				404627CB1737EBAC00EA06BE /* ATCalendar.bundle in Resources */,
 				405EC2D216F219B400F590DD /* InfoPlist.strings in Resources */,
 				405EC2DA16F219B400F590DD /* Default.png in Resources */,
 				405EC2DC16F219B400F590DD /* Default@2x.png in Resources */,
 				405EC2DE16F219B400F590DD /* Default-568h@2x.png in Resources */,
 				4059A96A16F24CB0008F90F4 /* Pods.xcconfig in Resources */,
-				40F92B001738006700AF1665 /* ATCalendar.podspec in Resources */,
 				40F92B02173801CC00AF1665 /* Podfile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -788,49 +730,6 @@
 				405EC2D816F219B400F590DD /* ATAppDelegate.m in Sources */,
 				405EC2E716F219B400F590DD /* ATMasterViewController.m in Sources */,
 				405EC2EA16F219B400F590DD /* ATDetailViewController.m in Sources */,
-				4012982516F22F9600C0DC35 /* _ATEvent.m in Sources */,
-				4012982616F22F9600C0DC35 /* _ATRecurrence.m in Sources */,
-				4012982716F22F9600C0DC35 /* ATEvent.m in Sources */,
-				4012982816F22F9600C0DC35 /* ATRecurrence.m in Sources */,
-				4012983216F23B0100C0DC35 /* _ATGlobalPropertyes.m in Sources */,
-				4012983316F23B0100C0DC35 /* _ATOccurrenceCache.m in Sources */,
-				4012983416F23B0100C0DC35 /* ATGlobalPropertyes.m in Sources */,
-				4012983516F23B0100C0DC35 /* ATOccurrenceCache.m in Sources */,
-				4012983F16F2435600C0DC35 /* ATCalendar.m in Sources */,
-				4059A96F16F32D69008F90F4 /* ATTimeSpan.m in Sources */,
-				40FCA7EC16F4C40E00F22C81 /* _ATMonthlyRecurrence.m in Sources */,
-				40FCA7EE16F4C40E00F22C81 /* _ATWeeklyRecurrence.m in Sources */,
-				40FCA7F016F4C40E00F22C81 /* _ATYearlyRecurrence.m in Sources */,
-				40FCA7F216F4C40E00F22C81 /* ATMonthlyRecurrence.m in Sources */,
-				40FCA7F416F4C40E00F22C81 /* ATWeeklyRecurrence.m in Sources */,
-				40FCA7F616F4C40E00F22C81 /* ATYearlyRecurrence.m in Sources */,
-				40FCA7F816F4C40E00F22C81 /* _ATDailyRecurrence.m in Sources */,
-				40FCA7FA16F4C40E00F22C81 /* ATDailyRecurrence.m in Sources */,
-				402638B616F78042002E5C6D /* ATEventOccurenceController.m in Sources */,
-				402638B816F78042002E5C6D /* ATEventEditController.m in Sources */,
-				402638BA16F78042002E5C6D /* ATEventListController.m in Sources */,
-				400F6FCA16F86FC4007285C3 /* ATEventEditBaseController.m in Sources */,
-				400F6FCE16F870CE007285C3 /* ATEventCreateController.m in Sources */,
-				400F6FD316F879F8007285C3 /* ATEventTextFieldCell.m in Sources */,
-				40322DF016F8B0F500186611 /* ATEventTimeEditCell.m in Sources */,
-				404A44DE16F8CD3300DAAD96 /* ATDurationEditController.m in Sources */,
-				404A44E516F9C63A00DAAD96 /* ATEventDetailCell.m in Sources */,
-				40C67D0816FB562400A65232 /* ATEndRecurrenceController.m in Sources */,
-				4068BF0B16FC43AD008F4B67 /* ATEventTextViewCell.m in Sources */,
-				4068BF1016FC45EA008F4B67 /* ATPlaceHolderTextView.m in Sources */,
-				4068BF4816FCA443008F4B67 /* ATRecurrenceController.m in Sources */,
-				404A3B5B1701FB13001C3CB8 /* ATAlertTypeController.m in Sources */,
-				403329CD1702E865002FC8F5 /* ATAvilabilityController.m in Sources */,
-				403329D41702FB57002FC8F5 /* _ATAlertNotification.m in Sources */,
-				403329D61702FB57002FC8F5 /* ATAlertNotification.m in Sources */,
-				40339D91170456E6008D7190 /* ATTZPickerController.m in Sources */,
-				4011027E170B499C00C59572 /* ATEventOccurenceCell.m in Sources */,
-				40110284170B4C8A00C59572 /* _EventProperty.m in Sources */,
-				40110285170B4C8A00C59572 /* EventProperty.m in Sources */,
-				403969B5170C928F0098B7DA /* ATEvent+LocalNotifications.m in Sources */,
-				403969EE170D79CE0098B7DA /* ATCalendarUIConfig.m in Sources */,
-				40F92ACC1737ED2C00AF1665 /* NSBundle+ATCalendar.m in Sources */,
-				409FA0B4174F9E7C00683248 /* ATBugFixTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -849,7 +748,6 @@
 				40C3372416F38CC9002EDD52 /* ATGlobalPropertyes.m in Sources */,
 				40C3372516F38CCC002EDD52 /* ATOccurrenceCache.m in Sources */,
 				40C3372616F38CD5002EDD52 /* ATEvent.m in Sources */,
-				40C3372816F38CF8002EDD52 /* ATTimeSpan.m in Sources */,
 				4077E61116F394CC00E9D80F /* ATRecurrence.m in Sources */,
 				4077E61216F394CF00E9D80F /* _ATRecurrence.m in Sources */,
 				40FCA7ED16F4C40E00F22C81 /* _ATMonthlyRecurrence.m in Sources */,
@@ -880,18 +778,11 @@
 				403329D91702FF09002FC8F5 /* ATAvilabilityController.m in Sources */,
 				402B14E81705E20400B32594 /* ATTZPickerController.m in Sources */,
 				403969B6170C92900098B7DA /* ATEvent+LocalNotifications.m in Sources */,
+				402FC53B181FAEAE006951ED /* ATTimeSpan.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		404627CA1737EB8000EA06BE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 404627B41737E8D300EA06BE /* ATCalendarResources */;
-			targetProxy = 404627C91737EB8000EA06BE /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4046275B1737DF9300EA06BE /* Calendar.storyboard */ = {
