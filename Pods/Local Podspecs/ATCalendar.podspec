@@ -1,13 +1,13 @@
 
 Pod::Spec.new do |s|
   s.name         = "ATCalendar"
-  s.version      = "0.1.15"
+  s.version      = "0.1.16"
   s.summary      = "Calendar app like implementation with CoreData store"
   s.homepage     = "https://github.com/adriantofan/ATCalendar"
   s.license      = { :type => 'BSD', :file => 'LICENSE' }
   s.author       = { "Adrian Tofan" => "adrian@tofan.co" }
   s.source       = { :git => "https://github.com/adriantofan/ATCalendar.git",:tag => s.version.to_s}
-  s.platform     = :ios, "6.0"
+  s.platform     = :ios, "7.0"
   s.source_files = "Classes", "Classes/**/*.{h,m}"
 
 

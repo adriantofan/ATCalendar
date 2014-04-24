@@ -1,4 +1,4 @@
-platform :ios ,'6.0'
+platform :ios ,'7.0'
 pod 'MTDates' , '~> 0.12'
 pod 'Functional.m', '~> 1.0'
 pod 'MagicalRecord', '~> 2.1'

@@ -40,59 +40,72 @@ UIFont* subtitleFont(){
 
 +(CGFloat)heightWithTitle:(NSString*)title subtitle:(NSString*)subtitle description:(NSString*)description{
   CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 20000.0f);
-  CGSize sizeTitle =
-    [title sizeWithFont:titleFont()
-      constrainedToSize:constraint
-          lineBreakMode:NSLineBreakByWordWrapping];
-  CGSize sizeSubTitle =
-    [subtitle sizeWithFont:subtitleFont()
-         constrainedToSize:constraint
-             lineBreakMode:NSLineBreakByWordWrapping];
-  CGSize sizeDescription =
-  [description sizeWithFont:descriptionFont()
-       constrainedToSize:constraint
-           lineBreakMode:NSLineBreakByWordWrapping];
+  NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+  [style setLineBreakMode:NSLineBreakByWordWrapping];
+  
+  CGRect titleRect = [title boundingRectWithSize:constraint
+                                           options:NSStringDrawingUsesLineFragmentOrigin
+                                      attributes:@{NSFontAttributeName:titleFont(),NSParagraphStyleAttributeName: style}
+                                           context:nil];
+  CGRect subtitleRect = [subtitle boundingRectWithSize:constraint
+                                            options:NSStringDrawingUsesLineFragmentOrigin
+                                         attributes:@{NSFontAttributeName:subtitleFont(),NSParagraphStyleAttributeName: style}
+                                            context:nil];
+  CGRect descriptionRect = [description boundingRectWithSize:constraint
+                                                    options:NSStringDrawingUsesLineFragmentOrigin
+                                                  attributes:@{NSFontAttributeName:descriptionFont(),NSParagraphStyleAttributeName: style}
+                                                      context:nil];
+
   CGFloat lineCount = 0.0f;
-  if (sizeTitle.height != 0.0f) lineCount += 1.0f;
-  if (sizeSubTitle.height != 0.0f) lineCount += 1.0f;
-  if (sizeDescription.height != 0.0f) lineCount += 1.0f;
+  if (ceil(titleRect.size.height) != 0.0f) lineCount += 1.0f;
+  if (ceil(subtitleRect.size.height) != 0.0f) lineCount += 1.0f;
+  if (ceil(descriptionRect.size.height) != 0.0f) lineCount += 1.0f;
   CGFloat lineSpacing = 0.0f;
   if (lineCount != 0.0f) {
     lineSpacing = (lineCount-1.0)*VERTICAL_SPACING;
   }
   
-  CGFloat height = MAX(sizeTitle.height+ sizeSubTitle.height + sizeDescription.height + lineSpacing, 44.0f);
+  CGFloat height = MAX(ceil(titleRect.size.height)+ ceil(subtitleRect.size.height) + ceil(descriptionRect.size.height) + lineSpacing, 44.0f);
   return height + (CELL_CONTENT_MARGIN * 2);
 
 }
 -(void)setTitle:(NSString*)title subtitle:(NSString*)subtitle description:(NSString*)description{
   CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 20000.0f);
-  CGSize size = [title sizeWithFont:titleFont()
-                  constrainedToSize:constraint
-                      lineBreakMode:NSLineBreakByWordWrapping];
+  NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+  [style setLineBreakMode:NSLineBreakByWordWrapping];
+
+  CGRect titleRect = [title boundingRectWithSize:constraint
+                                         options:NSStringDrawingUsesLineFragmentOrigin
+                                      attributes:@{NSFontAttributeName:titleFont(),NSParagraphStyleAttributeName: style}
+                                         context:nil];
+
   float y = CELL_CONTENT_MARGIN;
   [titleLabel_ setText:title];
-  CGRect titleFrame = CGRectMake(CELL_CONTENT_MARGIN, y, CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), size.height);
+  CGRect titleFrame = CGRectMake(CELL_CONTENT_MARGIN, y, CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), ceill(titleRect.size.height));
   [titleLabel_ setFrame:titleFrame];
-  size = [subtitle sizeWithFont:subtitleFont()
-              constrainedToSize:constraint
-                  lineBreakMode:NSLineBreakByWordWrapping];
+  CGRect subtitleRect = [subtitle boundingRectWithSize:constraint
+                                               options:NSStringDrawingUsesLineFragmentOrigin
+                                            attributes:@{NSFontAttributeName:subtitleFont(),NSParagraphStyleAttributeName: style}
+                                               context:nil];
+
   
-  if ((titleFrame.size.height != 0.0f) && (size.height != 0.0f) )
+  if ((titleFrame.size.height != 0.0f) && (ceill(subtitleRect.size.height) != 0.0f) )
     y = VERTICAL_SPACING + CGRectGetMaxY(titleFrame);
   
   CGRect subtitleFrame =
       CGRectMake(CELL_CONTENT_MARGIN,
                  y,
                  CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2.0f),
-                 size.height);
+                 ceill(subtitleRect.size.height));
   subtitleLabel_.text = subtitle;
   [subtitleLabel_ setFrame:subtitleFrame];
   
   
-  size = [description sizeWithFont:descriptionFont()
-              constrainedToSize:constraint
-                  lineBreakMode:NSLineBreakByWordWrapping];
+  CGRect descriptionRect = [description boundingRectWithSize:constraint
+                                                     options:NSStringDrawingUsesLineFragmentOrigin
+                                                  attributes:@{NSFontAttributeName:descriptionFont(),NSParagraphStyleAttributeName: style}
+                                                     context:nil];
+
   
   if (subtitleFrame.size.height != 0.0f)
     y = VERTICAL_SPACING + CGRectGetMaxY(subtitleFrame);
@@ -102,7 +115,7 @@ UIFont* subtitleFont(){
   CGRectMake(CELL_CONTENT_MARGIN,
              y,
              CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2.0f),
-             size.height);
+             ceill(descriptionRect.size.height));
   descriptionLabel_.text = description;
   [descriptionLabel_ setFrame:descriptionFrame];
 }
