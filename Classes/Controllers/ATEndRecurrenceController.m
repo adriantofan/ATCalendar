@@ -50,9 +50,15 @@
 
 - (void)viewDidLoad
 {
+  
   [super viewDidLoad];
-  self.tableView.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
-  self.tableView.backgroundView.backgroundColor = [[ATCalendarUIConfig sharedConfig] groupedTableViewBGCollor];
+  self.edgesForExtendedLayout = UIRectEdgeNone;
+
+  UIColor* bgColor = [[ATCalendarUIConfig sharedConfig] groupedTableViewBGCollor];
+  if (![bgColor isEqual:[UIColor clearColor]] ) {
+    self.tableView.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.backgroundView.backgroundColor = bgColor;
+  }
   self.pickerView = [[UIDatePicker alloc] initWithFrame:CGRectZero];
   self.pickerView.datePickerMode = UIDatePickerModeDate;
   [self.pickerView addTarget:self

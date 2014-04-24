@@ -26,7 +26,7 @@ static ATCalendarUIConfig* __sharedConfig;
   __sharedConfig = otherConfig;
 }
 -(void)setUP{
-  self.groupedTableViewBGCollor = [UIColor grayColor];
+  self.groupedTableViewBGCollor = [UIColor clearColor];
   self.tableViewCellDetailLabelCollor = [UIColor darkGrayColor];
   self.eventTimeLabelCollor = [UIColor colorWithRed:0x6c/255.0 green:0x72/255.0 blue:0x7c/255.0 alpha:1.0];
   self.cellSubtitleLabelCollor = [UIColor lightGrayColor];

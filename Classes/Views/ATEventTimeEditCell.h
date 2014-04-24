@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ATEventTimeEditCell : UITableViewCell
-+(float)height;
++(CGFloat)height;
 @property (strong, nonatomic) IBOutlet UILabel *startDateLabel;
 @property (strong, nonatomic) IBOutlet UILabel *endDateLabel;
 @property (strong, nonatomic) IBOutlet UILabel *timeZoneLabel;

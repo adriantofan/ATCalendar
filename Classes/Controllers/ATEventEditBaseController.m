@@ -84,6 +84,9 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
 @synthesize firstAlertCell = firstAlertCell_;
 @synthesize seccondAlertCell = seccondAlertCell_;
 @synthesize busyCell = busyCell_;
+@synthesize editingMoc = editingMoc_;
+@synthesize event = event_;
+
 
 #pragma mark - Cells
 -(UITableViewCell*)busyCell{
@@ -295,7 +298,7 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
   NSArray* cellsInSection = [self.sectionCells objectForKey:sectionName];
   return [cellsInSection objectAtIndex:indexPath.row];
 }
--(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
   NSString* sectionName = [self sectionNameForSection:indexPath.section];
   if (sectionName == ATEventEditBaseSectionDate) {
     return [ATEventTimeEditCell height];
@@ -309,7 +312,7 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
 
 #pragma mark -
 -(void)setEvent:(ATEvent *)event{
-  _event = event;
+  event_ = event;
   dateTimeFormatter_.timeZone = event.timeZone;
   dateFormatter_.timeZone = event.timeZone;
   self.repeatEndVisible = event.isRecurrent;
@@ -325,9 +328,15 @@ NSString const* ATEventEditBaseSectionAvilability = @"ATEventEditBaseSectionAvil
 
 - (void)viewDidLoad
 {
+  self.edgesForExtendedLayout = UIRectEdgeNone;
+
   [super viewDidLoad];
-  self.tableView.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
-  self.tableView.backgroundView.backgroundColor = [[ATCalendarUIConfig sharedConfig] groupedTableViewBGCollor];
+  UIColor* bgColor = [[ATCalendarUIConfig sharedConfig] groupedTableViewBGCollor];
+  if (![bgColor isEqual:[UIColor clearColor]] ) {
+    self.tableView.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.backgroundView.backgroundColor = bgColor;
+  }
+
 
   dateTimeFormatter_ = [[NSDateFormatter alloc] init];
   [dateTimeFormatter_ setTimeStyle:NSDateFormatterShortStyle];

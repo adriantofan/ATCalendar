@@ -7,19 +7,76 @@
 //
 
 
-// Week Numbering System
-typedef enum {
-    MTDateWeekNumberingSystemUS       = 1,      // First week contains January 1st.
-    MTDateWeekNumberingSystemISO      = 4,      // First week contains January 4th.
-    //  MTDateWeekNumberingSystemSimple = 8     // First week starts on January 1st, next on Jan 8th, etc.
-} MTDateWeekNumberingSystem;
 
-// Hour Format
-typedef enum {
-    MTDateHourFormat24Hour,                     // 23:00
-    MTDateHourFormat12Hour                      // 11:00PM
-} MTDateHourFormat;
 
+
+
+
+/**
+ *  Week numbering systems.
+ */
+typedef NS_ENUM(NSUInteger, MTDateWeekNumberingSystem) {
+    /**
+     *  First week contains January 1st.
+     */
+    MTDateWeekNumberingSystemUS       = 1,
+    /**
+     *  First week contains january 4th.
+     */
+    MTDateWeekNumberingSystemISO      = 4,
+    /**
+     *  First week starts on January 1st, next on Jan 8th, etc.
+     */
+    MTDateWeekNumberingSystemSimple = 8
+};
+
+/**
+ *  Hour format
+ */
+typedef NS_ENUM(NSUInteger, MTDateHourFormat) {
+    /**
+     *  e.g. 23:00
+     */
+    MTDateHourFormat24Hour,
+    /**
+     *  e.g. 11:00pm
+     */
+    MTDateHourFormat12Hour
+};
+
+
+
+
+/**
+ *  Common number of seconds for larger time components. Some of these values are approximations
+ *  and/or are not always true, like because of leap year or Daylight Savings Time for example. 
+ *  The purpose of them is to provide a rough estimate for breaking down large time spans into 
+ *  more understandable components, like for a UI.
+ */
+
+// This is exact.
+static NSUInteger const MTDateConstantSecondsInMinute   = 60;
+
+// This is exact.
+static NSUInteger const MTDateConstantSecondsInHour     = 60 * 60;
+
+// This is not always true. Leap year/DST.
+static NSUInteger const MTDateConstantSecondsInDay      = 60 * 60 * 24;
+
+// This is not always true. Leap year/DST.
+static NSUInteger const MTDateConstantSecondsInWeek     = 60 * 60 * 24 * 7;
+
+// This is an approximation and rarely true.
+static NSUInteger const MTDateConstantSecondsInMonth    = 60 * 60 * 24 * 7 * 30;
+
+// This is true 3 out of 4 years. Leap years have 366 days.
+static NSUInteger const MTDateConstantSecondsInYear     = 60 * 60 * 24 * 7 * 365;
+
+// This is exact.
+static NSUInteger const MTDateConstantDaysInWeek        = 7;
+
+// This is not always true. Daylight savings time can increate/decrease a days hours by 1.
+static NSUInteger const MTDateConstantHoursInDay        = 24;
 
 
 
@@ -237,6 +294,7 @@ typedef enum {
 - (BOOL)mt_isBefore:(NSDate *)date;
 - (BOOL)mt_isOnOrAfter:(NSDate *)date;
 - (BOOL)mt_isOnOrBefore:(NSDate *)date;
+- (BOOL)mt_isWithinSameYear:(NSDate *)date;
 - (BOOL)mt_isWithinSameMonth:(NSDate *)date;
 - (BOOL)mt_isWithinSameWeek:(NSDate *)date;
 - (BOOL)mt_isWithinSameDay:(NSDate *)date;
@@ -448,6 +506,7 @@ typedef enum {
 - (BOOL)isBefore:(NSDate *)date;
 - (BOOL)isOnOrAfter:(NSDate *)date;
 - (BOOL)isOnOrBefore:(NSDate *)date;
+- (BOOL)isWithinSameYear:(NSDate *)date;
 - (BOOL)isWithinSameMonth:(NSDate *)date;
 - (BOOL)isWithinSameWeek:(NSDate *)date;
 - (BOOL)isWithinSameDay:(NSDate *)date;

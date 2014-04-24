@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "ATCalendar"
-  s.version      = "0.1.14"
+  s.version      = "0.1.15"
   s.summary      = "Calendar app like implementation with CoreData store"
   s.homepage     = "https://github.com/adriantofan/ATCalendar"
   s.license      = { :type => 'BSD', :file => 'LICENSE' }
@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   # s.resources = "Resources/*.png"
   s.frameworks = 'QuartzCore', 'UIKit', 'Foundation', 'CoreGraphics', 'CoreData'
   s.requires_arc = true
-  s.dependency 'MTDates' , '~> 0.9.1'
+  s.dependency 'MTDates' , '~> 0.12'
   s.dependency 'MagicalRecord', '~> 2.1'
   s.dependency 'CocoaLumberjack', '~> 1.6.2'
   s.dependency 'Functional.m', '~>1.0'

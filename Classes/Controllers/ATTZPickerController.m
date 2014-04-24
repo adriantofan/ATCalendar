@@ -44,6 +44,7 @@ static NSString *CellIdentifier = @"Cell";
 
 - (void)viewDidLoad
 {
+
   [super viewDidLoad];
   UIBarButtonItem* cancel = [[UIBarButtonItem alloc]
                              initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
@@ -52,7 +53,7 @@ static NSString *CellIdentifier = @"Cell";
   [self.navigationController setNavigationBarHidden:NO];
   self.navigationItem.prompt = ATLocalizedString(@"Type a city name",@"Time zone selection controller name");
   self.navigationItem.rightBarButtonItem = cancel;
-  UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 270, 40)] ;
+  UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 240, 40)] ;
   searchBar.backgroundImage = [[UIImage alloc] init];
   self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:searchBar];
   searchBar.text = [self.timeZone name];

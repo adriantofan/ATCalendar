@@ -47,9 +47,14 @@ typedef enum{
 
 - (void)viewDidLoad
 {
+  self.edgesForExtendedLayout = UIRectEdgeNone;
+
   [super viewDidLoad];
-  self.tableView.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
-  self.tableView.backgroundView.backgroundColor = [[ATCalendarUIConfig sharedConfig] groupedTableViewBGCollor];
+  UIColor* bgColor = [[ATCalendarUIConfig sharedConfig] groupedTableViewBGCollor];
+  if (![bgColor isEqual:[UIColor clearColor]] ) {
+    self.tableView.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.backgroundView.backgroundColor = bgColor;
+  }
   UIBarButtonItem *edit = [[UIBarButtonItem alloc]
     initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
                            target:self
@@ -220,13 +225,13 @@ typedef enum{
 
 
 -(CellType)cellTypeForIndexPath:(NSIndexPath*)indexPath{
-  return [[self.cellList objectAtIndex:indexPath.row] integerValue];
+  return (CellType)[[self.cellList objectAtIndex:indexPath.row] integerValue];
 }
 
 
 #pragma mark - Table View
 
--(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
   CellType type = [self cellTypeForIndexPath:indexPath];
   if (type == CellTypeDescription) {
     return [ATEventDetailCell heightWithTitle:self.eventOccurence.event.summary

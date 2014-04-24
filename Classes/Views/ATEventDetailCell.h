@@ -10,7 +10,7 @@
 
 
 @interface ATEventDetailCell : UITableViewCell
-+(float)heightWithTitle:(NSString*)title subtitle:(NSString*)subtitle description:(NSString*)description;
++(CGFloat)heightWithTitle:(NSString*)title subtitle:(NSString*)subtitle description:(NSString*)description;
 -(void)setTitle:(NSString*)title subtitle:(NSString*)subtitle description:(NSString*)description;
 @property (nonatomic) UILabel* titleLabel;
 @property (nonatomic) UILabel* subtitleLabel;

@@ -81,9 +81,10 @@
 }
 
 - (void)loadView{
+  self.edgesForExtendedLayout = UIRectEdgeNone;
   [super loadView];
   self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.bounds.size.width, 44.0)];
-  self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, 44.0, self.view.bounds.size.width, self.view.bounds.size.height-44.0-138.0)]; // just before the toolbar
+  self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, 44.0, self.view.bounds.size.width, self.view.bounds.size.height-152.0)]; // just before the toolbar
   [self.view addSubview:self.searchBar];
   [self.view addSubview:self.tableView];
   self.tableView.delegate = self;
@@ -93,6 +94,7 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  
   self.eventCellClass = [ATEventOccurenceCell class];
   self.searchResultsEventCellClass = [ATEventOccurenceCell class];
   [self.tableView registerClass:self.eventCellClass forCellReuseIdentifier:self.eventCellId];
@@ -124,7 +126,6 @@
         ATLocalizedString(@"Day", @"Filter by day button label") ]];
   segCtrl.selectedSegmentIndex = 0;
   [segCtrl addTarget:self action:@selector(segCtrlChanged:) forControlEvents:UIControlEventValueChanged];
-  segCtrl.segmentedControlStyle = UISegmentedControlStyleBar;
   self.segCtrl = segCtrl;
   UIBarButtonItem *segCtrlItem = [[UIBarButtonItem alloc] initWithCustomView:segCtrl];
   NSArray* items = @[today,spacer,segCtrlItem];

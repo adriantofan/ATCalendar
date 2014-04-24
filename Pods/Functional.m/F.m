@@ -9,6 +9,7 @@
 #import "F.h"
 
 @implementation F
+static dispatch_queue_t F_queue;
 
 + (void) useConcurrency {
     NSLog(@"ATTENTION - USING CONCURRENCY WILL RESULT IN A NON-SEQUENTIAL EXECUTION OF THE PASSED BLOCKS");
@@ -93,7 +94,6 @@
             [mutArr replaceObjectAtIndex:i withObject:o];
             dispatch_semaphore_signal(itemLock);
         });
-        dispatch_release(itemLock);
     }
     else {
         for (id obj in arr) {
@@ -116,7 +116,6 @@
             [mutDict setValue:map_o forKey:key];
             dispatch_semaphore_signal(itemLock);
         });
-        dispatch_release(itemLock);
     }
     else {
         for (id key in dict) {
@@ -158,7 +157,6 @@
             }
         });
         [nilArray removeObjectIdenticalTo:[NSNull null]];
-        dispatch_release(itemLock);
         return [NSArray arrayWithArray:nilArray];
     }
     else {
@@ -184,7 +182,6 @@
                 dispatch_semaphore_signal(itemLock);
             }
         });
-        dispatch_release(itemLock);
     }
     else {
         for (id key in dict) {
@@ -210,7 +207,6 @@
             }
         });
         [nilArray removeObjectIdenticalTo:[NSNull null]];
-        dispatch_release(itemLock);
         return [NSArray arrayWithArray:nilArray];
     }
     else {
@@ -236,7 +232,6 @@
                 dispatch_semaphore_signal(itemLock);
             }
         });
-        dispatch_release(itemLock);        
     }
     else {
         for (id key in dict) {
@@ -474,7 +469,6 @@
             [mutArr replaceObjectAtIndex:i withObject:o];
             dispatch_semaphore_signal(itemLock);
         });
-        dispatch_release(itemLock);
     }
     else {
         for (NSInteger i=from; i<to; i++) {

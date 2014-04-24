@@ -15,7 +15,7 @@
 #define SUBTITLE_FONT_SIZE 14.0f
 #define TITLE_FONT_SIZE 14.0
 #define CELL_CONTENT_WIDTH 300.0f
-#define CELL_CONTENT_MARGIN 10.0f
+#define CELL_CONTENT_MARGIN 15.0f
 #define VERTICAL_SPACING  4.0f
 
 UIFont* descriptionFont(){
@@ -38,7 +38,7 @@ UIFont* subtitleFont(){
 
 
 
-+(float)heightWithTitle:(NSString*)title subtitle:(NSString*)subtitle description:(NSString*)description{
++(CGFloat)heightWithTitle:(NSString*)title subtitle:(NSString*)subtitle description:(NSString*)description{
   CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 20000.0f);
   CGSize sizeTitle =
     [title sizeWithFont:titleFont()
@@ -52,11 +52,11 @@ UIFont* subtitleFont(){
   [description sizeWithFont:descriptionFont()
        constrainedToSize:constraint
            lineBreakMode:NSLineBreakByWordWrapping];
-  float lineCount = 0.0f;
+  CGFloat lineCount = 0.0f;
   if (sizeTitle.height != 0.0f) lineCount += 1.0f;
   if (sizeSubTitle.height != 0.0f) lineCount += 1.0f;
   if (sizeDescription.height != 0.0f) lineCount += 1.0f;
-  float lineSpacing = 0.0f;
+  CGFloat lineSpacing = 0.0f;
   if (lineCount != 0.0f) {
     lineSpacing = (lineCount-1.0)*VERTICAL_SPACING;
   }

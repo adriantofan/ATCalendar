@@ -10,7 +10,7 @@
 #import "ATCalendarUIConfig.h"
 
 @implementation ATEventTimeEditCell
-+(float)height{
++(CGFloat)height{
   return 72.0;
 }
 -(void)awakeFromNib{
