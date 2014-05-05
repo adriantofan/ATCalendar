@@ -19,5 +19,5 @@ extern NSString* const ATEventURIKey;
 // A selector to invoke on self when the notificationBody is requested
 +(void)setNotificationBodyFormaterSelector:(SEL)selector;
 +(SEL)notificationBodyFormaterSelector;
-
+-(UILocalNotification*)notificationWithDate:(NSDate*)eventStart alertType:(ATEventAlertType)type;
 @end

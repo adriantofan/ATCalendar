@@ -41,52 +41,49 @@ static ATCalendar* ___sharedInstance;
 }
 
 -(void)updateAlarmLocalNotificationsInContext:(NSManagedObjectContext*)moc{
+  // delete all existing
+  NSDate* now= [NSDate date];
+  [ATAlertNotification MR_truncateAllInContext:moc];
+  [[UIApplication sharedApplication] cancelAllLocalNotifications];
+  [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
   NSArray* current =
     [ATOccurrenceCache firstOccurenceCacheOfEventWithAlarmAfter:self.currentSyncSpan.start
                                                     inContext:moc
                                                         limit:kMaxNotifications];
-  
-  NSArray* actives = [ATAlertNotification MR_findAllInContext:moc];
-  [self updateAlarmLocalNotificationsForEventOccurences:current
-                                 andActiveNotifications:actives];
-}
-
--(void)updateAlarmLocalNotificationsForEventOccurences:(NSArray*)current
-                                andActiveNotifications:(NSArray*)actives{
-  NSArray* currentEvents = [current map:^id(ATOccurrenceCache* obj){
-    return [obj event];
+  // get kMaxNotifications UILocalNotifications from current
+  NSMutableArray* notifications = [NSMutableArray arrayWithCapacity:kMaxNotifications];
+  [current enumerateObjectsUsingBlock:^(ATOccurrenceCache* o, NSUInteger idx, BOOL *stop) {
+    if (o.event.firstAlertTypeValue != ATEventAlertTypeNone) {
+      [notifications addObject:[o.event notificationWithDate:o.occurrenceDate alertType:o.event.firstAlertTypeValue]];
+    }
+    if (o.event.seccondAlertTypeValue != ATEventAlertTypeNone) {
+      [notifications addObject:[o.event notificationWithDate:o.occurrenceDate alertType:o.event.seccondAlertTypeValue]];
+    }
+    *stop = [notifications count] > kMaxNotifications;
   }];
   
-  NSArray* activeEvents = [[actives map:^id(ATAlertNotification* obj) {
-    ATEvent*event = [obj event];
-    NSAssert(event,@"each ATAlertNotification need an associated event");
-    return [obj event];}] 
-                           reduce:^id(NSMutableArray* memo, id obj) {
-                             if (![memo containsObject:obj]) [memo addObject:obj];
-                             return memo;
-                           }
-                           withInitialMemo:[NSMutableArray new]];
-  
-  // events to delete : what's active and not in current (active - current)
-  NSArray* toDelete = [activeEvents filter:^BOOL(id obj) {
-    return ![currentEvents containsObject:obj];
+  // sort notifications by firedate
+  NSArray* sorted  = [[notifications sortedArrayUsingComparator:^NSComparisonResult(UILocalNotification* obj1, UILocalNotification* obj2) {
+    return [obj1.fireDate compare:obj2.fireDate];
+  }] filter:^BOOL(UILocalNotification* n) {
+    return  [n.fireDate mt_isAfter:now];
+  }] ;
+  // Extract Notifications, update badge number and schedule
+  [sorted enumerateObjectsUsingBlock:^(UILocalNotification* n, NSUInteger idx, BOOL *stop) {
+    n.applicationIconBadgeNumber = idx + 1;
+    NSString* eventId = [[n userInfo] objectForKey:ATEventURIKey];
+    NSURL *objURL = [NSURL URLWithString:eventId];
+    NSManagedObjectID *moId = [moc.persistentStoreCoordinator managedObjectIDForURIRepresentation:objURL];
+    if (nil != moId) {
+      ATEvent* event = (ATEvent*)[moc existingObjectWithID:moId
+                                                     error:nil];
+      ATAlertNotification *notLink = [ATAlertNotification MR_createInContext:moc];
+      notLink.notification = n;
+      notLink.event = event;
+      [event.alertNotificationsSet addObject:notLink];
+      [[UIApplication sharedApplication] scheduleLocalNotification:n];
+    }
   }];
-  [toDelete enumerateObjectsUsingBlock:^(ATEvent* e, NSUInteger idx, BOOL *stop) {
-    [e removeExistingLocalNotifications];
-  }];
-  
-  // events to add : what's current and not active (current - active)
-  NSArray* toAdd = [currentEvents filter:^BOOL(id obj) {
-    return ![activeEvents containsObject:obj];
-  }];
-  [toAdd enumerateObjectsUsingBlock:^(ATEvent* e, NSUInteger idx, BOOL *stop) {
-    [current enumerateObjectsUsingBlock:^(ATOccurrenceCache* o, NSUInteger idx, BOOL *stop) {
-      if (o.event == e) {
-        [e scheduleLocalNotificationForOccurenceStart:o.occurrenceDate];
-        *stop = TRUE;
-      }
-    }];
-  }];  
 }
 
 

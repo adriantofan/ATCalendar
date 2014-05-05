@@ -37,8 +37,4 @@
 // returns a list of days to sync spaning fromDate - toDate
 -(NSArray*)dateArrayToSyncFrom:(NSDate*)fromDate to:(NSDate*)toDate;
 
-// current array of ATOccurrenceCache / actives array of ATAlertNotification
--(void)updateAlarmLocalNotificationsForEventOccurences:(NSArray*)current
-                                andActiveNotifications:(NSArray*)actives;
-
 @end

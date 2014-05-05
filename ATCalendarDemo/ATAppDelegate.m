@@ -32,6 +32,7 @@
   if (getenv("runningTests"))
     return YES;
 #endif
+  application.applicationIconBadgeNumber = 0;
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   [NSManagedObjectModel MR_setDefaultManagedObjectModel:
    [NSManagedObjectModel mergedModelFromBundles:@[[NSBundle at_calendar_defaultBundle]]]];
