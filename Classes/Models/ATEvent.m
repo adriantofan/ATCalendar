@@ -50,6 +50,8 @@
       text = ATLocalizedString(@"1 day before", @"alert type");break;
     case ATEventAlertType2DaysBefore:
       text = ATLocalizedString(@"2 days before", @"alert type");break;
+    case ATEventAlertType2WeeksBefore:
+      text = ATLocalizedString(@"2 weeks before", @"alert type");break;
   }
   return text;
 }

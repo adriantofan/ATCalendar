@@ -24,13 +24,33 @@ NSString* const ATEventURIKey = @"ATEventURIKey";
 
 @implementation ATEvent (LocalNotifications)
 
+static SEL __notificationBodySelector = nil;
++(void)setNotificationBodyFormaterSelector:(SEL)selector{
+  __notificationBodySelector = selector;
+}
+
++(SEL)notificationBodyFormaterSelector{
+  return __notificationBodySelector;
+}
+
+-(NSString*)notificationBody{
+  if (NULL != [[self class] notificationBodyFormaterSelector]){
+    SEL selector = __notificationBodySelector;
+    IMP imp = [self methodForSelector:selector];
+    NSString* (*func)(id, SEL) = (void *)imp;
+    return func(self, selector);
+  }else{
+    return self.summary;
+  }
+}
+
 -(UILocalNotification*)notificationWithDate:(NSDate*)eventStart alertType:(ATEventAlertType)type{
   UILocalNotification* not = [UILocalNotification new];
   // ignore secconds
   not.fireDate = [eventStart dateByAddingTimeInterval:[eventStart mt_secondOfMinute]*-1.0];
   // TODO fixme
   not.timeZone = self.timeZone;
-  not.alertBody = self.summary;
+  not.alertBody = [self notificationBody];
   if (self.isRecurrent) {
     if ([self.recurence class] == [ATDailyRecurrence class]) {
       not.repeatInterval = NSDayCalendarUnit;
@@ -70,6 +90,9 @@ NSString* const ATEventURIKey = @"ATEventURIKey";
       break;
     case ATEventAlertType2DaysBefore:
       not.fireDate = [not.fireDate mt_dateDaysBefore:2];
+      break;
+    case ATEventAlertType2WeeksBefore:
+      not.fireDate = [not.fireDate mt_dateDaysBefore:14];
       break;
   }
   not.userInfo = @{ATEventURIKey:[self.objectID.URIRepresentation absoluteString]};

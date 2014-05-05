@@ -14,5 +14,10 @@ extern NSString* const ATEventURIKey;
 -(void)removeExistingLocalNotifications;
 -(void)updateLocalNotificationsAfterChange;
 -(void)removeLocalNotificationsBeforeDelete;
+// Returns the body of a reminder notification (default self.summary)
+-(NSString*)notificationBody;
+// A selector to invoke on self when the notificationBody is requested
++(void)setNotificationBodyFormaterSelector:(SEL)selector;
++(SEL)notificationBodyFormaterSelector;
 
 @end

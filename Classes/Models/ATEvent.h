@@ -10,6 +10,7 @@ typedef enum{
   ATEventAlertType2HBefore    =   60,
   ATEventAlertType1DayBefore  =   70,
   ATEventAlertType2DaysBefore =   80,
+  ATEventAlertType2WeeksBefore=   90,
 } ATEventAlertType;
 
 @interface ATEvent : _ATEvent {}

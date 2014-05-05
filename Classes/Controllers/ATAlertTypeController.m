@@ -32,6 +32,7 @@ static NSString *CellIdentifier = @"Cell";
                      ATLocalizedString(@"2 hours before", @"alert type"),
                      ATLocalizedString(@"1 day before", @"alert type"),
                      ATLocalizedString(@"2 days before", @"alert type"),
+                     ATLocalizedString(@"2 weeks before", @"alert type"),
                           ];
   }
   return alertLabels_;
@@ -70,7 +71,7 @@ static NSString *CellIdentifier = @"Cell";
 }
 #pragma mark - Model
 
--(ATEventAlertType)typeForCellIndex:(NSInteger)index{
+-(NSInteger)typeForCellIndex:(NSInteger)index{
   switch (index) {
     case 0: return ATEventAlertTypeNone;
     case 1: return ATEventAlertTypeAtTime;
@@ -81,9 +82,10 @@ static NSString *CellIdentifier = @"Cell";
     case 6: return ATEventAlertType2HBefore;
     case 7: return ATEventAlertType1DayBefore;
     case 8: return ATEventAlertType2DaysBefore;
+    case 9: return ATEventAlertType2WeeksBefore;
   }
   
-  return -1;
+  return (NSUInteger)-1;
 }
 
 -(BOOL)cellIsSelectedAtIndex:(NSInteger)index{
@@ -114,6 +116,8 @@ static NSString *CellIdentifier = @"Cell";
       return 7;
     case ATEventAlertType2DaysBefore:
       return 8;
+    case ATEventAlertType2WeeksBefore:
+      return 9;
   }
   return -1;
 }
@@ -147,9 +151,9 @@ static NSString *CellIdentifier = @"Cell";
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-  ATEventAlertType newType = [self typeForCellIndex:indexPath.row];
+  NSInteger newType = [self typeForCellIndex:indexPath.row];
   if (newType == -1) return;
-  self.type = newType;
+  self.type = (ATEventAlertType)newType;
   for (NSInteger i = 0; i<self.alertLabels.count;i++) {
     UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
     if ([self cellIsSelectedAtIndex:i]) {
