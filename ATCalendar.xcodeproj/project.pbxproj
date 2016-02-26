@@ -44,8 +44,8 @@
 		404A44DF16F8CD3300DAAD96 /* ATDurationEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 404A44DD16F8CD3300DAAD96 /* ATDurationEditController.m */; };
 		404A44E616F9C63A00DAAD96 /* ATEventDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 404A44E416F9C63A00DAAD96 /* ATEventDetailCell.m */; };
 		4059A96716F24600008F90F4 /* ATCalendarTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4059A96616F24600008F90F4 /* ATCalendarTest.m */; };
-		4059A96A16F24CB0008F90F4 /* Pods.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 8AFFA37E5D9B470888607BEB /* Pods.xcconfig */; };
-		4059A96B16F24CB0008F90F4 /* Pods.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 8AFFA37E5D9B470888607BEB /* Pods.xcconfig */; };
+		4059A96A16F24CB0008F90F4 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		4059A96B16F24CB0008F90F4 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		4059A97216F358B1008F90F4 /* ATEventTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4059A97116F358B1008F90F4 /* ATEventTest.m */; };
 		405EC2C616F219B400F590DD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405EC2C516F219B400F590DD /* UIKit.framework */; };
 		405EC2C816F219B400F590DD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 405EC2C716F219B400F590DD /* Foundation.framework */; };
@@ -245,9 +245,11 @@
 		40FCA7EA16F4C40E00F22C81 /* ATDailyRecurrence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATDailyRecurrence.h; sourceTree = "<group>"; };
 		40FCA7EB16F4C40E00F22C81 /* ATDailyRecurrence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATDailyRecurrence.m; sourceTree = "<group>"; };
 		40FCA7FC16F4CD0100F22C81 /* ATRecurrenceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATRecurrenceTest.m; sourceTree = "<group>"; };
-		59D0A087B57E4DE8B22E442C /* Pods-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-test.xcconfig"; path = "Pods/Pods-test.xcconfig"; sourceTree = SOURCE_ROOT; };
+		707BA36DDBBF5A6AD4972933 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		841B0704C9154AE4852A0DEE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		8AFFA37E5D9B470888607BEB /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		8829BEF24C0667B16C0D7CC9 /* Pods-test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-test.debug.xcconfig"; path = "Pods/Target Support Files/Pods-test/Pods-test.debug.xcconfig"; sourceTree = "<group>"; };
+		B9E9A2DAE9837A768C67B813 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		CA064D46DA9CE32ACD8750C0 /* Pods-test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-test.release.xcconfig"; path = "Pods/Target Support Files/Pods-test/Pods-test.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -385,8 +387,7 @@
 				405EC2F816F219B400F590DD /* ATCalendarDemoTests */,
 				405EC2C416F219B400F590DD /* Frameworks */,
 				405EC2C316F219B400F590DD /* Products */,
-				8AFFA37E5D9B470888607BEB /* Pods.xcconfig */,
-				59D0A087B57E4DE8B22E442C /* Pods-test.xcconfig */,
+				74202A64E9FB8EEA4015C17F /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -532,6 +533,17 @@
 			name = Database;
 			sourceTree = "<group>";
 		};
+		74202A64E9FB8EEA4015C17F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				707BA36DDBBF5A6AD4972933 /* Pods.debug.xcconfig */,
+				B9E9A2DAE9837A768C67B813 /* Pods.release.xcconfig */,
+				8829BEF24C0667B16C0D7CC9 /* Pods-test.debug.xcconfig */,
+				CA064D46DA9CE32ACD8750C0 /* Pods-test.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -560,6 +572,7 @@
 				405EC2BF16F219B400F590DD /* Frameworks */,
 				405EC2C016F219B400F590DD /* Resources */,
 				3CB40BE3C84C48B99A69EB11 /* Copy Pods Resources */,
+				83B9FA6FE6126E02DB719115 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -587,7 +600,7 @@
 			name = ATCalendarTests;
 			productName = ATCalendarDemoTests;
 			productReference = 405EC2F016F219B400F590DD /* ATCalendarTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -596,6 +609,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = AT;
+				LastTestingUpgradeCheck = 0720;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Adrian Tofan";
 			};
@@ -640,7 +654,7 @@
 				405EC2DA16F219B400F590DD /* Default.png in Resources */,
 				405EC2DC16F219B400F590DD /* Default@2x.png in Resources */,
 				405EC2DE16F219B400F590DD /* Default-568h@2x.png in Resources */,
-				4059A96A16F24CB0008F90F4 /* Pods.xcconfig in Resources */,
+				4059A96A16F24CB0008F90F4 /* (null) in Resources */,
 				40F92B02173801CC00AF1665 /* Podfile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -650,7 +664,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				405EC2FD16F219B400F590DD /* InfoPlist.strings in Resources */,
-				4059A96B16F24CB0008F90F4 /* Pods.xcconfig in Resources */,
+				4059A96B16F24CB0008F90F4 /* (null) in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -669,7 +683,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 		};
 		401297C116F21CB200C0DC35 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -709,7 +723,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-test-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-test/Pods-test-resources.sh\"\n";
+		};
+		83B9FA6FE6126E02DB719115 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -934,13 +963,14 @@
 		};
 		405EC30416F219B400F590DD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8AFFA37E5D9B470888607BEB /* Pods.xcconfig */;
+			baseConfigurationReference = 707BA36DDBBF5A6AD4972933 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ATCalendarDemo/ATCalendar-Prefix.pch";
 				INFOPLIST_FILE = "ATCalendarDemo/ATCalendarDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = (
+					"$(inherited)",
 					"-ObjC",
 					"-all_load",
 				);
@@ -952,13 +982,14 @@
 		};
 		405EC30516F219B400F590DD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8AFFA37E5D9B470888607BEB /* Pods.xcconfig */;
+			baseConfigurationReference = B9E9A2DAE9837A768C67B813 /* Pods.release.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ATCalendarDemo/ATCalendar-Prefix.pch";
 				INFOPLIST_FILE = "ATCalendarDemo/ATCalendarDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = (
+					"$(inherited)",
 					"-ObjC",
 					"-all_load",
 				);
@@ -970,7 +1001,7 @@
 		};
 		405EC30716F219B400F590DD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 59D0A087B57E4DE8B22E442C /* Pods-test.xcconfig */;
+			baseConfigurationReference = 8829BEF24C0667B16C0D7CC9 /* Pods-test.debug.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
@@ -991,7 +1022,7 @@
 		};
 		405EC30816F219B400F590DD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 59D0A087B57E4DE8B22E442C /* Pods-test.xcconfig */;
+			baseConfigurationReference = CA064D46DA9CE32ACD8750C0 /* Pods-test.release.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",

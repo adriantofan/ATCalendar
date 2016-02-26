@@ -12,8 +12,8 @@
 #import "ATEventListController.h"
 #import "ATCalendar.h"
 #import "NSBundle+ATCalendar.h"
-#import "NSDate+MTDates.h"
-#import "CoreData+MagicalRecord.h"
+#import <MTDates/NSDate+MTDates.h>
+#import <MagicalRecord/MagicalRecord.h>
 
 
 @implementation ATAppDelegate

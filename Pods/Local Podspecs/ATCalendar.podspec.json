@@ -1,0 +1,53 @@
+{
+  "name": "ATCalendar",
+  "version": "0.1.20",
+  "summary": "Calendar app like implementation with CoreData store",
+  "homepage": "https://github.com/adriantofan/ATCalendar",
+  "license": {
+    "type": "BSD",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Adrian Tofan": "adrian@tofan.co"
+  },
+  "source": {
+    "git": "https://github.com/adriantofan/ATCalendar.git",
+    "tag": "0.1.20"
+  },
+  "platforms": {
+    "ios": "7.0"
+  },
+  "source_files": [
+    "Classes",
+    "Classes/**/*.{h,m}"
+  ],
+  "frameworks": [
+    "QuartzCore",
+    "UIKit",
+    "Foundation",
+    "CoreGraphics",
+    "CoreData"
+  ],
+  "requires_arc": true,
+  "dependencies": {
+    "MTDates": [
+      "~> 0.12"
+    ],
+    "MagicalRecord": [
+      "~> 2.1"
+    ],
+    "CocoaLumberjack": [
+      "~> 1.6.2"
+    ],
+    "Functional.m": [
+      "~>1.0"
+    ]
+  },
+  "resource_bundles": {
+    "ATCalendar": [
+      "Resources/Base.lproj/Calendar.storyboard",
+      "Resources/*",
+      "Resources/Base.lproj/EventTimeEditCell.xib"
+    ]
+  }
+}

@@ -1,1 +1,0 @@
-PODS_TEST_ATCALENDAR_OTHER_LDFLAGS = -framework CoreData -framework CoreGraphics -framework Foundation -framework QuartzCore -framework UIKit

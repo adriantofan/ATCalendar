@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "ATCalendar"
-  s.version      = "0.1.20"
+  s.version      = "0.1.21"
   s.summary      = "Calendar app like implementation with CoreData store"
   s.homepage     = "https://github.com/adriantofan/ATCalendar"
   s.license      = { :type => 'BSD', :file => 'LICENSE' }
@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
   s.dependency 'MagicalRecord', '~> 2.1'
   s.dependency 'CocoaLumberjack', '~> 1.6.2'
   s.dependency 'Functional.m', '~>1.0'
-  s.resource_bundles = { 'ATCalendar' => ['Resources/*','Resources/Base.lproj/Calendar.storyboard','Resources/Base.lproj/EventTimeEditCell.xib'] }
+  s.resource_bundles = { 'ATCalendar' => ['Resources/Base.lproj/Calendar.storyboard','Resources/*','Resources/Base.lproj/EventTimeEditCell.xib'] }
 
 
 end

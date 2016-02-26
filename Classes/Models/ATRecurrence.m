@@ -2,7 +2,7 @@
 #import "ATEvent.h"
 #import "ATOccurrenceCache.h"
 #import "NSDate+MTDates.h"
-#import "CoreData+MagicalRecord.h"
+#import <MagicalRecord/MagicalRecord.h>
 
 
 @interface ATRecurrence ()

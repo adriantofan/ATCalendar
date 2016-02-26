@@ -13,7 +13,7 @@
 #import "ATEvent+LocalNotifications.h"
 #import "ATCalendarUIConfig.h"
 #import "NSBundle+ATCalendar.h"
-#import "CoreData+MagicalRecord.h"
+#import <MagicalRecord/MagicalRecord.h>
 
 
 

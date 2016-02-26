@@ -17,7 +17,7 @@
 #import "ATCalendarUIConfig.h"
 #import "NSBundle+ATCalendar.h"
 #import <objc/runtime.h>
-#import "CoreData+MagicalRecord.h"
+#import <MagicalRecord/MagicalRecord.h>
 #import "NSDate+MTDates.h"
 
 

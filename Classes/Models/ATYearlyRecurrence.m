@@ -2,7 +2,7 @@
 #import "NSBundle+ATCalendar.h"
 #import "NSDate+MTDates.h"
 #define MR_SHORTHAND
-#import "CoreData+MagicalRecord.h"
+#import <MagicalRecord/MagicalRecord.h>
 
 @interface ATYearlyRecurrence ()
 

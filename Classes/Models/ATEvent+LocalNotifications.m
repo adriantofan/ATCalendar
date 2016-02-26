@@ -16,7 +16,7 @@
 #import "ATMonthlyRecurrence.h"
 #import "ATYearlyRecurrence.h"
 #define MR_SHORTHAND
-#import "CoreData+MagicalRecord.h"
+#import <MagicalRecord/MagicalRecord.h>
 #import "NSDate+MTDates.h"
 
 
@@ -95,7 +95,7 @@ static SEL __notificationBodySelector = nil;
       not.fireDate = [not.fireDate mt_dateDaysBefore:14];
       break;
   }
-  not.userInfo = @{ATEventURIKey:[self.objectID.URIRepresentation absoluteString]};
+  not.userInfo = @{ATEventURIKey:[[self objectID].URIRepresentation absoluteString]};
   return not;
 }
 

@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "53045D8B189B994E6810AFEEF138DB8546D45EA8",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "53045D8B189B994E6810AFEEF138DB8546D45EA8" : 0,
+    "B5735621-A432-4659-8CB7-7742259124E0" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "F9072823-C1C1-4AC6-B92C-454EF46C5D9F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "53045D8B189B994E6810AFEEF138DB8546D45EA8" : "ATCalendar\/",
+    "B5735621-A432-4659-8CB7-7742259124E0" : "ATCalendarDemo"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "ATCalendar",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "ATCalendar.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:adriantofan\/ATCalendar.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "53045D8B189B994E6810AFEEF138DB8546D45EA8"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "ssh:\/\/github.com\/adriantofan\/ATCalendar.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B5735621-A432-4659-8CB7-7742259124E0"
+    }
+  ]
+}

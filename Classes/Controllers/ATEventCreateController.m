@@ -8,7 +8,7 @@
 
 #import "ATEventCreateController.h"
 #import "NSBundle+ATCalendar.h"
-#import "CoreData+MagicalRecord.h"
+#import <MagicalRecord/MagicalRecord.h>
 #import "NSDate+MTDates.h"
 
 

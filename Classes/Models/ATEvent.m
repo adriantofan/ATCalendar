@@ -7,7 +7,7 @@
 #import "ATEvent+LocalNotifications.h"
 #import "NSBundle+ATCalendar.h"
 #import "NSDate+MTDates.h"
-#import "CoreData+MagicalRecord.h"
+#import <MagicalRecord/MagicalRecord.h>
 
 @interface ATEvent ()
 @end
